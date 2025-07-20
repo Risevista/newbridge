@@ -1,0 +1,42 @@
+---
+import Image from '../components/Image.astro';
+
+// スクロールでビューに入った時にシネマスクリーンのように描画する効果をつける。
+// スクロールさせるコンポーネントの直下に置かないと機能しない
+const { src, position, translatex, classNames, wrapperClass } = Astro.props;
+const translateX = translatex ?? (position === 'right' ? '110%' : '-110%');
+---
+
+<script>
+    import '../js/ScrollTriggerClass';
+</script>
+
+<scroll-trigger
+    class={wrapperClass || "w-full"}
+>
+    <div class="cinema-screen">
+        <Image
+            src={src}
+            alt="Image not ready"
+            class={classNames || 'size-full object-cover'}
+        />
+    </div>
+</scroll-trigger>
+
+<style define:vars={{ translateX }}>
+    .cinema-screen {
+        height: 100%;
+        overflow: hidden;
+    }
+    .cinema-screen img {
+        transform: translateX(var(--translateX));
+    }
+    @media (prefers-reduced-motion: no-preference) {
+        .cinema-screen img {
+            transition: transform 4s cubic-bezier(0.4,0,0.2,1);
+        }
+    }
+    .cinema-screen.open img {
+        transform: translateX(0);
+    }
+</style>

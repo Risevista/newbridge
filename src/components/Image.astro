@@ -1,0 +1,43 @@
+---
+import { Image as AstroImage, type LocalImageProps, type RemoteImageProps } from 'astro:assets';
+
+// set default alt and quality
+const props: LocalImageProps | RemoteImageProps = { 
+    alt: "",
+    quality: "high",
+    loading: "eager",
+    format: "webp",
+    ...Astro.props
+} as LocalImageProps | RemoteImageProps;
+
+// set default widths
+if (!props.widths) {
+    // Local Image without Promise.  (src has width)
+    if (typeof props.src !== 'string' && !(props.src instanceof Promise)) {
+        if (props.src.width > 1080) {
+            props.widths = [375, 640, 1080, props.src.width]
+            props.sizes=`(max-width: 375px) 375px, (max-width: 640px) 640px, (max-width: 1080px) 1080px, ${props.src.width}px`
+        } else if (props.src.width > 640) {
+            props.widths = [375, 640, props.src.width]
+            props.sizes=`(max-width: 375px) 375px, (max-width: 640px) 640px, ${props.src.width}px`
+        } else if (props.src.width > 375) {
+            props.widths = [375, props.src.width]
+            props.sizes=`(max-width: 375px) 375px, ${props.src.width}px`
+        }
+    // Width is set(mainly for remote)
+    } else if (props.width) {
+        const width = Number(props.width)
+        if (width > 1080) {
+            props.widths = [375, 640, 1080, width]
+            props.sizes=`(max-width: 375px) 375px, (max-width: 640px) 640px, (max-width: 1080px) 1080px, ${width}px`
+        } else if (width > 640) {
+            props.widths = [375, 640, width]
+            props.sizes=`(max-width: 375px) 375px, (max-width: 640px) 640px, ${width}px`
+        } else if (width > 375) {
+            props.widths = [375, width]
+            props.sizes=`(max-width: 375px) 375px, ${width}px`
+        }
+    }
+}
+---
+<AstroImage { ...props } />

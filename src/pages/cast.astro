@@ -1,0 +1,388 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Image from '../components/Image.astro';
+import KANAMI from '../assets/img/kanami.webp';
+import ERIKA from '../assets/img/erika.webp';
+import SHOTA from '../assets/img/shota.webp';
+import NIKOLAY from '../assets/img/nikolay.webp';
+import MURASHOV from '../assets/img/murashov.webp';
+import Dancer from '../assets/img/dancer1.webp';
+import Dancer2 from '../assets/img/dancer2.webp';
+import Dancer3   from '../assets/img/dancer3.webp';
+import Dancer4 from '../assets/img/dancer4.webp';
+import Dancer5 from '../assets/img/dancer5.webp';
+import Dancer6 from '../assets/img/dancer6.webp';
+import C1 from '../assets/img/c1.webp';
+import C2 from '../assets/img/c2.webp';
+import C3 from '../assets/img/c3.webp';
+import C4 from '../assets/img/c4.webp';
+import C5 from '../assets/img/c5.webp';
+import C6 from '../assets/img/c6.webp';
+import C7 from '../assets/img/c7.webp';
+
+---
+
+<Layout title="Cast & Staff | Firebird">
+  <main class="min-h-screen bg-black text-white pt-24">
+    <!-- Hero Section -->
+    <section class="relative h-[20vh] flex items-center justify-center overflow-hidden">
+      <div class="absolute inset-0 bg-gradient-to-b from-black to-black z-10"></div>
+      <div class="relative z-20 text-center">
+        <p class="text-[#bfae9e] text- mb-2 tracking-widest">キャスト＆スタッフ</p>
+        <h1 class="text-xl md:text-2xl text-[#bfae9e]">CAST & STAFF</h1>
+      </div>
+    </section>
+
+    <!-- Cast Section -->
+    <section class="px-4 md:px-8 mb-12">
+      <div class="max-w-7xl mx-auto">
+        <div class="space-y-16">
+          <!-- Cast Member 1 -->
+          <div id="kanami" class="cast-card group flex flex-col md:flex-row gap-8 items-start justify-center p-8 bg-black/30 rounded-lg scroll-mt-32">
+            <div class="w-full md:w-1/5">
+              <div class="w-32 h-32 md:w-52 md:h-52 overflow-hidden rounded-full mx-auto">
+                <Image
+                  src={KANAMI}
+                  class="w-full h-full object-cover" />
+              </div>
+            </div>
+            <div class="w-full md:w-2/3 text-left">
+              <h3 class="text-2xl mb-2">KANAMI</h3>
+              <p class="text-[#bfae9e] mb-4">企画・プロデュース・主催<br>火の鳥</p>
+              <p class="text-sm md:text-base text-white leading-relaxed font-light">
+                広島県生まれ。<br>
+                2歳より日本舞踊を習い始め、その後ジャズダンス、クラシックバレエへと転向し、16歳よりフランス・カンヌ・ロゼラハイタワー・バレエ学校に留学。<br>
+                留学中にバーオソルクニアセフメソッド®と出会い、創始者ボリス・クニアセフ氏の愛弟子であるジャクリーン氏より直接指導を受ける。<br><br>
+                その後、モスクワ国立ボリショイバレエアカデミーに留学し、卒業（ディプロマ取得）。<br>
+                ワシントン・バレエ団にて研修後、米国・コロンビア・クラシカルバレエ団と契約し、入団後わずか2ヶ月で「くるみ割り人形」の主役に抜擢され全幕を踊る。以後、数々の欧州のバレエ団とソリストとして契約する。<br>
+                <br>
+                現在は定期的にパリで学びながら、ヨーロッパやアメリカ、東南アジアでもワークショップを開催するほか、テレビや雑誌などでも活躍中。<br>
+                <br>
+                著書【寝たままできる!パリジェンヌたちの体幹トレーニング KANAMI式バーオソル】日本文芸社
+              <div class="flex items-center gap-4 mt-4">                
+                <a href="https://www.instagram.com/kanami_f?igsh=MzhibWswejgyM2F4" target="_blank" aria-label="Instagram" class="text-white text-3xl hover:text-pink-300"><i class="fab fa-instagram"></i></a>
+                <a href="https://kanamishiki.com/" target="_blank" aria-label="Website" class="text-white text-3xl hover:text-blue-300"><i class="fas fa-globe"></i></a>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Cast Member 3 -->
+          <div id="shota" class="cast-card group flex flex-col md:flex-row gap-8 items-start justify-center p-8 bg-black/30 rounded-lg scroll-mt-32">
+            <div class="w-full md:w-1/5">
+              <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden rounded-full mx-auto">
+                <Image
+                  src={SHOTA}
+                  class="w-full h-full object-cover" />
+              </div>
+            </div>
+            <div class="w-full md:w-2/3 text-left">
+              <h3 class="text-2xl mb-2">小野寺正太<br>Shota Onodera</h3>
+              <p class="text-[#bfae9e] mb-4">イワン王子</p>
+              <p class="text-sm md:text-base text-white leading-relaxed font-light">
+                6歳よりバレエダンサー枡竹眞也に憧れバレエを始める。<br>
+                12歳の頃より木村公香、斎藤友佳理、ニコライフョードロフ氏に師事・15歳より佐藤勇次氏に師事。<br>
+                翌年ロシア国立ペルミバレエ学校に留学し、在学中にペルミバレエコンクールで特別賞を受賞。<br>
+                2017年ルドルフヌレエフ記念ロシア国立バレエ団に移籍。<br>
+                ロシア国内、アメリカ、ヨーロッパ各地にて公演をしている。<br>
+              </p>
+            </div>
+          </div>
+
+          <!-- Cast Member 2 -->
+          <div id="erika" class="cast-card group flex flex-col md:flex-row gap-8 items-start justify-center p-8 bg-black/30 rounded-lg scroll-mt-32">
+            <div class="w-full md:w-1/5">
+              <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden rounded-full mx-auto">
+                <Image
+                  src={ERIKA}
+                  class="w-full h-full object-cover" />
+              </div>
+            </div>
+            <div class="w-full md:w-2/3 text-left">
+              <h3 class="text-2xl mb-2">Erica</h3>
+              <p class="text-[#bfae9e] mb-4">王女ツァレヴナ</p>
+              <p class="text-sm md:text-base text-white leading-relaxed font-light">
+                4歳からミュージカルシアターSTEPSにてジャズダンスを始め、新体操、タップダンスを経て、クラシックバレエに転向。<br>
+                池本恵美子氏、宮城昇氏に師事。コンテンポラリーを石原完二氏に師事。<br>
+                16歳よりドイツ国立マンハイムバレエアカデミーに留学。<br>
+                その後、ベルリン国立バレエ学校に編入し、卒業。<br>
+                欧州各国のバレエカンパニーで舞台の経験を経て帰国。<br>
+                現在は子供から大人までバレエ、トレーニング、バーオソルクニアセフメソッド®のトレーナーとして全国各地、
+                又ニューヨークでもワークショップを開催。 <br>
+                年に数回、バーオソルクニアセフメソッド®のトレーニングを受けに渡仏。 </p>
+            </div>
+          </div>
+
+          <!-- Cast Member 4 -->
+          <div id="nikolay" class="cast-card group flex flex-col md:flex-row gap-8 items-start justify-center p-8 bg-black/30 rounded-lg scroll-mt-32">
+            <div class="w-full md:w-1/5">
+              <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden rounded-full mx-auto">
+                <Image
+                  src={NIKOLAY}
+                  class="w-full h-full object-cover" />
+              </div>
+            </div>
+            <div class="w-full md:w-2/3 text-left">
+              <h3 class="text-2xl mb-2">Nikolay Viyuzhanin</h3>
+              <p class="text-[#bfae9e] mb-4">魔王カスチェイ</p>
+              <p class="text-sm md:text-base text-white leading-relaxed font-light">
+                6歳よりバレエを始める。<br>1990年ロシア国立ペルミ・コレオグラフィー・バレエスクール入学。<br>98年ロシア国立ペルミ・オペラ・バレエ劇場に入団。<br>Ｋバレエカンパニーに入団。同年9月ソリストに昇格。18年9月よりキャラクター・アーティスト。
+              </p>
+            </div>
+          </div>
+
+          <!-- Cast Member 5 -->
+          <div id="fedor" class="cast-card group flex flex-col md:flex-row gap-8 items-start justify-center p-8 bg-black/30 rounded-lg scroll-mt-32">
+            <div class="w-full md:w-1/5">
+              <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden rounded-full mx-auto">
+                <Image
+                  src={MURASHOV}
+                  class="w-full h-full object-cover" />
+              </div>
+            </div>
+            <div class="w-full md:w-2/3 text-left">
+              <h3 class="text-2xl mb-2">Fedor Murashov</h3>
+              <p class="text-[#bfae9e] mb-4">振付師 Choreographer</p>
+              <p class="text-sm md:text-base text-white leading-relaxed font-light">
+                2001年にワガノワ・バレエアカデミーを卒業し学士号を取得。<br>
+                2001年から2022年までマリインスキー劇場にて活躍。2014年にロシア国立演劇芸術研究所を卒業し、演劇マネジメント（修士課程）の学位を取得。<br>2017年にエカテリンブルグ国立オペラ・バレエ劇場にてバレエ部門の副芸術監督に就任。<br>2020年にヴァガノワ・バレエアカデミーの教育学部（修士課程）で学習を開始。<br>2020年から2022年までサンクトペテルブルグ・エイフマンバレエアカデミーで講師として活動。<br>2019年から2022年まで、川崎市で行われる日本国際バレエフェスティバルのワガノワマスタークラスの審査員兼講師を務め、2022年には日本バレエ協会の「エスメラルダ」の振付家であるユリ・ブルラーカの助手として活動。現在は日本を拠点に活動し、講師として活動。
+              </p>
+            </div>
+          </div>
+
+          <!-- Cast Member 6 -->
+          <div id="joseph" class="cast-card group flex flex-col md:flex-row gap-8 items-start justify-center p-8 bg-black/30 rounded-lg scroll-mt-32">
+            <div class="w-full md:w-1/5">
+              <div class="w-32 h-32 md:w-48 md:h-48 overflow-hidden rounded-full mx-auto">
+                <Image
+                  src={C7}
+                  class="w-full h-full object-cover" />
+              </div>
+            </div>
+            <div class="w-full md:w-2/3 text-left">
+              <h3 class="text-2xl mb-2">Joseph BOUGLIONE </h3>
+              <p class="text-[#bfae9e] mb-4">サーカスパフォーマンス演出 Artistic director of cirque d’hiver de Paris</p>
+              <p class="text-sm md:text-base text-white leading-relaxed font-light">サーカス団シルク・ディヴェールのファミリーに生まれ、学校の休暇中にサーカスのツアーに定期的に同行。<br>12歳からサーカスの基本的な分野、ジャグリング、アクロバット、乗馬を習い始め、音楽(ピアノとトランペット) も学ぶ。<br>
+リングボーイとして初めて舞台に上がり、アクロバティックな演目にも参加し、ポニーを操る演目を披露。<br>
+16歳の時には、彼を有名にすることになる演目、「フィル・ド・フェリスト」のクリエーションを開始。<br>
+18歳の誕生日の翌日に初めてこの演目を披露し、最初はブグリオーヌ・サーカスのツアーで、その後サーカスからキャバレー、ミュージックホールに至るまで世界中で演じ、特にドイツのシルク・ロンカリでは15年間演じ続けた。<br>
+1984年、ジョセフは当時の文化大臣だったジャック・ラングに迎えられ、フランス・シルク・グランプリを受賞して最優秀フランス・サーカス・アーティストとして認定。<br>
+その後、1985年と1996年の2回、モンテカルロ世界サーカスフェスティバルに参加。<br>
+1999年、パリのシルク・ディヴェールで自身が芸術監督を務めた最初のショー「サルト」を披露し、観客やサーカスのメンバーに自分の芸術性と大規模なチームを指揮する能力を見せることに挑戦し、成功を収めた。<br>
+これに続いて、ピスト、トラぺーズ、ル・シルク(シルク・ディヴェール創立150周年の記念のショー) などのショーを製作。<br>
+合計でシルク・ディヴェールでは既に約20作品が上演されている。<br>
+また中国、インド、米国、オランダ、メキシコ、スペイン、英国など、世界中で100以上のショーを制作。<br>
+2003年には国家功労勲章のナイトに叙勲され、2019年にはモナコのステファニー王女の後援のもと、世界サーカス連盟からサーカス大使賞を受賞。<br><br>
+<span style="text-decoration: underline; text-underline-offset: 3px; color: #bfae9e;">過去の主なサーカスのクリエーション</span><br>
+EUROPA・PARK遊園地（ドイツ）・CIRQUE・VASQUEZ（アメリカ）・CIRQUE・RONCALLI（ドイツ）・CABARET DE LIDO DE PARIS（インド）・CIRQUE TRADITTIONAL SANYA（中国）
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+            <!-- New section for smaller circular images -->
+            <div class="mt-16 max-w-6xl mx-auto">
+                    <!-- Top row: 6 images, left space (centered on mobile) -->
+              <!-- モバイル用ラベル -->
+              <div class="md:hidden flex flex-col items-center mb-2">
+                <span class="text-xs tracking-widest font-serif" style="color:#bfae9e">バレエダンサー</span>
+                <span class="text-white text-lg font-serif">Ballet Dancers</span>
+                <span class="text-white text-sm" style="color:#bfae9e">王女たち</span>
+              </div>
+              <div class="flex items-center md:mt-8 justify-center">
+                <!-- PC用ラベル -->
+                <div class="w-48 flex-shrink-0 flex-col items-end justify-center pr-4 hidden md:flex">
+                  <div class="flex flex-col items-end">
+                    <span class="text-xs tracking-widest font-serif" style="color:#bfae9e">バレエダンサー</span>
+                    <span class="text-white text-lg md:text-xl font-serif whitespace-nowrap">Ballet Dancers</span>
+                    <span class="text-white text-sm mt-1" style="color:#bfae9e">王女たち</span>
+                  </div>
+                </div>
+                <div class="grid grid-cols-3 md:grid-cols-6 gap-3 md:gap-2 flex-grow justify-end md:mx-0 mx-auto">
+                  <div class="flex flex-col items-center">
+                    <Image src={Dancer2} alt="Shota small" class="w-16 h-16 md:w-32 md:h-32 rounded-full object-cover transition-all duration-300" />
+                    <span class="text-xs md:text-sm mt-2 text-white">齋藤伊世</span>
+                  </div>
+                  <div class="flex flex-col items-center">
+                    <Image src={Dancer3} alt="Nikolay small" class="w-16 h-16 md:w-32 md:h-32 rounded-full object-cover transition-all duration-300" />
+                    <span class="text-xs md:text-sm mt-2 text-white">井上真美子</span>
+                  </div>
+                  <div class="flex flex-col items-center">
+                    <Image src={Dancer} alt="Erika small" class="w-16 h-16 md:w-32 md:h-32 rounded-full object-cover transition-all duration-300" />
+                    <span class="text-xs md:text-sm mt-2 text-white">長坂舞美</span>
+                  </div>
+                  <div class="flex flex-col items-center">
+                    <Image src={Dancer4} alt="Fedor small" class="w-16 h-16 md:w-32 md:h-32 rounded-full object-cover transition-all duration-300" />
+                    <span class="text-xs md:text-sm mt-2 text-white">青木千紘</span>
+                  </div>
+                  <div class="flex flex-col items-center">
+                    <Image src={Dancer6} alt="Member 6" class="w-16 h-16 md:w-32 md:h-32 rounded-full object-cover transition-all duration-300" />
+                    <span class="text-xs md:text-sm mt-2 text-white">滝沢あかね</span>
+                  </div>
+                  <div class="flex flex-col items-center">
+                    <Image src={Dancer5} alt="Member 5" class="w-16 h-16 md:w-32 md:h-32 rounded-full object-cover transition-all duration-300" />
+                    <span class="text-xs md:text-sm mt-2 text-white">八木悠子</span>
+                  </div>
+                </div>
+              </div>
+              <!-- Bottom row: 6 images, label on left (label above on mobile) -->
+              <!-- モバイル用ラベル -->
+              <div class="md:hidden flex flex-col items-center mb-2 mt-8">
+                <span class="text-xs tracking-widest font-serif" style="color:#bfae9e">サーカスパフォーマー</span>
+                <span class="text-white text-sm font-serif">The artists of Joseph BOUGLIONE artistic director of cirque d’hiver de Paris</span>
+                <span class="text-sm mt-1" style="color:#bfae9e">魔王の手下</span>
+              </div>
+              <div class="flex items-center md:mt-8 justify-center">
+                <!-- PC用ラベル -->
+                <div class="w-48 flex-shrink-0 flex-col items-end justify-center pr-4 hidden md:flex">
+                  <div class="flex flex-col items-end">
+                    <span class="text-xs tracking-widest font-serif" style="color:#bfae9e">サーカスパフォーマー</span>
+                    <span class="text-white text-sm font-serif">The artists of Joseph BOUGLIONE artistic director of cirque d’hiver de Paris</span>
+                    <span class="text-sm mt-1" style="color:#bfae9e">魔王の手下</span>
+                  </div>
+                </div>
+                <div class="grid grid-cols-3 md:grid-cols-6 gap-3 md:gap-4 flex-grow justify-center mx-auto">
+                  <div class="flex flex-col items-center">
+                    <Image src={C4} alt="Member 10" class="w-16 h-16 md:w-32 md:h-32 rounded-full object-cover transition-all duration-300" />
+                    <span class="text-xs md:text-sm mt-2 text-white whitespace-nowrap">Malou LATROMPETTE</span>
+                  </div>
+                  <div class="flex flex-col items-center">
+                    <Image src={C5} alt="Member 11" class="w-16 h-16 md:w-32 md:h-32 rounded-full object-cover transition-all duration-300" />
+                    <span class="text-xs md:text-sm mt-2 text-white">Alex VÀSPAL</span>
+                  </div>
+                  <div class="flex flex-col items-center">
+                    <Image src={C6} alt="Member 12" class="w-16 h-16 md:w-32 md:h-32 rounded-full object-cover transition-all duration-300" />
+                    <span class="text-xs md:text-sm mt-2 text-white">NESTOR</span>
+                  </div>
+                  <div class="flex flex-col items-center">
+                    <Image src={C2} alt="Member 8" class="w-16 h-16 md:w-32 md:h-32 rounded-full object-cover transition-all duration-300" />
+                    <span class="text-xs md:text-sm mt-2 text-white whitespace-nowrap">Ines VALARCHER</span>
+                  </div>
+                  <div class="flex flex-col items-center">
+                    <Image src={C3} alt="Member 9" class="w-16 h-16 md:w-32 md:h-32 rounded-full object-cover transition-all duration-300" />
+                    <span class="text-xs md:text-sm mt-2 text-white">Pierre DOMIS</span>
+                  </div>
+                  <div class="flex flex-col items-center">
+                    <Image src={C1} alt="Member 7" class="w-16 h-16 md:w-32 md:h-32 rounded-full object-cover transition-all duration-300" />
+                    <span class="text-xs md:text-sm mt-2 text-white whitespace-nowrap">Marine BURIDANT</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+    </section>
+
+        <!-- Staff Section -->
+        <section class="max-w-7xl mx-auto py-16 md:py-20">
+          <p class="text-[#bfae9e] text- mb-2 tracking-widest text-center">スタッフ</p>
+          <h2 class="text-2xl text-[#bfae9e] mb-8 text-center">STAFF</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="bg-black/30 p-6 rounded-lg">
+              <ul class="space-y-4">
+                <li class="flex justify-between">
+                  <span class="text-white">作曲</span>
+                  <span class="text-white">Igor Stravinsky</span>
+                </li>
+                <li class="flex justify-between">
+                  <span class="text-white">原振付</span>
+                  <span class="text-white">Mikhail Fokin</span>
+                </li>
+                <li class="flex justify-between">
+                  <span class="text-white">再振付</span>
+                  <span class="text-white">Fedor Murashov</span>
+                </li>
+                <li class="flex justify-between">
+                  <span class="text-white">舞台演出</span>
+                  <span class="text-white">株式会社DeLive</span>
+                </li>
+                <li class="flex justify-between">
+                  <span class="text-white">制作担当チーフ</span>
+                  <span class="text-white">藤井和也</span>
+                </li>
+                <li class="flex justify-between">
+                  <span class="text-white">音楽</span>
+                  <span class="text-white">江藤勝己</span>
+                </li>
+                <li class="flex justify-between">
+                  <span class="text-white">サーカスコーディネーター</span>
+                  <span class="text-white">菊池早苗</span>
+                </li>
+              </ul>
+            </div>
+            <div class="bg-black/30 p-6 rounded-lg">
+              <ul class="space-y-4">
+                <li class="flex justify-between">
+                  <span class="text-white">衣裳デザイン</span>
+                  <span class="text-white">西原梨恵</span>
+                </li>
+                <li class="flex justify-between">
+                  <span class="text-white">衣裳製作</span>
+                  <span class="text-white">有限会社 工房いーち</span>
+                </li>
+                <li class="flex justify-between">
+                  <span class="text-white">小道具</span>
+                  <span class="text-white">株式会社ザ・スタッフ</span>
+                </li>
+                <li class="flex justify-between">
+                  <span class="text-white">ヘアメイク</span>
+                  <span class="text-white">MICO/湯藤みどり/吉田馨/奥野展子</span>
+                </li>
+                <li class="flex justify-between">
+                  <span class="text-white">運営事務局</span>
+                  <span class="text-white">株式会社ミラープロモーション</span>
+                </li>
+                <li class="flex justify-between">
+                  <span class="text-white">企画/プロデュース</span>
+                  <span class="text-white">KANAMI</span>
+                </li>
+                <li class="flex justify-between">
+                  <span class="text-white">主催</span>
+                  <span class="text-white">株式会社Star Wisteria</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+  </main>
+</Layout>
+
+<style>
+  .cast-card {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s ease forwards;
+  }
+
+  .cast-card:nth-child(1) { animation-delay: 0.1s; }
+  .cast-card:nth-child(2) { animation-delay: 0.2s; }
+  .cast-card:nth-child(3) { animation-delay: 0.3s; }
+  .cast-card:nth-child(4) { animation-delay: 0.4s; }
+  .cast-card:nth-child(5) { animation-delay: 0.5s; }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .grayscale {
+    filter: grayscale(100%);
+  }
+
+  .staff-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    transition: all 0.3s ease;
+  }
+
+  .staff-card:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+  }
+</style> 

@@ -1,0 +1,43 @@
+---
+// Redirect user to the home page if code is missing
+---
+
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>OAuth Redirect</title>
+    </head>
+    <body>
+        <p id="message-area">OAuthを処理しています...</p>
+    </body>
+</html>
+
+<script>
+    const process = async () => {
+        const tokenUrl = window.location.href.replace('callback', 'token');
+        const response = await fetch(tokenUrl);
+        const text = await response.text();
+        if (!text.startsWith("token:")) {
+            if (document.getElementById("message-area")) document.getElementById("message-area")!.innerText = text
+            return
+        }
+        const content = {
+            token: text.replace("token:", ""),
+            provider: 'github',
+        };
+        const receiveMessage = (message:any) => {
+            window.opener.postMessage(
+                `authorization:${content.provider}:success:${JSON.stringify(content)}`,
+                message.origin,
+            );
+
+            window.removeEventListener('message', receiveMessage, false);
+        };
+        window.addEventListener('message', receiveMessage, false);
+
+        window.opener.postMessage(`authorizing:${content.provider}`, '*');
+    };
+    process();
+
+</script>

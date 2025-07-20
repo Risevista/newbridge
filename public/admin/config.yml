@@ -1,0 +1,66 @@
+backend:
+  name: github
+  branch: production
+  repo: Antico2024/acanale
+  site_domain: acanale.pages.dev
+  base_url: https://acanale.pages.dev/
+  auth_endpoint: auth
+
+locale: "ja"
+
+media_folder: /src/assets/img/cms
+
+i18n:
+  structure: multiple_folders
+  locales: [ja]
+  default_locale: ja
+  
+collections: [{
+    name: "news",
+    label: "新着情報", 
+    folder: "src/content/news", 
+    create: true,
+    fields: [
+      { label: "タイトル", name: "title", widget: "string" },
+      { label: "公開日", name: "date", widget: "datetime" },
+      { label: "画像", name: "image", widget: "image", required: false },
+      { label: "内容", name: "body", widget: "markdown" }
+    ]
+  }, {
+    name: "course", 
+    label: "コースメニュー",
+    folder: "src/content/course",
+    create: true,
+    fields: [
+      { label: "コース名", name: "title", widget: "string" },
+      { label: "コース名(英文)", name: "title_en", widget: "string", required: false },
+      { label: "コース説明", name: "description", widget: "text", required: false },
+      { label: "平日/休日/全日", name: "weekday", widget: "select", options: ["平日", "土日祝日", "全日"] },
+      { label: "ランチ/ディナー", name: "lunchdinner", widget: "select", options: [{ label: "ランチ", value: "lunch" }, { label: "ディナー", value: "dinner" }] },
+      { label: "価格(税込)", name: "price", widget: "number" },
+      { label: "スタート価格", name: "isStartPrice", widget: "boolean", required: false },
+      { label: "並び順", name: "sort", widget: "number" },
+      { label: "料理",
+        name: "menuItem",
+        widget: "list",
+        summary: '{{fields.title}}',
+        fields: [
+          { label: "タイトル", name: "title", widget: text },
+          { label: "説明", name: "description", widget: text, required: false }
+        ]
+      },
+      { label: "メッセージ", name: "body", widget: "text", required: false }
+    ]
+  }, {
+    name: "alacarte", 
+    label: "アラカルトメニュー",
+    folder: "src/content/alacarte",
+    create: true,
+    fields: [
+      { label: "タイトル", name: "title", widget: "string" },
+      { label: "ランチ/ディナー", name: "lunchdinner", widget: "select", options: [{ label: "ランチ", value: "lunch" }, { label: "ディナー", value: "dinner" }] },
+      { label: "並び順", name: "sort", widget: "number" },
+      { label: "画像", name: "image", widget: "image" },
+    ]
+  }
+]

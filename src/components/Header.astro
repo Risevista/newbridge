@@ -1,0 +1,170 @@
+---
+import Image from './Image.astro';
+import HeaderLogo from '../assets/img/osaka_02.webp'; 
+import Star from '../assets/img/star.svg';
+const { title } = Astro.props;
+---
+
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <slot name="head" />
+  </head>
+  <body class="bg-black text-white font-notojp">
+    <!-- ヘッダー -->
+    <nav id="header-nav" class="header-navigation fixed top-0 left-0 z-[9999] w-full px-3 py-10 flex items-center justify-between transition-all duration-300">
+      <!-- 左側：テキスト＋ロゴ -->
+      <div class="flex items-center gap-2">
+        <a href={Astro.url.pathname.startsWith('/en') ? '/en' : '/'} class="inline-block text-white hover:text-yellow-400 font-serif font-light md:text-xl tracking-wider md:mr-4">
+          The Firebird
+        </a>
+        <Image
+          src={HeaderLogo}
+          alt="Firebird Logo"
+          width={846}
+          height={216}
+          class="h-[28px] sm:h-[32px] md:h-[48px] w-auto object-contain"
+        />
+      </div>
+      
+            </div>
+      <!-- 右側：ナビ・アイコン・言語 -->
+      <div class="flex items-center gap-6">
+        <ul id="nav-menu" class="hidden md:flex gap-8 md:px-4 text-white text-xl font-serif font-light tracking-wide">
+          <li><a href={Astro.url.pathname.startsWith('/en') ? '/en/#introduction' : '/#introduction'} class="nav-link">Introduction</a></li>
+          <li><a href={Astro.url.pathname.startsWith('/en') ? '/en/cast' : '/cast'} class="nav-link">Cast&Staff</a></li>
+          <li><a href={Astro.url.pathname.startsWith('/en') ? '/en/#schedule' : '/#schedule'} class="nav-link">Schedule</a></li>
+          <li><a href={Astro.url.pathname.startsWith('/en') ? '/en/#schedule' : '/#schedule'} class="nav-link">Tickets</a></li>
+          <li><a href={Astro.url.pathname.startsWith('/en') ? '/en/#story' : '/#story'} class="nav-link">Story</a></li>
+        </ul>
+        <a href={import.meta.env.PUBLIC_INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" class="hidden md:flex items-center ml-4">
+          <i class="fab fa-instagram text-2xl text-white hover:text-red-400 transition"></i>
+        </a>        
+        <div class="ml-4 hidden md:flex items-center gap-3">
+          <div class="relative w-[47px] h-[45px]">
+            <Image src={Star} alt="Language Star" class="w-full h-full" />
+            <span class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-[42%] text-[12px] font-bold text-yellow-400 font-serif">{Astro.url.pathname.startsWith('/en') ? 'EN' : 'JP'}</span>
+          </div>
+          <a href={Astro.url.pathname.startsWith('/en') ? '/' : '/en'} class="text-white hover:text-yellow-400 text-sm font-serif">{Astro.url.pathname.startsWith('/en') ? 'JP' : 'EN'}</a>
+        </div>
+        <!-- モバイル用 -->
+        <div class="md:hidden flex items-center gap-2 justify-end w-full">
+          <a href={import.meta.env.PUBLIC_INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" class="flex items-center">
+            <i class="fab fa-instagram text-2xl text-white hover:text-red-400 transition"></i>
+          </a>          
+          <button id="menu-toggle" class="text-white focus:outline-none">
+            <svg id="hamburger-icon" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
+              viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+            <svg id="close-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" stroke-width="2"
+              viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+          <div class="flex items-center gap-2">
+            <div class="relative w-[40px] h-[38px]">
+              <Image src={Star} alt="Language Star" class="w-full h-full" />
+              <span class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-[42%] text-[10px] font-bold text-yellow-400 font-serif">{Astro.url.pathname.startsWith('/en') ? 'EN' : 'JP'}</span>
+            </div>
+            <a href={Astro.url.pathname.startsWith('/en') ? '/' : '/en'} class="text-white hover:text-yellow-400 text-xs font-serif">{Astro.url.pathname.startsWith('/en') ? 'JP' : 'EN'}</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- モバイルメニュー -->
+    <ul id="mobile-menu" class="md:hidden hidden flex-col bg-black bg-opacity-80 px-6 py-4 fixed top-[60px] left-0 w-full z-[9998] text-white text-sm font-serif transform transition-transform duration-300 ease-in-out -translate-y-full">
+      {Astro.url.pathname.startsWith('/en') ? (
+        <>
+          <li class="py-2"><a href="/en/#introduction" class="nav-link">Introduction</a></li>
+          <li class="py-2"><a href="/en/cast" class="nav-link">Cast&Staff</a></li>
+          <li class="py-2"><a href="/en/#schedule" class="nav-link">Schedule</a></li>
+          <li class="py-2"><a href="/en/#schedule" class="nav-link">Tickets</a></li>
+          <li class="py-2"><a href="/en/#story" class="nav-link">Story</a></li>
+        </>
+      ) : (
+        <>
+          <li class="py-2"><a href="/#introduction" class="nav-link">Introduction</a></li>
+          <li class="py-2"><a href="/cast" class="nav-link">Cast&Staff</a></li>
+          <li class="py-2"><a href="/#schedule" class="nav-link">Schedule</a></li>
+          <li class="py-2"><a href="/#schedule" class="nav-link">Tickets</a></li>
+          <li class="py-2"><a href="/#story" class="nav-link">Story</a></li>
+        </>
+      )}
+    </ul>
+
+    <!-- モバイルメニュー用スクリプト -->
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const toggle = document.getElementById('menu-toggle');
+        const menu = document.getElementById('mobile-menu');
+        const hamburgerIcon = document.getElementById('hamburger-icon');
+        const closeIcon = document.getElementById('close-icon');
+        const header = document.getElementById('header-nav');
+        
+        if (toggle && menu && hamburgerIcon && closeIcon && header) {
+          toggle.addEventListener('click', () => {
+            const isHidden = menu.classList.contains('hidden');
+            if (isHidden) {
+              menu.classList.remove('hidden');
+              setTimeout(() => {
+                menu.classList.remove('-translate-y-full');
+                // ヘッダーに黒背景＋透過を追加
+                header.style.backgroundColor = 'rgba(0,0,0,0.8)';
+              }, 10);
+              hamburgerIcon.classList.add('hidden');
+              closeIcon.classList.remove('hidden');
+            } else {
+              menu.classList.add('-translate-y-full');
+              setTimeout(() => {
+                menu.classList.add('hidden');
+                // ヘッダーの黒背景＋透過を削除
+                header.style.backgroundColor = 'transparent';
+              }, 300);
+              hamburgerIcon.classList.remove('hidden');
+              closeIcon.classList.add('hidden');
+            }
+          });
+        }
+      });
+    </script>
+
+    <style>
+      :root {
+        --header-height: 60px;
+      }
+
+      .header-navigation {
+        height: var(--header-height);
+        background: transparent;
+      }
+
+      .nav-link {
+        position: relative;
+        display: inline-block;
+        padding-bottom: 4px;
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        height: 2px;
+        width: 0;
+        background-color: #facc15;
+        transition: width 0.3s ease;
+      }
+      .nav-link:hover {
+        color: #facc15;
+      }
+      .nav-link:hover::after {
+        width: 100%;
+      }
+    </style>
+  </body>
+</html>

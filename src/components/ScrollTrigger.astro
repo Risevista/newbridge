@@ -1,0 +1,25 @@
+---
+/**
+ * スクロールでビューに入った時にクラス名を追加してビジュアル効果をつける。
+ * threshold コンポーネントの何割が表示された時に発動するかを設定。デフォルト0.2
+ * target トリガー対象のHTMLエレメントへのquerySelectorのクエリ。デフォルトは全てのChildElements
+ * triggered トリガー対象のHTMLエレメントに追加するクラス名。デフォルト"open"
+ */
+const {
+    threshold,
+    target,
+    triggered,
+}: { threshold?: number | string; target?: string; triggered?: string } =
+    Astro.props;
+---
+
+<scroll-trigger
+    data-threshold={threshold}
+    data-target={target}
+    data-triggered={triggered}
+>
+    <slot />
+</scroll-trigger>
+<script>
+    import '../js/ScrollTriggerClass';
+</script>

@@ -1,0 +1,31 @@
+div {
+    display:flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: center;
+}
+h1, h2, .h1, .h2 {
+    font-size:x-large;
+    margin: 0;
+    padding: 0;
+}
+h3, h4, .h3, .h4 {
+    margin: 0;
+    font-size: large;
+    padding: 0;
+}
+img {
+    width: 50%;
+    object-fit: cover;
+    aspect-ratio: 1 / 1;
+}
+.type {
+    background-color: lightgray;
+    padding: 0.5rem;
+}
+.menuname {
+    border-bottom: 1px solid black;
+}
+.itemname {
+    margin-bottom: -0.5rem;
+}

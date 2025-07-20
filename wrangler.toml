@@ -1,0 +1,5 @@
+name = "firebird"
+compatibility_date = "2025-05-30"
+
+[site]
+bucket = "./dist"

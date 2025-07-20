@@ -1,0 +1,218 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Ticket from '../assets/img/ticket.svg';
+import  Image from '../components/Image.astro';
+// import Feather from '../assets/img/red-feather.png'; // 未使用のためコメントアウト
+
+import '../assets/styles/base.css';
+
+interface Props {
+    title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="description" content={import.meta.env.PUBLIC_DESCRIPTION} />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content={Astro.generator} />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@300&family=Noto+Serif+JP:wght@300&display=swap" rel="stylesheet">
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+        />
+        <link
+            rel="apple-touch-icon"
+            sizes="180x180"
+            href="/apple-touch-icon.png"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="/favicon-32x32.png"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="/favicon-16x16.png"
+        />
+        <link rel="manifest" href="/site.webmanifest" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <slot name="head" />
+        <title>{title}</title>
+    </head>
+    <body class="bg-primary-back font-notojp m-0 p-0">
+        <Header />
+        <main class="flex flex-col bg-primary-back text-primary w-full">
+            <slot />
+            <div class="grow"></div>
+            <Footer />
+        </main>
+
+        <!-- チケット予約ボタン -->
+        <a
+  href="https://firebird-ballet.peatix.com"
+  target="_blank"
+  rel="noopener noreferrer"
+  class="reserve-btn fixed z-[9999] bottom-4 right-4 md:bottom-8 md:right-8
+         bg-gradient-to-br from-red-600 via-red-700 to-black
+         hover:bg-gradient-to-br text-white px-4 py-4 md:px-8 md:py-4
+         rounded-full shadow-lg transform hover:scale-105 transition-all
+         duration-300 flex items-center gap-2 md:gap-3 font-serif"
+>
+        <Image
+          src={Ticket}
+          alt={Astro.url.pathname.startsWith('/en') ? 'Tickets' : 'チケット'}
+          class="w-10 h-auto md:w-16"
+        />
+        <span class="text-base md:text-lg">
+          {Astro.url.pathname.startsWith('/en') ? 'Reserve Tickets' : 'チケット予約'}
+        </span>
+      </a>
+      
+        <slot name="foot" />
+    </body>
+</html>
+
+<script src="https://unpkg.com/lenis@1.0.45/dist/lenis.min.js"></script>
+<script>
+  // TypeScript型定義を追加
+  declare global {
+    interface Window {
+      Lenis: any;
+    }
+  }
+
+  window.addEventListener('load', () => {
+    const lenis = new (window as any).Lenis({
+      duration: 3.0,
+      easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smooth: true,
+      smoothWheel: true,
+      smoothTouch: true,
+    });
+
+    function raf(time: number) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+  });
+
+  // スクロール時の処理
+  document.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY || 0;
+    document.documentElement.style.setProperty('--scroll-y', `${scrollTop}px`);
+
+    // チケットボタン表示制御
+    const reserveBtn = document.querySelector('.reserve-btn');
+    if (scrollTop > 50) {
+      reserveBtn?.classList.add('visible');
+    } else {
+      reserveBtn?.classList.remove('visible');
+    }
+
+    // 一度でもスクロールしたら visibility を visible に
+    if (document.documentElement.style.getPropertyValue('--visibility-on-scroll') !== 'visible') {
+      document.documentElement.style.setProperty('--visibility-on-scroll', 'visible');
+    }
+  });
+
+  // モバイルメニュー制御
+  const mobileMenuButton = document.querySelector('.mobile-menu-button');
+  const mobileMenu = document.querySelector('.mobile-menu');
+
+  mobileMenuButton?.addEventListener('click', () => {
+    mobileMenu?.classList.toggle('hidden');
+    mobileMenu?.classList.toggle('active');
+  });
+
+  const mobileMenuLinks = document.querySelectorAll('.mobile-menu a');
+  mobileMenuLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu?.classList.add('hidden');
+      mobileMenu?.classList.remove('active');
+    });
+  });
+</script>
+
+<style>
+.reserve-btn {
+  opacity: 0;
+  pointer-events: none;        /* クリック無効化 */
+  transform: translateY(10px); /* ふわっと上がる演出 */
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.reserve-btn.visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.sticky-section {
+  border: 2px solid red;
+}
+.image-wrapper {
+  border: 2px solid blue;
+}
+.content-wrapper {
+  border: 2px solid green;
+}
+
+/* ヘッダーのスタイル */
+header {
+  transition: background-color 0.3s ease;
+}
+
+/* モバイルメニューのアニメーション */
+.mobile-menu {
+  transition: all 0.3s ease-in-out;
+}
+
+.mobile-menu.active {
+  display: block;
+  animation: slideDown 0.3s ease-in-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* モバイル対応 */
+@media (max-width: 768px) {
+  body {
+    width: 100vw;
+    overflow-x: hidden;
+  }
+
+  main {
+    width: 100vw;
+    overflow-x: hidden;
+  }
+}
+  z-index: 9999;
+
+/* スクロール時のヘッダースタイルを削除 */
+/*
+header.scrolled {
+  background-color: rgba(0, 0, 0, 0.95);
+}
+*/
+</style>

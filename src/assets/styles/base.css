@@ -1,0 +1,144 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+html {
+  overflow: visible !important;
+}
+
+body {
+    overflow-y: auto;
+    width: 100%;
+}
+
+:root {
+    --scroll-y: 0px; /*  */
+    --visibility-on-scroll: hidden; /* Set "visible" when scroll happens.  Mainly for showing Back to top only when scroll happens */
+    --nav-height: 0; /* Height of nav bar. Set actual value in Layout.astro */
+    font-family:
+        /* 英語テキストに適用 */ 'Cormorant Garamond',
+        /* 日本語テキストに適用 */ 'Noto Serif JP',
+        system-ui,
+        serif,
+        sans-serif;
+}
+/* Set top margin to avoid hiding behind nav bar */
+[id^='anchor-'] {
+    scroll-margin-top: calc(var(--nav-height) + 1rem);
+}
+
+/* for element to show only when scroll happens */
+.visible-on-scroll {
+    visibility: var(--visibility-on-scroll);
+}
+
+/*  .letters {
+    font-family: Montserrat, system-ui, sans-serif;
+  }*/
+
+.loading-text {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.4em;
+  text-transform: uppercase;
+}
+
+.loading-text span {
+  opacity: 0;
+  transform: translateY(30%);
+  animation: fadeUp 0.6s ease-out forwards;
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 黒い背景が上にスライドする */
+.wipe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: black;
+  width: 100%;
+  height: 100vh;
+  z-index: -1;
+  animation: wipeUp 0.4s ease-out forwards;
+  animation-delay: 4s;
+}
+
+@keyframes wipeUp {
+  to {
+    transform: translateY(-100%);
+  }
+}
+
+.feather-animation {
+  width: 140px;
+  height: auto;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: swayFall 6s cubic-bezier(0.4, 0.0, 0.2, 1) forwards;
+  opacity: 1;
+}
+
+@keyframes swayFall {
+  0% {
+    transform: translateX(-50%) translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  20% {
+    transform: translateX(-60%) translateY(20vh) rotate(-12deg);
+    opacity: 1;
+  }
+  40% {
+    transform: translateX(-40%) translateY(40vh) rotate(15deg);
+    opacity: 1;
+  }
+  60% {
+    transform: translateX(-55%) translateY(60vh) rotate(-8deg);
+    opacity: 1;
+  }
+  80% {
+    transform: translateX(-45%) translateY(80vh) rotate(10deg);
+    opacity: 1;
+  }
+  95% {
+    transform: translateX(-50%) translateY(100vh) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-50%) translateY(100vh) rotate(0deg);
+    opacity: 0;
+  }
+}
+
+/* モバイル対応の追加スタイル */
+@media (max-width: 768px) {
+    html {
+        width: 100%;
+    }
+
+    body {
+        width: 100%;
+        min-height: 100vh;
+    }
+
+    main {
+        width: 100%;
+    }
+
+    .relative {
+        width: 100%;
+    }
+}
+

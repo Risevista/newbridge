@@ -1,0 +1,91 @@
+---
+interface Props {
+  videoSrc: string;
+  posterSrc?: string;
+  class?: string;
+}
+
+const { videoSrc, posterSrc, class: className = "" } = Astro.props;
+---
+
+<section class:list={["hero", className]}>
+  <div class="hero__video-wrapper">
+    <video
+      class="hero__video"
+      autoplay
+      muted
+      loop
+      playsinline
+      poster={posterSrc}
+    >
+      <source src={videoSrc} type="video/mp4" />
+    </video>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .hero__video-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .hero__video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  @media (max-width: 768px) {
+    .hero {
+      height: 60vh;
+    }
+  }
+</style>
+
+<script>
+  class Hero {
+    private video: HTMLVideoElement | null;
+    private isMobile: boolean;
+
+    constructor() {
+      this.video = document.querySelector('.hero__video');
+      this.isMobile = window.innerWidth <= 768;
+      this.init();
+      this.setupResizeHandler();
+    }
+
+    init(): void {
+      if (this.video) {
+        // Ensure video plays on mobile
+        this.video.play().catch(error => {
+          console.log('Video autoplay failed:', error);
+        });
+      }
+    }
+
+    setupResizeHandler(): void {
+      window.addEventListener('resize', () => {
+        this.isMobile = window.innerWidth <= 768;
+        if (this.video) {
+          // Restart video if needed
+          this.video.play().catch(error => {
+            console.log('Video play failed:', error);
+          });
+        }
+      });
+    }
+  }
+
+  // Initialize hero section
+  new Hero();
+</script> 

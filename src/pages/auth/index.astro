@@ -1,0 +1,10 @@
+---
+const authUrl = `https://github.com/login/oauth/authorize?client_id=${import.meta.env.PUBLIC_OAUTH_GITHUB_CLIENT_ID}&scope=repo,user`;
+---
+
+<html>
+    <head>
+        <meta http-equiv="refresh" content={ `0; url=${ authUrl }` } />
+    </head>
+    <body>Redirecting...</body>
+</html>
