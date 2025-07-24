@@ -17,68 +17,67 @@ import Quotation from '../assets/img/quotation.png';
   <!-- Hero Section -->
   <section class="relative w-full bg-white overflow-hidden py-12 text-[#21293D]">
     <!-- メインコンテンツ -->
-    <div class="relative z-10 w-full mx-auto flex flex-col items-center bg-white">
-      <h2 class="text-3xl md:text-4xl font-bold mt-32 mb-8 text-center">こんな<span class="text-primary">お悩み</span>ありませんか？</h2>
-      
+    <div class="relative z-10 w-full mx-auto flex flex-col items-center bg-white px-2">
+      <h2 class="text-xl md:text-4xl font-bold mt-32 mb-8 text-center">こんな<span class="text-primary">お悩み</span>ありませんか？</h2>
       <!-- 円形ボックス -->
-      <div class="flex flex-wrap justify-center gap-2 md:gap-8 text-black">
-        <div class="flex flex-wrap justify-center gap-4 md:gap-8 mb-4 text-black">
-          <!-- 1つ目 -->
-          <div class="w-48 md:w-64 bg-white rounded-lg shadow-lg p-4 flex flex-col items-center space-y-4 text-center">
-            <Image
-              src={Person1}
-              alt="将来の資産"
-              class="w-48 h-48 object-contain"
-              loading="lazy"
-              decoding="async"
-            />
-            <p class="text-sm md:text-base leading-relaxed font-bold text-blue-500">
-              将来の資産に漠然とした不安がある
-            </p>
-          </div>
-        
-          <!-- 2つ目 -->
-          <div class="w-48 md:w-64 bg-white rounded-lg shadow-lg p-4 flex flex-col items-center space-y-4 text-center">
-            <Image
-              src={Person2}
-              alt="住宅ローン"
-              class="w-48 h-48 object-contain"
-              loading="lazy"
-              decoding="async"
-            />
-            <p class="text-sm md:text-base leading-relaxed font-bold text-blue-500">
-              住宅ローンや賃貸・購入などお金のことまでまとめて相談したい
-            </p>
-          </div>
-        
-          <!-- 3つ目 -->
-          <div class="w-48 md:w-64 bg-white rounded-lg shadow-lg p-4 flex flex-col items-center space-y-4 text-center">
-            <Image
-              src={Person4}
-              alt="住環境の見直し"
-              class="w-48 h-48 object-contain"
-              loading="lazy"
-              decoding="async"
-            />
-            <p class="text-sm md:text-base leading-relaxed font-bold text-blue-500">
-              子どもが生まれたから今後の住環境を見直したい
-            </p>
-          </div>
-        
-          <!-- 4つ目 -->
-          <div class="w-48 md:w-64 bg-white rounded-lg shadow-lg p-4 flex flex-col items-center space-y-4 text-center">
-            <Image
-              src={Person3}
-              alt="不動産の選び方"
-              class="w-48 h-48 object-contain"
-              loading="lazy"
-              decoding="async"
-            />
-            <p class="text-sm md:text-base leading-relaxed font-bold text-blue-500">
-              不動産ってそもそもどう選べばいいのかわからない
-            </p>
-          </div>
-        </div>      
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 text-black">
+  <!-- 1つ目 -->
+  <div class="bg-white rounded-lg shadow-lg p-4 flex flex-col items-center space-y-4 text-center">
+    <Image
+      src={Person1}
+      alt="将来の資産"
+      class="w-32 h-32 md:w-48 md:h-48 object-contain"
+      loading="lazy"
+      decoding="async"
+    />
+    <p class="text-sm md:text-base leading-relaxed font-bold text-blue-500">
+      将来の資産に漠然とした不安がある
+    </p>
+  </div>
+
+  <!-- 2つ目 -->
+  <div class="bg-white rounded-lg shadow-lg p-4 flex flex-col items-center space-y-4 text-center">
+    <Image
+      src={Person2}
+      alt="住宅ローン"
+      class="w-32 h-32 md:w-48 md:h-48 object-contain"
+      loading="lazy"
+      decoding="async"
+    />
+    <p class="text-sm md:text-base leading-relaxed font-bold text-blue-500">
+      住宅ローンや賃貸・購入などお金のことまでまとめて相談したい
+    </p>
+  </div>
+
+  <!-- 3つ目 -->
+  <div class="bg-white rounded-lg shadow-lg p-4 flex flex-col items-center space-y-4 text-center">
+    <Image
+      src={Person4}
+      alt="住環境の見直し"
+      class="w-32 h-32 md:w-48 md:h-48 object-contain"
+      loading="lazy"
+      decoding="async"
+    />
+    <p class="text-sm md:text-base leading-relaxed font-bold text-blue-500">
+      子どもが生まれたから今後の住環境を見直したい
+    </p>
+  </div>
+
+  <!-- 4つ目 -->
+  <div class="bg-white rounded-lg shadow-lg p-4 flex flex-col items-center space-y-4 text-center">
+    <Image
+      src={Person3}
+      alt="不動産の選び方"
+      class="w-32 h-32 md:w-48 md:h-48 object-contain"
+      loading="lazy"
+      decoding="async"
+    />
+    <p class="text-sm md:text-base leading-relaxed font-bold text-blue-500">
+      不動産ってそもそもどう選べばいいのかわからない
+    </p>
+  </div>
+</div>
+    
       </div>
 
       <Image src={Triangle} alt="三角形" class="w-24 h-24 md:w-48 md:h-48 object-contain"/>
@@ -174,7 +173,7 @@ import Quotation from '../assets/img/quotation.png';
     <div class="max-w-6xl mx-auto px-4">
       <div class="flex flex-col items-center">
         <small class="text-blue-700 text-[12px] font-extrabold mb-4">＼不動産投資のパートナーとしてトータルサポート／</small>
-        <h2 class="md:text-3xl font-bold text-center mb-12 tracking-wider"><span class="text-primary">RISE VISTA</span>がサポートする内容</h2>
+        <h2 class="text-xl md:text-3xl font-bold text-center mb-12 tracking-wider"><span class="text-primary">RISE VISTA</span>がサポートする内容</h2>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-10 text-center text-sm md:text-base text-[#333]">
           <!-- カード 1 -->
