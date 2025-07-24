@@ -182,58 +182,62 @@ import Layout from '../layouts/Layout.astro';
 </style>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const inquiryType = document.getElementById('inquiryType');
-        
-        inquiryType.addEventListener('change', function() {
-            // 全ての動的コンテンツを非表示
-            const contents = document.querySelectorAll('.dynamic-content');
-            contents.forEach(content => {
-                content.classList.remove('active');
-            });
-            
-            // 選択された種類に応じてコンテンツを表示
-            const selectedType = this.value;
-            if (selectedType) {
-                const targetContent = document.getElementById(selectedType + 'Content');
-                if (targetContent) {
-                    targetContent.classList.add('active');
-                }
-            }
+    document.addEventListener('DOMContentLoaded', function () {
+      const inquiryType = document.getElementById('inquiryType') as HTMLSelectElement | null;
+      const contactForm = document.getElementById('contactForm') as HTMLFormElement | null;
+  
+      const hideAllContents = () => {
+        document.querySelectorAll('.dynamic-content').forEach(content => {
+          content.classList.remove('active');
         });
-        
-        // フォーム送信処理
-        const contactForm = document.getElementById('contactForm');
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // 簡単なバリデーション
-            const inquiryTypeValue = document.getElementById('inquiryType').value;
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            
-            if (!inquiryTypeValue || !name || !email) {
-                alert('必須項目を入力してください。');
-                return;
-            }
-            
-            // その他の場合の詳細入力チェック
-            if (inquiryTypeValue === 'other') {
-                const otherDetails = document.getElementById('otherDetails').value;
-                if (!otherDetails.trim()) {
-                    alert('お問い合わせ内容を入力してください。');
-                    return;
-                }
-            }
-            
-            // 実際の送信処理はここに実装
-            alert('お問い合わせを受け付けました。後日担当者よりご連絡いたします。');
-            
-            // フォームリセット
-            this.reset();
-            document.querySelectorAll('.dynamic-content').forEach(content => {
-                content.classList.remove('active');
-            });
+      };
+  
+      const showSelectedContent = (value) => {
+        const target = document.getElementById(value + 'Content');
+        if (target) target.classList.add('active');
+      };
+  
+      if (inquiryType) {
+        inquiryType.addEventListener('change', function () {
+          hideAllContents();
+          const selectedType = (this as HTMLSelectElement).value;
+          if (selectedType) {
+            showSelectedContent(selectedType);
+          }
         });
+  
+        // 初期状態に合わせて表示
+        hideAllContents();
+        if (inquiryType.value) showSelectedContent(inquiryType.value);
+      }
+  
+      if (contactForm) {
+        contactForm.addEventListener('submit', function (e) {
+          e.preventDefault();
+  
+          const inquiryTypeValue = (document.getElementById('inquiryType') as HTMLSelectElement | null)?.value;
+          const name = (document.getElementById('name') as HTMLInputElement | null)?.value;
+          const email = (document.getElementById('email') as HTMLInputElement | null)?.value;
+  
+          if (!inquiryTypeValue || !name || !email) {
+            alert('必須項目を入力してください。');
+            return;
+          }
+  
+          if (inquiryTypeValue === 'other') {
+            const otherDetails = (document.getElementById('otherDetails') as HTMLTextAreaElement | null)?.value;
+            if (!otherDetails || otherDetails.trim() === '') {
+              alert('お問い合わせ内容を入力してください。');
+              return;
+            }
+          }
+  
+          alert('お問い合わせを受け付けました。後日担当者よりご連絡いたします。');
+  
+          (this as HTMLFormElement).reset();
+          hideAllContents();
+        });
+      }
     });
-</script>
+  </script>
+  
