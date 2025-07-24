@@ -192,7 +192,7 @@ import Layout from '../layouts/Layout.astro';
         });
       };
   
-      const showSelectedContent = (value) => {
+      const showSelectedContent = (value: string) => {
         const target = document.getElementById(value + 'Content');
         if (target) target.classList.add('active');
       };
