@@ -77,9 +77,18 @@ import HeaderLogo from '../assets/img/risevista-logo.png';
       <!-- 中央カラム：丸いイメージ -->
       <div class="flex-1 flex justify-center items-center">
         <div class="w-72 h-72 rounded-full bg-[#181c2a] flex items-center justify-center shadow-xl relative overflow-hidden">
-          <video src="/logo.mp4" class="w-full h-full object-cover rounded-full" autoplay loop muted playsinline></video>
+          <video
+            src="/logo.mp4"
+            autoplay
+            muted
+            loop
+            playsinline
+            class="w-full h-full object-cover rounded-full pointer-events-none"
+            preload="auto"
+          ></video>
         </div>
       </div>
+      
       <!-- 右カラム：ボタン -->
       <div class="flex-1 flex justify-center items-center">
         <a href="/mission">
@@ -108,7 +117,7 @@ import HeaderLogo from '../assets/img/risevista-logo.png';
       <!-- Row 1 -->
       <div class="flex flex-col md:flex-row items-stretch border-t border-gray-300 pt-6 md:pt-8 pb-6 md:pb-8">
         <div class="w-full md:w-12 flex items-center justify-center mb-4 md:mb-0">
-          <span class="text-xs tracking-widest transform md:-rotate-90 whitespace-nowrap">Honest</span>
+          <span class="text-xs tracking-widest transform md:-rotate-90 whitespace-nowrap font-serif">Honest</span>
         </div>
         <div class="flex-1 flex items-center justify-center mb-4 md:mb-0">
           <h3 class="text-2xl md:text-4xl font-serif font-normal leading-tight text-center">学びの姿勢</h3>
@@ -127,7 +136,7 @@ import HeaderLogo from '../assets/img/risevista-logo.png';
       <!-- Row 2 -->
       <div class="flex flex-col md:flex-row items-stretch border-t border-gray-300 pt-6 md:pt-8 pb-6 md:pb-8">
         <div class="w-full md:w-12 flex items-center justify-center mb-4 md:mb-0">
-          <span class="text-xs tracking-widest transform md:-rotate-90 whitespace-nowrap">Trust</span>
+          <span class="text-xs tracking-widest transform md:-rotate-90 whitespace-nowrap font-serif">Trust</span>
         </div>
         <div class="flex-1 flex items-center justify-center mb-4 md:mb-0">
           <h3 class="text-2xl md:text-4xl font-serif font-normal leading-tight text-center">信頼できる人柄</h3>
@@ -146,7 +155,7 @@ import HeaderLogo from '../assets/img/risevista-logo.png';
       <!-- Row 3 -->
       <div class="flex flex-col md:flex-row items-stretch border-t border-gray-300 pt-6 md:pt-8 pb-6 md:pb-8">
         <div class="w-full md:w-12 flex items-center justify-center mb-4 md:mb-0">
-          <span class="text-xs tracking-widest transform md:-rotate-90 whitespace-nowrap">Speed</span>
+          <span class="text-xs tracking-widest transform md:-rotate-90 whitespace-nowrap font-serif">Speed</span>
         </div>
         <div class="flex-1 flex items-center justify-center mb-4 md:mb-0">
           <h3 class="text-2xl md:text-4xl font-serif font-normal leading-tight text-center">迅速な対応力</h3>
@@ -165,7 +174,7 @@ import HeaderLogo from '../assets/img/risevista-logo.png';
       <!-- Row 4 -->
       <div class="flex flex-col md:flex-row items-stretch border-t border-b border-gray-300 pt-6 md:pt-8 pb-6 md:pb-8">
         <div class="w-full md:w-12 flex items-center justify-center mb-4 md:mb-0">
-          <span class="text-xs tracking-widest transform md:-rotate-90 whitespace-nowrap">Growth</span>
+          <span class="text-xs tracking-widest transform md:-rotate-90 whitespace-nowrap font-serif">Growth</span>
         </div>
         <div class="flex-1 flex items-center justify-center mb-4 md:mb-0">
           <h3 class="text-2xl md:text-4xl font-serif font-normal leading-tight text-center">持続的な成長</h3>
@@ -204,7 +213,7 @@ import HeaderLogo from '../assets/img/risevista-logo.png';
         <Image
         src={Service1}
         alt="Circus"
-        class="w-full h-120 object-cover brightness-130"
+        class="w-[320px] h-[240px] object-cover brightness-130"
         loading="lazy"
         decoding="async"
       />
@@ -225,7 +234,7 @@ import HeaderLogo from '../assets/img/risevista-logo.png';
         <Image
         src={Service2}
         alt="Circus"
-        class="w-full h-120 object-cover brightness-130"
+        class="w-[320px] h-[240px] object-cover brightness-130"
         loading="lazy"
         decoding="async"
       />
@@ -243,9 +252,9 @@ import HeaderLogo from '../assets/img/risevista-logo.png';
           SERVICE <span class="text-green-900 font-inter">#03</span>
         </div>
         <Image
-        src={Service2}
+        src={Service3}
         alt="Circus"
-        class="w-full h-120 object-cover brightness-130"
+        class="w-[320px] h-[240px] object-cover brightness-130"
         loading="lazy"
         decoding="async"
       />

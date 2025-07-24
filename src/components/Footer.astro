@@ -1,7 +1,24 @@
-<footer class="bg-primary text-white text-sm pt-10 pb-6 px-6">
-  <div class="max-w-7xl mx-auto">
+---
+import Image from './Image.astro';
+import FooterLogo from '../assets/img/risevista-logo.png'; 
+---
 
-    <!-- 住所とロゴ -->
+<footer class="bg-[#CEE6C1] text-gray-900 text-sm pt-10 pb-6 px-6">
+  <div class="max-w-7xl mx-auto">
+    <!-- ロゴと社名 横並び -->
+     <a href="/">
+    <div class="flex items-center mb-2">
+      <Image
+        src={FooterLogo}
+        alt="RISE VISTA"
+        class="h-12 w-auto mr-3"
+        loading="lazy"
+        decoding="async"
+      />
+      <span class="text-xl font-bold text-gray-800">株式会社RISE VISTA</span>
+    </div>
+    </a>
+    <!-- 住所 -->
     <div class="text-sm mb-6">
       <p>〒171-0014</p>
       <p>東京都渋谷区渋谷1-1-8 青山ダイヤモンドビル7階</p>
@@ -60,7 +77,7 @@
     </div>
 
     <!-- フッタークレジット -->
-    <div class="mt-10 text-xs text-center text-white">
+    <div class="mt-10 text-xs text-center text-gray-900">
       ©　株式会社RISE VISTA All Rights Reserved.
     </div>
   </div>
