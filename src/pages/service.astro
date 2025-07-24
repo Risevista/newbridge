@@ -15,89 +15,92 @@ import Quotation from '../assets/img/quotation.png';
 
 <Layout title="株式会社RISE VISTA">
   <!-- Hero Section -->
-  <section class="relative w-full bg-white overflow-hidden py-12 text-[#21293D]">
-    <!-- メインコンテンツ -->
-    <div class="relative z-10 w-full mx-auto flex flex-col items-center bg-white px-2">
-      <h2 class="text-xl md:text-4xl font-bold mt-32 mb-8 text-center">こんな<span class="text-primary">お悩み</span>ありませんか？</h2>
-      <!-- 円形ボックス -->
-<div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 text-black">
-  <!-- 1つ目 -->
-  <div class="bg-white rounded-lg shadow-lg p-4 flex flex-col items-center space-y-4 text-center">
-    <Image
-      src={Person1}
-      alt="将来の資産"
-      class="w-32 h-32 md:w-48 md:h-48 object-contain"
-      loading="lazy"
-      decoding="async"
-    />
-    <p class="text-sm md:text-base leading-relaxed font-bold text-blue-500">
-      将来の資産に漠然とした不安がある
-    </p>
-  </div>
-
-  <!-- 2つ目 -->
-  <div class="bg-white rounded-lg shadow-lg p-4 flex flex-col items-center space-y-4 text-center">
-    <Image
-      src={Person2}
-      alt="住宅ローン"
-      class="w-32 h-32 md:w-48 md:h-48 object-contain"
-      loading="lazy"
-      decoding="async"
-    />
-    <p class="text-sm md:text-base leading-relaxed font-bold text-blue-500">
-      住宅ローンや賃貸・購入などお金のことまでまとめて相談したい
-    </p>
-  </div>
-
-  <!-- 3つ目 -->
-  <div class="bg-white rounded-lg shadow-lg p-4 flex flex-col items-center space-y-4 text-center">
-    <Image
-      src={Person4}
-      alt="住環境の見直し"
-      class="w-32 h-32 md:w-48 md:h-48 object-contain"
-      loading="lazy"
-      decoding="async"
-    />
-    <p class="text-sm md:text-base leading-relaxed font-bold text-blue-500">
-      子どもが生まれたから今後の住環境を見直したい
-    </p>
-  </div>
-
-  <!-- 4つ目 -->
-  <div class="bg-white rounded-lg shadow-lg p-4 flex flex-col items-center space-y-4 text-center">
-    <Image
-      src={Person3}
-      alt="不動産の選び方"
-      class="w-32 h-32 md:w-48 md:h-48 object-contain"
-      loading="lazy"
-      decoding="async"
-    />
-    <p class="text-sm md:text-base leading-relaxed font-bold text-blue-500">
-      不動産ってそもそもどう選べばいいのかわからない
-    </p>
-  </div>
-</div>
+<!-- Hero Section -->
+<section class="relative w-full bg-white overflow-hidden py-12 text-[#21293D]">
+  <!-- メインコンテンツを一つのコンテナにまとめる -->
+  <div class="relative z-10 w-full mx-auto flex flex-col items-center bg-white px-2">
+    <h2 class="text-xl md:text-4xl font-bold mt-32 mb-8 text-center">こんな<span class="text-primary">お悩み</span>ありませんか？</h2>
     
+    <!-- 円形ボックス -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 text-black mb-8">
+      <!-- 1つ目 -->
+      <div class="bg-white rounded-lg shadow-lg p-4 flex flex-col items-center space-y-4 text-center">
+        <Image
+          src={Person1}
+          alt="将来の資産"
+          class="w-32 h-32 md:w-48 md:h-48 object-contain"
+          loading="lazy"
+          decoding="async"
+        />
+        <p class="text-sm md:text-base leading-relaxed font-bold text-blue-500">
+          将来の資産に漠然とした不安がある
+        </p>
       </div>
 
-      <Image src={Triangle} alt="三角形" class="w-24 h-24 md:w-48 md:h-48 object-contain"/>
+      <!-- 2つ目 -->
+      <div class="bg-white rounded-lg shadow-lg p-4 flex flex-col items-center space-y-4 text-center">
+        <Image
+          src={Person2}
+          alt="住宅ローン"
+          class="w-32 h-32 md:w-48 md:h-48 object-contain"
+          loading="lazy"
+          decoding="async"
+        />
+        <p class="text-sm md:text-base leading-relaxed font-bold text-blue-500">
+          住宅ローンや賃貸・購入などお金のことまでまとめて相談したい
+        </p>
+      </div>
 
-      <!-- 下部グリッド模様＋テキスト -->
-      <div class="relative z-10 flex flex-col items-center mb-16">
-        <h3 class="text-base md:text-2xl font-bold text-center">
-          <div class="mb-2">
-            お客様お一人おひとりの <span class="gold-label">将来設計</span> に寄り添い、
-          </div>
-          <div class="mb-2">
-            理想の <span class="gold-label">ライフプラン</span> や目標の実現に向けて、
-          </div>
-          <div>
-            <span class="gold-label">的確かつ丁寧なサポート</span> を提供します。
-          </div>
-        </h3>    
+      <!-- 3つ目 -->
+      <div class="bg-white rounded-lg shadow-lg p-4 flex flex-col items-center space-y-4 text-center">
+        <Image
+          src={Person4}
+          alt="住環境の見直し"
+          class="w-32 h-32 md:w-48 md:h-48 object-contain"
+          loading="lazy"
+          decoding="async"
+        />
+        <p class="text-sm md:text-base leading-relaxed font-bold text-blue-500">
+          子どもが生まれたから今後の住環境を見直したい
+        </p>
+      </div>
+
+      <!-- 4つ目 -->
+      <div class="bg-white rounded-lg shadow-lg p-4 flex flex-col items-center space-y-4 text-center">
+        <Image
+          src={Person3}
+          alt="不動産の選び方"
+          class="w-32 h-32 md:w-48 md:h-48 object-contain"
+          loading="lazy"
+          decoding="async"
+        />
+        <p class="text-sm md:text-base leading-relaxed font-bold text-blue-500">
+          不動産ってそもそもどう選べばいいのかわからない
+        </p>
       </div>
     </div>
-  </section>
+
+    <!-- Triangle を中央配置 -->
+    <div class="flex justify-center w-full mb-8">
+      <Image src={Triangle} alt="三角形" class="w-24 h-24 md:w-48 md:h-48 object-contain"/>
+    </div>
+
+    <!-- 下部テキスト -->
+    <div class="flex flex-col items-center mb-16">
+      <h3 class="text-base md:text-2xl font-bold text-center">
+        <div class="mb-2">
+          お客様お一人おひとりの <span class="gold-label">将来設計</span> に寄り添い、
+        </div>
+        <div class="mb-2">
+          理想の <span class="gold-label">ライフプラン</span> や目標の実現に向けて、
+        </div>
+        <div>
+          <span class="gold-label">的確かつ丁寧なサポート</span> を提供します。
+        </div>
+      </h3>    
+    </div>
+  </div>
+</section>
 
   <!-- よくあるイメージセクション -->
   <section class="w-full bg-[#f6f7f8] py-10">
