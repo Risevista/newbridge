@@ -1,0 +1,547 @@
+---
+// Astro Frontmatter
+import Image from '../components/Image.astro';
+import Layout from '../layouts/Layout.astro';
+import Person1 from '../assets/img/person1.png';
+import Person2 from '../assets/img/person2.png';
+import Person3 from '../assets/img/person3.png';
+import Person4 from '../assets/img/person4.png';
+import Arrow from '../assets/img/arrow.png';
+import Swipe from '../assets/img/swipe.png';
+import Triangle from '../assets/img/triangle.webp';
+import Quotation from '../assets/img/quotation.png';
+
+---
+
+<Layout title="株式会社RISE VISTA">
+  <!-- Hero Section -->
+  <section class="relative w-full bg-white overflow-hidden py-12 text-[#21293D]">
+    <!-- メインコンテンツ -->
+    <div class="relative z-10 w-full mx-auto flex flex-col items-center bg-white">
+      <h2 class="text-3xl md:text-4xl font-bold mt-32 mb-8 text-center">こんな<span class="text-primary">お悩み</span>ありませんか？</h2>
+      
+      <!-- 円形ボックス -->
+      <div class="flex flex-wrap justify-center gap-2 md:gap-8 text-black">
+        <div class="flex flex-wrap justify-center gap-4 md:gap-8 mb-4 text-black">
+          <!-- 1つ目 -->
+          <div class="w-64 md:w-72 bg-white rounded-lg shadow-lg p-4 flex flex-col items-center space-y-4 text-center">
+            <Image
+              src={Person1}
+              alt="将来の資産"
+              class="w-20 h-20 md:w-48 md:h-48 object-contain"
+              loading="lazy"
+              decoding="async"
+            />
+            <p class="text-sm md:text-base leading-relaxed font-bold text-blue-500">
+              将来の資産に漠然とした不安がある
+            </p>
+          </div>
+        
+          <!-- 2つ目 -->
+          <div class="w-64 md:w-72 bg-white rounded-lg shadow-lg p-4 flex flex-col items-center space-y-4 text-center">
+            <Image
+              src={Person2}
+              alt="住宅ローン"
+              class="w-20 h-20 md:w-48 md:h-48 object-contain"
+              loading="lazy"
+              decoding="async"
+            />
+            <p class="text-sm md:text-base leading-relaxed font-bold text-blue-500">
+              住宅ローンや賃貸・購入などお金のことまでまとめて相談したい
+            </p>
+          </div>
+        
+          <!-- 3つ目 -->
+          <div class="w-64 md:w-72 bg-white rounded-lg shadow-lg p-4 flex flex-col items-center space-y-4 text-center">
+            <Image
+              src={Person4}
+              alt="住環境の見直し"
+              class="w-20 h-20 md:w-48 md:h-48 object-contain"
+              loading="lazy"
+              decoding="async"
+            />
+            <p class="text-sm md:text-base leading-relaxed font-bold text-blue-500">
+              子どもが生まれたから今後の住環境を見直したい
+            </p>
+          </div>
+        
+          <!-- 4つ目 -->
+          <div class="w-64 md:w-72 bg-white rounded-lg shadow-lg p-4 flex flex-col items-center space-y-4 text-center">
+            <Image
+              src={Person3}
+              alt="不動産の選び方"
+              class="w-20 h-20 md:w-48  md:h-48 object-contain"
+              loading="lazy"
+              decoding="async"
+            />
+            <p class="text-sm md:text-base leading-relaxed font-bold text-blue-500">
+              不動産ってそもそもどう選べばいいのかわからない
+            </p>
+          </div>
+        </div>      
+      </div>
+
+      <Image src={Triangle} alt="三角形" class="w-24 h-24 md:w-48 md:h-48 object-contain"/>
+
+      <!-- 下部グリッド模様＋テキスト -->
+      <div class="relative z-10 flex flex-col items-center mb-16">
+        <h3 class="text-base md:text-2xl font-bold text-center">
+          <div class="mb-2">
+            お客様お一人おひとりの <span class="gold-label">将来設計</span> に寄り添い、
+          </div>
+          <div class="mb-2">
+            理想の <span class="gold-label">ライフプラン</span> や目標の実現に向けて、
+          </div>
+          <div>
+            <span class="gold-label">的確かつ丁寧なサポート</span> を提供します。
+          </div>
+        </h3>    
+      </div>
+    </div>
+  </section>
+
+  <!-- よくあるイメージセクション -->
+  <section class="w-full bg-[#f6f7f8] py-10">
+    <div class="max-w-screen-md mx-auto px-4">
+      <h2 class="text-base md:text-[1.5rem] font-bold text-center mb-10 text-[#d23f3f]">
+        不動産投資のよくあるイメージが・・・
+      </h2>
+
+      <ul class="grid gap-8 grid-cols-2">
+        <li class="problem_voice relative bg-[#FFF4F4] border border-[#F2AEAE] rounded-[10px] py-8 text-center font-bold shadow-md">
+          <Image
+          src={Quotation}
+          alt="quotation"
+          class="absolute top-[-13px] left-[-17px] w-[33px] h-[28px] object-contain opacity-80"
+          loading="lazy"
+          decoding="async"
+        />
+        手続きや税金まわりが複雑そう
+        </li>
+        <li class="problem_voice relative bg-[#FFF4F4] border border-[#F2AEAE] rounded-[10px] py-8 text-center font-bold shadow-md ">
+          <Image
+          src={Quotation}
+          alt="quotation"
+          class="absolute top-[-13px] left-[-17px] w-[33px] h-[28px] object-contain opacity-80"
+          loading="lazy"
+          decoding="async"
+        />
+        自己資金が少ないと始められないのでは？
+        </li>
+          <li class="problem_voice relative bg-[#FFF4F4] border border-[#F2AEAE] rounded-[10px] py-8 text-center font-bold shadow-md ">
+          <Image
+          src={Quotation}
+          alt="quotation"
+          class="absolute top-[-13px] left-[-17px] w-[33px] h-[28px] object-contain opacity-80"
+          loading="lazy"
+          decoding="async"
+        />
+        失敗したら借金だけが残りそうで怖い
+        </li>
+        <li class="problem_voice relative bg-[#FFF4F4] border border-[#F2AEAE] rounded-[10px] py-8 text-center font-bold shadow-md">
+          <Image
+          src={Quotation}
+          alt="quotation"
+          class="absolute top-[-13px] left-[-17px] w-[33px] h-[28px] object-contain opacity-80"
+          loading="lazy"
+          decoding="async"
+        />
+        そもそも融資を受けられるかわからない
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- パートナーとしてのサポートセクション -->
+  <section class="w-full bg-[#f4f6fc] py-16 px-4">
+    <div class="max-w-3xl mx-auto text-center">
+      <p class="text-blue-900 text-[24px] font-extrabold mb-6">＼物件選びも、融資先選びも。／</p>
+
+      <h2 class="text-2xl md:text-3xl font-extrabold leading-snug text-blue-900 mb-4">
+        不動産投資のパートナーとして<br />
+        最適な一手をご提案します。
+      </h2>
+
+      <p class="text-gray-500 text-sm md:text-base leading-comfortable">
+        お客様ひとり一人の将来設計に寄り添い<br />
+        理想のライフプランや目標の実現に向けて<br />
+        的確で丁寧なサポートを提供します
+      </p>
+    </div>
+  </section>
+
+  <!-- サポート内容セクション -->
+  <section class="py-16 bg-[#f7f9fc] w-full">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="flex flex-col items-center">
+        <small class="text-blue-700 text-[16px] font-extrabold mb-4">＼不動産投資のパートナーとしてトータルサポート／</small>
+        <h2 class="text-2xl md:text-3xl font-bold text-center mb-12 tracking-wider"><span class="text-primary">RISE VISTA</span>がサポートする内容</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10 text-center text-sm md:text-base text-[#333]">
+          <!-- カード 1 -->
+          <div class="flex flex-col items-center">
+            <Image
+              src={Person1}
+              alt="将来の資産"
+              class="w-20 h-20 md:w-32 md:h-32 object-contain mb-4"
+              loading="lazy"
+              decoding="async"
+            />
+            <p><span class="text-blue-800 font-bold border-b-2 border-yellow-300">収益性の高い物件</span>を厳選して<br />ご紹介</p>
+          </div>
+
+          <!-- カード 2 -->
+          <div class="flex flex-col items-center">
+            <Image
+              src={Person1}
+              alt="教育資金"
+              class="w-20 h-20 md:w-32 md:h-32 object-contain mb-4"
+              loading="lazy"
+              decoding="async"
+            />
+            <p><span class="text-blue-800 font-bold border-b-2 border-yellow-300">出口戦略</span>のサポート</p>
+          </div>
+
+          <!-- カード 3 -->
+          <div class="flex flex-col items-center">
+            <Image
+              src={Person1}
+              alt="家計改善"
+              class="w-20 h-20 md:w-32 md:h-32 object-contain mb-4"
+              loading="lazy"
+              decoding="async"
+            />
+            <p><span class="text-blue-800 font-bold border-b-2 border-yellow-300">物件</span>の運用支援</p>
+          </div>
+
+          <!-- カード 4 -->
+          <div class="flex flex-col items-center">
+            <Image
+              src={Person1}
+              alt="家計改善"
+              class="w-20 h-20 md:w-32 md:h-32 object-contain mb-4"
+              loading="lazy"
+              decoding="async"
+            />
+            <p><span class="text-blue-800 font-bold border-b-2 border-yellow-300">金融機関</span>のご紹介</p>
+          </div>
+
+          <!-- カード 5 -->
+          <div class="flex flex-col items-center">
+            <Image
+              src={Person1}
+              alt="家計改善"
+              class="w-20 h-20 md:w-32 md:h-32 object-contain mb-4"
+              loading="lazy"
+              decoding="async"
+            />
+            <p><span class="text-blue-800 font-bold border-b-2 border-yellow-300">税金関連や手続き</span><br/>のトータルサポート</p>
+          </div>
+
+          <!-- カード 6 -->
+          <div class="flex flex-col items-center">
+            <Image
+              src={Person1}
+              alt="家計改善"
+              class="w-20 h-20 md:w-32 md:h-32 object-contain mb-4"
+              loading="lazy"
+              decoding="async"
+            />
+            <p><span class="text-blue-800 font-bold border-b-2 border-yellow-300">資産全体</span>を見据えた<br />コンサルティング</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 不動産投資の流れセクション（独立） -->
+  <section class="w-full bg-[#f3f6fb] py-12">
+    <div class="max-w-6xl mx-auto px-4">
+      <h2 class="text-2xl md:text-3xl font-bold text-center mb-12 tracking-wider">不動産投資の流れ</h2>
+      
+      <!-- 背景矢印の下にカードを重ねる構造 -->
+      <div class="relative overflow-x-auto w-full">
+        <!-- 背景矢印 -->
+        <div class="absolute top-1/2 left-0 transform -translate-y-1/2 md:left-1/2 md:-translate-x-1/2 min-w-[650px] md:min-w-0 md:max-w-4xl md:w-full h-32 z-10 pointer-events-none">
+          <Image
+            src={Arrow}
+            alt="手順の矢印"
+            class="w-full h-[80px] md:h-[140px] object-fill md:object-contain opacity-80"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+        
+        <!-- ステップ本体 -->
+        <ol class="relative z-20 flex flex-nowrap gap-2 md:gap-8 px-4 py-6 md:justify-center min-w-[650px] md:min-w-0 text-center">
+          <!-- STEP 1 -->
+          <li class="flex flex-col items-center justify-start bg-white shadow rounded-[12px] border border-gray-200 h-[305px] w-[90px] box-border">
+            <div class="w-full bg-blue-700 text-white text-[36px] font-bold py-2 rounded-t-[10px]">1</div>
+            <div class="writing-mode-box text-xl leading-tight font-semibold mt-6 text-gray-800">
+              <h3>初回面談</h3>
+            </div>
+          </li>
+
+          <!-- STEP 2 -->
+          <li class="flex flex-col items-center justify-start bg-white shadow rounded-[12px] border border-gray-200 h-[305px]  w-[90px] box-border">
+            <div class="w-full bg-blue-700 text-white text-[36px] font-bold py-2 rounded-t-[10px]">2</div>
+            <div class="writing-mode-box text-xl leading-tight font-semibold mt-6 text-gray-800">
+              <h3>ヒアリング</h3>
+            </div>
+          </li>
+
+          <!-- STEP 3 -->
+          <li class="flex flex-col items-center justify-start bg-white shadow rounded-[12px] border border-gray-200 h-[305px]  w-[90px] box-border">
+            <div class="w-full bg-blue-700 text-white text-[36px] font-bold py-2 rounded-t-[10px]">3</div>
+            <div class="writing-mode-box text-xl leading-tight font-semibold mt-6 text-gray-800">
+              <h3>物件紹介</h3>
+            </div>
+          </li>
+
+          <!-- STEP 4 -->
+          <li class="flex flex-col items-center justify-start bg-white shadow rounded-[12px] border border-gray-200 h-[305px] w-[90px] box-border">
+            <div class="w-full bg-blue-700 text-white text-[36px] font-bold py-2 rounded-t-[10px]">4</div>
+            <div class="writing-mode-box text-xl leading-tight font-semibold mt-6 text-gray-800">
+              <h3>申し込み</h3>
+            </div>
+          </li>
+
+          <!-- STEP 5 -->
+          <li class="flex flex-col items-center justify-start bg-white shadow rounded-[12px] border border-gray-200 h-[305px] w-[90px] box-border">
+            <div class="w-full bg-blue-700 text-white text-[36px] font-bold py-2 rounded-t-[10px]">5</div>
+            <div class="writing-mode-box text-xl leading-tight font-semibold mt-6 text-gray-800">
+              <h3>銀行面談</h3>
+            </div>
+          </li>
+
+          <!-- STEP 6 -->
+          <li class="flex flex-col items-center justify-start bg-white shadow rounded-[12px] border border-gray-200 h-[305px] w-[90px] box-border">
+            <div class="w-full bg-blue-700 text-white text-[36px] font-bold py-2 rounded-t-[10px]">6</div>
+            <div class="writing-mode-box text-xl leading-tight font-semibold mt-6 text-gray-800">
+              <h3>アフターフォロー</h3>
+            </div>
+          </li>
+        </ol>
+        
+        <!-- スワイプマークを親の中で右下に固定（スマホのみ表示） -->
+        <div class="md:hidden absolute bottom-4 right-4 z-50">
+          <Image
+            src={Swipe}
+            alt="スワイプマーク"
+            class="w-12 h-12 object-contain opacity-80"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+  <!-- よくある質問 セクション -->
+  <section class="py-24 bg-[#f4f7fb] text-black" id="faq">
+    <div class="max-w-6xl mx-auto px-4">
+      <!-- タイトル部分 -->
+      <div class="mb-12">
+        <div class="flex items-center mb-1">
+          <div class="black-bar mr-4"></div>
+          <p class="text-sm text-gray-500 tracking-wider">よくある質問</p>
+        </div>
+        <h2 class="text-6xl font-bold tracking-widest font-inter">FAQ</h2>
+      </div>
+
+      <!-- 質問リスト -->
+      <div class="space-y-6">
+        <!-- 質問1 -->
+        <div class="bg-white rounded-lg shadow-sm border border-gray-200">
+          <button class="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-50 transition-colors">
+            <h3 class="text-lg font-semibold text-gray-900">不動産投資は初心者でも始められますか？</h3>
+            <span class="text-gray-500 text-xl">+</span>
+          </button>
+          <div class="px-6 pb-4 hidden">
+            <p class="text-gray-700 leading-relaxed">
+              はい、初心者の方でも安心して始めていただけます。私たちが投資の基礎から丁寧にサポートし、リスクを最小限に抑えた投資プランをご提案いたします。経験豊富なスタッフが一からお手伝いいたします。
+            </p>
+          </div>
+        </div>
+
+        <!-- 質問2 -->
+        <div class="bg-white rounded-lg shadow-sm border border-gray-200">
+          <button class="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-50 transition-colors">
+            <h3 class="text-lg font-semibold text-gray-900">どのような物件がおすすめですか？</h3>
+            <span class="text-gray-500 text-xl">+</span>
+          </button>
+          <div class="px-6 pb-4 hidden">
+            <p class="text-gray-700 leading-relaxed">
+              お客様の投資目的や予算に応じて最適な物件をご提案いたします。一般的には、駅近のマンションやオフィスビル、商業施設などが安定した収益を期待できる物件として人気があります。詳細は個別にご相談ください。
+            </p>
+          </div>
+        </div>
+
+        <!-- 質問3 -->
+        <div class="bg-white rounded-lg shadow-sm border border-gray-200">
+          <button class="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-50 transition-colors">
+            <h3 class="text-lg font-semibold text-gray-900">投資に必要な資金はどのくらいですか？</h3>
+            <span class="text-gray-500 text-xl">+</span>
+          </button>
+          <div class="px-6 pb-4 hidden">
+            <p class="text-gray-700 leading-relaxed">
+              物件の種類や規模によって異なりますが、小規模な投資物件であれば数百万円から始めることができます。また、ローンを活用することで、より大きな物件への投資も可能です。資金計画についてもご相談ください。
+            </p>
+          </div>
+        </div>
+
+        <!-- 質問4 -->
+        <div class="bg-white rounded-lg shadow-sm border border-gray-200">
+          <button class="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-50 transition-colors">
+            <h3 class="text-lg font-semibold text-gray-900">物件の管理はどうなりますか？</h3>
+            <span class="text-gray-500 text-xl">+</span>
+          </button>
+          <div class="px-6 pb-4 hidden">
+            <p class="text-gray-700 leading-relaxed">
+              物件の管理は私たちが代行いたします。入居者募集、家賃管理、修繕対応など、投資家の方に代わってすべての管理業務を行います。お客様は収益に集中していただけます。
+            </p>
+          </div>
+        </div>
+
+        <!-- 質問5 -->
+        <div class="bg-white rounded-lg shadow-sm border border-gray-200">
+          <button class="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-50 transition-colors">
+            <h3 class="text-lg font-semibold text-gray-900">税金の優遇措置はありますか？</h3>
+            <span class="text-gray-500 text-xl">+</span>
+          </button>
+          <div class="px-6 pb-4 hidden">
+            <p class="text-gray-700 leading-relaxed">
+              不動産投資には様々な税制優遇措置があります。減価償却費の控除、住宅ローン控除、特定の物件に対する税制優遇など、お客様の状況に応じて最適な税制対策をご提案いたします。
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 相談セクション -->
+<section class="w-full bg-gradient-to-b from-blue-50 to-white py-16 px-4">
+  <div class="max-w-4xl mx-auto text-center">
+    <!-- 上部テキスト -->
+    <div class="mb-8">
+      <p class="text-primary text-sm md:text-base font-medium mb-2">
+        ＼ご相談・お見積もりは何度でも無料／
+      </p>
+      <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-6">
+        まずはお気軽にご相談ください
+      </h2>
+      <p class="text-gray-600 text-sm md:text-base leading-relaxed max-w-2xl mx-auto">
+        弊社では無料で、不動産のプロが一人ひとりに最適なご提案をさせていただきます。<br />
+        理想のライフプランや目標の実現に向けて的確で丁寧なサポートを提供します
+      </p>
+    </div>
+
+    <!-- 特徴リスト -->
+    <div class="space-y-4 max-w-2xl mx-auto">
+      <!-- 1つ目 -->
+      <div class="bg-white rounded-lg shadow-md border border-gray-100 p-6 flex items-center space-x-4 hover:shadow-lg transition-shadow duration-300">
+        <div class="flex-shrink-0">
+          <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
+            <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+          </div>
+        </div>
+        <div class="text-left flex-1">
+          <p class="text-gray-700 font-medium text-sm md:text-base">
+            ご納得いただけるまで、何度でも無料でご相談OK
+          </p>
+        </div>
+      </div>
+
+      <!-- 2つ目 -->
+      <div class="bg-white rounded-lg shadow-md border border-gray-100 p-6 flex items-center space-x-4 hover:shadow-lg transition-shadow duration-300">
+        <div class="flex-shrink-0">
+          <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
+            <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+          </div>
+        </div>
+        <div class="text-left flex-1">
+          <p class="text-gray-700 font-medium text-sm md:text-base">
+            時間も場所も、お客様のご都合で
+          </p>
+        </div>
+      </div>
+
+      <!-- 3つ目 -->
+      <div class="bg-white rounded-lg shadow-md border border-gray-100 p-6 flex items-center space-x-4 hover:shadow-lg transition-shadow duration-300">
+        <div class="flex-shrink-0">
+          <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
+            <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+          </div>
+        </div>
+        <div class="text-left flex-1">
+          <p class="text-gray-700 font-medium text-sm md:text-base">
+            無理な営業や勧誘は一切行っておりません
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA ボタン（オプション） -->
+    <div class="mt-10">
+      <button class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 text-sm md:text-base">
+        無料相談を申し込む
+      </button>
+    </div>
+  </div>
+</section>
+</Layout>
+
+<!-- ========================= CSS ========================= -->
+<style>
+.writing-mode-box {
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+}
+.gold-label {
+  color: #fff;
+  background-color: #B7A058;
+  border-radius: 3px;
+  text-align: center;
+  display: inline-block;
+  padding: 3px 11px;
+}
+.problem_voice::before {
+  content: "";
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  width: 15px;
+  height: 15px;
+  background-image: url('/img/quotation.png'); /* クオーテーション画像のパス */
+  background-repeat: no-repeat;
+  background-size: contain;
+  z-index: 1;
+}
+</style>
+
+<script>
+    // FAQ アコーディオン機能
+    document.querySelectorAll('#faq button').forEach(button => {
+      button.addEventListener('click', () => {
+        const content = button.nextElementSibling as HTMLElement;
+        const icon = button.querySelector('span') as HTMLElement;
+        
+        if (content.classList.contains('hidden')) {
+          // 開く
+          content.classList.remove('hidden');
+          icon.textContent = '−';
+        } else {
+          // 閉じる
+          content.classList.add('hidden');
+          icon.textContent = '+';
+        }
+      });
+    });
+</script>

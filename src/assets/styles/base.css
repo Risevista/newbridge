@@ -11,9 +11,14 @@ html {
 }
 
 body {
-    overflow-y: auto;
-    width: 100%;
-}
+  overflow-y: auto;
+  width: 100%;
+  box-sizing: border-box;
+  word-wrap: break-word;
+  word-break: break-all;
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: 0.03em;
+}   
 
 :root {
     --scroll-y: 0px; /*  */
@@ -142,3 +147,18 @@ body {
     }
 }
 
+.writing-vertical {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
+
+/* SCROLL左帯の線アニメーション */
+@keyframes scrollLineMove {
+  0% { transform: translateY(40px); opacity: 0.6; }
+  30% { opacity: 1; }
+  50% { transform: translateY(0); opacity: 0.6; }
+  100% { transform: translateY(40px); opacity: 0.6; }
+}
+.animate-scroll-line {
+  animation: scrollLineMove 1.6s cubic-bezier(0.4,0,0.2,1) infinite;
+}

@@ -1,133 +1,67 @@
----
-import Image from '../components/Image.astro';
-import Footerimage from '../assets/img/hero2.webp';
-import OSAKA2 from '../assets/img/osaka_02.webp';
-import type { ImageMetadata } from 'astro';
+<footer class="bg-primary text-white text-sm pt-10 pb-6 px-6">
+  <div class="max-w-7xl mx-auto">
 
-const getBranchName = (variable: ImageMetadata) => {
-    return variable.src.split('/').pop()?.split(/[-.]/)[0].toUpperCase();
-};
----
-
-<script>
-    import '../js/ScrollTriggerClass';
-</script>
-
-<footer class="footer-muice relative w-full h-screen pb-0 flex flex-col justify-between">
-  <!-- 背景画像とオーバーレイ -->
-  <div class="footer-bg absolute inset-0 w-full h-full z-0">
-    <Image src={Footerimage} alt="footer background" class="w-full h-full object-cover" />
-    <div class="footer-overlay absolute inset-0 bg-black bg-opacity-40"></div>
-  </div>
-
-  <!-- フッターメインコンテンツ -->
-  <div class="footer-content relative z-10 flex flex-col items-start justify-end flex-1 pl-8 pb-8">
-        <!-- ロゴ -->
-        <div class="footer-logo mb-2">
-          <span class="text-white text-4xl font-light tracking-wide font-serif">The FireBird</span>
-        </div>
-    <!-- ロゴの上にOSAKA2画像をスマホ中央・md以上左寄せで追加 -->
-    <div class="w-full flex justify-start md:justify-start mb-6">
-      <Image src={OSAKA2} alt="OSAKA2" class="w-auto h-16 object-contain" />
+    <!-- 住所とロゴ -->
+    <div class="text-sm mb-6">
+      <p>〒171-0014</p>
+      <p>東京都渋谷区渋谷1-1-8 青山ダイヤモンドビル7階</p>
     </div>
+
+    <hr class="border-t border-secondary mb-6" />
+
     <!-- メニュー -->
-    <ul class="footer-menu-list grid grid-cols-2 gap-x-8 gap-y-2 mb-6 text-white font-light tracking-tight text-xl">
-      <li>
-        <a 
-          href={Astro.url.pathname.startsWith('/en') ? '/en/#introduction' : '/#introduction'} 
-          class="footer-link font-serif"
-        >
-          Introduction
-        </a>
-      </li>
-      <li>
-        <a 
-          href={Astro.url.pathname.startsWith('/en') ? '/en/cast' : '/cast'} 
-          class="footer-link font-serif"
-        >
-          Cast & Staff
-        </a>
-      </li>
-      <li>
-        <a 
-          href={Astro.url.pathname.startsWith('/en') ? '/en/#schedule' : '/#schedule'} 
-          class="footer-link font-serif"
-        >
-          Schedule
-        </a>
-      </li>
-      <li>
-        <a 
-          href={Astro.url.pathname.startsWith('/en') ? '/en/#tickets' : '/#tickets'} 
-          class="footer-link font-serif"
-        >
-          Tickets
-        </a>
-      </li>
-      <li>
-        <a 
-          href={Astro.url.pathname.startsWith('/en') ? '/en/#story' : '/#story'} 
-          class="footer-link font-serif"
-        >
-          Story
-        </a>
-      </li>      
-    </ul>
-    <!-- SNSアカウント -->
-    <div class="footer-sns flex flex-col items-start gap-1 mb-2">
-      <div class="flex items-center gap-2 text-white">
-        <div class="text-white mb-1 font-light tracking-tight">@hinotori_official</div>
-        <a href="https://www.instagram.com/hinotori_offcial?igsh=MTE0NWJ1dTFzMjNxdw%3D%3D&utm_source=qr" target="_blank" aria-label="Instagram" class="text-white text-base hover:text-pink-300"><i class="fab fa-instagram"></i></a>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
+      
+      <!-- 私たちについて -->
+      <div>
+       <a href="/mission"><h4 class="font-semibold mb-2">私たちについて</h4></a>
+        <ul class="space-y-1">
+          <li><a href="#" class="hover:underline">ミッション</a></li>
+          <li><a href="#" class="hover:underline">バリュー</a></li>
+          <li><a href="#" class="hover:underline">パーパス</a></li>
+          <li><a href="#" class="hover:underline">社名の由来</a></li>
+          <li><a href="#" class="hover:underline">代表挨拶</a></li>
+        </ul>
       </div>
-      <div class="flex items-center gap-2 text-white">
-        <div class="text-white mb-1 font-light tracking-tight">KANAMI SNS</div>
-        <a href="https://www.instagram.com/kanami_f?igsh=MzhibWswejgyM2F4" target="_blank" aria-label="Instagram" class="text-white text-base hover:text-pink-300"><i class="fab fa-instagram"></i></a>
-        <a href="https://kanamishiki.com/" target="_blank" aria-label="Website" class="text-white text-base hover:text-blue-300"><i class="fas fa-globe"></i></a>
+
+      <!-- 会社情報 -->
+      <div>
+        <a href="/#company"><h4 class="font-semibold mb-2">会社情報</h4></a>
+        <ul class="space-y-1">
+          <li><a href="#company" class="hover:underline">会社概要</a></li>
+          <li><a href="#company" class="hover:underline">取扱金融機関</a></li>
+        </ul>
       </div>
+
+      <!-- 事業紹介 -->
+      <div>
+        <h4 class="font-semibold mb-2">事業内容</h4>
+        <ul class="space-y-1">
+          <li><a href="#" class="hover:underline">賃貸仲介</a></li>
+          <li><a href="#" class="hover:underline">売買仲介</a></li>
+          <li><a href="#" class="hover:underline">不動産投資</a></li>
+        </ul>
+      </div>
+
+      <!-- 企業方針 -->
+      <div>
+        <h4 class="font-semibold mb-2">企業方針</h4>
+        <ul class="space-y-1">
+          <li><a href="#" class="hover:underline">(倫理綱領)</a></li>
+          <li><a href="#" class="hover:underline">(企業行動指針)</a></li>
+          <li><a href="#" class="hover:underline">(情報セキュリティ基本方針)</a></li>
+          <li><a href="#" class="hover:underline">(お客さま本位の業務運営に関する方針)</a></li>
+          <li><a href="#" class="hover:underline">(勧誘方針)</a></li>
+          <li><a href="#" class="hover:underline">(苦情等対応方針)</a></li>
+          <li><a href="#" class="hover:underline">(個人情報保護方針)</a></li>
+          <li><a href="#" class="hover:underline">(個人情報の取扱いについて)</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- フッタークレジット -->
+    <div class="mt-10 text-xs text-center text-white">
+      ©　株式会社RISE VISTA All Rights Reserved.
     </div>
   </div>
 </footer>
-
-<style>
-.footer-muice {
-  position: relative;
-  overflow: hidden;
-  min-height: 400px;
-  background: #fff;
-}
-.footer-bg {
-  z-index: 0;
-}
-.footer-overlay {
-  z-index: 1;
-}
-.footer-content {
-  z-index: 2;
-}
-.footer-link {
-  text-decoration: none;
-  color: #fff;
-  font-weight: 400;
-  letter-spacing: 0.08em;
-  transition: color 0.3s;
-}
-.footer-link:hover {
-  color: #f9c9e3;
-}
-.footer-sns a {
-  transition: color 0.3s;
-}
-.footer-bottom {
-  z-index: 3;
-  box-shadow: 0 -2px 8px rgba(0,0,0,0.04);
-  margin-top: 0;
-}
-.footer-bottom-link {
-  color: #666;
-  text-decoration: none;
-  transition: color 0.2s;
-}
-.footer-bottom-link:hover {
-  color: #e91e63;
-}
-</style>

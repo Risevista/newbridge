@@ -1,0 +1,198 @@
+---
+// pages/mission.astro
+import Layout from '../layouts/Layout.astro';
+import Image from '../components/Image.astro';
+import President from '../assets/img/president.png';
+---
+
+<Layout title="Mission | 株式会社RISE VISTA">
+  <main class="bg-white text-[#1a1a1a] font-sans leading-relaxed">
+
+    <!-- MISSION 見出し -->
+    <section class="w-full flex flex-col items-center bg-white text-[#184C3A] pt-24 md:pt-48 pb-12 md:pb-24 px-4 md:px-0" id="mission">
+      <div class="w-full max-w-6xl flex flex-col md:flex-row gap-8">
+        <!-- Left Title -->
+        <div class="mb-8 md:mb-12">
+          <div class="flex items-center mb-1">
+            <div class="black-bar mr-6"></div>
+            <p class="text-sm text-gray-500 tracking-wider font-serif">ミッション</p>
+          </div>
+          <h2 class="text-4xl md:text-6xl font-bold tracking-widest font-inter">MISSION</h2>
+        </div>
+        <!-- Right Content -->
+        <div class="flex-1 flex flex-col items-start justify-center">
+          <h3 class="text-2xl md:text-4xl font-serif font-normal leading-tight mb-6">一人ひとりの力を信じ、<br/>革新と創造を通じて<br/>人生１００年時代を支えるパートナーに</h3>
+          <p class="text-sm leading-relaxed mb-0 font-serif">
+            人生１００年時代を迎え、将来に向けた資産形成や運用の重要性はこれまで以上に高まっています。かつての「貯蓄から投資へ」という流れは、今や個人のライフスタイルに合わせた柔軟で多様な資産運用へと進化しています。私たちは、一人ひとりが自分らしい未来を描けるよう、革新と創造を通じて人生１００年時代を支えるパートナーになります。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- VALUES セクション -->
+    <section class="w-full flex flex-col items-center bg-[#f4f7fb] text-[#184C3A] py-12 md:py-24 px-4 md:px-0" id="values">
+      <div class="w-full max-w-6xl flex flex-col md:flex-row gap-8">
+        <!-- Left Title -->
+        <div class="mb-8 md:mb-12">
+          <div class="flex items-center mb-1">
+            <div class="black-bar mr-6"></div>
+            <p class="text-sm text-gray-500 tracking-wider font-serif">４つの行動指針</p>
+          </div>
+          <h2 class="text-4xl md:text-6xl font-bold tracking-widest font-inter">VALUES</h2>
+        </div>
+        <!-- Right Content -->
+        <div class="flex-1 flex flex-col gap-8 md:gap-12">
+          <!-- Row 1 -->
+          <div class="flex flex-col md:flex-row items-stretch border-t border-gray-300 pt-6 md:pt-8 pb-6 md:pb-8">
+            <div class="w-full md:w-12 flex items-center justify-center mb-4 md:mb-0">
+              <span class="text-xs tracking-widest transform md:-rotate-90 whitespace-nowrap">Honest</span>
+            </div>
+            <div class="flex-1 flex items-center justify-center mb-4 md:mb-0">
+              <h3 class="text-2xl md:text-4xl font-serif font-normal leading-tight text-center">学びの姿勢</h3>
+            </div>
+            <div class="w-full md:w-1/3 flex flex-col justify-between md:pl-8">
+              <p class="text-sm mb-4 md:mb-6 font-serif">私たちは、成長できる「環境」にこだわります。
+                常に学び続け、お互いを高めあうことで
+                お客様に最高のパフォーマンスを提供し続けます。
+                成長意欲を持ち、学びぬくプロフェッショナル集団であり続けます。
+                </p>
+              <a href="#" class="flex items-center gap-2 text-[#184C3A] font-semibold group font-serif">
+                「明日の自分を超える」
+              </a>
+            </div>
+          </div>
+          <!-- Row 2 -->
+          <div class="flex flex-col md:flex-row items-stretch border-t border-gray-300 pt-6 md:pt-8 pb-6 md:pb-8">
+            <div class="w-full md:w-12 flex items-center justify-center mb-4 md:mb-0">
+              <span class="text-xs tracking-widest transform md:-rotate-90 whitespace-nowrap">Trust</span>
+            </div>
+            <div class="flex-1 flex items-center justify-center mb-4 md:mb-0">
+              <h3 class="text-2xl md:text-4xl font-serif font-normal leading-tight text-center">信頼できる人柄</h3>
+            </div>
+            <div class="w-full md:w-1/3 flex flex-col justify-between md:pl-8">
+              <p class="text-sm mb-4 md:mb-6 font-serif">素直な姿勢を謙虚な心を持ち、明るく前向きな行動で
+                周囲に笑顔と安心を届ける。
+                人として信頼される魅力を持つ人材を育て、
+                ともに成長します。              
+                </p>
+              <a href="#" class="flex items-center gap-2 text-[#184C3A] font-semibold group font-serif">
+                  「素直に 謙虚に 前向きに」
+                </a>
+            </div>
+          </div>
+          <!-- Row 3 -->
+          <div class="flex flex-col md:flex-row items-stretch border-t border-gray-300 pt-6 md:pt-8 pb-6 md:pb-8">
+            <div class="w-full md:w-12 flex items-center justify-center mb-4 md:mb-0">
+              <span class="text-xs tracking-widest transform md:-rotate-90 whitespace-nowrap">Speed</span>
+            </div>
+            <div class="flex-1 flex items-center justify-center mb-4 md:mb-0">
+              <h3 class="text-2xl md:text-4xl font-serif font-normal leading-tight text-center">迅速な対応力</h3>
+            </div>
+            <div class="w-full md:w-1/3 flex flex-col justify-between md:pl-8">
+              <p class="text-sm mb-4 md:mb-6 font-serif">即時対応・即時行動・即時改善こそが
+                プロフェッショナルの使命。
+                相手の気持ちや思いを汲み取り、信頼関係を築く。
+                迅速かつ的確な行動で答えづける集団であり続けます。
+                </p>
+              <a href="#" class="flex items-center gap-2 text-[#184C3A] font-semibold group font-serif">
+                  「すぐ動く すぐ応える すぐ改善する」
+                </a>
+            </div>
+          </div>
+          <!-- Row 4 -->
+          <div class="flex flex-col md:flex-row items-stretch border-t border-b border-gray-300 pt-6 md:pt-8 pb-6 md:pb-8">
+            <div class="w-full md:w-12 flex items-center justify-center mb-4 md:mb-0">
+              <span class="text-xs tracking-widest transform md:-rotate-90 whitespace-nowrap">Growth</span>
+            </div>
+            <div class="flex-1 flex items-center justify-center mb-4 md:mb-0">
+              <h3 class="text-2xl md:text-4xl font-serif font-normal leading-tight text-center">持続的な成長</h3>
+            </div>
+            <div class="w-full md:w-1/3 flex flex-col justify-between md:pl-8">
+              <p class="text-sm mb-4 md:mb-6 font-serif">変化を恐れず、常に新しいことに挑戦し続ける。
+                失敗を恐れず、そこから学び、成長する。
+                持続的な成長を通じて、お客様と社会に価値を提供し続けます。
+                </p>
+              <a href="#" class="flex items-center gap-2 text-[#184C3A] font-semibold group font-serif">
+                  「挑戦し続ける 成長し続ける」
+                </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PURPOSE セクション -->
+    <section class="w-full flex flex-col items-center bg-white text-[#184C3A] py-12 md:py-24 px-4 md:px-0" id="purpose">
+      <div class="w-full max-w-6xl flex flex-col md:flex-row gap-8">
+        <!-- Left Title -->
+        <div class="mb-8 md:mb-12">
+          <div class="flex items-center mb-1">
+            <div class="black-bar mr-6"></div>
+            <p class="text-sm text-gray-500 tracking-wider font-serif">パーパス</p>
+          </div>
+          <h2 class="text-4xl md:text-6xl font-bold tracking-widest font-inter">PURPOSE</h2>
+        </div>
+        <!-- Right Content -->
+        <div class="flex-1 flex flex-col items-start justify-center">
+          <h3 class="text-2xl md:text-4xl font-serif font-normal leading-tight mb-6">日本に健全な投資文化を育み<br/>豊かさと成長を次世代へ</h3>
+          <p class="text-sm leading-relaxed mb-6 font-serif">
+            私たちは、「不動産」という枠組みを超えて、未来を創る力になりたいと考えています。一人ひとりの暮らしから、地域、そして日本の未来を変えていく。健全な投資文化を日本に根付かせ、次世代に豊かさと成長を継承することが私たちの使命です。
+          </p>
+          <p class="text-sm leading-relaxed mb-0 font-serif">
+            不動産投資を通じて、個人の資産形成を支援し、地域の活性化に貢献します。そして、その経験とノウハウを次の世代に伝え、持続可能な社会の実現に向けて取り組み続けます。
+          </p>
+        </div>
+      </div>
+    </section>
+
+     <section class="w-full flex flex-col items-center bg-[#f4f7fb] text-[#184C3A] py-12 md:py-24 px-4 md:px-0" id="message">
+      <div class="w-full max-w-6xl flex flex-col gap-8">
+        <!-- Title -->
+        <div class="mb-8 md:mb-12">
+          <div class="flex items-center mb-1">
+            <div class="black-bar mr-6"></div>
+            <p class="text-sm text-gray-500 tracking-wider font-serif">代表者挨拶</p>
+          </div>
+          <h2 class="text-4xl md:text-6xl font-bold tracking-widest font-inter">MESSAGE</h2>
+        </div>
+        <!-- Content with two columns -->
+        <div class="w-full flex flex-col md:flex-row gap-8 md:gap-12">
+          <!-- Right Image (モバイルでは最初に表示) -->
+          <div class="flex-1 flex justify-center items-center order-1 md:order-2">
+            <Image src={President} alt="代表者" class="w-64 h-64 md:w-80 md:h-80 object-cover rounded-lg shadow-lg" />
+          </div>
+          <!-- Left Content (モバイルでは2番目に表示) -->
+          <div class="flex-1 flex flex-col items-start justify-center order-2 md:order-1">
+            <h3 class="text-2xl md:text-4xl font-serif font-normal leading-tight mb-6">お客様一人ひとりの<br/>未来を創造するパートナーとして</h3>
+            <p class="text-sm leading-loose mb-6 font-serif">
+              代表取締役の土屋健二です。私たちRISE VISTAは、不動産投資を通じてお客様一人ひとりの未来を創造するパートナーとして、日々邁進しております。
+            </p>
+            <p class="text-sm leading-loose mb-6 font-serif">
+              人生１００年時代を迎え、個人の資産形成の重要性はこれまで以上に高まっています。私たちは、お客様のライフスタイルに合わせた柔軟で多様な投資提案を行い、長期的な資産形成をサポートいたします。
+            </p>
+            <p class="text-sm leading-loose mb-0 font-serif">
+              不動産投資は、単なる投資ではなく、地域社会への貢献でもあります。私たちは、お客様の資産形成を支援しながら、同時に地域の活性化にも貢献できるよう、常に最善を尽くしてまいります。
+            </p>
+            <div class="w-full mt-8 flex items-end justify-end">
+              <div class="text-right">
+                <p class="text-sm font-serif">代表取締役社長</p>
+                <p class="text-sm  font-serif">土屋 健二</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+.black-bar {
+  width: 5vw;
+  min-width: 40px;
+  height: 1px;
+  background: #000;
+  display: block;
+  border-radius: 1px;
+}
+</style>
