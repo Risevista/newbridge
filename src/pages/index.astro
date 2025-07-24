@@ -74,20 +74,25 @@ import HeaderLogo from '../assets/img/risevista-logo.png';
           人生１００年時代を迎え、将来に向けた資産形成や運用の重要性はこれまで以上に高まっています。かつての「貯蓄から投資へ」という流れは、今や個人のライフスタイルに合わせた柔軟で多様な資産運用へと進化しています。私たちは、一人ひとりが自分らしい未来を描けるよう、革新と創造を通じて人生１００年時代を支えるパートナーになります。
         </p>
       </div>
-      <!-- 中央カラム：丸いイメージ -->
-      <div class="flex-1 flex justify-center items-center">
-        <div class="w-72 h-72 rounded-full bg-[#181c2a] flex items-center justify-center shadow-xl relative overflow-hidden">
-          <video
-            src="/logo.mp4"
-            autoplay
-            muted
-            loop
-            playsinline
-            class="w-full h-full object-cover rounded-full pointer-events-none"
-            preload="auto"
-          ></video>
-        </div>
-      </div>
+     <!-- 中央カラム：丸い動画ロゴ（モバイル対応・シンプル版） -->
+<div class="flex-1 flex justify-center items-center px-4">
+  <div class="w-48 h-48 sm:w-64 sm:h-64 md:w-72 md:h-72 rounded-full bg-[#181c2a] shadow-xl relative overflow-hidden">
+    <video
+      src="/logo.mp4"
+      autoplay
+      muted
+      loop
+      playsinline
+      webkit-playsinline="true"
+      x5-playsinline="true"
+      class="absolute inset-0 w-full h-full object-cover pointer-events-none"
+      preload="auto"
+      onloadeddata="this.play()"
+    >
+      <source src="/logo.mp4" type="video/mp4">
+    </video>
+  </div>
+</div>
       
       <!-- 右カラム：ボタン -->
       <div class="flex-1 flex justify-center items-center">
