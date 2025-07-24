@@ -19,7 +19,7 @@ export default {
       },
       colors: {
         primary: {
-          DEFAULT: "#056628",
+          DEFAULT: "#184C3A",
           hover: colors.gray[400],
           back: colors.black,
         },
