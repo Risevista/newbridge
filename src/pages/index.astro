@@ -38,7 +38,7 @@ import HeaderLogo from '../assets/img/risevista-logo.png';
   <div class="flex flex-col md:flex-row w-full max-w-7xl mx-auto md:px-10 relative z-10">
     <!-- 右のテキスト（スマホで上に来るよう順序変更） -->
     <div class="order-1 md:order-2 flex-1 md:pl-20 flex flex-col justify-center mb-8 md:mb-0">
-      <h2 class="text-base md:text-4xl font-bold leading-tight">
+      <h2 class="text-base md:text-4xl font-bold leading-tight w-full text-center">
         人生１００年時代を支える<br />
         あなたのパートナーに。
       </h2>
@@ -65,7 +65,7 @@ import HeaderLogo from '../assets/img/risevista-logo.png';
 
   
   <!-- MISSION Section -->
-  <section class="mission-section w-full flex justify-center items-center min-h-screen py-24 bg-[#f4f7fb] text-black">
+  <section class="mission-section w-full flex justify-center items-center min-h-screen py-24 bg-[#f4f7fb] text-gray-700">
     <div class="w-full max-w-6xl flex flex-col md:flex-row items-center gap-8 px-4">
       <!-- 左カラム：テキスト -->
       <div class="flex-1 flex flex-col items-start justify-center mb-8 md:mb-0">
@@ -82,10 +82,12 @@ import HeaderLogo from '../assets/img/risevista-logo.png';
       </div>
       <!-- 右カラム：ボタン -->
       <div class="flex-1 flex justify-center items-center">
-        <button type="button" class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg text-sm px-8 py-4 text-center">
-          OUR MISSION
-          <span class="ml-2 inline-block align-middle">→</span>
-        </button>
+        <a href="/mission">
+          <button type="button" class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg text-sm px-8 py-4 text-center">
+            OUR MISSION
+            <span class="ml-2 inline-block align-middle">→</span>
+          </button>
+        </a>
       </div>
     </div>
   </section>
@@ -117,9 +119,9 @@ import HeaderLogo from '../assets/img/risevista-logo.png';
             お客様に最高のパフォーマンスを提供し続けます。
             成長意欲を持ち、学びぬくプロフェッショナル集団であり続けます。
             </p>
-          <a href="#" class="flex items-center gap-2 text-[#184C3A] font-semibold group font-serif">
-            「明日の自分を超える」
-          </a>
+          <div class="w-full text-center text-[#184C3A] font-semibold group font-serif">
+              「明日の自分を超える」
+          </div>
         </div>
       </div>
       <!-- Row 2 -->
@@ -135,10 +137,10 @@ import HeaderLogo from '../assets/img/risevista-logo.png';
             周囲に笑顔と安心を届ける。
             人として信頼される魅力を持つ人材を育て、
             ともに成長します。              
-            </p>
-          <a href="#" class="flex items-center gap-2 text-[#184C3A] font-semibold group font-serif">
+            </p>  
+          <div class="w-full text-center text-[#184C3A] font-semibold group font-serif">
               「素直に 謙虚に 前向きに」
-            </a>
+          </div>
         </div>
       </div>
       <!-- Row 3 -->
@@ -155,9 +157,9 @@ import HeaderLogo from '../assets/img/risevista-logo.png';
             相手の気持ちや思いを汲み取り、信頼関係を築く。
             迅速かつ的確な行動で答えづける集団であり続けます。
             </p>
-          <a href="#" class="flex items-center gap-2 text-[#184C3A] font-semibold group font-serif">
+          <div class="w-full text-center text-[#184C3A] font-semibold group font-serif">
               「すぐ動く すぐ応える すぐ改善する」
-            </a>
+            </div>
         </div>
       </div>
       <!-- Row 4 -->
@@ -173,16 +175,16 @@ import HeaderLogo from '../assets/img/risevista-logo.png';
             失敗を恐れず、そこから学び、成長する。
             持続的な成長を通じて、お客様と社会に価値を提供し続けます。
             </p>
-          <a href="#" class="flex items-center gap-2 text-[#184C3A] font-semibold group font-serif">
+          <div class="w-full text-center text-[#184C3A] font-semibold group font-serif">
               「挑戦し続ける 成長し続ける」
-            </a>
+            </div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-  <section class="bg-white py-24 text-black" id="service">
+  <section class="bg-white py-24 " id="service">
     <div class="max-w-6xl mx-auto px-4">
       <!-- タイトル部分 -->
       <div class="mb-12">
@@ -207,7 +209,7 @@ import HeaderLogo from '../assets/img/risevista-logo.png';
         decoding="async"
       />
         <!-- タイトル -->
-        <h3 class="text-lg font-bold leading-relaxed text-black">
+        <h3 class="text-lg font-bold leading-relaxed">
           賃貸仲介
         </h3>
         <!-- 本文 -->
@@ -263,7 +265,7 @@ import HeaderLogo from '../assets/img/risevista-logo.png';
   </section>
   
 
-  <section class="py-24 bg-white text-black" id="company">
+  <section class="py-24 bg-white" id="company">
     <div class="max-w-6xl mx-auto px-4">
       <!-- タイトル部分 -->
       <div class="mb-12">
@@ -286,27 +288,27 @@ import HeaderLogo from '../assets/img/risevista-logo.png';
           <dl class="divide-y divide-gray-300">
             <div class="flex flex-col md:flex-row py-3">
               <dt class="md:w-[35%] w-full font-semibold text-gray-700">会社名</dt>
-              <dd class="md:w-[65%] w-full">株式会社RISE VISTA</dd>
+              <dd class="md:w-[65%] w-full text-gray-700 font-semibold">株式会社RISE VISTA</dd>
             </div>
             <div class="flex flex-col md:flex-row py-3">
               <dt class="md:w-[35%] w-full font-semibold text-gray-700">代表取締役</dt>
-              <dd class="md:w-[65%] w-full">土屋 健二</dd>
+              <dd class="md:w-[65%] w-full text-gray-700 font-semibold">土屋 健二</dd>
             </div>
             <div class="flex flex-col md:flex-row py-3">
               <dt class="md:w-[35%] w-full font-semibold text-gray-700">設立</dt>
-              <dd class="md:w-[65%] w-full">2025年7月16日</dd>
+              <dd class="md:w-[65%] w-full text-gray-700 font-semibold">2025年7月16日</dd>
             </div>
             <div class="flex flex-col md:flex-row py-3">
               <dt class="md:w-[35%] w-full font-semibold text-gray-700">所在地</dt>
-              <dd class="md:w-[65%] w-full">東京都渋谷区渋谷1-1-8 青山ダイヤモンドビル7階</dd>
+              <dd class="md:w-[65%] w-full text-gray-700 font-semibold">東京都渋谷区渋谷1-1-8 青山ダイヤモンドビル7階</dd>
             </div>
             <div class="flex flex-col md:flex-row py-3">
               <dt class="md:w-[35%] w-full font-semibold text-gray-700">電話番号</dt>
-              <dd class="md:w-[65%] w-full">○○-○○</dd>
+              <dd class="md:w-[65%] w-full text-gray-700 font-semibold">○○-○○</dd>
             </div>
             <div class="flex flex-col md:flex-row py-3">
               <dt class="md:w-[35%] w-full font-semibold text-gray-700">事業内容</dt>
-              <dd class="md:w-[65%] w-full">不動産売買・仲介業務・投資運用業</dd>
+              <dd class="md:w-[65%] w-full text-gray-700 font-semibold">不動産売買・仲介業務・投資運用業</dd>
             </div>
           </dl>
         </div>
