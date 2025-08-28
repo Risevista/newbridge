@@ -10,6 +10,7 @@ import Hero from '../assets/img/hero.jpg';
 import Slogan from '../assets/img/slogan.png';
 import Service3 from '../assets/img/service3.jpg';
 import HeaderLogo from '../assets/img/risevista-logo.png';
+import Textlogo from '../assets/img/textlogo.png';
 import Hero1 from '../assets/img/hero1.webp';
 import Hero2 from '../assets/img/hero2.webp';
 import Hero3 from '../assets/img/hero3.webp';
@@ -66,12 +67,12 @@ const cols = chunk(letters, CHUNK_SIZE);
 <!-- ===== Hero: Mobile (md未満) ===== -->
 <section class="relative bg-white min-h-[100dvh] flex flex-col md:hidden pt-20">
   <!-- 1) 右上テキスト（Slogan） -->
-  <div class="w-full px-4 mt-6 flex justify-end">
+  <div class="w-full h-auto px-4 mt-6 flex justify-end">
     <Image src={Slogan} alt="Slogan" class="w-full" loading="eager" decoding="async" />
   </div>
 
   <!-- 2) 楕円スライダー + 一文字ずつテキスト（重ねる） -->
-  <div class="relative w-full mt-6">
+  <div class="relative w-full">
     <!-- 楕円スライダー -->
     <div class="relative w-full h-[48vh]">
       <div class="absolute inset-0">
@@ -360,7 +361,7 @@ const cols = chunk(letters, CHUNK_SIZE);
         decoding="async"
       />
         <!-- タイトル -->
-        <h3 class="text-lg font-bold leading-relaxed">
+        <h3 class="text-lg font-bold leading-relaxed font-serif">
           賃貸仲介
         </h3>
         <!-- 本文 -->
@@ -380,7 +381,7 @@ const cols = chunk(letters, CHUNK_SIZE);
         loading="lazy"
         decoding="async"
       />
-        <h3 class="text-lg font-bold leading-relaxed">
+        <h3 class="text-lg font-bold leading-relaxed font-serif">
           売買仲介
         </h3>
         <p class="text-sm text-[#0C223F] leading-relaxed">
@@ -400,7 +401,7 @@ const cols = chunk(letters, CHUNK_SIZE);
         loading="lazy"
         decoding="async"
       />
-        <h3 class="text-lg font-bold leading-relaxed">
+        <h3 class="text-lg font-bold leading-relaxed font-serif">
           不動産投資
         </h3>
         <p class="text-sm text-[#0C223F] leading-relaxed">

@@ -1,6 +1,7 @@
 ---
 import Image from './Image.astro';
 import HeaderLogo from '../assets/img/risevista-logo.png'; 
+import Textlogo from '../assets/img/textlogo.png';
 const { title } = Astro.props;
 
 // ナビゲーション項目の定義
@@ -55,7 +56,7 @@ const navItems = [
       <div class="flex items-center gap-2">
         <a href="/" class="flex items-center gap-2">
           <Image src={HeaderLogo} alt="RISE VISTA" class="w-10 h-10" />
-          <span class="ml-2 text-primary text-lg font-bold tracking-wide font-serif">RISE VISTA</span>
+          <Image src={Textlogo} alt="RISE VISTA" class="w-auto h-10" />
         </a>
       </div>
       
