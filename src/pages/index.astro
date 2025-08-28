@@ -207,17 +207,17 @@ const cols = chunk(letters, CHUNK_SIZE);
     <div class="w-full max-w-6xl flex flex-col md:flex-row items-center gap-8 px-4">
       <!-- 左カラム：テキスト（幅を3に） -->
       <div class="flex-[3] flex flex-col items-start justify-center mb-8 md:mb-0 text-[#0C223F]">
-        <h2 class="text-4xl tracking-widest mb-6 !font-klee">
+        <h2 class="text-[16px] md:text-[32px] tracking-widest mb-6 !font-klee fade-in-text" style="--delay: 0.2s;">
           一人ひとりの力を信じ、革新と創造を通じて人生100年時代を支えるパートナーに
         </h2>
-        <p class="text-[15px] font-normal leading-[20px] tracking-[0.15rem] mb-0 text-[#0C223F]">
+        <p class="text-[12px] md:text-[18px] font-normal leading-[20px] tracking-[0.15rem] mb-0 text-[#0C223F] fade-in-text" style="--delay: 0.4s;">
           人生100年時代を迎え、将来に向けた資産形成や運用の重要性はこれまで以上に高まっています。かつての「貯蓄から投資へ」という流れは、今や個人のライフスタイルに合わせた柔軟で多様な資産運用へと進化しています。私たちは、一人ひとりが自分らしい未来を描けるよう、革新と創造を通じて人生100年時代を支えるパートナーになります。
         </p>
       </div>
   
       <!-- 中カラム：画像（幅1） -->
       <div class="flex-[1] flex justify-center items-center">
-        <div class="w-48 h-48 rounded-full bg-white shadow-xl relative overflow-hidden">
+        <div class="w-48 h-48 rounded-full relative overflow-hidden fade-in-text" style="--delay: 0.6s;">
           <Image
             src={HeaderLogo}
             alt="Slogan"
@@ -229,11 +229,11 @@ const cols = chunk(letters, CHUNK_SIZE);
       </div>
       
       <!-- 右カラム：ボタン（幅1） -->
-      <div class="flex-[1] flex justify-center items-center">
+      <div class="flex-[1] flex justify-center items-center fade-in-text" style="--delay: 0.8s;">
         <a href="/mission">
           <button
             type="button"
-            class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg text-sm px-8 py-4 text-center"
+            class="text-white font-notojp bg-green-900 hover:bg-green-500 font-medium rounded-lg text-sm px-8 py-4 text-center"
           >
             OUR MISSION
             <span class="ml-2 inline-block align-middle">→</span>
@@ -250,27 +250,27 @@ const cols = chunk(letters, CHUNK_SIZE);
     <div class="mb-8 md:mb-12">
       <div class="flex items-center mb-1">
         <div class="black-bar mr-4"></div>
-        <p class="text-sm text-gray-500 tracking-wider font-serif">４つの行動指針</p>
+        <p class="text-sm md:text-base tracking-wider font-serif fade-in-text" style="--delay: 0.2s;">４つの行動指針</p>
       </div>
-      <h2 class="text-4xl md:text-6xl font-bold tracking-widest font-inter">VALUES</h2>
+      <h2 class="text-4xl md:text-6xl font-bold tracking-widest font-inter fade-in-text" style="--delay: 0.4s;">VALUES</h2>
     </div>
     <!-- Right Content -->
     <div class="flex-1 flex flex-col gap-8 md:gap-12">
       <!-- Row 1 -->
       <div class="flex flex-col md:flex-row items-stretch border-t border-gray-300 pt-6 md:pt-8 pb-6 md:pb-8">
         <div class="w-full md:w-12 flex items-center justify-center mb-4 md:mb-0">
-          <span class="text-xs tracking-widest transform md:-rotate-90 whitespace-nowrap font-serif">Honest</span>
+          <span class="text-xs tracking-widest transform md:-rotate-90 whitespace-nowrap fade-in-text font-serif" style="--delay: 0.4s;">Honest</span>
         </div>
         <div class="flex-1 flex items-center justify-center mb-4 md:mb-0">
-          <h3 class="text-2xl md:text-4xl font-serif font-normal leading-tight text-center">学びの姿勢</h3>
+          <h3 class="text-2xl md:text-4xl font-serif font-normal leading-tight text-center fade-in-text" style="--delay: 0.6s;">学びの姿勢</h3>
         </div>
         <div class="w-full md:w-1/3 flex flex-col justify-between md:pl-8">
-          <p class="text-sm mb-4 md:mb-6 font-serif">私たちは、成長できる「環境」にこだわります。
+          <p class="text-sm mb-4 md:mb-6 font-serif fade-in-text" style="--delay: 0.8s;">私たちは、成長できる「環境」にこだわります。
             常に学び続け、お互いを高めあうことで
             お客様に最高のパフォーマンスを提供し続けます。
             成長意欲を持ち、学びぬくプロフェッショナル集団であり続けます。
             </p>
-          <div class="w-full text-center text-[#184C3A] font-semibold group font-serif">
+          <div class="w-full text-center text-[#184C3A] font-semibold group font-serif fade-in-text" style="--delay: 1s;">
               「明日の自分を超える」
           </div>
         </div>
@@ -278,18 +278,18 @@ const cols = chunk(letters, CHUNK_SIZE);
       <!-- Row 2 -->
       <div class="flex flex-col md:flex-row items-stretch border-t border-gray-300 pt-6 md:pt-8 pb-6 md:pb-8">
         <div class="w-full md:w-12 flex items-center justify-center mb-4 md:mb-0">
-          <span class="text-xs tracking-widest transform md:-rotate-90 whitespace-nowrap font-serif">Trust</span>
+          <span class="text-xs tracking-widest transform md:-rotate-90 whitespace-nowrap font-serif fade-in-text" style="--delay: 0.4s;">Trust</span>
         </div>
         <div class="flex-1 flex items-center justify-center mb-4 md:mb-0">
-          <h3 class="text-2xl md:text-4xl font-serif font-normal leading-tight text-center">信頼できる人柄</h3>
+          <h3 class="text-2xl md:text-4xl font-serif font-normal leading-tight text-center fade-in-text" style="--delay: 0.6s;">信頼できる人柄</h3>
         </div>
         <div class="w-full md:w-1/3 flex flex-col justify-between md:pl-8">
-          <p class="text-sm mb-4 md:mb-6 font-serif">素直な姿勢を謙虚な心を持ち、明るく前向きな行動で
+          <p class="text-sm mb-4 md:mb-6 font-serif fade-in-text" style="--delay: 0.8s;">素直な姿勢を謙虚な心を持ち、明るく前向きな行動で
             周囲に笑顔と安心を届ける。
             人として信頼される魅力を持つ人材を育て、
             ともに成長します。              
             </p>  
-          <div class="w-full text-center text-[#184C3A] font-semibold group font-serif">
+          <div class="w-full text-center text-[#184C3A] font-semibold group font-serif fade-in-text" style="--delay: 1s;">
               「素直に 謙虚に 前向きに」
           </div>
         </div>
@@ -297,18 +297,18 @@ const cols = chunk(letters, CHUNK_SIZE);
       <!-- Row 3 -->
       <div class="flex flex-col md:flex-row items-stretch border-t border-gray-300 pt-6 md:pt-8 pb-6 md:pb-8">
         <div class="w-full md:w-12 flex items-center justify-center mb-4 md:mb-0">
-          <span class="text-xs tracking-widest transform md:-rotate-90 whitespace-nowrap font-serif">Speed</span>
+          <span class="text-xs tracking-widest transform md:-rotate-90 whitespace-nowrap font-serif fade-in-text" style="--delay: 0.4s;">Speed</span>
         </div>
         <div class="flex-1 flex items-center justify-center mb-4 md:mb-0">
-          <h3 class="text-2xl md:text-4xl font-serif font-normal leading-tight text-center">迅速な対応力</h3>
+          <h3 class="text-2xl md:text-4xl font-serif font-normal leading-tight text-center fade-in-text" style="--delay: 0.6s;">迅速な対応力</h3>
         </div>
         <div class="w-full md:w-1/3 flex flex-col justify-between md:pl-8">
-          <p class="text-sm mb-4 md:mb-6 font-serif">即時対応・即時行動・即時改善こそが
+          <p class="text-sm mb-4 md:mb-6 font-serif fade-in-text" style="--delay: 0.8s;">即時対応・即時行動・即時改善こそが
             プロフェッショナルの使命。
             相手の気持ちや思いを汲み取り、信頼関係を築く。
             迅速かつ的確な行動で答えづける集団であり続けます。
             </p>
-          <div class="w-full text-center text-[#184C3A] font-semibold group font-serif">
+          <div class="w-full text-center text-[#184C3A] font-semibold group font-serif fade-in-text" style="--delay: 1s;">
               「すぐ動く すぐ応える すぐ改善する」
             </div>
         </div>
@@ -316,17 +316,17 @@ const cols = chunk(letters, CHUNK_SIZE);
       <!-- Row 4 -->
       <div class="flex flex-col md:flex-row items-stretch border-t border-b border-gray-300 pt-6 md:pt-8 pb-6 md:pb-8">
         <div class="w-full md:w-12 flex items-center justify-center mb-4 md:mb-0">
-          <span class="text-xs tracking-widest transform md:-rotate-90 whitespace-nowrap font-serif">Growth</span>
+          <span class="text-xs tracking-widest transform md:-rotate-90 whitespace-nowrap font-serif fade-in-text" style="--delay: 0.4s;">Growth</span>
         </div>
         <div class="flex-1 flex items-center justify-center mb-4 md:mb-0">
-          <h3 class="text-2xl md:text-4xl font-serif font-normal leading-tight text-center">持続的な成長</h3>
+          <h3 class="text-2xl md:text-4xl font-serif font-normal leading-tight text-center fade-in-text" style="--delay: 0.6s;">持続的な成長</h3>
         </div>
         <div class="w-full md:w-1/3 flex flex-col justify-between md:pl-8">
-          <p class="text-sm mb-4 md:mb-6 font-serif">変化を恐れず、常に新しいことに挑戦し続ける。
+          <p class="text-sm mb-4 md:mb-6 font-serif fade-in-text" style="--delay: 0.8s;">変化を恐れず、常に新しいことに挑
             失敗を恐れず、そこから学び、成長する。
             持続的な成長を通じて、お客様と社会に価値を提供し続けます。
             </p>
-          <div class="w-full text-center text-[#184C3A] font-semibold group font-serif">
+          <div class="w-full text-center text-[#184C3A] font-semibold group font-serif fade-in-text" style="--delay: 1s;">
               「挑戦し続ける 成長し続ける」
             </div>
         </div>
@@ -341,16 +341,16 @@ const cols = chunk(letters, CHUNK_SIZE);
       <div class="mb-12">
         <div class="flex items-center mb-1">
           <div class="black-bar mr-4"></div>
-          <p class="text-sm text-gray-500 tracking-wider">事業内容</p>
+          <p class="text-sm md:text-base tracking-wider fade-in-text" style="--delay: 0.2s;">事業内容</p>
         </div>
-        <h2 class="text-6xl font-bold tracking-widest font-inter text-primary">SERVICE</h2>
+        <h2 class="text-6xl font-bold tracking-widest font-inter text-primary fade-in-text" style="--delay: 0.4s;">SERVICE</h2>
       </div>
       <div class="grid md:grid-cols-3 gap-12">
       <!-- Service 01 -->
       <div class="space-y-4">
         <!-- ラベル -->
-        <div class="border-t border-black pt-4 text-xs tracking-wide text-gray-500 font-inter">
-          SERVICE <span class="text-green-900">#01</span>
+        <div class="border-t border-black pt-4 text-xs tracking-wide text-[#0C223F]">
+          SERVICE <span class="text-[#0C223F]">#01</span>
         </div>
         <Image
         src={Service1}
@@ -364,14 +364,14 @@ const cols = chunk(letters, CHUNK_SIZE);
           賃貸仲介
         </h3>
         <!-- 本文 -->
-        <p class="text-sm text-gray-700 leading-relaxed">
+        <p class="text-sm text-[#0C223F] leading-relaxed">
           物件を貸し出したい貸主様と物件を借りたい借主様をおつなぎいたします。</p>
       </div>
   
       <!-- Service 02 -->
       <div class="space-y-4">
-        <div class="border-t border-black pt-4 text-xs tracking-wide text-gray-500 font-inter">
-          SERVICE <span class="text-green-900 font-inter">#02</span>
+        <div class="border-t border-black pt-4 text-xs tracking-wide text-[#0C223F]">
+          SERVICE <span class="text-[#0C223F]">#02</span>
         </div>
         <Image
         src={Service2}
@@ -383,15 +383,15 @@ const cols = chunk(letters, CHUNK_SIZE);
         <h3 class="text-lg font-bold leading-relaxed">
           売買仲介
         </h3>
-        <p class="text-sm text-gray-700 leading-relaxed">
+        <p class="text-sm text-[#0C223F] leading-relaxed">
           不動産を売却したい方、購入したい方の間に立ち、手続きや契約をサポートいたします。
         </p>
       </div>
   
       <!-- Service 03 -->
       <div class="space-y-4">
-        <div class="border-t border-black pt-4 text-xs tracking-wide text-gray-500 font-inter">
-          SERVICE <span class="text-green-900 font-inter">#03</span>
+        <div class="border-t border-black pt-4 text-xs tracking-wide text-[#0C223F]">
+          SERVICE <span class="text-[#0C223F]">#03</span>
         </div>
         <Image
         src={Service3}
@@ -403,13 +403,13 @@ const cols = chunk(letters, CHUNK_SIZE);
         <h3 class="text-lg font-bold leading-relaxed">
           不動産投資
         </h3>
-        <p class="text-sm text-gray-700 leading-relaxed">
+        <p class="text-sm text-[#0C223F] leading-relaxed">
           投資用不動産の売買、運用サポートなど長期にわたってお付き合いいたします。
         </p>
       </div>
     </div>
     <div class="flex justify-center mt-6">
-      <a href="/service" class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
+      <a href="/service" class="text-white font-notojp bg-green-900 hover:bg-green-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
         詳しくみる
       </a>
     </div>
@@ -422,9 +422,9 @@ const cols = chunk(letters, CHUNK_SIZE);
       <div class="mb-12">
         <div class="flex items-center mb-1">
           <div class="black-bar mr-4"></div>
-          <p class="text-sm text-gray-500 tracking-wider">会社概要</p>
+          <p class="text-sm md:text-base tracking-wider fade-in-text" style="--delay: 0.2s;">会社概要</p>
         </div>
-        <h2 class="text-6xl font-bold tracking-widest font-inter text-primary">COMPANY</h2>
+        <h2 class="text-6xl font-bold tracking-widest font-inter text-primary fade-in-text" style="--delay: 0.4s;">COMPANY</h2>
       </div>
 
       <!-- 本文2カラム -->
@@ -470,6 +470,21 @@ const cols = chunk(letters, CHUNK_SIZE);
 
 <!-- ========================= CSS ========================= -->
 <style>
+
+/* Fade in text animation */
+.fade-in-text {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  transition-delay: var(--delay, 0s);
+  display: inline-block;
+}
+
+.fade-in-text.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 .ellipse-image-container {
   position: relative;
   width: 100%;
@@ -527,7 +542,7 @@ const cols = chunk(letters, CHUNK_SIZE);
     height: 50%;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%) rotate(-8deg);
+    transform: translate(-50%, -50%) rotate(-12deg);
   }
   .ellipse-background-image {
     transform: rotate(8deg) scale(1.1);
@@ -540,7 +555,7 @@ const cols = chunk(letters, CHUNK_SIZE);
     height: 45%;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%) rotate(-5deg);
+    transform: translate(-50%, -50%) rotate(-12deg);
   }
   .ellipse-background-image {
     transform: rotate(5deg) scale(1.05);
@@ -602,4 +617,23 @@ const cols = chunk(letters, CHUNK_SIZE);
       });
     });
   });
+
+  document.addEventListener('DOMContentLoaded', () => {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      } else {
+        entry.target.classList.remove('visible');
+      }
+    });
+  }, {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  });
+
+  document.querySelectorAll('.fade-in-text').forEach((el) => {
+    observer.observe(el);
+  });
+});
 </script>

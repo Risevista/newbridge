@@ -19,7 +19,6 @@ import Quotation from '../assets/img/quotation.png';
 ---
 
 <Layout title="株式会社RISE VISTA">
-  <!-- Hero Section -->
 <!-- Hero Section -->
 <section class="relative w-full bg-white overflow-hidden py-12 text-[#21293D]">
   <!-- メインコンテンツを一つのコンテナにまとめる -->
@@ -92,18 +91,18 @@ import Quotation from '../assets/img/quotation.png';
 
     <!-- 下部テキスト -->
     <div class="flex flex-col items-center mb-16">
-      <h3 class="text-base md:text-2xl font-bold text-center">
-        <div class="mb-2">
+      <h3 class="text-base md:text-2xl font-bold text-center leading-relaxed">
+        <span class="fade-in-text block mb-2" style="--delay: 0.2s;">
           お客様お一人おひとりの <span class="gold-label">将来設計</span> に寄り添い、
-        </div>
-        <div class="mb-2">
+        </span>
+        <span class="fade-in-text block mb-2" style="--delay: 0.4s;">
           理想の <span class="gold-label">ライフプラン</span> や目標の実現に向けて、
-        </div>
-        <div>
+        </span>
+        <span class="fade-in-text block" style="--delay: 0.6s;">
           <span class="gold-label">的確かつ丁寧なサポート</span> を提供します。
-        </div>
-      </h3>    
-    </div>
+        </span>
+      </h3>
+    </div>    
   </div>
 </section>
 
@@ -537,6 +536,20 @@ import Quotation from '../assets/img/quotation.png';
   background-size: contain;
   z-index: 1;
 }
+
+/* Fade in text animation */
+.fade-in-text {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  transition-delay: var(--delay, 0s);
+  display: block;
+}
+
+.fade-in-text.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
 </style>
 
 <script>
@@ -557,4 +570,23 @@ import Quotation from '../assets/img/quotation.png';
         }
       });
     });
+
+    document.addEventListener('DOMContentLoaded', () => {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      } else {
+        entry.target.classList.remove('visible');
+      }
+    });
+  }, {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  });
+
+  document.querySelectorAll('.fade-in-text').forEach((el) => {
+    observer.observe(el);
+  });
+});
 </script>
