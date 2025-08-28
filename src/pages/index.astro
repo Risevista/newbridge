@@ -51,33 +51,38 @@ import HeaderLogo from '../assets/img/risevista-logo.png';
 
   
   <!-- MISSION Section -->
-  <section class="mission-section w-full flex justify-center items-center min-h-screen pb-24 bg-[#f4f7fb] text-gray-700">
+  <section class="mission-section w-full flex justify-center items-center min-h-screen pb-24 bg-white text-gray-700 font-serif">
     <div class="w-full max-w-6xl flex flex-col md:flex-row items-center gap-8 px-4">
-      <!-- 左カラム：テキスト -->
-      <div class="flex-1 flex flex-col items-start justify-center mb-8 md:mb-0">
-        <h2 class="text-2xl font-extrabold tracking-widest mb-6">一人ひとりの力を信じ、<br/>革新と創造を通じて<br/>人生１００年時代を支えるパートナーに</h2>
-        <p class="text-base leading-relaxed mb-0">
-          人生１００年時代を迎え、将来に向けた資産形成や運用の重要性はこれまで以上に高まっています。かつての「貯蓄から投資へ」という流れは、今や個人のライフスタイルに合わせた柔軟で多様な資産運用へと進化しています。私たちは、一人ひとりが自分らしい未来を描けるよう、革新と創造を通じて人生１００年時代を支えるパートナーになります。
+      <!-- 左カラム：テキスト（幅を3に） -->
+      <div class="flex-[3] flex flex-col items-start justify-center mb-8 md:mb-0 text-[#0C223F]">
+        <h2 class="text-4xl tracking-widest mb-6">
+          一人ひとりの力を信じ、革新と創造を通じて人生100年時代を支えるパートナーに
+        </h2>
+        <p class="text-[15px] font-normal leading-[20px] tracking-[0.15rem] mb-0 text-[#0C223F]">
+          人生100年時代を迎え、将来に向けた資産形成や運用の重要性はこれまで以上に高まっています。かつての「貯蓄から投資へ」という流れは、今や個人のライフスタイルに合わせた柔軟で多様な資産運用へと進化しています。私たちは、一人ひとりが自分らしい未来を描けるよう、革新と創造を通じて人生100年時代を支えるパートナーになります。
         </p>
       </div>
-      <div class="flex-1 flex justify-center items-center">
-        <div class="w-72 h-72 rounded-full bg-[#181c2a] shadow-xl relative overflow-hidden">
-          <video
-            src="/logo.mp4"
-            autoplay
-            muted
-            loop
-            playsinline
+  
+      <!-- 中カラム：画像（幅1） -->
+      <div class="flex-[1] flex justify-center items-center">
+        <div class="w-48 h-48 rounded-full bg-white shadow-xl relative overflow-hidden">
+          <Image
+            src={HeaderLogo}
+            alt="Slogan"
             class="absolute inset-0 w-full h-full object-scale-down pointer-events-none"
-            preload="auto"
-          ></video>
+            loading="lazy"
+            decoding="async"
+          />
         </div>
       </div>
       
-      <!-- 右カラム：ボタン -->
-      <div class="flex-1 flex justify-center items-center">
+      <!-- 右カラム：ボタン（幅1） -->
+      <div class="flex-[1] flex justify-center items-center">
         <a href="/mission">
-          <button type="button" class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg text-sm px-8 py-4 text-center">
+          <button
+            type="button"
+            class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg text-sm px-8 py-4 text-center"
+          >
             OUR MISSION
             <span class="ml-2 inline-block align-middle">→</span>
           </button>
@@ -85,7 +90,7 @@ import HeaderLogo from '../assets/img/risevista-logo.png';
       </div>
     </div>
   </section>
-
+  
  <!-- VALUES セクション -->
  <section class="w-full flex flex-col items-center bg-[#f4f7fb] text-primary  py-12 md:py-24 px-4 md:px-0">
   <div class="w-full max-w-6xl flex flex-col md:flex-row gap-8">
@@ -279,30 +284,30 @@ import HeaderLogo from '../assets/img/risevista-logo.png';
 
         <!-- 右：リスト（2カラム） -->
         <div class="md:w-2/3 w-full">
-          <dl class="divide-y divide-gray-300">
+          <dl class="divide-y divide-gray-300 text-[#0C223F]">
             <div class="flex flex-col md:flex-row py-3">
-              <dt class="md:w-[35%] w-full text-gray-700">会社名</dt>
-              <dd class="md:w-[65%] w-full text-gray-700">株式会社RISE VISTA</dd>
+              <dt class="md:w-[35%] w-full">会社名</dt>
+              <dd class="md:w-[65%] w-full">株式会社RISE VISTA</dd>
             </div>
             <div class="flex flex-col md:flex-row py-3">
-              <dt class="md:w-[35%] w-full text-gray-700">代表取締役</dt>
-              <dd class="md:w-[65%] w-full text-gray-700">土屋 健二</dd>
+              <dt class="md:w-[35%] w-full">代表取締役</dt>
+              <dd class="md:w-[65%] w-full">土屋 健二</dd>
             </div>
             <div class="flex flex-col md:flex-row py-3">
-              <dt class="md:w-[35%] w-full text-gray-700">設立</dt>
-              <dd class="md:w-[65%] w-full text-gray-700">2025年7月16日</dd>
+              <dt class="md:w-[35%] w-full">設立</dt>
+              <dd class="md:w-[65%] w-full">2025年7月16日</dd>
             </div>
             <div class="flex flex-col md:flex-row py-3">
-              <dt class="md:w-[35%] w-full text-gray-700">所在地</dt>
-              <dd class="md:w-[65%] w-full text-gray-700">東京都渋谷区渋谷1-1-8 青山ダイヤモンドビル7階</dd>
+              <dt class="md:w-[35%] w-full">所在地</dt>
+              <dd class="md:w-[65%] w-full">東京都渋谷区渋谷1-1-8 青山ダイヤモンドビル7階</dd>
             </div> 
             <div class="flex flex-col md:flex-row py-3">
-              <dt class="md:w-[35%] w-full text-gray-700">電話番号</dt>
-              <dd class="md:w-[65%] w-full text-gray-700">0120-20-8000</dd>
+              <dt class="md:w-[35%] w-full">電話番号</dt>
+              <dd class="md:w-[65%] w-full">0120-20-8000</dd>
             </div>
             <div class="flex flex-col md:flex-row py-3">
-              <dt class="md:w-[35%] w-full text-gray-700">事業内容</dt>
-              <dd class="md:w-[65%] w-full text-gray-700">不動産売買・仲介業務・投資運用業</dd>
+              <dt class="md:w-[35%] w-full">事業内容</dt>
+              <dd class="md:w-[65%] w-full">不動産売買・仲介業務・投資運用業</dd>
             </div>
           </dl>
         </div>
