@@ -1,52 +1,201 @@
 ---
 // Astro Frontmatter
 import Image from '../components/Image.astro';
+import { Image as AImage } from "astro:assets";
 import Layout from '../layouts/Layout.astro';
+import type { ImageMetadata } from 'astro';
 import Service1 from '../assets/img/service1.jpg';
 import Service2 from '../assets/img/service2.jpg';
 import Hero from '../assets/img/hero.jpg';
 import Slogan from '../assets/img/slogan.png';
 import Service3 from '../assets/img/service3.jpg';
 import HeaderLogo from '../assets/img/risevista-logo.png';
+import Hero1 from '../assets/img/hero1.webp';
+import Hero2 from '../assets/img/hero2.webp';
+import Hero3 from '../assets/img/hero3.webp';
+import Hero4 from '../assets/img/hero4.webp';
+import s1 from '../assets/img/s1.webp';
+import s2 from '../assets/img/s2.webp';
+import s3 from '../assets/img/s3.webp';
+import s4 from '../assets/img/s4.webp';
+import s5 from '../assets/img/s5.webp';
+import s6 from '../assets/img/s6.webp';
+import s7 from '../assets/img/s7.webp';
+import s8 from '../assets/img/s8.webp';
+import s9 from '../assets/img/s9.webp';
+import s10 from '../assets/img/s10.webp';
+import s11 from '../assets/img/s11.webp';
+import s12 from '../assets/img/s12.webp';
+import s13 from '../assets/img/s13.webp';
+import s14 from '../assets/img/s14.webp';
+import s15 from '../assets/img/s15.webp';
+import s16 from '../assets/img/s16.webp';
+import s17 from '../assets/img/s17.webp';
+import s18 from '../assets/img/s18.webp';
+import s19 from '../assets/img/s19.webp';
+import s20 from '../assets/img/s20.webp';
+import s21 from '../assets/img/s21.webp';
+import s22 from '../assets/img/s22.webp';
+import s23 from '../assets/img/s23.webp';
+import s24 from '../assets/img/s24.webp';
 
+// 4枚の画像を定義（実際のパスに変更してください）
+const heroImages = [
+  Hero1, 
+  Hero2, 
+  Hero3, 
+  Hero4  
+];
+
+const letters = [
+  s1,s2,s3,s4,s5,s6,s7,s8,s9,s10,s11,s12,
+  s13,s14,s15,s16,s17,s18,s19,s20,s21,s22,s23,s24
+];
+
+const chunk = <T,>(arr: T[], size: number): T[][] => Array.from(
+  { length: Math.ceil(arr.length / size) },
+  (_: unknown, k: number) => arr.slice(k * size, k * size + size)
+);
+const CHUNK_SIZE = 13;
+const cols = chunk(letters, CHUNK_SIZE);
 ---
 
 <Layout title="株式会社RISE VISTA">
- <!-- Hero Section -->
- <section class="relative bg-[#0a1533] bg-white min-h-[100dvh] flex overflow-hidden pt-20 md:pt-64">
-  <!-- 背景画像 -->
-  <Image
-    src={Hero}
-    alt="背景画像"
-    class="absolute inset-x-0 top-0 w-full h-auto object-contain md:inset-0 md:h-full md:object-cover z-0 opacity-90 pt-48 pointer-events-none animate-hero-reveal rounded-tr-[6rem] md:rounded-tr-[10rem]"
-    loading="lazy"
-    decoding="async"
-    aria-hidden="true"
-  />
+<!-- Hero Section -->
 
-  <!-- 右端のホワイトカラム + SCROLLバー（統合） -->
-  <div class="absolute right-0 bottom-0 sm:top-0 h-[100px] sm:h-full w-[40px] md:w-[5%] bg-white text-black z-50 sm:flex hidden flex-col items-center justify-end pb-10">
-    <p class="text-black tracking-widest writing-vertical mb-4 text-[8px] md:text-sm">SCROLL</p>
-    <div class="relative overflow-visible h-[60px]">
-      <div class="absolute bottom-0 w-[1px] h-[60px] bg-black animate-rise-fade opacity-60"></div>
+<!-- ===== Hero: Mobile (md未満) ===== -->
+<section class="relative bg-white min-h-[100dvh] flex flex-col md:hidden pt-20">
+  <!-- 1) 右上テキスト（Slogan） -->
+  <div class="w-full px-4 mt-6 flex justify-end">
+    <Image src={Slogan} alt="Slogan" class="w-full" loading="eager" decoding="async" />
+  </div>
+
+  <!-- 2) 楕円スライダー + 一文字ずつテキスト（重ねる） -->
+  <div class="relative w-full mt-6">
+    <!-- 楕円スライダー -->
+    <div class="relative w-full h-[48vh]">
+      <div class="absolute inset-0">
+        <div class="ellipse-image-container">
+          <div class="ellipse-wrapper">
+            {heroImages.map((heroImg, index) => (
+              <Image
+                src={heroImg}
+                alt={`背景画像 ${index + 1}`}
+                class={`ellipse-background-image slide-${index}`}
+                loading={index === 0 ? "eager" : "lazy"}
+                decoding="async"
+                aria-hidden="true"
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+      <!-- 一文字ずつテキスト（中央に重ねる） -->
+      <div class="absolute inset-0 z-10 flex items-center justify-center">
+        <div class="flex flex-row-reverse gap-[0.35em] px-4">
+          {cols.map((col, colIdxFromRight) => (
+            <div class="flex flex-col items-center leading-none">
+              {col.map((img, i) => {
+                const globalIndex = colIdxFromRight * CHUNK_SIZE + i;
+                return (
+                  <span
+                    class="inline-block letter-span"
+                    style={`animation-delay:${globalIndex * 70}ms`}
+                  >
+                    <AImage
+                      src={img}
+                      alt=""
+                      width={img.width}
+                      height={img.height}
+                      loading="lazy"
+                      decoding="async"
+                      class="h-[2.2em] object-contain"
+                    />
+                  </span>
+                );
+              })}
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   </div>
 
+  <!-- 3) 本文テキスト -->
+  <div class="w-full px-6 mt-8 pb-10">
+    <p class="text-black text-[15px] leading-6 tracking-normal font-serif">
+      ライズビスタは、「不動産」という枠組みを超えて、未来を創る力になりたいと考えています。
+      一人ひとりの暮らしから、地域、そして日本の未来を変えていく。  
+    </p>
+  </div>
+</section>
 
-  <!-- 右のテキスト（スマホで上に来るよう順序変更） -->
-  <div class="absolute top-6 right-16 max-w-xs pr-4 flex flex-col justify-center mb-8 md:mb-0 md:top-6 md:right-24 md:max-w-lg md:pr-24 md:translate-y-0 px-6 md:px-0 z-20 animate-text-down">
+<!-- ===== Hero: Desktop (md以上) —— 既存をそのまま残す ===== -->
+<section class="relative bg-white min-h-[100dvh] overflow-hidden pt-20 md:pt-64 hidden md:flex">
+  <!-- 楕円形背景画像コンテナ --> 
+  <div class="absolute top-0 left-0 w-full h-full z-0">
+    <div class="ellipse-image-container">
+      <div class="ellipse-wrapper">
+        {heroImages.map((heroImg, index) => (
+          <Image
+            src={heroImg}
+            alt={`背景画像 ${index + 1}`}
+            class={`ellipse-background-image slide-${index}`}
+            loading={index === 0 ? "eager" : "lazy"}
+            decoding="async"
+            aria-hidden="true"
+          />
+        ))}
+      </div>
+    </div>
+  </div>
+  <!-- 一文字ずつスローガン -->
+  <div class="absolute left-48 bottom-16 z-20 flex flex-row-reverse gap-[0.5em]">
+    {/* 右→左の順で列を並べるため flex-row-reverse */}
+    {cols.map((col: ImageMetadata[], colIdxFromRight: number) => (
+      <div class="flex flex-col items-center leading-none">
+        {col.map((img: ImageMetadata, i: number) => {
+          const globalIndex = colIdxFromRight * CHUNK_SIZE + i; // アニメの遅延計算
+          return (
+            <span
+              class="inline-block letter-span"
+              style={`animation-delay:${globalIndex * 70}ms`}
+            >
+              <AImage
+                src={img}
+                alt=""
+                width={img.width}
+                height={img.height}
+                loading="lazy"
+                decoding="async"
+                class="h-[2em] md:h-[3em] object-contain"
+              />
+            </span>
+          );
+        })}
+      </div>
+    ))}
+  </div>
+
+  <!--  SCROLLバー（統合） -->
+  <div class="absolute right-0 bottom-0 sm:top-0 h-[100px] sm:h-full w-[40px] md:w-[5%] bg-white text-black z-50 sm:flex hidden flex-col items-center justify-end pb-10">
+    <p class="text-black font-serif writing-vertical mb-4 text-[8px] md:text-sm">SCROLL</p>
+    <div class="relative overflow-visible h-[60px]">
+      <div class="absolute bottom-0 w-[0.5px] h-[60px] bg-black animate-rise-fade opacity-60"></div>
+    </div>
+  </div>
+
+  <!--右上スローガン（スマホで上に来るよう順序変更） -->
+  <div class="absolute top-16 right-16 max-w-xl pr-4 flex flex-col justify-center mb-8 md:mb-0 md:top-6 md:right-24 md:max-w-xl md:pr-24 md:translate-y-0 px-6 md:px-0 z-20 animate-text-down">
     <Image
       src={Slogan}
     />
   </div>
-  <!-- 左の白いボックス -->
-  <div class="text-primary p-6 md:p-10 w-[88%] md:w-1/2 z-20 opacity-90 absolute bottom-8 right-16 md:bottom-36 md:right-24 md:w-[42%] md:max-w-xl animate-text-up">
-    <h2 class="text-base md:text-3xl font-bold mt-4 leading-snug">
-      日本に健全な投資文化を育み <br />
-      <span class="text-green-700">豊かさ</span>と<span class="text-green-700">成長</span></span>を次世代へ
-    </h2>
-    <p class="mt-6 text-sm md:text-lg font-bold leading-relaxed">
-      私たちは、「不動産」という枠組みを超えて、未来を創る力になりたいと考えています。
+  
+  <!-- テキスト -->
+  <div class="text-black p-6 md:p-10 w-[88%] z-20 opacity-90 absolute bottom-8 right-16 md:bottom-0 md:right-24 md:w-[42%] md:max-w-xl animate-text-up">
+    <p class="mt-6 text-sm md:text-lg tracking-normal font-zen">
+      ライズビスタは、「不動産」という枠組みを超えて、未来を創る力になりたいと考えています。
       一人ひとりの暮らしから、地域、そして日本の未来を変えていく。  
     </p>
   </div>
@@ -54,11 +203,11 @@ import HeaderLogo from '../assets/img/risevista-logo.png';
 
   
   <!-- MISSION Section -->
-  <section class="mission-section w-full flex justify-center items-center min-h-screen pb-24 bg-white text-gray-700 font-serif">
+  <section class="mission-section w-full flex justify-center items-center min-h-screen pb-24 bg-white font-klee">
     <div class="w-full max-w-6xl flex flex-col md:flex-row items-center gap-8 px-4">
       <!-- 左カラム：テキスト（幅を3に） -->
       <div class="flex-[3] flex flex-col items-start justify-center mb-8 md:mb-0 text-[#0C223F]">
-        <h2 class="text-4xl tracking-widest mb-6">
+        <h2 class="text-4xl tracking-widest mb-6 !font-klee">
           一人ひとりの力を信じ、革新と創造を通じて人生100年時代を支えるパートナーに
         </h2>
         <p class="text-[15px] font-normal leading-[20px] tracking-[0.15rem] mb-0 text-[#0C223F]">
@@ -101,9 +250,9 @@ import HeaderLogo from '../assets/img/risevista-logo.png';
     <div class="mb-8 md:mb-12">
       <div class="flex items-center mb-1">
         <div class="black-bar mr-4"></div>
-        <p class="text-sm text-gray-500 tracking-wider font-serif">４つの行動指針</p>
+        <p class="text-sm text-gray-500 tracking-wider font-serif textanimation">４つの行動指針</p>
       </div>
-      <h2 class="text-4xl md:text-6xl font-bold tracking-widest font-inter">VALUES</h2>
+      <h2 class="text-4xl md:text-6xl font-bold tracking-widest font-inter textanimation">VALUES</h2>
     </div>
     <!-- Right Content -->
     <div class="flex-1 flex flex-col gap-8 md:gap-12">
@@ -321,6 +470,105 @@ import HeaderLogo from '../assets/img/risevista-logo.png';
 
 <!-- ========================= CSS ========================= -->
 <style>
+.ellipse-image-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.ellipse-wrapper {
+  position: absolute;
+  width: 70%;
+  height: 60%;
+  top: 50%;
+  left: 60%;
+  transform: translate(-50%, -50%) rotate(-12deg);
+  border-radius: 50%;
+  overflow: hidden;
+  opacity: 0.9;
+}
+
+.ellipse-background-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 120%;
+  height: 120%;
+  object-fit: cover;
+  transform: rotate(12deg) scale(1.1);
+  transform-origin: center;
+  opacity: 0;
+  will-change: opacity; /* パフォーマンス安定 */
+}
+
+/* ▼ 各スライド：24sを4分割して担当（0–6s / 6–12s / 12–18s / 18–24s） */
+.ellipse-background-image.slide-0 {
+  animation: smoothSlideShow 24s linear infinite both;
+  animation-delay: 0s;      /* 0–6s 担当 */
+}
+.ellipse-background-image.slide-1 {
+  animation: smoothSlideShow 24s linear infinite both;
+  animation-delay: -6s;     /* 6–12s 担当 */
+}
+.ellipse-background-image.slide-2 {
+  animation: smoothSlideShow 24s linear infinite both;
+  animation-delay: -12s;    /* 12–18s 担当 */
+}
+.ellipse-background-image.slide-3 {
+  animation: smoothSlideShow 24s linear infinite both;
+  animation-delay: -18s;    /* 18–24s 担当 */
+}
+
+/* レスポンシブ調整 */
+@media (max-width: 768px) {
+  .ellipse-wrapper {
+    width: 85%;
+    height: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-8deg);
+  }
+  .ellipse-background-image {
+    transform: rotate(8deg) scale(1.1);
+  }
+}
+
+@media (max-width: 480px) {
+  .ellipse-wrapper {
+    width: 95%;
+    height: 45%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-5deg);
+  }
+  .ellipse-background-image {
+    transform: rotate(5deg) scale(1.05);
+  }
+}
+
+/* ▼ 空白が出ないクロスフェード（1枚＝24sの25%担当） */
+@keyframes smoothSlideShow {
+  0%    { opacity: 0; }
+  2%    { opacity: 1; }  /* 先行IN開始（24sの2% = 約0.48s） */
+  22%   { opacity: 1; }  /* 担当枠内の可視維持 */
+  28%   { opacity: 0; }  /* 遅延OUT終了（24sの3% = 約0.72s） */
+  100%  { opacity: 0; }
+}
+/* お好みで：視覚効果を減らしたい人への配慮 */
+@media (prefers-reduced-motion: reduce) {
+  .ellipse-background-image { animation: none !important; opacity: 1; }
+}
+
+@keyframes letterUp {
+  from { opacity: 0; transform: translateY(.3em); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.letter-span {
+  opacity: 0;
+  animation: letterUp .45s ease forwards;
+  will-change: transform, opacity;
+}
 .black-bar {
   width: 5vw;
   min-width: 40px;
@@ -354,4 +602,102 @@ import HeaderLogo from '../assets/img/risevista-logo.png';
       });
     });
   });
+</script>
+
+<style>
+/* ベース */
+.textanimation {
+  display: inline-block; /* 親が flex でも崩れにくくする */
+  vertical-align: bottom;
+}
+
+/* 1文字のラッパー */
+.textanimation .char {
+  display: inline-block;
+  overflow: hidden;      /* 下から出てくる表現用のクリップ */
+  line-height: 1;
+}
+
+/* 実際に動く要素 */
+.textanimation .char-inner {
+  display: inline-block;
+  transform: translateY(100%);
+  opacity: 0;
+  /* 名前は後で付ける（IntersectionObserverで .inview が付いたら） */
+  animation-duration: 0.5s;
+  animation-fill-mode: both;  /* 終了後に状態保持 */
+  will-change: transform, opacity;
+}
+
+/* 見えたらアニメーション開始 */
+.textanimation.inview .char-inner {
+  animation-name: rise;
+}
+
+/* 下からフッと出す */
+@keyframes rise {
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+}
+
+/* 低速回線や端末配慮 */
+@media (prefers-reduced-motion: reduce) {
+  .textanimation .char-inner {
+    transform: none !important;
+    opacity: 1 !important;
+    animation: none !important;
+  }
+}
+</style>
+
+<script>
+(() => {
+  // ユーティリティ：テキストを1文字ずつ span でラップ
+  function wrapChars(el) {
+    // 既に子要素がある場合は、テキストノードのみ対象にする
+    const original = el.textContent;
+    el.setAttribute('aria-label', original.trim());
+    el.textContent = '';
+
+    const stagger = parseFloat(el.dataset.stagger || '0.06');     // 文字間ディレイ秒
+    const start   = parseFloat(el.dataset.delayStart || '0.0');   // 先頭の遅延秒
+    const chars = Array.from(original); // サロゲートペア対応（絵文字など）
+
+    chars.forEach((ch, i) => {
+      const outer = document.createElement('span');
+      outer.className = 'char';
+      const inner = document.createElement('span');
+      inner.className = 'char-inner';
+      // スペースは改行崩れ防止で &nbsp; に
+      inner.textContent = (ch === ' ') ? '\u00A0' : ch;
+      inner.style.animationDelay = (start + i * stagger) + 's';
+      outer.appendChild(inner);
+      el.appendChild(outer);
+    });
+  }
+
+  // 対象を探してラップ
+  const targets = document.querySelectorAll('.textanimation');
+  targets.forEach(wrapChars);
+
+  // 画面に入ったら .inview を付与して開始
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        e.target.classList.add('inview');
+        // 一度だけで良ければ解除
+        const once = e.target.dataset.once !== 'false'; // デフォルト true
+        if (once) io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.2 });
+
+  targets.forEach(t => io.observe(t));
+})();
 </script>

@@ -13,6 +13,8 @@ export default {
       fontFamily: {
         notojp: ['"Noto Sans JP"', 'sans-serif'],
         inter: ['"Inter"', 'sans-serif'],
+        klee: ['"Klee One"', 'sans-serif'],
+        zen: ['"Zen Old Mincho"', 'serif'],
       },
       fontWeight: {
         DEFAULT: '300',
