@@ -250,9 +250,9 @@ const cols = chunk(letters, CHUNK_SIZE);
     <div class="mb-8 md:mb-12">
       <div class="flex items-center mb-1">
         <div class="black-bar mr-4"></div>
-        <p class="text-sm text-gray-500 tracking-wider font-serif textanimation">４つの行動指針</p>
+        <p class="text-sm text-gray-500 tracking-wider font-serif">４つの行動指針</p>
       </div>
-      <h2 class="text-4xl md:text-6xl font-bold tracking-widest font-inter textanimation">VALUES</h2>
+      <h2 class="text-4xl md:text-6xl font-bold tracking-widest font-inter">VALUES</h2>
     </div>
     <!-- Right Content -->
     <div class="flex-1 flex flex-col gap-8 md:gap-12">
@@ -602,102 +602,4 @@ const cols = chunk(letters, CHUNK_SIZE);
       });
     });
   });
-</script>
-
-<style>
-/* ベース */
-.textanimation {
-  display: inline-block; /* 親が flex でも崩れにくくする */
-  vertical-align: bottom;
-}
-
-/* 1文字のラッパー */
-.textanimation .char {
-  display: inline-block;
-  overflow: hidden;      /* 下から出てくる表現用のクリップ */
-  line-height: 1;
-}
-
-/* 実際に動く要素 */
-.textanimation .char-inner {
-  display: inline-block;
-  transform: translateY(100%);
-  opacity: 0;
-  /* 名前は後で付ける（IntersectionObserverで .inview が付いたら） */
-  animation-duration: 0.5s;
-  animation-fill-mode: both;  /* 終了後に状態保持 */
-  will-change: transform, opacity;
-}
-
-/* 見えたらアニメーション開始 */
-.textanimation.inview .char-inner {
-  animation-name: rise;
-}
-
-/* 下からフッと出す */
-@keyframes rise {
-  0% {
-    transform: translateY(100%);
-    opacity: 0;
-  }
-  100% {
-    transform: translateY(0%);
-    opacity: 1;
-  }
-}
-
-/* 低速回線や端末配慮 */
-@media (prefers-reduced-motion: reduce) {
-  .textanimation .char-inner {
-    transform: none !important;
-    opacity: 1 !important;
-    animation: none !important;
-  }
-}
-</style>
-
-<script>
-(() => {
-  // ユーティリティ：テキストを1文字ずつ span でラップ
-  function wrapChars(el) {
-    // 既に子要素がある場合は、テキストノードのみ対象にする
-    const original = el.textContent;
-    el.setAttribute('aria-label', original.trim());
-    el.textContent = '';
-
-    const stagger = parseFloat(el.dataset.stagger || '0.06');     // 文字間ディレイ秒
-    const start   = parseFloat(el.dataset.delayStart || '0.0');   // 先頭の遅延秒
-    const chars = Array.from(original); // サロゲートペア対応（絵文字など）
-
-    chars.forEach((ch, i) => {
-      const outer = document.createElement('span');
-      outer.className = 'char';
-      const inner = document.createElement('span');
-      inner.className = 'char-inner';
-      // スペースは改行崩れ防止で &nbsp; に
-      inner.textContent = (ch === ' ') ? '\u00A0' : ch;
-      inner.style.animationDelay = (start + i * stagger) + 's';
-      outer.appendChild(inner);
-      el.appendChild(outer);
-    });
-  }
-
-  // 対象を探してラップ
-  const targets = document.querySelectorAll('.textanimation');
-  targets.forEach(wrapChars);
-
-  // 画面に入ったら .inview を付与して開始
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach((e) => {
-      if (e.isIntersecting) {
-        e.target.classList.add('inview');
-        // 一度だけで良ければ解除
-        const once = e.target.dataset.once !== 'false'; // デフォルト true
-        if (once) io.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.2 });
-
-  targets.forEach(t => io.observe(t));
-})();
 </script>
