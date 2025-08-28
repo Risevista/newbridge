@@ -4,6 +4,7 @@ import Image from '../components/Image.astro';
 import Layout from '../layouts/Layout.astro';
 import Service1 from '../assets/img/service1.jpg';
 import Service2 from '../assets/img/service2.jpg';
+import Hero from '../assets/img/hero.jpg';
 import Service3 from '../assets/img/service3.jpg';
 import HeaderLogo from '../assets/img/risevista-logo.png';
 
@@ -11,61 +12,51 @@ import HeaderLogo from '../assets/img/risevista-logo.png';
 
 <Layout title="株式会社RISE VISTA">
  <!-- Hero Section -->
- <section class="relative bg-[#0a1533] text-white min-h-[100dvh] flex items-center overflow-hidden">
+ <section class="relative bg-[#0a1533] bg-white min-h-[100dvh] flex overflow-hidden pt-20 md:pt-64">
+
+  TEST
   <!-- 背景画像 -->
   <Image
-    src={Service2}
+    src={Hero}
     alt="背景画像"
-    class="absolute inset-0 w-full h-full object-cover z-0 opacity-40 pointer-events-none"
+    class="absolute inset-0 w-full h-full object-cover z-0 opacity-90 md:pt-48 pointer-events-none animate-hero-reveal rounded-tr-[6rem] md:rounded-tr-[10rem]"
     loading="lazy"
     decoding="async"
     aria-hidden="true"
   />
 
-  <!-- 左側の白背景エリア（白ボックスより少し広く） -->
-  <div class="absolute top-0 left-0 h-full w-[20%] bg-white z-0 hidden md:block"></div>
-
-  <!-- SCROLLバー -->
-  <div class="absolute left-0 bottom-0 sm:top-0 h-[100px] sm:h-full w-[40px] bg-black z-50 sm:flex hidden flex-col items-center justify-end pb-10">
-    <p class="text-white tracking-widest writing-vertical mb-4 text-[8px] md:text-sm">SCROLL</p>
+  <!-- 右端のホワイトカラム + SCROLLバー（統合） -->
+  <div class="absolute right-0 bottom-0 sm:top-0 h-[100px] sm:h-full w-[40px] md:w-[5%] bg-white text-black z-50 sm:flex hidden flex-col items-center justify-end pb-10">
+    <p class="text-black tracking-widest writing-vertical mb-4 text-[8px] md:text-sm">SCROLL</p>
     <div class="relative overflow-visible h-[60px]">
-      <div class="absolute bottom-0 w-[1px] h-[60px] bg-white animate-rise-fade opacity-60"></div>
+      <div class="absolute bottom-0 w-[1px] h-[60px] bg-black animate-rise-fade opacity-60"></div>
     </div>
   </div>
 
 
-  <!-- メイン Hero -->
-  <div class="flex flex-col md:flex-row w-full max-w-7xl mx-auto md:px-10 relative z-10">
-    <!-- 右のテキスト（スマホで上に来るよう順序変更） -->
-    <div class="order-1 md:order-2 flex-1 md:pl-20 flex flex-col justify-center mb-8 md:mb-0">
-      <h2 class="text-base md:text-4xl font-bold leading-tight w-full text-center">
-        人生１００年時代を支える<br />
-        あなたのパートナーに。
-      </h2>
-    </div>
-    <!-- 左の白いボックス -->
-    <div class="order-2 md:order-1 bg-gray-200 text-black p-6 md:p-10 w-full md:w-1/2 z-20 opacity-90">
-      <h2 class="text-base md:text-3xl font-bold mt-4 leading-snug">
-        日本に健全な投資文化を育み <br />
-        <span class="text-primary">豊かさ</span>と<span class="text-primary">成長</span></span>を<br />
-        次世代へ
-      </h2>
-      <p class="mt-6 text-sm text-gray-700 leading-relaxed">
-        私たちは、「不動産」という枠組みを超えて、未来を創る力になりたいと考えています。
-        一人ひとりの暮らしから、地域、そして日本の未来を変えていく。  
-      </p>
-      <a href="/service">
-        <button class="mt-6 px-6 py-3 bg-primary text-white rounded-full hover:bg-primary/80 transition font-bold">
-          不動産売買・仲介・投資について
-        </button>
-      </a>
-    </div>
+  <!-- 右のテキスト（スマホで上に来るよう順序変更） -->
+  <div class="flex flex-col justify-center mb-8 md:mb-0 md:absolute md:top-6 md:right-24 md:max-w-lg md:pr-24 md:translate-y-0 px-6 md:px-0 md:pt-24 z-20 animate-text-down">
+    <h2 class="text-base md:text-4xl font-bold leading-tight w-full text-center">
+      人生100年時代を支える<br />
+      あなたのパートナーに。
+    </h2>
+  </div>
+  <!-- 左の白いボックス -->
+  <div class="text-white p-6 md:p-10 w-full md:w-1/2 z-20 opacity-90 md:absolute md:bottom-36 md:right-24 md:w-[42%] md:max-w-xl animate-text-up">
+    <h2 class="text-base md:text-3xl font-bold mt-4 leading-snug drop-shadow-[0_2px_6px_rgba(0,0,0,0.8)]">
+      日本に健全な投資文化を育み <br />
+      <span class="text-green-300">豊かさ</span>と<span class="text-green-300">成長</span></span>を次世代へ
+    </h2>
+    <p class="mt-6 text-sm md:text-lg font-bold text-gray-100 leading-relaxed drop-shadow-[0_1px_3px_rgba(0,0,0,0.9)]">
+      私たちは、「不動産」という枠組みを超えて、未来を創る力になりたいと考えています。
+      一人ひとりの暮らしから、地域、そして日本の未来を変えていく。  
+    </p>
   </div>
 </section>
 
   
   <!-- MISSION Section -->
-  <section class="mission-section w-full flex justify-center items-center min-h-screen py-24 bg-[#f4f7fb] text-gray-700">
+  <section class="mission-section w-full flex justify-center items-center min-h-screen pb-24 bg-[#f4f7fb] text-gray-700">
     <div class="w-full max-w-6xl flex flex-col md:flex-row items-center gap-8 px-4">
       <!-- 左カラム：テキスト -->
       <div class="flex-1 flex flex-col items-start justify-center mb-8 md:mb-0">
