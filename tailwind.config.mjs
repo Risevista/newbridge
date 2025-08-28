@@ -53,6 +53,27 @@ export default {
           '0%': { transform: 'translateX(-60px) skewX(-5deg)', opacity: '0' },
           '100%': { transform: 'translateX(0) skewX(0)', opacity: '1' },
         },
+        heroReveal: {
+          '0%': {
+            transform: 'scale(0.85)',
+            filter: 'grayscale(100%) brightness(220%) saturate(0%)',
+          },
+          '60%': {
+            filter: 'grayscale(0%) brightness(100%) saturate(100%)',
+          },
+          '100%': {
+            transform: 'scale(1.08)',
+            filter: 'grayscale(0%) brightness(100%) saturate(100%)',
+          },
+        },
+        textDown: {
+          '0%': { transform: 'translateY(-20px)', opacity: '0' },
+          '100%': { transform: 'translateY(0)', opacity: '1' },
+        },
+        textUp: {
+          '0%': { transform: 'translateY(20px)', opacity: '0' },
+          '100%': { transform: 'translateY(0)', opacity: '1' },
+        },
         scrollLine: {
           '0%': { height: '0px', opacity: '1' },
           '80%': { height: '120px', opacity: '0.5' },
@@ -71,6 +92,9 @@ export default {
       },
       animation: {
         'slide-in-left': 'slide-in-left 0.8s ease-out forwards',
+        'hero-reveal': 'heroReveal 1.6s ease-out forwards',
+        'text-down': 'textDown 0.8s ease-out 0.2s both',
+        'text-up': 'textUp 0.8s ease-out 0.4s both',
         'scroll-line': 'scrollLine 2s infinite',
         'rise-fade': 'riseFade 2s linear infinite',
       },
