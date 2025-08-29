@@ -6,8 +6,8 @@ import Layout from '../layouts/Layout.astro';
 import type { ImageMetadata } from 'astro';
 import Service1 from '../assets/img/service1.jpg';
 import Service2 from '../assets/img/service2.jpg';
-import Hero from '../assets/img/hero.jpg';
 import Slogan from '../assets/img/slogan.png';
+import Slogan2 from '../assets/img/s-slogan.png';
 import Service3 from '../assets/img/service3.jpg';
 import HeaderLogo from '../assets/img/risevista-logo.png';
 import Hero1 from '../assets/img/hero1.webp';
@@ -122,7 +122,7 @@ const cols = chunk(letters, CHUNK_SIZE);
   </div>
 
   <!-- 3) 本文テキスト -->
-  <div class="w-full px-6 mt-8 pb-10">
+  <div class="w-full px-6 mt-8 pb-10 pt-10">
     <p class="text-black text-[15px] leading-6 tracking-normal font-serif">
       ライズビスタは、「不動産」という枠組みを超えて、未来を創る力になりたいと考えています。
       一人ひとりの暮らしから、地域、そして日本の未来を変えていく。  
@@ -203,45 +203,47 @@ const cols = chunk(letters, CHUNK_SIZE);
 
   
   <!-- MISSION Section -->
-  <section class="mission-section w-full flex justify-center items-center min-h-screen pb-24 bg-white font-klee">
-    <div class="w-full max-w-6xl flex flex-col md:flex-row items-center gap-8 px-4">
-      <!-- 左カラム：テキスト（幅を3に） -->
-      <div class="flex-[3] flex flex-col items-start justify-center mb-8 md:mb-0 text-[#0C223F]">
-        <h2 class="text-[16px] md:text-[32px] tracking-widest mb-6 !font-klee fade-in-text" style="--delay: 0.2s;">
-          一人ひとりの力を信じ、革新と創造を通じて人生100年時代を支えるパートナーに
-        </h2>
-        <p class="text-[12px] md:text-[18px] font-normal leading-[20px] tracking-[0.15rem] mb-0 text-[#0C223F] fade-in-text" style="--delay: 0.4s;">
-          人生100年時代を迎え、将来に向けた資産形成や運用の重要性はこれまで以上に高まっています。かつての「貯蓄から投資へ」という流れは、今や個人のライフスタイルに合わせた柔軟で多様な資産運用へと進化しています。私たちは、一人ひとりが自分らしい未来を描けるよう、革新と創造を通じて人生100年時代を支えるパートナーになります。
-        </p>
-      </div>
-  
-      <!-- 中カラム：画像（幅1） -->
-      <div class="flex-[1] flex justify-center items-center">
-        <div class="w-48 h-48 rounded-full relative overflow-hidden fade-in-text" style="--delay: 0.6s;">
-          <Image
-            src={HeaderLogo}
-            alt="Slogan"
-            class="absolute inset-0 w-full h-full object-scale-down pointer-events-none"
-            loading="lazy"
-            decoding="async"
-          />
-        </div>
-      </div>
-      
-      <!-- 右カラム：ボタン（幅1） -->
-      <div class="flex-[1] flex justify-center items-center fade-in-text" style="--delay: 0.8s;">
-        <a href="/mission">
-          <button
-            type="button"
-            class="text-white font-notojp bg-green-900 hover:bg-green-500 font-medium rounded-lg text-sm px-8 py-4 text-center"
-          >
-            OUR MISSION
-            <span class="ml-2 inline-block align-middle">→</span>
-          </button>
-        </a>
+<section class="mission-section w-full flex justify-center items-center min-h-screen pb-24 bg-white font-klee">
+  <div class="w-full max-w-6xl flex flex-col md:flex-row items-center gap-6 md:gap-8 px-4">
+    
+    <!-- 左カラム：テキスト（幅3） -->
+    <div class="flex-[3] flex flex-col items-start justify-center text-[#0C223F]">
+      <h2 class="text-[16px] md:text-[32px] tracking-widest mb-4 md:mb-6 !font-klee fade-in-text" style="--delay: 0.2s;">
+        一人ひとりの力を信じ、革新と創造を通じて人生100年時代を支えるパートナーに
+      </h2>
+      <p class="text-[14px] md:text-[18px] font-normal leading-[20px] tracking-[0.15rem] text-[#0C223F] fade-in-text" style="--delay: 0.4s;">
+        人生100年時代を迎え、将来に向けた資産形成や運用の重要性はこれまで以上に高まっています。かつての「貯蓄から投資へ」という流れは、今や個人のライフスタイルに合わせた柔軟で多様な資産運用へと進化しています。私たちは、一人ひとりが自分らしい未来を描けるよう、革新と創造を通じて人生100年時代を支えるパートナーになります。
+      </p>
+    </div>
+
+    <!-- 中カラム：画像（幅1） -->
+    <div class="flex-[1] flex justify-center items-center">
+      <div class="w-40 h-40 md:w-48 md:h-48 rounded-full relative overflow-hidden fade-in-text" style="--delay: 0.6s;">
+        <Image
+          src={HeaderLogo}
+          alt="Slogan"
+          class="absolute inset-0 w-full h-full object-scale-down pointer-events-none"
+          loading="lazy"
+          decoding="async"
+        />
       </div>
     </div>
-  </section>
+    
+    <!-- 右カラム：ボタン（幅1） -->
+    <div class="flex-[1] flex justify-center items-center fade-in-text" style="--delay: 0.8s;">
+      <a href="/mission">
+        <button
+          type="button"
+          class="text-white font-notojp bg-green-900 hover:bg-green-500 font-medium rounded-lg text-sm px-8 py-4 text-center"
+        >
+          OUR MISSION
+          <span class="ml-2 inline-block align-middle">→</span>
+        </button>
+      </a>
+    </div>
+  </div>
+</section>
+
   
  <!-- VALUES セクション -->
  <section class="w-full flex flex-col items-center bg-[#f4f7fb] text-primary  py-12 md:py-24 px-4 md:px-0">
