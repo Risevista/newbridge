@@ -132,17 +132,17 @@ const navItems = [
     </nav>
 
     <!-- モバイルメニュー -->
-    <div id="mobile-menu" class="md:hidden hidden bg-black bg-opacity-90 fixed top-[80px] left-0 w-full z-[9998] transform transition-transform duration-300 ease-in-out -translate-y-full">
-      <ul class="flex flex-col text-white text-sm font-light max-h-[70vh] overflow-y-auto">
+    <div id="mobile-menu" class="md:hidden hidden bg-white  bg-opacity-90 fixed top-[80px] left-0 w-full z-[9998] transform transition-transform duration-300 ease-in-out -translate-y-full">
+      <ul class="flex flex-col text-[#0C223F] text-[14[x]] font-light max-h-[70vh] overflow-y-auto">
         {navItems.map((item, itemIndex) => (
           <li class="border-b border-gray-700 last:border-b-0">
             <div class="flex items-center justify-between px-6 py-4">
-              <a href={item.href} class="nav-link flex-1 text-white hover:text-gray-300">
+              <a href={item.href} class="nav-link flex-1 text-[#0C223F] hover:text-gray-300">
                 {item.text}
               </a>
               {item.submenu && (
                 <button 
-                  class="submenu-toggle ml-2 p-1 text-white hover:text-gray-300 transition-transform duration-200"
+                  class="submenu-toggle ml-2 p-1 text-[#0C223F] hover:text-gray-300 transition-transform duration-200"
                   data-target={`submenu-${itemIndex}`}
                 >
                   <svg class="w-4 h-4 transform transition-transform duration-200" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -152,12 +152,12 @@ const navItems = [
               )}
             </div>
             {item.submenu && (
-              <ul id={`submenu-${itemIndex}`} class="submenu hidden bg-gray-800 bg-opacity-50">
+              <ul id={`submenu-${itemIndex}`} class="submenu hidden bg-white bg-opacity-50">
                 {item.submenu.map((subItem, subIndex) => (
                   <li class="border-b border-gray-600 last:border-b-0">
                     <a 
                       href={subItem.href} 
-                      class="block px-8 py-3 text-gray-300 hover:text-white hover:bg-gray-700 text-sm transition-colors"
+                      class="block px-8 py-3 text-[#0C223F] hover:text-primary hover:bg-gray-700 text-sm transition-colors"
                     >
                       {subItem.text}
                     </a>
@@ -169,11 +169,11 @@ const navItems = [
         ))}
         
         <!-- モバイル相談ボタン -->
-        <li class="px-6 py-6 bg-gray-900">
+        <li class="px-6 py-6 bg-gray-900 font-serif">
           <div class="flex flex-col gap-3 items-center">
             <!-- 電話相談ボタン -->
             <a href="/contact">
-            <div class="bg-blue-800 rounded-lg p-2 shadow text-center w-full max-w-[220px]">
+            <div class="bg-blue-800 rounded-lg p-2 shadow text-center  w-[200px] h-[65px] ">
               <div class="bg-white text-blue-800 text-xs px-3 py-1 rounded-full mb-2 font-medium">
                 初回面談無料
               </div>
@@ -184,7 +184,7 @@ const navItems = [
             </a>
             <a href="/contact">
             <!-- 無料相談予約ボタン -->
-            <div class="bg-orange-500 rounded-lg p-2 shadow text-center w-full max-w-[220px]">
+            <div class="bg-orange-500 rounded-lg p-2 shadow text-center w-[200px] h-[65px]">
               <div class="bg-white text-orange-500 text-xs px-3 py-1 rounded-full mb-2 font-medium">
                 非公開収益物件も多数
               </div>
