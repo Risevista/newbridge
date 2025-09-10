@@ -63,13 +63,18 @@ const cols = chunk(letters, CHUNK_SIZE);
 ---
 
 <Layout title="株式会社RISE VISTA">
+  <!-- Preloader overlay -->
+  <div id="preloader" class="fixed inset-0 z-[1000] flex items-center justify-center bg-[#EDE4D5]">
+    <div class="h-10 w-10 rounded-full border-2 border-teal-600 border-t-transparent animate-spin"></div>
+  </div>
+  <div id="page-root" class="opacity-0 transition-opacity duration-500">
 <!-- Hero Section -->
 
 <!-- ===== Hero: Mobile (md未満) ===== -->
 <section class="relative bg-[#EDE4D5] min-h-[100dvh] flex flex-col md:hidden pt-20">
   <!-- 1) 右上テキスト（Slogan） -->
   <div class="w-full h-auto px-4 mt-6 flex justify-end animate-text-down">
-    <Image src={Slogan} alt="Slogan" class="w-full" loading="eager" decoding="async" />
+    <Image src={Slogan} alt="Slogan" class="w-full" loading="eager" decoding="async" data-preload />
   </div>
 
   <!-- 2) 楕円スライダー + 一文字ずつテキスト（重ねる） -->
@@ -86,6 +91,7 @@ const cols = chunk(letters, CHUNK_SIZE);
                 class={`ellipse-background-image slide-${index}`}
                 loading={index === 0 ? "eager" : "lazy"}
                 decoding="async"
+                data-preload
                 aria-hidden="true"
               />
             ))}
@@ -145,6 +151,7 @@ const cols = chunk(letters, CHUNK_SIZE);
             class={`ellipse-background-image slide-${index}`}
             loading={index === 0 ? "eager" : "lazy"}
             decoding="async"
+            data-preload
             aria-hidden="true"
           />
         ))}
@@ -191,6 +198,7 @@ const cols = chunk(letters, CHUNK_SIZE);
   <div class="absolute top-16 right-16 max-w-xl pr-4 flex flex-col justify-center mb-8 md:mb-0 md:top-6 md:right-24 md:max-w-xl md:pr-24 md:translate-y-0 px-6 md:px-0 z-20 animate-text-down">
     <Image
       src={Slogan}
+      data-preload
     />
   </div>
   
@@ -236,7 +244,7 @@ const cols = chunk(letters, CHUNK_SIZE);
       <a href="/mission">
         <button
           type="button"
-          class="text-white font-notojp bg-green-900 hover:bg-green-500 font-medium rounded-lg text-sm px-8 py-4 text-center"
+          class="text-white font-serif bg-green-900 hover:bg-green-500 font-medium rounded-lg text-sm px-8 py-4 text-center"
         >
           OUR MISSION
           <span class="ml-2 inline-block align-middle">→</span>
@@ -353,13 +361,13 @@ const cols = chunk(letters, CHUNK_SIZE);
       <!-- Service 01 -->
       <div class="space-y-4">
         <!-- ラベル -->
-        <div class="border-t border-black pt-4 text-xs tracking-wide text-[#0C223F]">
+        <div class="border-t border-black pt-4 text-xs tracking-wide font-serif text-[#0C223F]">
           SERVICE <span class="text-[#0C223F]">#01</span>
         </div>
         <Image
         src={Service1}
         alt="Circus"
-        class="w-[320px] h-[240px] object-cover brightness-130"
+        class="w-full h-[220px] md:w-[320px] md:h-[240px] object-cover brightness-130"
         loading="lazy"
         decoding="async"
       />
@@ -374,13 +382,13 @@ const cols = chunk(letters, CHUNK_SIZE);
   
       <!-- Service 02 -->
       <div class="space-y-4">
-        <div class="border-t border-black pt-4 text-xs tracking-wide text-[#0C223F]">
+        <div class="border-t border-black pt-4 text-xs tracking-wide font-serif text-[#0C223F]">
           SERVICE <span class="text-[#0C223F]">#02</span>
         </div>
         <Image
         src={Service2}
         alt="Circus"
-        class="w-[320px] h-[240px] object-cover brightness-130"
+        class="w-full h-[220px] md:w-[320px] md:h-[240px] object-cover brightness-130"
         loading="lazy"
         decoding="async"
       />
@@ -394,13 +402,13 @@ const cols = chunk(letters, CHUNK_SIZE);
   
       <!-- Service 03 -->
       <div class="space-y-4">
-        <div class="border-t border-black pt-4 text-xs tracking-wide text-[#0C223F]">
+        <div class="border-t border-black pt-4 text-xs tracking-wide font-serif text-[#0C223F]">
           SERVICE <span class="text-[#0C223F]">#03</span>
         </div>
         <Image
         src={Service3}
         alt="Circus"
-        class="w-[320px] h-[240px] object-cover brightness-130"
+        class="w-full h-[220px] md:w-[320px] md:h-[240px] object-cover brightness-130"
         loading="lazy"
         decoding="async"
       />
@@ -413,157 +421,103 @@ const cols = chunk(letters, CHUNK_SIZE);
       </div>
     </div>
     <div class="flex justify-center mt-6">
-      <a href="/service" class="text-white font-notojp bg-green-900 hover:bg-green-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
+      <a href="/service" class="text-white font-serif bg-green-900 hover:bg-green-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
         詳しくみる
       </a>
     </div>
   </section>
 
-  <section class=" bg-[#EBE1D4] relative overflow-hidden w-full">
-    <!-- 背景画像コンテナ -->
-    <div class="absolute inset-0 transition-all duration-700 ease-in-out" id="background-container">
-      <div class="absolute inset-0 bg-gradient-to-l from-black/30 to-transparent z-10"></div>
+  <section class="bg-[#EBE1D4] relative overflow-hidden w-full">
+    <!-- 背景画像コンテナ（パディング付き） -->
+    <div class="absolute transition-all duration-700 ease-in-out" id="background-container">
+      <div class="absolute inset-0 bg-gradient-to-l from-black/30 to-transparent z-10 rounded-lg opacity-80"></div>
       <img 
-        src={Service1.src} 
+        src="https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80" 
         alt="Background" 
-        class="w-full h-full object-cover transition-opacity duration-700"
+        class="w-full h-full object-cover transition-opacity duration-700 rounded-lg"
         id="background-image"
+        data-preload
       />
     </div>
   
     <!-- メインコンテンツ -->
-    <div class="relative z-20 grid grid-cols-2 font-serif">
-      <!-- 左カラム -->
-      <div class="flex flex-col justify-end px-8 lg:px-16 bg-[#EBE1D4]">
-        <!-- ヘッダー -->
-        <div class="mb-12">
-          <div class="space-y-6">
-            <h1 class="text-4xl lg:text-5xl font-bold text-gray-800 mb-2">
-              COMPANY
-            </h1>
-            <p class="text-sm text-gray-500 mb-8">企業情報</p>
-            
-            <p class="text-lg text-gray-700 leading-relaxed">
-              単なるコンサルタントではなく、
-            </p>
-            <p class="text-xl font-semibold text-gray-800 leading-relaxed">
-              最高のパートナーであり続ける。
-            </p>
-          </div>
+    <div class="relative z-20 flex items-center justify-center p-4 md:p-8 lg:p-12 font-serif">
+      <div class="max-w-6xl w-full grid grid-cols-1 lg:grid-cols-2 gap-3 lg:gap-16">
+        
+        <!-- 左カラム -->
+        <div class="flex flex-col justify-center space-y-4">
+          <!-- 左側のメニュー項目 -->
+          <nav class="space-y-3">
+            <a 
+              href="#company" 
+              class="menu-item group flex bg-white items-center justify-between py-4 px-6 rounded-xl transition-all duration-300 hover:bg-white hover:shadow-lg transform hover:-translate-y-1"
+              data-image="1"
+            >
+              <div class="flex items-center space-x-4">
+                <span class="text-gray-400 text-sm font-medium">01</span>
+                <span class="text-gray-800 font-medium group-hover:text-teal-600 transition-colors">
+                  会社概要
+                </span>
+              </div>
+              <svg class="w-5 h-5 text-gray-400 group-hover:text-teal-600 group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+            </a>
+    
+            <a 
+              href="/mission" 
+              class="menu-item group flex items-center bg-white justify-between py-4 px-6 rounded-xl transition-all duration-300 hover:bg-white hover:shadow-lg transform hover:-translate-y-1"
+              data-image="2"
+            >
+              <div class="flex items-center space-x-4">
+                <span class="text-gray-400 text-sm font-medium">02</span>
+                <span class="text-gray-800 font-medium group-hover:text-teal-600 transition-colors">
+                  ミッション・ビジョン・バリュー
+                </span>
+              </div>
+              <svg class="w-5 h-5 text-gray-400 group-hover:text-teal-600 group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+            </a>
+          </nav>
         </div>
-  
-        <!-- 左側のメニュー項目 -->
-        <nav class="space-y-1 w-3/4">
-          <a 
-            href="#company-overview" 
-            class="menu-item group flex bg-white items-center justify-between py-4 px-4 rounded-lg transition-all duration-300 hover:bg-white hover:shadow-md"
-            data-image="1"
-          >
-            <div class="flex items-center space-x-4">
-              <span class="text-gray-400 text-sm font-medium">01</span>
-              <span class="text-gray-800 font-medium group-hover:text-teal-600 transition-colors">
-                会社概要・沿革
-              </span>
-            </div>
-            <svg class="w-5 h-5 text-gray-400 group-hover:text-teal-600 group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-            </svg>
-          </a>
-  
-          <a 
-            href="#mission" 
-            class="menu-item group flex items-center bg-white justify-between py-4 px-4 rounded-lg transition-all duration-300 hover:bg-white hover:shadow-md"
-            data-image="2"
-          >
-            <div class="flex items-center space-x-4">
-              <span class="text-gray-400 text-sm font-medium">02</span>
-              <span class="text-gray-800 font-medium group-hover:text-teal-600 transition-colors">
-                ミッション・ビジョン・バリュー
-              </span>
-            </div>
-            <svg class="w-5 h-5 text-gray-400 group-hover:text-teal-600 group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-            </svg>
-          </a>
-  
-          <a 
-            href="#consultants" 
-            class="menu-item group flex items-center bg-white justify-between py-4 px-4 rounded-lg transition-all duration-300 hover:bg-white hover:shadow-md"
-            data-image="3"
-          >
-            <div class="flex items-center space-x-4">
-              <span class="text-gray-400 text-sm font-medium">03</span>
-              <span class="text-gray-800 font-medium group-hover:text-teal-600 transition-colors">
-                コンサルタント紹介
-              </span>
-            </div>
-            <svg class="w-5 h-5 text-gray-400 group-hover:text-teal-600 group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-            </svg>
-          </a>
-        </nav>
-      </div>
-  
-      <!-- 右カラム -->
-      <div class="flex flex-col justify-end px-8 lg:px-16 relative">
-        <!-- 右側のメニュー項目 -->
-        <nav class="space-y-1 w-3/4">
-          <a 
-            href="#message" 
-            class="menu-item group flex items-center justify-between py-4 px-4 rounded-lg transition-all duration-300 hover:bg-white/90 hover:shadow-md backdrop-blur-sm"
-            data-image="4"
-          >
-            <div class="flex items-center space-x-4">
-              <span class="text-white/70 text-sm font-medium">04</span>
-              <span class="text-white font-medium group-hover:text-teal-300 transition-colors">
-                代表メッセージ
-              </span>
-            </div>
-            <svg class="w-5 h-5 text-white/70 group-hover:text-teal-300 group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-            </svg>
-          </a>
-  
-          <a 
-            href="#business-concept" 
-            class="menu-item group flex items-center justify-between py-4 px-4 rounded-lg transition-all duration-300 hover:bg-white/90 hover:shadow-md backdrop-blur-sm"
-            data-image="5"
-          >
-            <div class="flex items-center space-x-4">
-              <span class="text-white/70 text-sm font-medium">05</span>
-              <span class="text-white font-medium group-hover:text-teal-300 transition-colors">
-                事業コンセプト
-              </span>
-            </div>
-            <svg class="w-5 h-5 text-white/70 group-hover:text-teal-300 group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-            </svg>
-          </a>
-  
-          <a 
-            href="#csr" 
-            class="menu-item group flex items-center justify-between py-4 px-4 rounded-lg transition-all duration-300 hover:bg-white/90 hover:shadow-md backdrop-blur-sm"
-            data-image="6"
-          >
-            <div class="flex items-center space-x-4">
-              <span class="text-white/70 text-sm font-medium">06</span>
-              <span class="text-white font-medium group-hover:text-teal-300 transition-colors">
-                CSRの取り組み
-              </span>
-            </div>
-            <svg class="w-5 h-5 text-white/70 group-hover:text-teal-300 group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-            </svg>
-          </a>
-        </nav>
-  
-        <!-- スクロールインジケーター -->
-        <div class="absolute bottom-8 right-8">
-          <div class="w-12 h-12 bg-teal-600 rounded-full flex items-center justify-center cursor-pointer hover:bg-teal-700 transition-colors">
-            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-            </svg>
-          </div>
+    
+        <!-- 右カラム -->
+        <div class="flex flex-col justify-center space-y-4">
+          <!-- 右側のメニュー項目 -->
+          <nav class="space-y-3">
+            <a 
+              href="/mission#message" 
+              class="menu-item group flex bg-white items-center justify-between py-4 px-6 rounded-xl transition-all duration-300 hover:bg-white hover:shadow-lg transform hover:-translate-y-1"
+              data-image="3"
+            >
+              <div class="flex items-center space-x-4">
+                <span class="text-gray-400 text-sm font-medium">03</span>
+                <span class="text-gray-800 font-medium group-hover:text-teal-600 transition-colors">
+                  代表メッセージ
+                </span>
+              </div>
+              <svg class="w-5 h-5 text-gray-400 group-hover:text-teal-600 group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+            </a>
+    
+            <a 
+              href="/mission#consultants" 
+              class="menu-item group flex bg-white items-center justify-between py-4 px-6 rounded-xl transition-all duration-300 hover:bg-white hover:shadow-lg transform hover:-translate-y-1"
+              data-image="4"
+            >
+              <div class="flex items-center space-x-4">
+                <span class="text-gray-400 text-sm font-medium">04</span>
+                <span class="text-gray-800 font-medium group-hover:text-teal-600 transition-colors">
+                  コンサルタント紹介
+                </span>
+              </div>
+              <svg class="w-5 h-5 text-gray-400 group-hover:text-teal-600 group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+            </a>
+          </nav>
         </div>
       </div>
     </div>
@@ -617,6 +571,7 @@ const cols = chunk(letters, CHUNK_SIZE);
       </div>
     </div>
   </section>
+  </div>
 </Layout>
 
 <!-- ========================= CSS ========================= -->
@@ -762,6 +717,35 @@ const cols = chunk(letters, CHUNK_SIZE);
 <!-- ========================= JavaScript ========================= -->
 <script>
   document.addEventListener('DOMContentLoaded', () => {
+    // Preload gate: wait for critical images (data-preload) before reveal
+    const preloader = document.getElementById('preloader');
+    const pageRoot = document.getElementById('page-root');
+    const preloadEls = Array.from(document.querySelectorAll('img[data-preload], picture[data-preload] img')) as HTMLImageElement[];
+
+    const waitForImage = (img: HTMLImageElement) => new Promise<void>((resolve) => {
+      if (img.complete && img.naturalWidth > 0) return resolve();
+      const onLoad = () => { cleanup(); resolve(); };
+      const onError = () => { cleanup(); resolve(); };
+      const cleanup = () => {
+        img.removeEventListener('load', onLoad);
+        img.removeEventListener('error', onError);
+      };
+      img.addEventListener('load', onLoad, { once: true });
+      img.addEventListener('error', onError, { once: true });
+    });
+
+    const reveal = () => {
+      if (preloader) preloader.style.display = 'none';
+      if (pageRoot) pageRoot.classList.remove('opacity-0');
+    };
+
+    const timeoutMs = 4000; // safety timeout
+    const timeout = new Promise<void>((resolve) => setTimeout(resolve, timeoutMs));
+    Promise.race([
+      Promise.all(preloadEls.map(waitForImage)),
+      timeout,
+    ]).then(reveal);
+
     // ヘッダー・フッターのアンカーリンクを取得
     document.querySelectorAll('a[href^="#"]').forEach(link => {
       link.addEventListener('click', (event) => {
