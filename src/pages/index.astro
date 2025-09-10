@@ -7,6 +7,9 @@ import type { ImageMetadata } from 'astro';
 import Service1 from '../assets/img/service1.jpg';
 import Service2 from '../assets/img/service2.jpg';
 import Service3 from '../assets/img/service3.jpg';
+import Service4 from '../assets/img/service1.jpg';
+import Service5 from '../assets/img/service2.jpg';
+import Service6 from '../assets/img/service3.jpg';
 import Slogan from '../assets/img/slogan.png';
 import HeaderLogo from '../assets/img/risevista-logo.png';
 import Hero1 from '../assets/img/hero1.webp';
@@ -193,7 +196,7 @@ const cols = chunk(letters, CHUNK_SIZE);
   
   <!-- テキスト -->
   <div class="text-black p-6 md:p-10 w-[88%] z-20 opacity-90 absolute bottom-8 right-16 md:bottom-0 md:right-24 md:w-[42%] md:max-w-xl animate-text-up">
-    <p class="mt-6 text-sm md:text-lg tracking-normal font-zen">
+    <p class="mt-6 text-sm md:text-lg tracking-normal font-serif">
       RISE VISTAは、「不動産」という枠組みを超えて、未来を創る力になりたいと考えています。
       一人ひとりの暮らしから、地域、そして日本の未来を変えていく。  
     </p>
@@ -415,6 +418,160 @@ const cols = chunk(letters, CHUNK_SIZE);
       </a>
     </div>
   </section>
+
+  <section class=" bg-[#EBE1D4] relative overflow-hidden w-full">
+    <!-- 背景画像コンテナ -->
+    <div class="absolute inset-0 transition-all duration-700 ease-in-out" id="background-container">
+      <div class="absolute inset-0 bg-gradient-to-l from-black/30 to-transparent z-10"></div>
+      <img 
+        src={Service1.src} 
+        alt="Background" 
+        class="w-full h-full object-cover transition-opacity duration-700"
+        id="background-image"
+      />
+    </div>
+  
+    <!-- メインコンテンツ -->
+    <div class="relative z-20 grid grid-cols-2 font-serif">
+      <!-- 左カラム -->
+      <div class="flex flex-col justify-end px-8 lg:px-16 bg-[#EBE1D4]">
+        <!-- ヘッダー -->
+        <div class="mb-12">
+          <div class="space-y-6">
+            <h1 class="text-4xl lg:text-5xl font-bold text-gray-800 mb-2">
+              COMPANY
+            </h1>
+            <p class="text-sm text-gray-500 mb-8">企業情報</p>
+            
+            <p class="text-lg text-gray-700 leading-relaxed">
+              単なるコンサルタントではなく、
+            </p>
+            <p class="text-xl font-semibold text-gray-800 leading-relaxed">
+              最高のパートナーであり続ける。
+            </p>
+            <p class="text-sm text-gray-600 leading-relaxed max-w-md">
+              東京ミライズは、ドクターを中心としたお客様の資産形成や資産運用をサポートしています。医院開業や税務対策、医院経営のコンサルティングまで、経験豊富なコンサルタントが、お客様の生涯を通じたパートナーを目指しています。
+            </p>
+          </div>
+        </div>
+  
+        <!-- 左側のメニュー項目 -->
+        <nav class="space-y-1 w-3/4">
+          <a 
+            href="#company-overview" 
+            class="menu-item group flex bg-white items-center justify-between py-4 px-4 rounded-lg transition-all duration-300 hover:bg-white hover:shadow-md"
+            data-image="1"
+          >
+            <div class="flex items-center space-x-4">
+              <span class="text-gray-400 text-sm font-medium">01</span>
+              <span class="text-gray-800 font-medium group-hover:text-teal-600 transition-colors">
+                会社概要・沿革
+              </span>
+            </div>
+            <svg class="w-5 h-5 text-gray-400 group-hover:text-teal-600 group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </a>
+  
+          <a 
+            href="#mission" 
+            class="menu-item group flex items-center bg-white justify-between py-4 px-4 rounded-lg transition-all duration-300 hover:bg-white hover:shadow-md"
+            data-image="2"
+          >
+            <div class="flex items-center space-x-4">
+              <span class="text-gray-400 text-sm font-medium">02</span>
+              <span class="text-gray-800 font-medium group-hover:text-teal-600 transition-colors">
+                ミッション・ビジョン・バリュー
+              </span>
+            </div>
+            <svg class="w-5 h-5 text-gray-400 group-hover:text-teal-600 group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </a>
+  
+          <a 
+            href="#consultants" 
+            class="menu-item group flex items-center bg-white justify-between py-4 px-4 rounded-lg transition-all duration-300 hover:bg-white hover:shadow-md"
+            data-image="3"
+          >
+            <div class="flex items-center space-x-4">
+              <span class="text-gray-400 text-sm font-medium">03</span>
+              <span class="text-gray-800 font-medium group-hover:text-teal-600 transition-colors">
+                コンサルタント紹介
+              </span>
+            </div>
+            <svg class="w-5 h-5 text-gray-400 group-hover:text-teal-600 group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </a>
+        </nav>
+      </div>
+  
+      <!-- 右カラム -->
+      <div class="flex flex-col justify-end px-8 lg:px-16 relative">
+        <!-- 右側のメニュー項目 -->
+        <nav class="space-y-1 w-3/4">
+          <a 
+            href="#message" 
+            class="menu-item group flex items-center justify-between py-4 px-4 rounded-lg transition-all duration-300 hover:bg-white/90 hover:shadow-md backdrop-blur-sm"
+            data-image="4"
+          >
+            <div class="flex items-center space-x-4">
+              <span class="text-white/70 text-sm font-medium">04</span>
+              <span class="text-white font-medium group-hover:text-teal-300 transition-colors">
+                代表メッセージ
+              </span>
+            </div>
+            <svg class="w-5 h-5 text-white/70 group-hover:text-teal-300 group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </a>
+  
+          <a 
+            href="#business-concept" 
+            class="menu-item group flex items-center justify-between py-4 px-4 rounded-lg transition-all duration-300 hover:bg-white/90 hover:shadow-md backdrop-blur-sm"
+            data-image="5"
+          >
+            <div class="flex items-center space-x-4">
+              <span class="text-white/70 text-sm font-medium">05</span>
+              <span class="text-white font-medium group-hover:text-teal-300 transition-colors">
+                事業コンセプト
+              </span>
+            </div>
+            <svg class="w-5 h-5 text-white/70 group-hover:text-teal-300 group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </a>
+  
+          <a 
+            href="#csr" 
+            class="menu-item group flex items-center justify-between py-4 px-4 rounded-lg transition-all duration-300 hover:bg-white/90 hover:shadow-md backdrop-blur-sm"
+            data-image="6"
+          >
+            <div class="flex items-center space-x-4">
+              <span class="text-white/70 text-sm font-medium">06</span>
+              <span class="text-white font-medium group-hover:text-teal-300 transition-colors">
+                CSRの取り組み
+              </span>
+            </div>
+            <svg class="w-5 h-5 text-white/70 group-hover:text-teal-300 group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </a>
+        </nav>
+  
+        <!-- スクロールインジケーター -->
+        <div class="absolute bottom-8 right-8">
+          <div class="w-12 h-12 bg-teal-600 rounded-full flex items-center justify-center cursor-pointer hover:bg-teal-700 transition-colors">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
   
 
   <section class="py-24 bg-[#EDE4D5]" id="company">
@@ -594,6 +751,15 @@ const cols = chunk(letters, CHUNK_SIZE);
   writing-mode: vertical-rl;
   text-orientation: mixed;
 }
+
+/* Company section menu styles */
+.menu-item {
+  border-left: 3px solid transparent;
+}
+
+.menu-item:hover {
+  border-left-color: #0d9488; /* teal-600 */
+}
 </style>
 
 <!-- ========================= JavaScript ========================= -->
@@ -632,5 +798,46 @@ const cols = chunk(letters, CHUNK_SIZE);
   document.querySelectorAll('.fade-in-text').forEach((el) => {
     observer.observe(el);
   });
+
+  // Company section background image switching
+  const companySection = document.querySelector('section.min-h-screen.bg-gray-50');
+  const companyImages = companySection ? JSON.parse(companySection.getAttribute('data-images') || '[]') : [];
+
+  const backgroundImage = document.getElementById('background-image') as HTMLImageElement;
+  const menuItems = document.querySelectorAll('.menu-item');
+
+  // 各メニューアイテムにhoverイベントを追加
+  menuItems.forEach((item) => {
+    const imageIndexAttr = item.getAttribute('data-image');
+    if (!imageIndexAttr) return;
+    
+    const imageIndex = parseInt(imageIndexAttr);
+    
+    item.addEventListener('mouseenter', () => {
+      if (backgroundImage && companyImages[imageIndex]) {
+        backgroundImage.style.opacity = '0';
+        
+        setTimeout(() => {
+          backgroundImage.src = companyImages[imageIndex];
+          backgroundImage.style.opacity = '1';
+        }, 350);
+      }
+    });
+  });
+
+  // デフォルト画像に戻す（最初の画像に戻す）
+  if (companySection) {
+    companySection.addEventListener('mouseleave', () => {
+      if (backgroundImage) {
+        backgroundImage.style.opacity = '0';
+        setTimeout(() => {
+          backgroundImage.src = companyImages[0]; // デフォルトは最初の画像
+          backgroundImage.style.opacity = '1';
+        }, 350);
+      }
+    });
+  }
 });
 </script>
+
+
