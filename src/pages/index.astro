@@ -4,14 +4,11 @@ import Image from '../components/Image.astro';
 import { Image as AImage } from "astro:assets";
 import Layout from '../layouts/Layout.astro';
 import type { ImageMetadata } from 'astro';
-import Service1 from '../assets/img/service1.jpg';
-import Service2 from '../assets/img/service2.jpg';
-import Service3 from '../assets/img/service3.jpg';
-import Service4 from '../assets/img/service1.jpg';
-import Service5 from '../assets/img/service2.jpg';
-import Service6 from '../assets/img/service3.jpg';
-import Slogan from '../assets/img/slogan.png';
-import HeaderLogo from '../assets/img/risevista-logo.png';
+import Service1 from '../assets/img/service1.webp';
+import Service2 from '../assets/img/service2.webp';
+import Service3 from '../assets/img/service3.webp';
+import Slogan from '../assets/img/slogan.webp';  
+import HeaderLogo from '../assets/img/risevista-logo.webp';
 import Hero1 from '../assets/img/hero1.webp';
 import Hero2 from '../assets/img/hero2.webp';
 import Hero3 from '../assets/img/hero3.webp';
@@ -225,18 +222,8 @@ const cols = chunk(letters, CHUNK_SIZE);
         人生100年時代を迎え、将来に向けた資産形成や運用の重要性はこれまで以上に高まっています。かつての「貯蓄から投資へ」という流れは、今や個人のライフスタイルに合わせた柔軟で多様な資産運用へと進化しています。私たちは、一人ひとりが自分らしい未来を描けるよう、革新と創造を通じて人生100年時代を支えるパートナーになります。
       </p>
     </div>
-
-    <!-- 中カラム：画像（幅1） -->
-    <div class="flex-[1] flex justify-center items-center">
-      <div class="w-40 h-40 md:w-48 md:h-48 rounded-full relative overflow-hidden fade-in-text" style="--delay: 0.6s;">
-        <Image
-          src={HeaderLogo}
-          alt="Slogan"
-          class="absolute inset-0 w-full h-full object-scale-down pointer-events-none"
-          loading="lazy"
-          decoding="async"
-        />
-      </div>
+    <div class="size-40 md:size-48 rounded-full relative overflow-hidden">
+      <Image src={HeaderLogo} alt="Slogan" class="absolute inset-0 w-full h-full object-contain pointer-events-none" />
     </div>
     
     <!-- 右カラム：ボタン（幅1） -->
@@ -820,5 +807,3 @@ const cols = chunk(letters, CHUNK_SIZE);
   }
 });
 </script>
-
-
