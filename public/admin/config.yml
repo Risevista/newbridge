@@ -2,7 +2,7 @@ backend:
   name: github
   repo: Risevista/HP
   branch: main
-  base_url: https://risevista.pages.dev
+  base_url: https://risevista.pages.dev/
   auth_endpoint: /api/auth
 
 locale: "ja"
