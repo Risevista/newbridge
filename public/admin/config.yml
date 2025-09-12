@@ -12,13 +12,25 @@ public_folder: "/uploads"
 
 collections:
   - name: "blog"
-    label: "ブログ"
+    label: "ブログ記事"
     folder: "src/content/blog"
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     extension: "md"
     preview_path: "blog/{{slug}}"
+    sortable_fields: ['date', 'title']
+    view_filters:
+      - label: "下書き"
+        field: "draft"
+        pattern: true
+    view_groups:
+      - label: "年"
+        field: "date"
+        pattern: "\\d{4}"
     fields:
       - { label: "タイトル", name: "title", widget: "string", required: true }
       - { label: "公開日", name: "date", widget: "datetime", required: true }
+      - { label: "著者", name: "author", widget: "string", default: "RISE VISTA" }
+      - { label: "タグ", name: "tags", widget: "list", required: false }
+      - { label: "下書き", name: "draft", widget: "boolean", default: false }
       - { label: "本文", name: "body", widget: "markdown", required: true }

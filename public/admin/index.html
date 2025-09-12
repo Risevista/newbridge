@@ -64,13 +64,63 @@
 
     // URLパラメータから認証結果をチェック
     const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.get('code')) {
+    if (urlParams.get('code') && urlParams.get('access_token')) {
       // 認証コールバック処理
       document.querySelector('.login-container').style.display = 'none';
       document.getElementById('nc-root').style.display = 'block';
       
-      // CMSを初期化
-      CMS.init();
+      // アクセストークンをローカルストレージに保存
+      localStorage.setItem('github_token', urlParams.get('access_token'));
+      
+      // CMSを初期化（設定ファイルを読み込み）
+      CMS.init({
+        config: {
+          backend: {
+            name: 'github',
+            repo: 'Risevista/HP',
+            branch: 'main',
+            base_url: 'https://risevista.pages.dev',
+            auth_endpoint: '/api/auth'
+          },
+          locale: 'ja',
+          media_folder: 'public/uploads',
+          public_folder: '/uploads',
+          collections: [
+            {
+              name: 'blog',
+              label: 'ブログ記事',
+              folder: 'src/content/blog',
+              create: true,
+              slug: '{{year}}-{{month}}-{{day}}-{{slug}}',
+              extension: 'md',
+              preview_path: 'blog/{{slug}}',
+              sortable_fields: ['date', 'title'],
+              view_filters: [
+                {
+                  label: '下書き',
+                  field: 'draft',
+                  pattern: true
+                }
+              ],
+              view_groups: [
+                {
+                  label: '年',
+                  field: 'date',
+                  pattern: '\\d{4}'
+                }
+              ],
+              fields: [
+                { label: 'タイトル', name: 'title', widget: 'string', required: true },
+                { label: '公開日', name: 'date', widget: 'datetime', required: true },
+                { label: '著者', name: 'author', widget: 'string', default: 'RISE VISTA' },
+                { label: 'タグ', name: 'tags', widget: 'list', required: false },
+                { label: '下書き', name: 'draft', widget: 'boolean', default: false },
+                { label: '本文', name: 'body', widget: 'markdown', required: true }
+              ]
+            }
+          ]
+        }
+      });
     } else {
       // 通常のログイン画面
       document.querySelector('.login-container').style.display = 'block';

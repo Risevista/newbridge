@@ -38,22 +38,10 @@ export async function onRequest(context: any) {
     const tokenData = await tokenResponse.json();
     
     if (tokenData.access_token) {
-      // Decap CMS用の認証レスポンス
-      const authResponse = {
-        access_token: tokenData.access_token,
-        token_type: 'bearer',
-        scope: 'repo'
-      };
+      // 認証成功後、CMS管理画面にリダイレクト
+      const redirectUrl = `${url.origin}/admin/?code=${code}&access_token=${tokenData.access_token}`;
       
-      return new Response(JSON.stringify(authResponse), {
-        status: 200,
-        headers: {
-          'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-          'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-        },
-      });
+      return Response.redirect(redirectUrl);
     }
     
     return new Response('Authentication failed', { status: 400 });
