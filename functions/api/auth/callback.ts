@@ -1,40 +1,59 @@
+// functions/api/auth/callback.ts
 export async function onRequest(context: any) {
   const { env, request } = context;
   const url = new URL(request.url);
 
-  const clientId = env.GITHUB_CLIENT_ID as string;
-  const clientSecret = env.GITHUB_CLIENT_SECRET as string;
-  const redirectUri = `${url.origin}/api/auth/callback`;
-
   const code = url.searchParams.get("code");
-  const state = url.searchParams.get("state");
-  if (!code) return new Response("missing code", { status: 400 });
+  if (!code) return html("error", { error: "missing_code" }, 400);
 
-  // CSRF: state 検証
-  const cookie = request.headers.get("Cookie") ?? "";
-  const saved = Object.fromEntries(cookie.split(/; */).filter(Boolean).map((p: string)=>{
-    const i=p.indexOf("=");return [decodeURIComponent(p.slice(0,i).trim()), decodeURIComponent(p.slice(i+1).trim())];
-  }))["decap_oauth_state"];
-  if (!saved || saved !== state) return new Response("invalid state", { status: 400 });
+  const client_id = env.GITHUB_CLIENT_ID as string;
+  const client_secret = env.GITHUB_CLIENT_SECRET as string;
+  if (!client_id || !client_secret) {
+    return html("error", { error: "missing_env" }, 500);
+  }
 
-  // code -> access_token
-  const resp = await fetch("https://github.com/login/oauth/access_token", {
+  // GitHubでトークン交換
+  const r = await fetch("https://github.com/login/oauth/access_token", {
     method: "POST",
     headers: { Accept: "application/json", "Content-Type": "application/json" },
-    body: JSON.stringify({ client_id: clientId, client_secret: clientSecret, code, redirect_uri: redirectUri }),
+    body: JSON.stringify({
+      client_id,
+      client_secret,
+      code,
+      redirect_uri: `${url.origin}/api/auth/callback`,
+    }),
   });
-  const data = await resp.json(); // { access_token, ... }
+  const data = await r.json<any>();
+  if (!r.ok || data.error || !data.access_token) {
+    return html("error", data, 401);
+  }
 
-  const payload = { token: data.access_token ?? null, provider: "github", ...data };
+  // --- 親ウィンドウへ結果を返す（文字列プロトコル） ---
+  return html("success", { token: data.access_token, provider: "github" }, 200);
+}
 
-  // Decap に postMessage してポップアップを閉じる
-  const html = `<!doctype html><meta charset="utf-8"><body><script>
-    (function(){
-      var payload = ${JSON.stringify(payload)};
-      try{ (window.opener||window.parent).postMessage(payload, window.location.origin);
-           (window.opener||window.parent).postMessage(payload, '*'); }catch(e){}
-      window.close(); setTimeout(function(){ location.replace('/admin/'); }, 800);
+/** 親→子のmessage受信後、親origin宛てに結果をpostMessage */
+function html(status: "success" | "error", payload: any, code = 200) {
+  const script = `
+    (function () {
+      function sendTo(openerOrigin) {
+        var msg = 'authorization:github:${status}:' + JSON.stringify(${JSON.stringify(payload)});
+        if (window.opener && typeof window.opener.postMessage === 'function') {
+          window.opener.postMessage(msg, openerOrigin);
+        }
+        // 親が受け取れたら自動で閉じられるケースが多いですが、
+        // 念のため少し待ってから閉じます。
+        setTimeout(function(){ window.close(); }, 50);
+      }
+      // 親が最初にpostMessageしてくるのを待って origin を確定
+      function receive(e){ try { sendTo(e.origin); } finally { window.removeEventListener('message', receive); } }
+      window.addEventListener('message', receive, false);
+      // 合図（親に origin を投げさせる）
+      if (window.opener) window.opener.postMessage('authorizing:github', '*');
     })();
-  </script></body>`;
-  return new Response(html, { status: 200, headers: { "Content-Type": "text/html" } });
+  `;
+  return new Response(`<!doctype html><meta charset="utf-8"><script>${script}</script>`, {
+    status: code,
+    headers: { "Content-Type": "text/html; charset=utf-8" },
+  });
 }
