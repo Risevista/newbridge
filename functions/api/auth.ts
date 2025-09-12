@@ -1,3 +1,5 @@
+// Cloudflare Pages Functions: Decap CMS 用 GitHub OAuth
+
 export async function onRequest(context: any) {
   const { request, env } = context;
   const url = new URL(request.url);
@@ -6,6 +8,7 @@ export async function onRequest(context: any) {
   const CLIENT_SECRET = env.GITHUB_CLIENT_SECRET;
   const REDIRECT_URI = `${url.origin}/api/auth/callback`;
 
+  // 最低限のCORS
   const cors = {
     "Access-Control-Allow-Origin": url.origin,
     "Access-Control-Allow-Methods": "GET,POST,OPTIONS",
@@ -16,7 +19,7 @@ export async function onRequest(context: any) {
     return new Response(null, { status: 200, headers: cors });
   }
 
-  // 入口: /api/auth -> GitHub 認可へ (state を Cookie 保存)
+  // 入口: /api/auth -> GitHub 認可へ（state を Cookie に保存）
   if (url.pathname === "/api/auth") {
     const state = cryptoRandomString(24);
     const authUrl =
@@ -33,13 +36,13 @@ export async function onRequest(context: any) {
     return new Response(null, { status: 302, headers });
   }
 
-  // コールバック: /api/auth/callback
+  // コールバック: /api/auth/callback -> token 取得して親ウィンドウへ postMessage
   if (url.pathname === "/api/auth/callback") {
     const code = url.searchParams.get("code");
     const state = url.searchParams.get("state");
     if (!code) return json({ error: "missing_code" }, 400, cors);
 
-    // CSRF対策: state 検証
+    // CSRF: state 検証
     const cookie = request.headers.get("Cookie") || "";
     const savedState = parseCookie(cookie)["decap_oauth_state"];
     if (!savedState || savedState !== state) {
@@ -60,18 +63,25 @@ export async function onRequest(context: any) {
 
     const data = await resp.json(); // { access_token, token_type, scope, ... }
 
-    // Decapへ postMessage してポップアップを閉じる（標準的な実装）
-    const html = `<!doctype html>
-<html><body><script>
-  (function () {
-    var payload = ${JSON.stringify(data)};
-    // 親ウィンドウ(Decap)に結果を返す
-    (window.opener || window.parent).postMessage(payload, window.location.origin);
-    // クロスオリジン対策: 万一のため '*' にも送る
-    (window.opener || window.parent).postMessage(payload, '*');
-    window.close();
-  })();
-</script></body></html>`;
+    // Decap が受け取りやすい形に整形して postMessage
+    const payload = {
+      token: data.access_token || null,
+      provider: "github",
+      ...data,
+    };
+
+    const html = `<!doctype html><meta charset="utf-8"><body><script>
+      (function () {
+        var payload = ${JSON.stringify(payload)};
+        try {
+          (window.opener || window.parent).postMessage(payload, window.location.origin);
+          (window.opener || window.parent).postMessage(payload, '*'); // 念のため
+        } catch (e) {}
+        window.close();
+        setTimeout(function(){ location.replace('/admin/'); }, 800);
+      })();
+    </script></body>`;
+
     return new Response(html, { status: 200, headers: { "Content-Type": "text/html", ...cors } });
   }
 
@@ -89,11 +99,17 @@ function parseCookie(cookie: string): Record<string, string> {
     })
   );
 }
+
 function cryptoRandomString(len = 24) {
   const bytes = new Uint8Array(len);
   crypto.getRandomValues(bytes);
-  return btoa(String.fromCharCode(...bytes)).replaceAll("+", "-").replaceAll("/", "_").slice(0, len);
+  return btoa(String.fromCharCode(...bytes))
+    .replaceAll("+", "-").replaceAll("/", "_").slice(0, len);
 }
+
 function json(obj: any, status = 200, headers: Record<string, string> = {}) {
-  return new Response(JSON.stringify(obj), { status, headers: { "Content-Type": "application/json", ...headers } });
+  return new Response(JSON.stringify(obj), {
+    status,
+    headers: { "Content-Type": "application/json", ...headers },
+  });
 }
