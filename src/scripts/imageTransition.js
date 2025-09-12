@@ -10,7 +10,7 @@ window.onload = function() {
   if (!jsImage || !gitImage) return;
 
   window.onscroll = function() {
-    var scrollTop = window.pageYOffset;
+    var scrollTop = window.scrollY;
 
     if (scrollTop == 0) {
       gsap.to(jsImage, {

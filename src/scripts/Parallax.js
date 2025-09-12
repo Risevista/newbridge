@@ -53,7 +53,7 @@ class Parallax {
 
                     if (!jsImage || !gitImage) return;
 
-                    const tl = gsap.timeline({
+                    gsap.timeline({
                         scrollTrigger: {
                             trigger: target,
                             start: 'top top',
@@ -87,7 +87,7 @@ class Parallax {
                 const targets = ['.sidebar'];
 
                 document.querySelectorAll(targets.join(', ')).forEach((target) => {
-                    const tl = gsap.timeline({
+                    gsap.timeline({
                         scrollTrigger: {
                             trigger: target,
                             start: 'top top',

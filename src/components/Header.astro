@@ -153,7 +153,7 @@ const navItems = [
             </div>
             {item.submenu && (
               <ul id={`submenu-${itemIndex}`} class="submenu hidden bg-white bg-opacity-50">
-                {item.submenu.map((subItem, subIndex) => (
+                {item.submenu.map((subItem) => (
                   <li class="border-b border-gray-600 last:border-b-0">
                     <a 
                       href={subItem.href} 
