@@ -4,6 +4,8 @@ import Image from '../components/Image.astro';
 import { Image as AImage } from "astro:assets";
 import Layout from '../layouts/Layout.astro';
 import type { ImageMetadata } from 'astro';
+import { getCollection } from "astro:content";
+
 import Service1 from '../assets/img/service1.webp';
 import Service2 from '../assets/img/service2.webp';
 import Service3 from '../assets/img/service3.webp';
@@ -57,18 +59,42 @@ const chunk = <T,>(arr: T[], size: number): T[][] => Array.from(
 );
 const CHUNK_SIZE = 13;
 const cols = chunk(letters, CHUNK_SIZE);
+
+// ブログ記事の取得とサマリー生成
+const posts = await getCollection("blog");
+// @ts-ignore
+const withExcerpt = posts
+  .filter((post: any) => !post.data.draft) // 下書きを除外
+  .sort((a: any, b: any) => b.data.date.getTime() - a.data.date.getTime()) // 日付で降順ソート
+  .slice(0, 6) // 最新6件のみ表示
+  .map((post: any) => {
+    // Markdownの生テキストからサマリーを生成
+    const bodyText = post.body
+      .replace(/^#+\s*/gm, '') // 見出し記号を削除
+      .replace(/\*\*(.*?)\*\*/g, '$1') // 太字記号を削除
+      .replace(/\*(.*?)\*/g, '$1') // 斜体記号を削除
+      .replace(/`(.*?)`/g, '$1') // インラインコード記号を削除
+      .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1') // リンク記号を削除
+      .replace(/^\s*[-*+]\s*/gm, '') // リスト記号を削除
+      .replace(/\n+/g, ' ') // 改行を空白に変換
+      .replace(/\s+/g, ' ') // 連続する空白を1つに
+      .trim();
+    
+    const excerpt = bodyText.slice(0, 100);
+    return { ...post, excerpt };
+  });
 ---
 
 <Layout title="株式会社RISE VISTA">
   <!-- Preloader overlay -->
-  <div id="preloader" class="fixed inset-0 z-[1000] flex items-center justify-center bg-[#EDE4D5]">
+  <div id="preloader" class="fixed inset-0 z-[1000] flex items-center justify-center bg-primary-back">
     <div class="h-10 w-10 rounded-full border-2 border-teal-600 border-t-transparent animate-spin"></div>
   </div>
   <div id="page-root" class="opacity-0 transition-opacity duration-500">
 <!-- Hero Section -->
 
 <!-- ===== Hero: Mobile (md未満) ===== -->
-<section class="relative bg-[#EDE4D5] min-h-[100dvh] flex flex-col md:hidden pt-20">
+<section class="relative bg-primary-back min-h-[100dvh] flex flex-col md:hidden pt-20">
   <!-- 1) 右上テキスト（Slogan） -->
   <div class="w-full h-auto px-4 mt-6 flex justify-end animate-text-down">
     <Image src={Slogan} alt="Slogan" class="w-full" loading="eager" decoding="async" data-preload />
@@ -128,7 +154,7 @@ const cols = chunk(letters, CHUNK_SIZE);
 
   <!-- 3) 本文テキスト -->
   <div class="w-full px-6 mt-8 pb-10 pt-10">
-    <p class="text-black text-[15px] leading-6 tracking-normal font-tsukushi">
+    <p class="text-primary text-[15px] leading-6 tracking-normal font-tsukushi">
       RISE VISTAは、「不動産」という枠組みを超えて、未来を創る力になりたいと考えています。
       一人ひとりの暮らしから、地域、そして日本の未来を変えていく。  
     </p>
@@ -136,7 +162,7 @@ const cols = chunk(letters, CHUNK_SIZE);
 </section>
 
 <!-- ===== Hero: Desktop (md以上) —— 既存をそのまま残す ===== -->
-<section class="relative bg-[#EDE4D5] min-h-[100dvh] overflow-hidden pt-20 md:pt-64 hidden md:flex">
+<section class="relative bg-primary-back min-h-[100dvh] overflow-hidden pt-20 md:pt-64 hidden md:flex">
   <!-- 楕円形背景画像コンテナ --> 
   <div class="absolute top-0 left-0 w-full h-full z-0">
     <div class="ellipse-image-container">
@@ -184,10 +210,10 @@ const cols = chunk(letters, CHUNK_SIZE);
   </div>
 
   <!--  SCROLLバー（統合） -->
-  <div class="absolute right-0 bottom-0 sm:top-0 h-[100px] sm:h-full w-[40px] md:w-[5%] bg-[#EDE4D5] text-black z-50 sm:flex hidden flex-col items-center justify-end pb-10">
-    <p class="text-black font-tsukushi writing-vertical mb-4 text-[8px] md:text-sm">SCROLL</p>
+  <div class="absolute right-0 bottom-0 sm:top-0 h-[100px] sm:h-full w-[40px] md:w-[5%] bg-primary-back text-primary z-50 sm:flex hidden flex-col items-center justify-end pb-10">
+    <p class="text-primary font-tsukushi writing-vertical mb-4 text-[8px] md:text-sm">SCROLL</p>
     <div class="relative overflow-visible h-[60px]">
-      <div class="absolute bottom-0 w-[0.5px] h-[60px] bg-black animate-rise-fade opacity-60"></div>
+      <div class="absolute bottom-0 w-[0.5px] h-[60px] bg-primary animate-rise-fade opacity-60"></div>
     </div>
   </div>
 
@@ -200,7 +226,7 @@ const cols = chunk(letters, CHUNK_SIZE);
   </div>
   
   <!-- テキスト -->
-  <div class="text-black p-6 md:p-10 w-[88%] z-20 opacity-90 absolute bottom-8 right-16 md:bottom-0 md:right-24 md:w-[42%] md:max-w-xl animate-text-up">
+  <div class="text-primary p-6 md:p-10 w-[88%] z-20 opacity-90 absolute bottom-8 right-16 md:bottom-0 md:right-24 md:w-[42%] md:max-w-xl animate-text-up">
     <p class="mt-6 text-sm md:text-lg tracking-normal font-tsukushi">
       RISE VISTAは、「不動産」という枠組みを超えて、未来を創る力になりたいと考えています。
       一人ひとりの暮らしから、地域、そして日本の未来を変えていく。  
@@ -210,15 +236,15 @@ const cols = chunk(letters, CHUNK_SIZE);
 
   
   <!-- MISSION Section -->
-<section class="mission-section w-full flex justify-center items-center min-h-fit pt-48 pb-48 bg-[#EDE4D5] font-tsukushi">
+<section class="mission-section w-full flex justify-center items-center min-h-fit pt-48 pb-48 bg-primary-back font-tsukushi grid-lines">
   <div class="w-full max-w-6xl flex flex-col md:flex-row items-center gap-6 md:gap-8 px-4">
     
     <!-- 左カラム：テキスト（幅3） -->
-    <div class="flex-[3] flex flex-col items-start justify-center text-[#0C223F]">
+    <div class="flex-[3] flex flex-col items-start justify-center text-primary">
       <h2 class="text-[18px] md:text-[32px] tracking-widest mb-4 md:mb-6 !font-tsukushi fade-in-text" style="--delay: 0.2s;">
         一人ひとりの力を信じ、革新と創造を通じて人生100年時代を支えるパートナーに
       </h2>
-      <p class="text-[14px] md:text-[18px] font-normal  text-[#0C223F] fade-in-text" style="--delay: 0.4s;">
+      <p class="text-[14px] md:text-[18px] font-normal  text-primary fade-in-text" style="--delay: 0.4s;">
         人生100年時代を迎え、将来に向けた資産形成や運用の重要性はこれまで以上に高まっています。かつての「貯蓄から投資へ」という流れは、今や個人のライフスタイルに合わせた柔軟で多様な資産運用へと進化しています。私たちは、一人ひとりが自分らしい未来を描けるよう、革新と創造を通じて人生100年時代を支えるパートナーになります。
       </p>
     </div>
@@ -243,7 +269,7 @@ const cols = chunk(letters, CHUNK_SIZE);
 
   
  <!-- VALUES セクション -->
- <section class="w-full flex flex-col items-center bg-[#EDE4D5] text-primary  py-12 md:py-24 px-4 md:px-0">
+ <section class="w-full flex flex-col items-center bg-primary-back text-primary  py-12 md:py-24 px-4 md:px-0 grid-lines">
   <div class="w-full max-w-6xl flex flex-col md:flex-row gap-8">
     <!-- Left Title -->
     <div class="mb-8 md:mb-12">
@@ -270,7 +296,7 @@ const cols = chunk(letters, CHUNK_SIZE);
             お客様に最高のパフォーマンスを提供し続けます。
             成長意欲を持ち、学びぬくプロフェッショナル集団であり続けます。
             </p>
-          <div class="w-full text-center text-[#184C3A] font-semibold group font-tsukushi fade-in-text" style="--delay: 0.8s;">
+          <div class="w-full text-center text-primary font-semibold group font-tsukushi fade-in-text" style="--delay: 0.8s;">
               「昨日の自分を超える」
           </div>
         </div>
@@ -289,7 +315,7 @@ const cols = chunk(letters, CHUNK_SIZE);
             人として信頼される魅力を持つ人材を育て、
             ともに成長します。              
             </p>  
-          <div class="w-full text-center text-[#184C3A] font-semibold group font-tsukushi fade-in-text" style="--delay: 0.8s;">
+          <div class="w-full text-center text-primary font-semibold group font-tsukushi fade-in-text" style="--delay: 0.8s;">
               「素直に 謙虚に 前向きに」
           </div>
         </div>
@@ -308,7 +334,7 @@ const cols = chunk(letters, CHUNK_SIZE);
             相手の気持ちや思いを汲み取り、信頼関係を築く。
             迅速かつ的確な行動で答えづける集団であり続けます。
             </p>
-          <div class="w-full text-center text-[#184C3A] font-semibold group font-tsukushi fade-in-text" style="--delay: 0.8s;">
+          <div class="w-full text-center text-primary font-semibold group font-tsukushi fade-in-text" style="--delay: 0.8s;">
               「すぐ動く すぐ応える すぐ改善する」
             </div>
         </div>
@@ -326,7 +352,7 @@ const cols = chunk(letters, CHUNK_SIZE);
             失敗を恐れず、そこから学び、成長する。
             持続的な成長を通じて、お客様と社会に価値を提供し続けます。
             </p>
-          <div class="w-full text-center text-[#184C3A] font-semibold group font-tsukushi fade-in-text" style="--delay: 0.8s;">
+          <div class="w-full text-center text-primary font-semibold group font-tsukushi fade-in-text" style="--delay: 0.8s;">
               「挑戦し続ける 成長し続ける」
             </div>
         </div>
@@ -335,7 +361,7 @@ const cols = chunk(letters, CHUNK_SIZE);
   </div>
 </section>
 
-  <section class="bg-[#EDE4D5] py-24 " id="service">
+  <section class="bg-primary-back py-24 grid-lines" id="service">
     <div class="max-w-6xl mx-auto px-4">
       <!-- タイトル部分 -->
       <div class="mb-12">
@@ -349,8 +375,8 @@ const cols = chunk(letters, CHUNK_SIZE);
       <!-- Service 01 -->
       <div class="space-y-4">
         <!-- ラベル -->
-        <div class="border-t border-black pt-4 text-xs tracking-wide font-tsukushi text-[#0C223F]">
-          SERVICE <span class="text-[#0C223F]">#01</span>
+        <div class="border-t border-primary pt-4 text-xs tracking-wide font-tsukushi text-primary">
+          SERVICE <span class="text-primary">#01</span>
         </div>
         <Image
         src={Service1}
@@ -364,34 +390,34 @@ const cols = chunk(letters, CHUNK_SIZE);
           賃貸仲介
         </h3>
         <!-- 本文 -->
-        <p class="text-sm text-[#0C223F] leading-relaxed">
+        <p class="text-sm text-primary leading-relaxed">
           物件を貸し出したい貸主様と物件を借りたい借主様をおつなぎいたします。</p>
       </div>
   
       <!-- Service 02 -->
       <div class="space-y-4">
-        <div class="border-t border-black pt-4 text-xs tracking-wide font-tsukushi text-[#0C223F]">
-          SERVICE <span class="text-[#0C223F]">#02</span>
+        <div class="border-t border-primary pt-4 text-xs tracking-wide font-tsukushi text-primary">
+          SERVICE <span class="text-primary">#02</span>
         </div>
         <Image
         src={Service2}
         alt="Circus"
         class="w-full h-[220px] md:w-[320px] md:h-[240px] object-cover brightness-130"
-        loading="lazy"
+        loading="lazy"  
         decoding="async"
       />
       <h3 class="text-lg font-bold leading-relaxed font-tsukushi">
           売買仲介
         </h3>
-        <p class="text-sm text-[#0C223F] leading-relaxed">
+        <p class="text-sm text-primary leading-relaxed">
           不動産を売却したい方、購入したい方の間に立ち、手続きや契約をサポートいたします。
         </p>
       </div>
   
       <!-- Service 03 -->
       <div class="space-y-4">
-      <div class="border-t border-black pt-4 text-xs tracking-wide font-tsukushi text-[#0C223F]">
-          SERVICE <span class="text-[#0C223F]">#03</span>
+      <div class="border-t border-primary pt-4 text-xs tracking-wide font-tsukushi text-primary">
+          SERVICE <span class="text-primary">#03</span>
         </div>
         <Image
         src={Service3}
@@ -403,7 +429,7 @@ const cols = chunk(letters, CHUNK_SIZE);
       <h3 class="text-lg font-bold leading-relaxed font-tsukushi">
           不動産投資
         </h3>
-        <p class="text-sm text-[#0C223F] leading-relaxed">
+        <p class="text-sm text-primary leading-relaxed">
           投資用不動産の売買、運用サポートなど長期にわたってお付き合いいたします。
         </p>
       </div>
@@ -415,7 +441,7 @@ const cols = chunk(letters, CHUNK_SIZE);
     </div>
   </section>
 
-  <section class="bg-[#EBE1D4] relative overflow-hidden w-full">
+  <section class="bg-primary-back relative overflow-hidden w-full grid-lines">
     <!-- 背景画像コンテナ（パディング付き） -->
     <div class="absolute transition-all duration-700 ease-in-out" id="background-container">
       <div class="absolute inset-0 bg-gradient-to-l from-black/30 to-transparent z-10 rounded-lg opacity-80"></div>
@@ -513,7 +539,7 @@ const cols = chunk(letters, CHUNK_SIZE);
   
   
 
-  <section class="py-24 bg-[#EDE4D5]" id="company">
+  <section class="py-24 bg-primary-back grid-lines  " id="company">
     <div class="max-w-6xl mx-auto px-4">
       <!-- タイトル部分 -->
       <div class="mb-12">
@@ -533,7 +559,7 @@ const cols = chunk(letters, CHUNK_SIZE);
 
         <!-- 右：リスト（2カラム） -->
         <div class="md:w-2/3 w-full">
-          <dl class="divide-y divide-gray-300 text-[#0C223F]">
+          <dl class="divide-y divide-gray-300 text-primary">
             <div class="flex flex-col md:flex-row py-3">
               <dt class="md:w-[35%] w-full">会社名</dt>
               <dd class="md:w-[65%] w-full">株式会社RISE VISTA</dd>
@@ -559,11 +585,81 @@ const cols = chunk(letters, CHUNK_SIZE);
       </div>
     </div>
   </section>
+
+  <!-- Blog Section -->
+  <section class="py-24 bg-primary-back grid-lines" id="blog">
+    <div class="max-w-6xl mx-auto px-4">
+      <!-- タイトル部分 -->
+      <div class="mb-12">
+        <div class="flex items-center mb-1">
+          <div class="black-bar mr-4"></div>
+          <p class="text-sm md:text-base tracking-wider fade-in-text" style="--delay: 0.2s;">最新情報</p>
+        </div>
+        <h2 class="text-6xl font-bold tracking-widest font-tsukushi text-primary fade-in-text" style="--delay: 0.4s;">BLOG</h2>
+      </div>
+
+      <!-- ブログ記事一覧 -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* @ts-ignore */}
+        {withExcerpt.map((post: any, index: number) => (
+          <article class="bg-white rounded-lg shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 fade-in-text" style={`--delay: ${0.6 + index * 0.2}s`}>
+            <a href={`/blog/${post.slug}/`} class="block h-full">
+              <div class="p-6 h-full flex flex-col">
+                <div class="mb-2">
+                  <span class="text-xs tracking-wide font-tsukushi text-primary-back border-t border-primary-back pt-2 inline-block">
+                    BLOG <span class="text-primary-back">#{String(index + 1).padStart(2, '0')}</span>
+                  </span>
+                </div>
+                <h3 class="text-lg font-bold leading-relaxed font-tsukushi text-primary-back mb-3 line-clamp-2">
+                  {post.data.title}
+                </h3>
+                <p class="text-sm text-primary-back mb-4 font-tsukushi">
+                  {new Date(post.data.date).toLocaleDateString('ja-JP', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                  })}
+                </p>
+                <p class="text-sm text-gray-700 leading-relaxed flex-grow line-clamp-3">
+                  {post.excerpt}…
+                </p>
+                <div class="mt-4 pt-4 border-t border-gray-100">
+                  <span class="text-xs text-teal-600 font-tsukushi tracking-wide">
+                    続きを読む →
+                  </span>
+                </div>
+              </div>
+            </a>
+          </article>
+        ))}
+      </div>
+
+      <!-- ブログ一覧ページへのリンク -->
+      <div class="flex justify-center mt-12">
+        <a href="/blog" class="text-white font-tsukushi bg-green-900 hover:bg-green-500 font-medium rounded-lg text-sm px-8 py-4 text-center transition-colors duration-300">
+          すべての記事を見る
+          <span class="ml-2 inline-block align-middle">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
   </div>
 </Layout>
 
 <!-- ========================= CSS ========================= -->
-<style>
+<style>ｃ
+/* うすい縦線を背景に敷く */
+.grid-lines {
+  /* ベース色は既存の bg-primary-back が担当 */
+  background-image: repeating-linear-gradient(
+    to right,
+    rgba(241, 236, 222, 0.10) 0px,  /* 線の色/濃さを調整 */
+    rgba(241, 236, 222, 0.10) 1px, /* 線の太さ（1px） */
+    transparent 1px,
+    transparent 120px               /* 線の間隔（120px）*/
+  );
+  background-attachment: fixed;     /* ページ全体に固定表示（好みで） */
+}
 
 /* Fade in text animation */
 .fade-in-text {
@@ -682,7 +778,7 @@ const cols = chunk(letters, CHUNK_SIZE);
   width: 5vw;
   min-width: 40px;
   height: 1px;
-  background: #000;
+  background: #F1ECDE;
   display: block;
   border-radius: 1px;
 }
@@ -699,6 +795,21 @@ const cols = chunk(letters, CHUNK_SIZE);
 
 .menu-item:hover {
   border-left-color: #0d9488; /* teal-600 */
+}
+
+/* Line clamp utilities for blog content */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 </style>
 

@@ -1,0 +1,139 @@
+---
+import { getCollection } from "astro:content";
+import Layout from '../../layouts/Layout.astro';
+
+// ブログ記事の取得とサマリー生成
+const posts = await getCollection("blog");
+// @ts-ignore
+const withExcerpt = posts
+  .filter((post: any) => !post.data.draft) // 下書きを除外
+  .sort((a: any, b: any) => b.data.date.getTime() - a.data.date.getTime()) // 日付で降順ソート
+  .map((post: any) => {
+    // Markdownの生テキストからサマリーを生成
+    const bodyText = post.body
+      .replace(/^#+\s*/gm, '') // 見出し記号を削除
+      .replace(/\*\*(.*?)\*\*/g, '$1') // 太字記号を削除
+      .replace(/\*(.*?)\*/g, '$1') // 斜体記号を削除
+      .replace(/`(.*?)`/g, '$1') // インラインコード記号を削除
+      .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1') // リンク記号を削除
+      .replace(/^\s*[-*+]\s*/gm, '') // リスト記号を削除
+      .replace(/\n+/g, ' ') // 改行を空白に変換
+      .replace(/\s+/g, ' ') // 連続する空白を1つに
+      .trim();
+    
+    const excerpt = bodyText.slice(0, 150);
+    return { ...post, excerpt };
+  });
+---
+
+<Layout title="ブログ - 株式会社RISE VISTA">
+  <div class="bg-primary-back">
+    <!-- ヘッダーセクション -->
+    <section class="pt-48 bg-primary-back grid-lines">
+      <div class="max-w-6xl mx-auto px-4">
+        <div class="mb-12">
+          <div class="flex items-center mb-1">
+            <div class="black-bar mr-4"></div>
+            <p class="text-sm md:text-base tracking-wider">最新情報</p>
+          </div>
+          <h1 class="text-6xl font-bold tracking-widest font-tsukushi text-primary">BLOG</h1>
+        </div>
+      </div>
+    </section>
+
+    <!-- ブログ記事一覧 -->
+    <section class="py-24 bg-primary-back">
+      <div class="max-w-6xl mx-auto px-4">
+        {withExcerpt.length > 0 ? (
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {withExcerpt.map((post: any, index: number) => (
+              <article class="bg-white rounded-lg shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
+                <a href={`/blog/${post.slug}/`} class="block h-full">
+                  <div class="p-6 h-full flex flex-col">
+                    <div class="mb-4">
+                      <span class="text-xs tracking-wide font-tsukushi text-primary-back border-t border-primary-back pt-2 inline-block">
+                        BLOG <span class="text-primary-back">#{String(index + 1).padStart(2, '0')}</span>
+                      </span>
+                    </div>
+                    <h2 class="text-lg font-bold leading-relaxed font-tsukushi text-primary-back mb-3 line-clamp-2">
+                      {post.data.title}
+                    </h2>
+                    <p class="text-sm text-primary-back mb-4 font-tsukushi">
+                      {new Date(post.data.date).toLocaleDateString('ja-JP', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                      })}
+                    </p>
+                    <p class="text-sm text-gray-700 leading-relaxed flex-grow line-clamp-3">
+                      {post.excerpt}…
+                    </p>
+                    <div class="mt-4 pt-4 border-t border-gray-100">
+                      <span class="text-xs text-teal-600 font-tsukushi tracking-wide">
+                        続きを読む →
+                      </span>
+                    </div>
+                  </div>
+                </a>
+              </article>
+            ))}
+          </div>
+        ) : (
+          <div class="text-center py-12">
+            <p class="text-gray-500 font-tsukushi">まだ記事がありません。</p>
+          </div>
+        )}
+      </div>
+    </section>
+
+    <!-- ホームに戻るリンク -->
+    <section class="py-12 bg-primary-back">
+      <div class="max-w-6xl mx-auto px-4 text-center">
+        <a 
+          href="/" 
+          class="inline-flex items-center text-teal-600 hover:text-teal-800 font-medium font-tsukushi"
+        >
+          ← ホームに戻る
+        </a>
+      </div>
+    </section>
+  </div>
+</Layout>
+
+<style>
+  /* Line clamp utilities for blog content */
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .black-bar {
+    width: 5vw;
+    min-width: 40px;
+    height: 1px;
+    background: #F1ECDE;
+    display: block;
+    border-radius: 1px;
+  }
+
+  /* うすい縦線を背景に敷く */
+  .grid-lines {
+    background-image: repeating-linear-gradient(
+      to right,
+      rgba(241, 236, 222, 0.10) 0px,
+      rgba(241, 236, 222, 0.10) 1px,
+      transparent 1px,
+      transparent 120px
+    );
+    background-attachment: fixed;
+  }
+</style>
