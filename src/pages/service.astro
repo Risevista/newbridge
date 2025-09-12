@@ -15,7 +15,7 @@ import Salesup from '../assets/img/salesup.svg';
 import Bank from '../assets/img/bank.svg';
 import operator from '../assets/img/operator.svg';
 import Triangle from '../assets/img/triangle.webp';
-import Quotation from '../assets/img/quotation.png';
+import Quotation from '../assets/img/quotation.webp';
 
 ---
 
@@ -577,8 +577,7 @@ import Quotation from '../assets/img/quotation.png';
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
         entry.target.classList.add('visible');
-      } else {
-        entry.target.classList.remove('visible');
+        observer.unobserve(entry.target);
       }
     });
   }, {

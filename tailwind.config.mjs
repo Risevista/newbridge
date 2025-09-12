@@ -11,10 +11,7 @@ export default {
     },
     extend: {
       fontFamily: {
-        notojp: ['"Noto Sans JP"', 'sans-serif'],
-        inter: ['"Inter"', 'sans-serif'],
-        klee: ['"Klee One"', 'sans-serif'],
-        zen: ['"Zen Old Mincho"', 'serif'],
+        tsukushi: ['"tsukushi-b-mincho-pr6n"', 'serif'],
       },
       fontWeight: {
         DEFAULT: '300',

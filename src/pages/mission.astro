@@ -3,6 +3,7 @@
 import Layout from '../layouts/Layout.astro';
 import Image from '../components/Image.astro';
 import President from '../assets/img/president.webp';
+import Consultant1 from '../assets/img/member2.webp';
 ---
 
 <Layout title="Mission | 株式会社RISE VISTA">
@@ -176,14 +177,45 @@ import President from '../assets/img/president.webp';
             </p>
             <div class="w-full mt-8 flex items-end justify-end">
               <div class="text-right">
-                <p class="text-[14px] font-serif">代表取締役社長</p>
-                <p class="text-[14px]  font-serif">土屋 健二</p>
+                <p class="text-[14px] md:text-[16px] font-serif">代表取締役社長</p>
+                <p class="text-[14px] md:text-[16px] font-serif">土屋 健二</p>
               </div>
             </div>
           </div>
         </div>
       </div>
     </section>
+    <section class="w-full flex flex-col items-center bg-[#EDE4D5] text-[#184C3A] py-12 md:py-24 px-4 md:px-0" id="consultants">
+      <div class="w-full max-w-6xl flex flex-col gap-8">
+        <!-- Title -->
+        <div class="mb-4 md:mb-12">
+          <div class="flex items-center mb-1">
+            <div class="black-bar mr-6"></div>
+            <p class="text-sm text-gray-500 tracking-wider font-serif">コンサルタント紹介</p>
+          </div>
+          <h2 class="text-4xl md:text-6xl font-bold tracking-widest font-inter">CONSULTANTS</h2>
+        </div>
+        <!-- Content with two columns -->
+        <div class="w-full flex flex-col md:flex-row gap-8 md:gap-12">
+          <!-- Right Image (モバイルでは最初に表示) -->
+          <div class="flex-1 flex justify-center items-center order-1 md:order-2">
+            <Image src={Consultant1} alt="consultant" class="w-64 h-64 md:w-80 md:h-80 object-cover rounded-lg shadow-lg" />
+          </div>
+          <!-- Left Content (モバイルでは2番目に表示) -->
+          <div class="flex-1 flex flex-col items-start justify-center order-2 md:order-1">
+            <p class="text-[16px] leading-loose mb-6 font-serif">
+              横浜高校野球部出身。2008年に甲子園ベスト4を経験。高校卒業後は専修大学へ進学。大学卒業後は食品メーカーを経て、介護・福祉業界に転職。高級老人ホームにて20代でマネジャーとなり、管理業務経験を積む。10年の介護・福祉業界の経験の後、一念発起し、より自分自身の成長、家族、周りの人々の幸せのために新たな業界へのチャレンジとして株式会社Bridgeへ参画。
+            </p>
+            <div class="w-full mt-8 flex items-end justify-end">
+              <div class="text-right">
+                <p class="text-[14px] md:text-[16px] font-serif">髙橋 亮輔</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
   </main>
 </Layout>
 
