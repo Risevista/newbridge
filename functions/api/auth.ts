@@ -1,5 +1,3 @@
-// Cloudflare Pages Functions: Decap CMS用 GitHub OAuth エンドポイント
-
 export async function onRequest(context: any) {
   const { request, env } = context;
   const url = new URL(request.url);
@@ -8,7 +6,6 @@ export async function onRequest(context: any) {
   const CLIENT_SECRET = env.GITHUB_CLIENT_SECRET;
   const REDIRECT_URI = `${url.origin}/api/auth/callback`;
 
-  // 最低限のCORS
   const cors = {
     "Access-Control-Allow-Origin": url.origin,
     "Access-Control-Allow-Methods": "GET,POST,OPTIONS",
@@ -19,7 +16,7 @@ export async function onRequest(context: any) {
     return new Response(null, { status: 200, headers: cors });
   }
 
-  // /api/auth -> GitHub 認可画面へ（stateをCookieに入れてCSRF対策）
+  // 入口: /api/auth -> GitHub 認可へ (state を Cookie 保存)
   if (url.pathname === "/api/auth") {
     const state = cryptoRandomString(24);
     const authUrl =
@@ -33,25 +30,23 @@ export async function onRequest(context: any) {
       "Location": authUrl,
       "Set-Cookie": `decap_oauth_state=${state}; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=600`,
     });
-
-    // ★ ここが修正点：Response.redirect ではなく new Response でヘッダーを付与
     return new Response(null, { status: 302, headers });
   }
 
-  // /api/auth/callback -> code を access_token に交換して JSON 返却
+  // コールバック: /api/auth/callback
   if (url.pathname === "/api/auth/callback") {
     const code = url.searchParams.get("code");
     const state = url.searchParams.get("state");
     if (!code) return json({ error: "missing_code" }, 400, cors);
 
-    // state検証
+    // CSRF対策: state 検証
     const cookie = request.headers.get("Cookie") || "";
     const savedState = parseCookie(cookie)["decap_oauth_state"];
     if (!savedState || savedState !== state) {
       return json({ error: "invalid_state" }, 400, cors);
     }
 
-    // トークン交換
+    // code -> access_token 交換
     const resp = await fetch("https://github.com/login/oauth/access_token", {
       method: "POST",
       headers: { Accept: "application/json", "Content-Type": "application/json" },
@@ -63,38 +58,42 @@ export async function onRequest(context: any) {
       }),
     });
 
-    const data = await resp.json(); // { access_token, token_type, scope } など
-    return new Response(JSON.stringify(data), {
-      status: 200,
-      headers: { "Content-Type": "application/json", ...cors },
-    });
+    const data = await resp.json(); // { access_token, token_type, scope, ... }
+
+    // Decapへ postMessage してポップアップを閉じる（標準的な実装）
+    const html = `<!doctype html>
+<html><body><script>
+  (function () {
+    var payload = ${JSON.stringify(data)};
+    // 親ウィンドウ(Decap)に結果を返す
+    (window.opener || window.parent).postMessage(payload, window.location.origin);
+    // クロスオリジン対策: 万一のため '*' にも送る
+    (window.opener || window.parent).postMessage(payload, '*');
+    window.close();
+  })();
+</script></body></html>`;
+    return new Response(html, { status: 200, headers: { "Content-Type": "text/html", ...cors } });
   }
 
   return new Response("Not found", { status: 404, headers: cors });
 }
 
-/* ---------- helpers ---------- */
+/* helpers */
 function parseCookie(cookie: string): Record<string, string> {
   return Object.fromEntries(
     cookie.split(/; */).filter(Boolean).map(pair => {
-      const idx = pair.indexOf("=");
-      const k = decodeURIComponent(pair.slice(0, idx).trim());
-      const v = decodeURIComponent(pair.slice(idx + 1).trim());
+      const i = pair.indexOf("=");
+      const k = decodeURIComponent(pair.slice(0, i).trim());
+      const v = decodeURIComponent(pair.slice(i + 1).trim());
       return [k, v];
     })
   );
 }
-
 function cryptoRandomString(len = 24) {
   const bytes = new Uint8Array(len);
   crypto.getRandomValues(bytes);
-  return btoa(String.fromCharCode(...bytes))
-    .replaceAll("+", "-").replaceAll("/", "_").slice(0, len);
+  return btoa(String.fromCharCode(...bytes)).replaceAll("+", "-").replaceAll("/", "_").slice(0, len);
 }
-
 function json(obj: any, status = 200, headers: Record<string, string> = {}) {
-  return new Response(JSON.stringify(obj), {
-    status,
-    headers: { "Content-Type": "application/json", ...headers },
-  });
+  return new Response(JSON.stringify(obj), { status, headers: { "Content-Type": "application/json", ...headers } });
 }
