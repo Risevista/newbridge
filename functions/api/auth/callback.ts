@@ -23,7 +23,7 @@ export async function onRequest(context: any) {
       redirect_uri: `${url.origin}/api/auth/callback`,
     }),
   });
-  const data = await r.json<any>();
+  const data = (await r.json()) as any;
   if (!r.ok || data.error || !data.access_token) {
     return html("error", data, 401);
   }
