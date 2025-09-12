@@ -12,7 +12,7 @@ export async function onRequest(context: any) {
 
   // CSRF: state 検証
   const cookie = request.headers.get("Cookie") ?? "";
-  const saved = Object.fromEntries(cookie.split(/; */).filter(Boolean).map(p=>{
+  const saved = Object.fromEntries(cookie.split(/; */).filter(Boolean).map((p: string)=>{
     const i=p.indexOf("=");return [decodeURIComponent(p.slice(0,i).trim()), decodeURIComponent(p.slice(i+1).trim())];
   }))["decap_oauth_state"];
   if (!saved || saved !== state) return new Response("invalid state", { status: 400 });
