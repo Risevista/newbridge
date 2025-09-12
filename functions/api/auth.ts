@@ -19,7 +19,7 @@ export async function onRequest(context: any) {
     return new Response(null, { status: 200, headers: cors });
   }
 
-  // /api/auth は Decapが最初に叩く → /loginへ誘導
+  // /api/auth -> GitHub 認可画面へ（stateをCookieに入れてCSRF対策）
   if (url.pathname === "/api/auth") {
     const state = cryptoRandomString(24);
     const authUrl =
@@ -30,25 +30,28 @@ export async function onRequest(context: any) {
       `&state=${encodeURIComponent(state)}`;
 
     const headers = new Headers({
+      "Location": authUrl,
       "Set-Cookie": `decap_oauth_state=${state}; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=600`,
     });
-    return Response.redirect(authUrl, 302, { headers });
+
+    // ★ ここが修正点：Response.redirect ではなく new Response でヘッダーを付与
+    return new Response(null, { status: 302, headers });
   }
 
-  // GitHubから戻る
+  // /api/auth/callback -> code を access_token に交換して JSON 返却
   if (url.pathname === "/api/auth/callback") {
     const code = url.searchParams.get("code");
     const state = url.searchParams.get("state");
     if (!code) return json({ error: "missing_code" }, 400, cors);
 
-    // state検証（CSRF対策）
+    // state検証
     const cookie = request.headers.get("Cookie") || "";
     const savedState = parseCookie(cookie)["decap_oauth_state"];
     if (!savedState || savedState !== state) {
       return json({ error: "invalid_state" }, 400, cors);
     }
 
-    // code -> access_token 交換
+    // トークン交換
     const resp = await fetch("https://github.com/login/oauth/access_token", {
       method: "POST",
       headers: { Accept: "application/json", "Content-Type": "application/json" },
@@ -61,7 +64,6 @@ export async function onRequest(context: any) {
     });
 
     const data = await resp.json(); // { access_token, token_type, scope } など
-    // DecapはJSONを期待している。ここで/adminにリダイレクトしないこと！
     return new Response(JSON.stringify(data), {
       status: 200,
       headers: { "Content-Type": "application/json", ...cors },
