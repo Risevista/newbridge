@@ -2,7 +2,7 @@ export async function onRequest(context: any) {
   const { env, request } = context;
   const url = new URL(request.url);
 
-  const clientId = env.GITHUB_CLIENT_ID;              // ← 環境変数名そろえる
+  const clientId = env.GITHUB_CLIENT_ID;              // ← Pages の環境変数名に合わせる
   const clientSecret = env.GITHUB_CLIENT_SECRET;
   const redirectUri = `${url.origin}/api/auth/callback`;
 
@@ -14,7 +14,7 @@ export async function onRequest(context: any) {
   const cookie = request.headers.get("Cookie") ?? "";
   const savedState = Object.fromEntries(cookie.split(/; */).filter(Boolean).map((p: string)=>{
     const i=p.indexOf("="); return [decodeURIComponent(p.slice(0,i).trim()), decodeURIComponent(p.slice(i+1).trim())];
-  }))["decap_oauth_state"];
+  }))['decap_oauth_state'];
   if (!savedState || savedState !== state) return new Response("invalid state", { status: 400 });
 
   // code -> token 交換（GitHub）
@@ -40,3 +40,5 @@ export async function onRequest(context: any) {
   </script></body>`;
   return new Response(html, { status: 200, headers: { "Content-Type": "text/html" } });
 }
+
+
