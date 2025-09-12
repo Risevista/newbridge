@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: Risevista/HP
+  repo: Risevista/risevista
   branch: main
   base_url: https://risevista.pages.dev/
   auth_endpoint: /api/auth
