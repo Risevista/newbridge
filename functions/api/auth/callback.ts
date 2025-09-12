@@ -8,7 +8,18 @@ export async function onRequest(context: any) {
 
   const code = url.searchParams.get("code");
   const state = url.searchParams.get("state");
-  if (!code) return new Response("missing code", { status: 400 });
+  if (!code) {
+    const html = `<!doctype html><meta charset="utf-8"><body><script>
+      (function () {
+        var payload = { error: 'missing_code', message: 'OAuth code is missing', provider: 'github' };
+        try { (window.opener || window.parent).postMessage(payload, window.location.origin); } catch (e) {}
+        try { (window.opener || window.parent).postMessage(payload, '*'); } catch (e) {}
+        window.close();
+        setTimeout(function(){ location.replace('/admin/'); }, 800);
+      })();
+    </script></body>`;
+    return new Response(html, { status: 400, headers: { "Content-Type": "text/html" } });
+  }
 
   // CSRF: state 検証
   const cookie = request.headers.get("Cookie") ?? "";
@@ -25,8 +36,29 @@ export async function onRequest(context: any) {
   });
   const data = await resp.json(); // { access_token, ... }
 
+  if (!resp.ok || !data.access_token) {
+    const message = data.error_description || data.error || `token exchange failed (${resp.status})`;
+    const errorPayload = { error: 'token_exchange_failed', message, provider: 'github', details: data };
+    const errorHtml = `<!doctype html><meta charset="utf-8"><body><script>
+      (function () {
+        var payload = ${JSON.stringify({})};
+        payload = ${JSON.stringify({})};
+      })();
+    </script></body>`;
+    const html = `<!doctype html><meta charset=\"utf-8\"><body><script>
+      (function () {
+        var payload = ${JSON.stringify({ error: 'token_exchange_failed', message: String(message), provider: 'github' })};
+        try { (window.opener || window.parent).postMessage(payload, window.location.origin); } catch (e) {}
+        try { (window.opener || window.parent).postMessage(payload, '*'); } catch (e) {}
+        window.close();
+        setTimeout(function(){ location.replace('/admin/'); }, 1200);
+      })();
+    </script></body>`;
+    return new Response(html, { status: 400, headers: { "Content-Type": "text/html" } });
+  }
+
   // Decap へ postMessage してポップアップを閉じる
-  const payload = { token: data.access_token ?? null, provider: "github", ...data };
+  const payload = { token: data.access_token ?? null, provider: "github" };
   const html = `<!doctype html><meta charset="utf-8"><body><script>
     (function () {
       var payload = ${JSON.stringify(payload)};

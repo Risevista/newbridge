@@ -10,7 +10,7 @@ export async function onRequest(context: any) {
     `https://github.com/login/oauth/authorize` +
     `?client_id=${encodeURIComponent(clientId)}` +
     `&redirect_uri=${encodeURIComponent(redirectUri)}` +
-    `&scope=${encodeURIComponent("repo")}` +
+    `&scope=${encodeURIComponent("public_repo")}` +
     `&state=${encodeURIComponent(state)}`;
 
   const headers = new Headers({
