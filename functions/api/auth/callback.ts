@@ -13,12 +13,12 @@ export async function onRequest(context: any) {
       (function () {
         var payload = { error: 'missing_code', message: 'OAuth code is missing', provider: 'github' };
         try { (window.opener || window.parent).postMessage(payload, window.location.origin); } catch (e) {}
-        try { (window.opener || window.parent).postMessage(payload, '*'); } catch (e) {}
-        window.close();
+        try { localStorage.setItem('netlifycms-github-token', ''); } catch (e) {}
+        try { window.close(); } catch (e) {}
         setTimeout(function(){ location.replace('/admin/'); }, 800);
       })();
-    </script></body>`;
-    return new Response(html, { status: 400, headers: { "Content-Type": "text/html" } });
+    </script><p>認証コードが見つかりませんでした。</p></body>`;
+    return new Response(html, { status: 400, headers: { "Content-Type": "text/html", "X-Frame-Options": "DENY", "X-Content-Type-Options": "nosniff" } });
   }
 
   // CSRF: state 検証
@@ -38,23 +38,16 @@ export async function onRequest(context: any) {
 
   if (!resp.ok || !data.access_token) {
     const message = data.error_description || data.error || `token exchange failed (${resp.status})`;
-    const errorPayload = { error: 'token_exchange_failed', message, provider: 'github', details: data };
-    const errorHtml = `<!doctype html><meta charset="utf-8"><body><script>
-      (function () {
-        var payload = ${JSON.stringify({})};
-        payload = ${JSON.stringify({})};
-      })();
-    </script></body>`;
-    const html = `<!doctype html><meta charset=\"utf-8\"><body><script>
+    const html = `<!doctype html><meta charset="utf-8"><body><script>
       (function () {
         var payload = ${JSON.stringify({ error: 'token_exchange_failed', message: String(message), provider: 'github' })};
         try { (window.opener || window.parent).postMessage(payload, window.location.origin); } catch (e) {}
-        try { (window.opener || window.parent).postMessage(payload, '*'); } catch (e) {}
-        window.close();
+        try { localStorage.setItem('netlifycms-github-token', ''); } catch (e) {}
+        try { window.close(); } catch (e) {}
         setTimeout(function(){ location.replace('/admin/'); }, 1200);
       })();
-    </script></body>`;
-    return new Response(html, { status: 400, headers: { "Content-Type": "text/html" } });
+    </script><p>トークンの取得に失敗しました。</p></body>`;
+    return new Response(html, { status: 400, headers: { "Content-Type": "text/html", "X-Frame-Options": "DENY", "X-Content-Type-Options": "nosniff" } });
   }
 
   // Decap へ postMessage してポップアップを閉じる
@@ -62,15 +55,13 @@ export async function onRequest(context: any) {
   const html = `<!doctype html><meta charset="utf-8"><body><script>
     (function () {
       var payload = ${JSON.stringify(payload)};
-      try {
-        (window.opener || window.parent).postMessage(payload, window.location.origin);
-        (window.opener || window.parent).postMessage(payload, '*');
-      } catch (e) {}
-      window.close();
+      try { (window.opener || window.parent).postMessage(payload, window.location.origin); } catch (e) {}
+      try { localStorage.setItem('netlifycms-github-token', ${JSON.stringify(String(data.access_token || ''))}); } catch (e) {}
+      try { window.close(); } catch (e) {}
       setTimeout(function(){ location.replace('/admin/'); }, 800);
     })();
-  </script></body>`;
-  return new Response(html, { status: 200, headers: { "Content-Type": "text/html" } });
+  </script><p>認証が完了しました。このウィンドウは自動的に閉じられます。</p></body>`;
+  return new Response(html, { status: 200, headers: { "Content-Type": "text/html", "X-Frame-Options": "DENY", "X-Content-Type-Options": "nosniff" } });
 }
 
 
