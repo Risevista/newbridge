@@ -123,7 +123,7 @@ const entries = properties
     let slidesPerView = getSlidesPerView();
     let maxIndex = Math.max(0, totalSlides - slidesPerView);
 
-    const pad = (n) => String(n).padStart(2, "0");
+    const pad = (n: number) => String(n).padStart(2, "0");
 
     const updateCarousel = () => {
       const firstSlide = slides[0];
@@ -135,10 +135,10 @@ const entries = properties
 
       fraction.textContent = `${pad(currentIndex + 1)}/${pad(totalSlides)}`;
 
-      prevBtn.disabled = currentIndex === 0;
-      nextBtn.disabled = currentIndex === maxIndex;
-      prevBtn.classList.toggle('opacity-40', prevBtn.disabled);
-      nextBtn.classList.toggle('opacity-40', nextBtn.disabled);
+      (prevBtn as HTMLButtonElement).disabled = currentIndex === 0;
+      (nextBtn as HTMLButtonElement).disabled = currentIndex === maxIndex;
+      prevBtn.classList.toggle('opacity-40', (prevBtn as HTMLButtonElement).disabled);
+      nextBtn.classList.toggle('opacity-40', (nextBtn as HTMLButtonElement).disabled);
     };
 
     const nextSlide = () => {

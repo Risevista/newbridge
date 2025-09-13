@@ -10,8 +10,9 @@ interface Props {
   brand_logo?: string;
   link?: string;   // 外部詳細があれば「詳細を見る」に使用
   href?: string;   // サイト内詳細に行く場合（未使用なら "#"）
+  class?: string;  // CSS class for styling
 }
-const { title, date, thumbnail, brand, brand_logo, link, href = "#" } = Astro.props;
+const { title, date, thumbnail, brand, brand_logo, link, href = "#", class: className } = Astro.props;
 
 const d = new Date(date);
 const year = d.getFullYear();
@@ -20,7 +21,7 @@ const day = d.getDate();
 const formatted = `${year}年${month}月${day}日`;
 ---
 
-<article class="card relative bg-gray-500 overflow-hidden max-w-[582px]">
+<article class={`card relative bg-gray-500 overflow-hidden max-w-[582px] ${className || ''}`}>
   <!-- 画像 -->
   <a href={href} aria-label={title}>
     <img

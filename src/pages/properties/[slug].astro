@@ -1,9 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import { getCollection } from "astro:content";
-import { Image as AImage } from "astro:assets";
-import Image from '../../components/Image.astro';
-import Logo from '../../assets/img/risevista-logo.webp';
 
 export async function getStaticPaths() {
   const properties = await getCollection("properties");
