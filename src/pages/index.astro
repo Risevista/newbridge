@@ -1107,7 +1107,7 @@ const withExcerpt = posts
             const headerHeight = header ? header.offsetHeight : 0;
             
             // ヘッダーの高さを考慮してスクロール位置を調整
-            const targetPosition = targetElement.offsetTop - headerHeight - 20; // 20pxの余白を追加
+            const targetPosition = (targetElement as HTMLElement).offsetTop - headerHeight - 20; // 20pxの余白を追加
             
             window.scrollTo({
               top: targetPosition,
