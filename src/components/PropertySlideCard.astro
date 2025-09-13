@@ -1,8 +1,7 @@
 ---
 import Image from '../components/Image.astro';
-import { Image as AImage } from "astro:assets";
-import Layout from '../layouts/Layout.astro';
 import Logo from '../assets/img/risevista-logo.webp';  
+
 interface Props {
   title: string;
   date: string | Date;
@@ -15,7 +14,10 @@ interface Props {
 const { title, date, thumbnail, brand, brand_logo, link, href = "#" } = Astro.props;
 
 const d = new Date(date);
-const formatted = d.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+const year = d.getFullYear();
+const month = d.getMonth() + 1;
+const day = d.getDate();
+const formatted = `${year}年${month}月${day}日`;
 ---
 
 <article class="card relative bg-gray-500 overflow-hidden max-w-[582px]">
@@ -24,29 +26,29 @@ const formatted = d.toLocaleDateString("en-US", { year: "numeric", month: "long"
     <img
       src={thumbnail ?? "/uploads/placeholder.jpg"}
       alt={title}
-      class="w-full h-[260px] md:h-[300px] object-cover"
+      class="w-full h-[260px] md:h-[300px] object-cover transition-transform duration-500 hover:scale-105"
       loading="lazy"
     />
   </a>
 
   <!-- 本文ボックス -->
-  <div class="px-6 py-6 flex gap-6 items-start bg-gray-300">
+  <div class="px-6 py-6 flex gap-6 items-start bg-gray-200">
     <!-- Logo -->
     <div class="flex-shrink-0">
       {brand_logo
-        ? <Image src={Logo} alt={brand ?? "brand"} class="w-10 h-10 object-cover" loading="lazy" />
+        ? <Image src={Logo} alt={brand ?? "brand"} class="w-6 h-6 object-cover absolute left-2" loading="lazy" />
         : (brand
             ? <span class="inline-flex items-center justify-center w-10 h-10 bg-yellow-300 text-sm font-bold">{brand.slice(0,3)}</span>
             : null)}
-    </div>
+    </div>  
     <!-- タイトル＆日付 -->
     <div class="min-w-0">
       <time class="block text-sm text-neutral-500 mb-2">{formatted}</time>
-      <h3 class="text-[22px] leading-snug font-semibold line-clamp-2">{title}</h3>
+      <h3 class="leading-snug text-primary-back font-semibold line-clamp-2">{title}</h3>
 
       {link && (
         <div class="pt-3">
-          <a href={link} target="_blank" rel="noopener noreferrer" class="text-sm underline">詳細を見る</a>
+          <a href={link} target="_blank" rel="noopener noreferrer" class="text-[12px] text-sm underline text-primary-back">詳細を見る</a>
         </div>
       )}
     </div>

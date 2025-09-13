@@ -1,31 +1,31 @@
 ---
-title: "渋谷のモダンロフト"
-date: 2025-09-11T00:00:00.000Z
-thumbnail: "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-brand: "OMO"
+title: "目黒のガーデンハウス"
+date: 2025-09-04T00:00:00.000Z
+thumbnail: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+brand: "KAI"
 brand_logo: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80"
-link: "https://example.com/shibuya-loft"
+link: "https://example.com/meguro-garden"
 ---
 
-# 渋谷のモダンロフト
+# 目黒のガーデンハウス
 
 ## 物件概要
 
-渋谷駅から徒歩8分の立地にあるモダンなロフトスタイルの物件です。開放感のある空間でクリエイティブな生活を送れます。
+目黒川沿いの静かな住宅街にあるガーデンハウスです。自然に囲まれた環境で、ゆったりとした生活を送れます。
 
 ## 基本情報
 
-- **所在地**: 東京都渋谷区道玄坂
-- **交通**: JR山手線 渋谷駅 徒歩8分
-- **築年数**: 築1年
-- **構造**: 鉄骨造
-- **間取り**: 1LDK
-- **専有面積**: 45.8㎡
+- **所在地**: 東京都目黒区上目黒
+- **交通**: 東急東横線 中目黒駅 徒歩8分
+- **築年数**: 築7年
+- **構造**: 木造
+- **間取り**: 2LDK
+- **専有面積**: 55.3㎡
 
 ## 特徴
 
-- 高天井設計
-- 大型窓で採光良好
-- オープンキッチン
-- バルコニー付き
+- プライベートガーデン
+- 自然素材使用
+- ペット可
+- 駐車場完備
 

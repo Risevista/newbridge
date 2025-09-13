@@ -1,34 +1,31 @@
 ---
-title: "渋谷区恵比寿 高級マンション"
-date: 2025-09-13T00:00:00.000Z
-thumbnail: "/uploads/sample-property.jpg"
-brand: "RISE VISTA"
-brand_logo: "/uploads/risevista-logo.png"
-link: "https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80"
+title: "目黒のガーデンハウス"
+date: 2025-09-04T00:00:00.000Z
+thumbnail: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+brand: "KAI"
+brand_logo: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80"
+link: "https://example.com/meguro-garden"
 ---
 
-# 渋谷区恵比寿 高級マンション
+# 目黒のガーデンハウス
 
 ## 物件概要
 
-恵比寿駅徒歩5分の好立地にある高級マンションです。最新の設備と上質な内装で、快適な住環境を提供します。
+目黒川沿いの静かな住宅街にあるガーデンハウスです。自然に囲まれた環境で、ゆったりとした生活を送れます。
 
 ## 基本情報
 
-- **所在地**: 東京都渋谷区恵比寿
-- **交通**: JR山手線 恵比寿駅 徒歩5分
-- **築年数**: 築5年
-- **構造**: 鉄骨造
+- **所在地**: 東京都目黒区上目黒
+- **交通**: 東急東横線 中目黒駅 徒歩8分
+- **築年数**: 築7年
+- **構造**: 木造
 - **間取り**: 2LDK
-- **専有面積**: 65.5㎡
+- **専有面積**: 55.3㎡
 
 ## 特徴
 
-- オートロック付き
-- 宅配ボックス完備
-- 24時間管理
-- ペット可（条件あり）
+- プライベートガーデン
+- 自然素材使用
+- ペット可
+- 駐車場完備
 
-## お問い合わせ
-
-詳細はお気軽にお問い合わせください。
