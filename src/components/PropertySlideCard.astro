@@ -21,7 +21,7 @@ const day = d.getDate();
 const formatted = `${year}年${month}月${day}日`;
 ---
 
-<article class={`card relative bg-gray-500 overflow-hidden max-w-[582px] ${className || ''}`}>
+<article class={`card relative bg-gray-500 overflow-hidden w-full max-w-sm ${className || ''}`}>
   <!-- 画像 -->
   <a href={href} aria-label={title}>
     <img
@@ -58,9 +58,16 @@ const formatted = `${year}年${month}月${day}日`;
 
 <style>
   /* スクショの雰囲気寄せ（モバイル幅でカード横幅調整などは Swiper 側で） */
-  .card { background: #fff; text-align: left; }
-  @media (max-width: 768px) {
-    .card { width: 290px; }
+  .card { 
+    background: #fff; 
+    text-align: left; 
+    width: 100%;
+    max-width: 320px;
+  }
+  @media (min-width: 768px) {
+    .card { 
+      max-width: 400px; 
+    }
   }
 </style>
 
