@@ -40,6 +40,7 @@ import s21 from '../assets/img/s21.webp';
 import s22 from '../assets/img/s22.webp';
 import s23 from '../assets/img/s23.webp';
 import s24 from '../assets/img/s24.webp';
+import Circle from '../assets/img/circle.webp';
 
 // 4枚の画像を定義（実際のパスに変更してください）
 const heroImages = [
@@ -84,6 +85,7 @@ const withExcerpt = posts
     const excerpt = bodyText.slice(0, 100);
     return { ...post, excerpt };
   });
+
 
 ---
 
@@ -440,6 +442,135 @@ const withExcerpt = posts
       <a href="/service" class="text-white font-tsukushi bg-green-900 hover:bg-green-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
         詳しくみる
       </a>
+    </div>
+  </section>
+
+  <!-- 新しいセクション: 施設・基本情報 -->
+  <section id="amenities" class="bg-primary-back py-16 md:py-24 grid-lines">
+    <div class="mx-auto max-w-7xl px-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-2 items-center onscreen-root">
+        <!-- 左：画像 -->
+        <div class="reveal">
+          <Image
+            src={Circle}
+            alt="Circus"
+            class="w-full h-[400px] md:w-[480px] md:h-[480px] object-contain brightness-130"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+
+        <!-- 右：上 文章、下 3列×2行 -->
+        <div class="reveal">
+          <!-- 上：文章 -->
+          <div class="mb-8">
+            <h3 class="text-2xl md:text-3xl font-semibold tracking-tight mb-8 text-primary">RISE VISTAの</br>トータルライフコンサルティング</h3>
+            <p class="text-sm md:text-base text-primary leading-relaxed">
+              私たちは、不動産の売買・仲介で最適な選択をサポートし、関係会社と連携した保険でリスクをカバーします。さらに、お客様の状況に合わせて金融機関の紹介までワンストップで対応。資産形成・相続・節税など、ライフステージに合わせた最適解を<strong>「トータルライフコンサルティング」</strong>として提供し、生涯にわたり寄り添います。
+            </p>
+          </div>
+          <!-- 下：3列×2行 -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-6">
+            <!-- アイテム1 -->
+            <div class="flex items-start gap-4 bg-white rounded-lg p-4">
+              <div class="mt-1 text-primary-back">
+                <!-- 遺産相続アイコン（例: 書類/家） -->
+                <svg viewBox="0 0 24 24" class="w-6 h-6"><path fill="currentColor" d="M12 3l8 6v12H4V9l8-6Zm0 2.18L6 9.5V19h12V9.5l-6-4.32Z"/></svg>
+              </div>
+              <div>
+                <div class="text-[16px] font-semibold text-primary-back">遺産相続</div>
+                <div class="mt-1 text-[14px] text-primary-back font-bold">相続対策・承継支援</div>
+              </div>
+            </div>
+
+            <!-- アイテム2 -->
+            <div class="flex items-start gap-4 bg-white rounded-lg p-4">
+              <div class="mt-1 text-primary-back">
+                <!-- 節税アイコン（電卓風） -->
+                <svg viewBox="0 0 24 24" class="w-6 h-6"><path fill="currentColor" d="M5 2h14a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2Zm0 2v16h14V4H5Zm2 2h2v2H7V6Zm0 4h2v2H7v-2Zm0 4h2v2H7v-2Zm0 4h2v2H7v-2Zm4-12h6v6h-6V6Zm0 8h6v6h-6v-6Z"/></svg>
+              </div>
+              <div>
+                <div class="text-[16px] font-semibold text-primary-back">節税</div>
+                <div class="mt-1 text-[13px] text-primary-back font-bold">税務プランニング</div>
+              </div>
+            </div>
+
+            <!-- アイテム3 -->
+            <div class="flex items-start gap-4 bg-white rounded-lg p-4">
+              <div class="mt-1 text-primary-back">
+                <!-- 開業アイコン（店舗/ビル） -->
+                <svg viewBox="0 0 24 24" class="w-6 h-6"><path fill="currentColor" d="M4 22V10l8-8l8 8v12H4Zm8-14L6 10v10h4v-6h4v6h4V10l-6-2Z"/></svg>
+              </div>
+              <div>
+                <div class="text-[16px] font-semibold text-primary-back">開業</div>
+                <div class="mt-1 text-[13px] text-primary-back font-bold">クリニック・事業支援</div>
+              </div>
+            </div>
+
+            <!-- アイテム4 -->
+            <div class="flex items-start gap-4 bg-white rounded-lg p-4">
+              <div class="mt-1 text-primary-back">
+                <!-- 不動産投資アイコン -->
+                <svg viewBox="0 0 24 24" class="w-6 h-6"><path fill="currentColor" d="M12 2l9 7h-3v13h-4v-6H10v6H6V9H3l9-7Z"/></svg>
+              </div>
+              <div>
+                <div class="text-[16px] font-semibold text-primary-back">不動産投資</div>
+                <div class="mt-1 text-[14px] text-primary-back font-bold">収益物件・運用</div>
+              </div>
+            </div>
+
+            <!-- アイテム5 -->
+            <div class="flex items-start gap-4 bg-white rounded-lg p-4">
+              <div class="mt-1 text-primary-back">
+                <!-- 保険アイコン -->
+                <svg viewBox="0 0 24 24" class="w-6 h-6"><path fill="currentColor" d="M12 2c5.53 0 10 4.47 10 10s-4.47 10-10 10S2 17.53 2 12S6.47 2 12 2Zm0 2C7.59 4 4 7.59 4 12s3.59 8 8 8s8-3.59 8-8s-3.59-8-8-8Zm-1 11h2v2h-2v-2Zm0-8h2v6h-2V7Z"/></svg>
+              </div>
+              <div>
+                <div class="text-[16px] font-semibold text-primary-back">保険設計</div>
+                <div class="mt-1 text-[14px] text-primary-back font-bold">生命・法人保険</div>
+              </div>
+            </div>
+
+             <!-- アイテム6 -->
+             <div class="flex items-start gap-4 bg-white rounded-lg p-4">
+               <div class="mt-1 text-primary-back">
+                 <!-- 資産形成アイコン（グラフ） -->
+                 <svg viewBox="0 0 24 24" class="w-6 h-6"><path fill="currentColor" d="M3 17h2v4H3v-4Zm4-6h2v10H7V11Zm4-4h2v14h-2V7Zm4 6h2v8h-2v-8Zm4-10h2v18h-2V3Z"/></svg>
+               </div>
+               <div>
+                 <div class="text-[16px] font-semibold text-primary-back">資産形成</div>
+                 <div class="mt-1 text-[14px] text-primary-back font-bold">長期投資・ライフプラン</div>
+               </div>
+             </div>
+           </div>
+
+           <!-- 関係会社について -->
+           <div class="mt-8">
+             <h4 class="text-lg font-semibold text-primary mb-4">関係会社について</h4>
+             <div class="bg-white rounded-lg p-6">               
+               <!-- 株式会社Bridge -->
+               <div class="border-gray-200">
+                 <div class="flex items-center justify-between">
+                   <div class="flex items-center gap-3">
+                     <span class="text-base font-semibold text-primary-back">株式会社Bridge</span>
+                   </div>
+                   <a href="https://bridge-company.com" target="_blank" rel="noopener noreferrer" 
+                      class="inline-flex items-center gap-2 px-4 py-2 bg-primary-back text-white rounded-lg hover:bg-primary/90 transition-colors text-sm font-medium">
+                     <span>詳細を見る</span>
+                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                     </svg>
+                   </a>
+                 </div>
+                 <p class="text-sm text-primary-back mt-2 ml-6">
+                  保険のサポート。
+                 </p>
+               </div>
+             </div>
+           </div>
+
+        </div>
+      </div>
     </div>
   </section>
 
@@ -924,5 +1055,17 @@ const withExcerpt = posts
       }
     });
   }
+
+  // onscreen演出: 画面に入ったら .onscreen を付与
+  const onscreenRoots = document.querySelectorAll('.onscreen-root');
+  onscreenRoots.forEach((root) => {
+    const io = new IntersectionObserver(([ent]) => {
+      if (ent.isIntersecting) {
+        root.classList.add('onscreen');
+        io.disconnect();
+      }
+    }, { threshold: 0.2 });
+    io.observe(root);
+  });
 });
 </script>
