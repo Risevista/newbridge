@@ -114,9 +114,23 @@ const entries = properties
 
   .carousel-slide { 
     flex: 0 0 auto; 
-    width: 100% !important; 
     display: flex;
     justify-content: center;
+  }
+
+  /* スマホ表示: 中央に1つ、左右に少し見える */
+  @media (max-width: 767px) {
+    .carousel-slide { 
+      width: 280px !important; 
+      padding: 0 10px;
+    }
+    .carousel-container {
+      overflow: visible;
+    }
+    .carousel-track {
+      justify-content: center;
+      padding: 0 20px;
+    }
   }
 
   @media (min-width: 768px) {

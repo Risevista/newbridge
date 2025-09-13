@@ -98,7 +98,7 @@ const withExcerpt = posts
 <!-- Hero Section -->
 
 <!-- ===== Hero: Mobile (md未満) ===== -->
-<section class="relative bg-primary-back min-h-[100dvh] flex flex-col md:hidden pt-20">
+<section class="relative bg-primary-back min-h-[100dvh] flex flex-col md:hidden pt-12" id="hero">
   <!-- 1) 右上テキスト（Slogan） -->
   <div class="w-full h-auto px-4 mt-6 flex justify-end animate-text-down">
     <Image src={Slogan} alt="Slogan" class="w-full" loading="eager" decoding="async" data-preload />
@@ -166,7 +166,7 @@ const withExcerpt = posts
 </section>
 
 <!-- ===== Hero: Desktop (md以上) —— 既存をそのまま残す ===== -->
-<section class="relative bg-primary-back min-h-[100dvh] overflow-hidden pt-20 md:pt-64 hidden md:flex">
+<section class="relative bg-primary-back min-h-[100dvh] overflow-hidden pt-20 md:pt-64 hidden md:flex" id="hero">
   <!-- 楕円形背景画像コンテナ --> 
   <div class="absolute top-0 left-0 w-full h-full z-0">
     <div class="ellipse-image-container">
@@ -240,7 +240,7 @@ const withExcerpt = posts
 
   
   <!-- MISSION Section -->
-<section class="mission-section w-full flex justify-center items-center min-h-fit pt-48 pb-48 bg-primary-back font-tsukushi grid-lines">
+<section class="mission-section w-full flex justify-center items-center min-h-fit pt-16 pb-48 md:pt-48 bg-primary-back font-tsukushi grid-lines" id="mission">
   <div class="w-full max-w-6xl flex flex-col md:flex-row items-center gap-6 md:gap-8 px-4">
     
     <!-- 左カラム：テキスト（幅3） -->
@@ -273,7 +273,7 @@ const withExcerpt = posts
 
   
  <!-- VALUES セクション -->
- <section class="w-full flex flex-col items-center bg-primary-back text-primary  py-12 md:py-24 px-4 md:px-0 grid-lines">
+ <section class="w-full flex flex-col items-center bg-primary-back text-primary py-16 md:py-24 px-4 md:px-0 grid-lines" id="values">
   <div class="w-full max-w-6xl flex flex-col md:flex-row gap-8">
     <!-- Left Title -->
     <div class="mb-8 md:mb-12">
@@ -365,7 +365,7 @@ const withExcerpt = posts
   </div>
 </section>
 
-  <section class="bg-primary-back py-24 grid-lines" id="service">
+  <section class="bg-primary-back py-16 md:py-24 grid-lines" id="service">
     <div class="max-w-6xl mx-auto px-4">
       <!-- タイトル部分 -->
       <div class="mb-12">
@@ -698,7 +698,7 @@ const withExcerpt = posts
   
   
 
-  <section class="py-24 bg-primary-back" id="company">
+  <section class="py-16 md:py-24 bg-primary-back" id="company">
     <div class="max-w-6xl mx-auto px-4">
       <!-- タイトル部分 -->
       <div class="mb-12">
@@ -746,7 +746,7 @@ const withExcerpt = posts
   </section>
 
   <!-- Blog Section -->
-  <section class="py-24 bg-primary-back" id="blog">
+  <section class="py-16 md:py-24 bg-primary-back" id="blog">
     <div class="max-w-6xl mx-auto px-4">
       <!-- タイトル部分 -->
       <div class="mb-12">
@@ -804,12 +804,12 @@ const withExcerpt = posts
   </section>
 
   <!-- Properties Carousel Section -->
-  <section class="py-24 bg-primary-back" id="properties">
+  <section class="py-16 md:py-24 bg-primary-back" id="properties">
     <PropertyCarousel />
   </section>
 
   <!-- よくある質問 セクション -->
-  <section class="py-24 bg-primary-back" id="faq">
+  <section class="py-16 md:py-24 bg-primary-back" id="faq">
     <div class="max-w-6xl mx-auto px-4">
       <!-- タイトル部分 -->
       <div class="mb-12">
@@ -1101,7 +1101,18 @@ const withExcerpt = posts
           const targetElement = document.querySelector(href);
           if (targetElement) {
             event.preventDefault();
-            targetElement.scrollIntoView({ behavior: 'smooth' });
+            
+            // ヘッダーの高さを取得
+            const header = document.getElementById('header-nav');
+            const headerHeight = header ? header.offsetHeight : 0;
+            
+            // ヘッダーの高さを考慮してスクロール位置を調整
+            const targetPosition = targetElement.offsetTop - headerHeight - 20; // 20pxの余白を追加
+            
+            window.scrollTo({
+              top: targetPosition,
+              behavior: 'smooth'
+            });
           }
         }
       });
