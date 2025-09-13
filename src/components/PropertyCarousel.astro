@@ -40,28 +40,37 @@ const entries = properties
       </div>
 
       <!-- 右下：矢印 + 分数 -->
-      <div class="absolute -bottom-12 right-0 flex items-center gap-4 z-10">
-        <button
-          class="carousel-prev w-9 h-9 rounded-full border flex items-center justify-center bg-white hover:bg-gray-50 transition-colors"
-          id="carousel-prev"
-          aria-label="Previous"
-        >
-          ‹
-        </button>
-        <div
-          class="carousel-fraction text-sm tracking-[0.2em] text-primary font-tsukushi"
-          id="carousel-fraction"
-        >
-          01/01
+      <div class="absolute -bottom-20 right-0 flex items-center gap-6 z-10">
+          <!-- Prev Button -->
+          <button
+            class="carousel-prev w-12 h-12 rounded-full border flex items-center justify-center bg-white hover:bg-gray-50 transition-colors"
+            id="carousel-prev"
+            aria-label="Previous"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+
+          <!-- Fraction -->
+          <div
+            class="carousel-fraction text-base tracking-[0.25em] text-primary font-tsukushi"
+            id="carousel-fraction"
+          >
+            01/09
+          </div>
+
+          <!-- Next Button -->
+          <button
+            class="carousel-next w-12 h-12 rounded-full border flex items-center justify-center bg-white hover:bg-gray-50 transition-colors"
+            id="carousel-next"
+            aria-label="Next"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
         </div>
-        <button
-          class="carousel-next w-9 h-9 rounded-full border flex items-center justify-center bg-white hover:bg-gray-50 transition-colors"
-          id="carousel-next"
-          aria-label="Next"
-        >
-          ›
-        </button>
-      </div>
     </div>
   ) : (
     <div class="text-center py-16">

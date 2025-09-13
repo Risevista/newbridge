@@ -35,13 +35,13 @@ import s16 from '../assets/img/s16.webp';
 import s17 from '../assets/img/s17.webp';
 import s18 from '../assets/img/s18.webp';
 import s19 from '../assets/img/s19.webp';
-import s20 from '../assets/img/s20.webp';
+import s20 from '../assets/img/s11.webp';
 import s21 from '../assets/img/s21.webp';
 import s22 from '../assets/img/s22.webp';
 import s23 from '../assets/img/s23.webp';
-import s24 from '../assets/img/s24.webp';
+import s24 from '../assets/img/s24.webp';  
 import Circle from '../assets/img/circle.webp';
-
+import Bg from '../assets/img/risevista-bg.webp';
 // 4枚の画像を定義（実際のパスに変更してください）
 const heroImages = [
   Hero1, 
@@ -144,7 +144,7 @@ const withExcerpt = posts
                       height={img.height}
                       loading="lazy"
                       decoding="async"
-                      class="h-[2.2em] object-contain"
+                      class="h-[2.5em] object-contain"
                     />
                   </span>
                 );
@@ -158,7 +158,7 @@ const withExcerpt = posts
 
   <!-- 3) 本文テキスト -->
   <div class="w-full px-6 mt-8 pb-10 pt-10">
-    <p class="text-primary text-[15px] leading-6 tracking-normal font-tsukushi">
+    <p class="text-primary text-[15px] leading-6 tracking-normal">
       RISE VISTAは、「不動産」という枠組みを超えて、未来を創る力になりたいと考えています。
       一人ひとりの暮らしから、地域、そして日本の未来を変えていく。  
     </p>
@@ -344,7 +344,7 @@ const withExcerpt = posts
         </div>
       </div>
       <!-- Row 4 -->
-      <div class="flex flex-col md:flex-row items-stretch border-t border-b border-gray-300 pt-6 md:pt-8 pb-6 md:pb-8">
+      <div class="flex flex-col md:flex-row items-stretch border-t border-gray-300 pt-6 md:pt-8 pb-6 md:pb-8">
         <div class="w-full md:w-12 flex items-center justify-center mb-4 md:mb-0">
           <span class="text-xs tracking-widest transform md:-rotate-90 whitespace-nowrap font-tsukushi fade-in-text" style="--delay: 0.4s;">Growth</span>
         </div>
@@ -472,7 +472,7 @@ const withExcerpt = posts
           <!-- 下：3列×2行 -->
           <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-6">
             <!-- アイテム1 -->
-            <div class="flex items-start gap-4 bg-white rounded-lg p-4">
+            <div class="flex items-start gap-4 !bg-primary rounded-lg p-4">
               <div class="mt-1 text-primary-back">
                 <!-- 遺産相続アイコン（例: 書類/家） -->
                 <svg viewBox="0 0 24 24" class="w-6 h-6"><path fill="currentColor" d="M12 3l8 6v12H4V9l8-6Zm0 2.18L6 9.5V19h12V9.5l-6-4.32Z"/></svg>
@@ -484,7 +484,7 @@ const withExcerpt = posts
             </div>
 
             <!-- アイテム2 -->
-            <div class="flex items-start gap-4 bg-white rounded-lg p-4">
+            <div class="flex items-start gap-4 bg-primary rounded-lg p-4">
               <div class="mt-1 text-primary-back">
                 <!-- 節税アイコン（電卓風） -->
                 <svg viewBox="0 0 24 24" class="w-6 h-6"><path fill="currentColor" d="M5 2h14a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2Zm0 2v16h14V4H5Zm2 2h2v2H7V6Zm0 4h2v2H7v-2Zm0 4h2v2H7v-2Zm0 4h2v2H7v-2Zm4-12h6v6h-6V6Zm0 8h6v6h-6v-6Z"/></svg>
@@ -496,7 +496,7 @@ const withExcerpt = posts
             </div>
 
             <!-- アイテム3 -->
-            <div class="flex items-start gap-4 bg-white rounded-lg p-4">
+            <div class="flex items-start gap-4 bg-primary rounded-lg p-4">
               <div class="mt-1 text-primary-back">
                 <!-- 開業アイコン（店舗/ビル） -->
                 <svg viewBox="0 0 24 24" class="w-6 h-6"><path fill="currentColor" d="M4 22V10l8-8l8 8v12H4Zm8-14L6 10v10h4v-6h4v6h4V10l-6-2Z"/></svg>
@@ -508,7 +508,7 @@ const withExcerpt = posts
             </div>
 
             <!-- アイテム4 -->
-            <div class="flex items-start gap-4 bg-white rounded-lg p-4">
+            <div class="flex items-start gap-4 bg-primary rounded-lg p-4">
               <div class="mt-1 text-primary-back">
                 <!-- 不動産投資アイコン -->
                 <svg viewBox="0 0 24 24" class="w-6 h-6"><path fill="currentColor" d="M12 2l9 7h-3v13h-4v-6H10v6H6V9H3l9-7Z"/></svg>
@@ -520,7 +520,7 @@ const withExcerpt = posts
             </div>
 
             <!-- アイテム5 -->
-            <div class="flex items-start gap-4 bg-white rounded-lg p-4">
+            <div class="flex items-start gap-4 bg-primary rounded-lg p-4">
               <div class="mt-1 text-primary-back">
                 <!-- 保険アイコン -->
                 <svg viewBox="0 0 24 24" class="w-6 h-6"><path fill="currentColor" d="M12 2c5.53 0 10 4.47 10 10s-4.47 10-10 10S2 17.53 2 12S6.47 2 12 2Zm0 2C7.59 4 4 7.59 4 12s3.59 8 8 8s8-3.59 8-8s-3.59-8-8-8Zm-1 11h2v2h-2v-2Zm0-8h2v6h-2V7Z"/></svg>
@@ -532,7 +532,7 @@ const withExcerpt = posts
             </div>
 
              <!-- アイテム6 -->
-             <div class="flex items-start gap-4 bg-white rounded-lg p-4">
+             <div class="flex items-start gap-4 bg-primary rounded-lg p-4">
                <div class="mt-1 text-primary-back">
                  <!-- 資産形成アイコン（グラフ） -->
                  <svg viewBox="0 0 24 24" class="w-6 h-6"><path fill="currentColor" d="M3 17h2v4H3v-4Zm4-6h2v10H7V11Zm4-4h2v14h-2V7Zm4 6h2v8h-2v-8Zm4-10h2v18h-2V3Z"/></svg>
@@ -547,7 +547,7 @@ const withExcerpt = posts
            <!-- 関係会社について -->
            <div class="mt-8">
              <h4 class="text-lg font-semibold text-primary mb-4">関係会社について</h4>
-             <div class="bg-white rounded-lg p-6">               
+             <div class="bg-primary rounded-lg p-6">               
                <!-- 株式会社Bridge -->
                <div class="border-gray-200">
                  <div class="flex items-center justify-between">
@@ -578,13 +578,7 @@ const withExcerpt = posts
     <!-- 背景画像コンテナ（パディング付き） -->
     <div class="absolute transition-all duration-700 ease-in-out" id="background-container">
       <div class="absolute inset-0 bg-gradient-to-l from-black/30 to-transparent z-10 rounded-lg opacity-80"></div>
-      <img 
-        src="https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80" 
-        alt="Background" 
-        class="w-full h-full object-cover transition-opacity duration-700 rounded-lg"
-        id="background-image"
-        data-preload
-      />
+      <Image src={Bg} alt="Background" class="w-full h-full object-cover transition-opacity duration-700 rounded-lg" id="background-image" data-preload />
     </div>
   
     <!-- メインコンテンツ -->
@@ -619,7 +613,23 @@ const withExcerpt = posts
               <div class="flex items-center space-x-4">
                 <span class="text-gray-400 text-sm font-medium">02</span>
                 <span class="text-gray-800 font-medium group-hover:text-teal-600 transition-colors">
-                  ミッション・ビジョン・バリュー
+                  Mission・Value・Purpose
+                </span>
+              </div>
+              <svg class="w-5 h-5 text-gray-400 group-hover:text-teal-600 group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+            </a>
+
+            <a 
+              href="/mission#message" 
+              class="menu-item group flex items-center bg-white justify-between py-4 px-6 rounded-xl transition-all duration-300 hover:bg-white hover:shadow-lg transform hover:-translate-y-1"
+              data-image="3"
+            >
+              <div class="flex items-center space-x-4">
+                <span class="text-gray-400 text-sm font-medium">03</span>
+                <span class="text-gray-800 font-medium group-hover:text-teal-600 transition-colors">
+                  代表メッセージ
                 </span>
               </div>
               <svg class="w-5 h-5 text-gray-400 group-hover:text-teal-600 group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -633,22 +643,6 @@ const withExcerpt = posts
         <div class="flex flex-col justify-center space-y-4">
           <!-- 右側のメニュー項目 -->
           <nav class="space-y-3">
-            <a 
-              href="/mission#message" 
-              class="menu-item group flex bg-white items-center justify-between py-4 px-6 rounded-xl transition-all duration-300 hover:bg-white hover:shadow-lg transform hover:-translate-y-1"
-              data-image="3"
-            >
-              <div class="flex items-center space-x-4">
-                <span class="text-gray-400 text-sm font-medium">03</span>
-                <span class="text-gray-800 font-medium group-hover:text-teal-600 transition-colors">
-                  代表メッセージ
-                </span>
-              </div>
-              <svg class="w-5 h-5 text-gray-400 group-hover:text-teal-600 group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-              </svg>
-            </a>
-    
             <a 
               href="/mission#consultants" 
               class="menu-item group flex bg-white items-center justify-between py-4 px-6 rounded-xl transition-all duration-300 hover:bg-white hover:shadow-lg transform hover:-translate-y-1"
@@ -664,6 +658,38 @@ const withExcerpt = posts
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
               </svg>
             </a>
+
+            <a 
+              href="/service" 
+              class="menu-item group flex bg-white items-center justify-between py-4 px-6 rounded-xl transition-all duration-300 hover:bg-white hover:shadow-lg transform hover:-translate-y-1"
+              data-image="5"
+            >
+              <div class="flex items-center space-x-4">
+                <span class="text-gray-400 text-sm font-medium">05</span>
+                <span class="text-gray-800 font-medium group-hover:text-teal-600 transition-colors">
+                  事業内容
+                </span>
+              </div>
+              <svg class="w-5 h-5 text-gray-400 group-hover:text-teal-600 group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+            </a>
+
+            <a 
+              href="#faq" 
+              class="menu-item group flex bg-white items-center justify-between py-4 px-6 rounded-xl transition-all duration-300 hover:bg-white hover:shadow-lg transform hover:-translate-y-1"
+              data-image="6"
+            >
+              <div class="flex items-center space-x-4">
+                <span class="text-gray-400 text-sm font-medium">06</span>
+                <span class="text-gray-800 font-medium group-hover:text-teal-600 transition-colors">
+                  よくある質問
+                </span>
+              </div>
+              <svg class="w-5 h-5 text-gray-400 group-hover:text-teal-600 group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+            </a>
           </nav>
         </div>
       </div>
@@ -672,7 +698,7 @@ const withExcerpt = posts
   
   
 
-  <section class="py-24 bg-primary-back grid-lines  " id="company">
+  <section class="py-24 bg-primary-back" id="company">
     <div class="max-w-6xl mx-auto px-4">
       <!-- タイトル部分 -->
       <div class="mb-12">
@@ -720,7 +746,7 @@ const withExcerpt = posts
   </section>
 
   <!-- Blog Section -->
-  <section class="py-24 bg-primary-back grid-lines" id="blog">
+  <section class="py-24 bg-primary-back" id="blog">
     <div class="max-w-6xl mx-auto px-4">
       <!-- タイトル部分 -->
       <div class="mb-12">
@@ -778,8 +804,90 @@ const withExcerpt = posts
   </section>
 
   <!-- Properties Carousel Section -->
-  <section class="py-24 bg-primary-back grid-lines" id="properties">
+  <section class="py-24 bg-primary-back" id="properties">
     <PropertyCarousel />
+  </section>
+
+  <!-- よくある質問 セクション -->
+  <section class="py-24 bg-primary-back" id="faq">
+    <div class="max-w-6xl mx-auto px-4">
+      <!-- タイトル部分 -->
+      <div class="mb-12">
+        <div class="flex items-center mb-1">
+          <div class="black-bar mr-4"></div>
+          <p class="text-sm text-primary tracking-wider">よくある質問</p>
+        </div>
+        <h2 class="text-6xl font-bold tracking-widest font-inter text-primary">FAQ</h2>
+      </div>
+
+      <!-- 質問リスト -->
+      <div class="space-y-6">
+        <!-- 質問1 -->
+        <div class="bg-primary-back rounded-lg shadow-sm border border-gray-200 text-primary overflow-hidden group">
+          <button class="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-50 transition-colors">
+            <h3 class="text-lg font-semibold text-primary group-hover:text-primary-back">不動産投資は初心者でも始められますか？</h3>
+            <span class="text-gray-500 text-xl">+</span>
+          </button>
+          <div class="px-6 pb-4 hidden">
+            <p class="text-primary leading-relaxed">
+              はい、初心者の方でも安心して始めていただけます。私たちが投資の基礎から丁寧にサポートし、リスクを最小限に抑えた投資プランをご提案いたします。経験豊富なスタッフが一からお手伝いいたします。
+            </p>
+          </div>
+        </div>
+
+        <!-- 質問2 -->
+        <div class="bg-primary-back rounded-lg shadow-sm border border-gray-200 text-primary overflow-hidden group">
+          <button class="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-50 transition-colors">
+            <h3 class="text-lg font-semibold text-primary group-hover:text-primary-back">どのような物件がおすすめですか？</h3>
+            <span class="text-gray-500 text-xl">+</span>
+          </button>
+          <div class="px-6 pb-4 hidden">
+            <p class="text-primary leading-relaxed">
+              お客様の投資目的や予算に応じて最適な物件をご提案いたします。一般的には、駅近のマンションやオフィスビル、商業施設などが安定した収益を期待できる物件として人気があります。詳細は個別にご相談ください。
+            </p>
+          </div>
+        </div>
+
+        <!-- 質問3 -->
+        <div class="bg-primary-back rounded-lg shadow-sm border border-gray-200 text-primary overflow-hidden group">
+          <button class="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-50 transition-colors">
+            <h3 class="text-lg font-semibold text-primary group-hover:text-primary-back">投資に必要な資金はどのくらいですか？</h3>
+            <span class="text-gray-500 text-xl">+</span>
+          </button>
+          <div class="px-6 pb-4 hidden">
+            <p class="text-primary leading-relaxed">
+              物件の種類や規模によって異なりますが、小規模な投資物件であれば数百万円から始めることができます。また、ローンを活用することで、より大きな物件への投資も可能です。資金計画についてもご相談ください。
+            </p>
+          </div>
+        </div>
+
+        <!-- 質問4 -->
+        <div class="bg-primary-back rounded-lg shadow-sm border border-gray-200 text-primary overflow-hidden group">
+          <button class="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-50 transition-colors">
+            <h3 class="text-lg font-semibold text-primary group-hover:text-primary-back">物件の管理はどうなりますか？</h3>
+            <span class="text-gray-500 text-xl">+</span>
+          </button>
+          <div class="px-6 pb-4 hidden">
+            <p class="text-primary leading-relaxed">
+              物件の管理は私たちが代行いたします。入居者募集、家賃管理、修繕対応など、投資家の方に代わってすべての管理業務を行います。お客様は収益に集中していただけます。
+            </p>
+          </div>
+        </div>
+
+        <!-- 質問5 -->
+        <div class="bg-primary-back rounded-lg shadow-sm border border-gray-200 text-primary overflow-hidden group">
+          <button class="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-50 transition-colors">
+            <h3 class="text-lg font-semibold text-primary group-hover:text-primary-back">税金の優遇措置はありますか？</h3>
+            <span class="text-gray-500 text-xl">+</span>
+          </button>
+          <div class="px-6 pb-4 hidden">
+            <p class="text-primary leading-relaxed">
+              不動産投資には様々な税制優遇措置があります。減価償却費の控除、住宅ローン控除、特定の物件に対する税制優遇など、お客様の状況に応じて最適な税制対策をご提案いたします。
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
   </div>
 </Layout>
@@ -1066,6 +1174,24 @@ const withExcerpt = posts
       }
     }, { threshold: 0.2 });
     io.observe(root);
+  });
+
+  // FAQ アコーディオン機能
+  document.querySelectorAll('#faq button').forEach(button => {
+    button.addEventListener('click', () => {
+      const content = button.nextElementSibling as HTMLElement;
+      const icon = button.querySelector('span') as HTMLElement;
+      
+      if (content.classList.contains('hidden')) {
+        // 開く
+        content.classList.remove('hidden');
+        icon.textContent = '−';
+      } else {
+        // 閉じる
+        content.classList.add('hidden');
+        icon.textContent = '+';
+      }
+    });
   });
 });
 </script>

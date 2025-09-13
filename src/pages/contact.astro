@@ -4,25 +4,25 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout title="お問い合わせフォーム">
-    <main class="p-8 bg-[#EDE4D5] min-h-screen pt-24 md:pt-48 ">
+    <main class="p-8 bg-primary-back min-h-screen pt-24 md:pt-48 font-tsukushi">
         <section class="max-w-4xl mx-auto">
         <div class="mb-4 md:mb-12">
             <div class="flex items-center mb-1">
                 <div class="black-bar mr-6"></div>
-                <p class="text-sm text-gray-500 tracking-wider font-serif">お問い合わせ</p>
+                <p class="text-sm text-primary tracking-wider">お問い合わせ</p>
             </div>
-            <h1 class="text-4xl md:text-6xl font-bold tracking-widest font-inter">CONTACT</h1>
+            <h1 class="text-4xl md:text-6xl font-bold tracking-widest">CONTACT</h1>
         </div>
         
         <div class="p-4 rounded mb-8">
-            <p class="text-yellow-800 m-0">お問い合わせの種類を選択してください。選択に応じてフォームの内容が変わります。</p>
+            <p class="text-primary m-0">お問い合わせの種類を選択してください。選択に応じてフォームの内容が変わります。</p>
         </div>
         
         <form id="contactForm" method="post" action="/api/contact" class="space-y-6">
             <!-- お問い合わせ種類選択 -->
             <div class="mb-6">
-                <label for="inquiryType" class="block mb-2 font-bold text-gray-700">お問い合わせ種類 <span class="text-red-500">*</span></label>
-                <select id="inquiryType" name="inquiryType" required class="w-full p-3 border border-gray-300 rounded-md text-base bg-white">
+                <label for="inquiryType" class="block mb-2 font-bold text-primary">お問い合わせ種類 <span class="text-red-500">*</span></label>
+                <select id="inquiryType" name="inquiryType" required class="w-full p-3 border border-gray-300 rounded-md text-base bg-white text-primary-back">
                     <option value="">選択してください</option>
                     <option value="purchase">購入相談</option>
                     <option value="sale">売却相談</option>
@@ -33,26 +33,26 @@ import Layout from '../layouts/Layout.astro';
             
             <!-- 共通項目 -->
             <div class="mb-6">
-                <label for="name" class="block mb-2 font-bold text-gray-700">お名前 <span class="text-red-500">*</span></label>
-                <input type="text" id="name" name="name" required class="w-full p-3 border border-gray-300 rounded-md text-base">
+                <label for="name" class="block mb-2 font-bold text-primary">お名前 <span class="text-red-500">*</span></label>
+                <input type="text" id="name" name="name" required class="w-full p-3 border border-gray-300 rounded-md text-base text-primary-back">
             </div>
             
             <div class="mb-6">
-                <label for="furigana" class="block mb-2 font-bold text-gray-700">ふりがな <span class="text-red-500">*</span></label>
-                <input type="text" id="furigana" name="furigana" required class="w-full p-3 border border-gray-300 rounded-md text-base">
+                <label for="furigana" class="block mb-2 font-bold text-primary">ふりがな <span class="text-red-500">*</span></label>
+                <input type="text" id="furigana" name="furigana" required class="w-full p-3 border border-gray-300 rounded-md text-base text-primary-back">
             </div>
             
             <div class="mb-6">
-                <label for="email" class="block mb-2 font-bold text-gray-700">メールアドレス <span class="text-red-500">*</span></label>
-                <input type="email" id="email" name="email" required class="w-full p-3 border border-gray-300 rounded-md text-base">
+                <label for="email" class="block mb-2 font-bold text-primary">メールアドレス <span class="text-red-500">*</span></label>
+                <input type="email" id="email" name="email" required class="w-full p-3 border border-gray-300 rounded-md text-base text-primary-back">
             </div>
             
             <!-- 購入相談用 -->
             <div id="purchaseContent" class="dynamic-content bg-gray-50 p-6 rounded-md mt-6 border-l-4 border-blue-500">
                 <h3 class="text-xl font-bold text-blue-600 mb-4 mt-0">ご希望の物件条件</h3>
                 <div class="mb-6">
-                    <label for="propertyType" class="block mb-2 font-bold text-gray-700">物件種別</label>
-                    <select id="propertyType" name="propertyType" class="w-full p-3 border border-gray-300 rounded-md text-base bg-white">
+                    <label for="propertyType" class="block mb-2 font-bold text-primary">物件種別</label>
+                    <select id="propertyType" name="propertyType" class="w-full p-3 border border-gray-300 rounded-md text-base bg-white text-primary-back">
                         <option value="">選択してください</option>
                         <option value="mansion">マンション</option>
                         <option value="house">一戸建て</option>
@@ -62,8 +62,8 @@ import Layout from '../layouts/Layout.astro';
                 </div>
                 
                 <div class="mb-6">
-                    <label for="budget" class="block mb-2 font-bold text-gray-700">ご予算</label>
-                    <select id="budget" name="budget" class="w-full p-3 border border-gray-300 rounded-md text-base bg-white">
+                    <label for="budget" class="block mb-2 font-bold text-primary-back">ご予算</label>
+                    <select id="budget" name="budget" class="w-full p-3 border border-gray-300 rounded-md text-base bg-white text-primary-back">
                         <option value="">選択してください</option>
                         <option value="under3000">3,000万円以下</option>
                         <option value="3000-5000">3,000万円〜5,000万円</option>
@@ -73,12 +73,12 @@ import Layout from '../layouts/Layout.astro';
                 </div>
                 
                 <div class="mb-6">
-                    <label for="location" class="block mb-2 font-bold text-gray-700">ご希望エリア</label>
+                    <label for="location" class="block mb-2 font-bold text-primary-back">ご希望エリア</label>
                     <input type="text" id="location" name="location" placeholder="例：渋谷区、新宿区など" class="w-full p-3 border border-gray-300 rounded-md text-base">
                 </div>
                 
                 <div class="mb-6">
-                    <label for="purchaseDetails" class="block mb-2 font-bold text-gray-700">その他ご希望条件</label>
+                    <label for="purchaseDetails" class="block mb-2 font-bold text-primary-back">その他ご希望条件</label>
                     <textarea id="purchaseDetails" name="purchaseDetails" placeholder="間取り、築年数、駅からの距離など、ご希望があればお聞かせください" class="w-full p-3 border border-gray-300 rounded-md text-base min-h-[120px] resize-y"></textarea>
                 </div>
             </div>
@@ -87,7 +87,7 @@ import Layout from '../layouts/Layout.astro';
             <div id="saleContent" class="dynamic-content bg-gray-50 p-6 rounded-md mt-6 border-l-4 border-blue-500">
                 <h3 class="text-xl font-bold text-blue-600 mb-4 mt-0">売却される物件の詳細を可能な範囲で教えてください</h3>
                 <div class="mb-6">
-                    <label for="salePropertyType" class="block mb-2 font-bold text-gray-700">物件種別</label>
+                    <label for="salePropertyType" class="block mb-2 font-bold text-primary-back">物件種別</label>
                     <select id="salePropertyType" name="salePropertyType" class="w-full p-3 border border-gray-300 rounded-md text-base bg-white">
                         <option value="">選択してください</option>
                         <option value="mansion">マンション</option>
@@ -98,17 +98,17 @@ import Layout from '../layouts/Layout.astro';
                 </div>
                 
                 <div class="mb-6">
-                    <label for="saleLocation" class="block mb-2 font-bold text-gray-700">物件所在地</label>
+                    <label for="saleLocation" class="block mb-2 font-bold text-primary-back">物件所在地</label>
                     <input type="text" id="saleLocation" name="saleLocation" placeholder="例：東京都渋谷区○○" class="w-full p-3 border border-gray-300 rounded-md text-base">
                 </div>
                 
                 <div class="mb-6">
-                    <label for="buildingAge" class="block mb-2 font-bold text-gray-700">築年数</label>
+                    <label for="buildingAge" class="block mb-2 font-bold text-primary-back">築年数</label>
                     <input type="text" id="buildingAge" name="buildingAge" placeholder="例：築15年" class="w-full p-3 border border-gray-300 rounded-md text-base">
                 </div>
                 
                 <div class="mb-6">
-                    <label for="saleDetails" class="block mb-2 font-bold text-gray-700">その他物件詳細</label>
+                    <label for="saleDetails" class="block mb-2 font-bold text-primary-back">その他物件詳細</label>
                     <textarea id="saleDetails" name="saleDetails" placeholder="間取り、現在の状況、売却理由、希望価格など、お聞かせください" class="w-full p-3 border border-gray-300 rounded-md text-base min-h-[120px] resize-y"></textarea>
                 </div>
             </div>
@@ -117,7 +117,7 @@ import Layout from '../layouts/Layout.astro';
             <div id="recruitmentContent" class="dynamic-content bg-gray-50 p-6 rounded-md mt-6 border-l-4 border-blue-500">
                 <h3 class="text-xl font-bold text-blue-600 mb-4 mt-0">採用に関するお問い合わせ</h3>
                 <div class="mb-6">
-                    <label for="position" class="block mb-2 font-bold text-gray-700">ご希望職種</label>
+                    <label for="position" class="block mb-2 font-bold text-primary-back">ご希望職種</label>
                     <select id="position" name="position" class="w-full p-3 border border-gray-300 rounded-md text-base bg-white">
                         <option value="">選択してください</option>
                         <option value="sales">営業職</option>
@@ -129,7 +129,7 @@ import Layout from '../layouts/Layout.astro';
                 </div>
                 
                 <div class="mb-6">
-                    <label for="experience" class="block mb-2 font-bold text-gray-700">経験年数</label>
+                    <label for="experience" class="block mb-2 font-bold text-primary-back">経験年数</label>
                     <select id="experience" name="experience" class="w-full p-3 border border-gray-300 rounded-md text-base bg-white">
                         <option value="">選択してください</option>
                         <option value="fresh">新卒・未経験</option>
@@ -141,7 +141,7 @@ import Layout from '../layouts/Layout.astro';
                 </div>
                 
                 <div class="mb-6">
-                    <label for="recruitmentDetails" class="block mb-2 font-bold text-gray-700">自己PR・志望動機など</label>
+                    <label for="recruitmentDetails" class="block mb-2 font-bold text-primary-back">自己PR・志望動機など</label>
                     <textarea id="recruitmentDetails" name="recruitmentDetails" placeholder="これまでの経験や志望動機など、自由にお書きください" class="w-full p-3 border border-gray-300 rounded-md text-base min-h-[120px] resize-y"></textarea>
                 </div>
             </div>
@@ -150,12 +150,12 @@ import Layout from '../layouts/Layout.astro';
             <div id="otherContent" class="dynamic-content bg-gray-50 p-6 rounded-md mt-6 border-l-4 border-blue-500">
                 <h3 class="text-xl font-bold text-blue-600 mb-4 mt-0">お問い合わせ内容</h3>
                 <div class="mb-6">
-                    <label for="otherDetails" class="block mb-2 font-bold text-gray-700">お問い合わせ内容をご記入ください</label>
+                    <label for="otherDetails" class="block mb-2 font-bold text-primary
                     <textarea id="otherDetails" name="otherDetails" placeholder="お問い合わせ内容を詳しくお聞かせください" required class="w-full p-3 border border-gray-300 rounded-md text-base min-h-[120px] resize-y"></textarea>
                 </div>
             </div>
             
-            <button type="submit" class="bg-blue-600 text-white px-8 py-4 rounded-md text-base cursor-pointer w-full mt-8 transition-colors duration-300 hover:bg-blue-700">送信する</button>
+            <button type="submit" class="bg-blue-600 text-white px-8 py-4 rounded-md text-base cursor-pointer w-full mt-16 transition-colors duration-300 hover:bg-blue-700">送信する</button>
         </form>
         </section>
     </main>
@@ -164,8 +164,8 @@ import Layout from '../layouts/Layout.astro';
 <style>
     .black-bar {
         width: 60px;
-        height: 3px;
-        background-color: #000;
+        height: 1px;
+        background-color: #ffff;
     }
     
     .font-inter {
