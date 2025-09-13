@@ -51,12 +51,12 @@ const navItems = [
   </head> 
   <body class="font-tsukushi">
     <!-- ヘッダー -->
-    <nav id="header-nav" class="header-navigation fixed top-0 left-0 z-[9999] w-full px-6 py-10 flex items-center justify-between transition-all duration-300 !bg-primary">
+    <nav id="header-nav" class="header-navigation fixed top-0 left-0 z-[9999] w-full px-6 py-10 flex items-center justify-between transition-all duration-300 bg-white">
       <!-- 左側：テキスト＋ロゴ -->
       <div class="flex items-center gap-2">
         <a href="/" class="flex items-center gap-2">
           <Image src={HeaderLogo} alt="RISE VISTA" class="w-10 h-10" />
-          <Image src={Textlogo} alt="RISE VISTA" class="w-auto h-12" />
+          <Image src={Textlogo} alt="RISE VISTA" class="w-auto h-8 md:h-12" />
         </a>
       </div>
       
@@ -117,7 +117,7 @@ const navItems = [
 
         <!-- モバイル用 -->
         <div class="md:hidden flex items-center gap-2 justify-end w-full">
-          <button id="menu-toggle" class="text-primary focus:outline-none">
+          <button id="menu-toggle" class="text-[#0C223F] focus:outline-none hover:text-gray-600 transition-colors">
             <svg id="hamburger-icon" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
               viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
@@ -132,7 +132,7 @@ const navItems = [
     </nav>
 
     <!-- モバイルメニュー -->
-    <div id="mobile-menu" class="md:hidden hidden bg-white  bg-opacity-90 fixed top-[80px] left-0 w-full z-[9998] transform transition-transform duration-300 ease-in-out -translate-y-full">
+    <div id="mobile-menu" class="md:hidden hidden bg-white bg-opacity-95 fixed top-[80px] left-0 w-full z-[10000] transform transition-transform duration-300 ease-in-out -translate-y-full shadow-lg">
       <ul class="flex flex-col text-[#0C223F] text-[14[x]] font-light max-h-[70vh] overflow-y-auto">
         {navItems.map((item, itemIndex) => (
           <li class="border-b border-gray-700 last:border-b-0">
@@ -214,7 +214,7 @@ const navItems = [
               menu.classList.remove('hidden');
               setTimeout(() => {
                 menu.classList.remove('-translate-y-full');
-                header.style.backgroundColor = 'rgba(0,0,0,0.9)';
+                header.style.backgroundColor = 'rgba(255,255,255,0.95)';
               }, 10);
               hamburgerIcon.classList.add('hidden');
               closeIcon.classList.remove('hidden');
@@ -269,6 +269,18 @@ const navItems = [
       .header-navigation {
         height: var(--header-height);
         background: white;
+      }
+
+      /* モバイルメニューの表示を確実にする */
+      #mobile-menu {
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+      }
+
+      /* ハンバーガーメニューボタンのスタイル */
+      #menu-toggle {
+        position: relative;
+        z-index: 10001;
       }
 
       .nav-link {
