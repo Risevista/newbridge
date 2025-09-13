@@ -10,7 +10,7 @@ import PropertyCarousel from '../components/PropertyCarousel.astro';
 import Service1 from '../assets/img/service1.webp';
 import Service2 from '../assets/img/service2.webp';
 import Service3 from '../assets/img/service3.webp';
-import Slogan from '../assets/img/slogan.webp';  
+import Slogan from '../assets/img/slogan.png';  
 import HeaderLogo from '../assets/img/risevista-logo.webp';
 import Hero1 from '../assets/img/hero1.webp';
 import Hero2 from '../assets/img/hero2.webp';
@@ -98,10 +98,10 @@ const withExcerpt = posts
 <!-- Hero Section -->
 
 <!-- ===== Hero: Mobile (md未満) ===== -->
-<section class="relative bg-primary-back min-h-[100dvh] flex flex-col md:hidden pt-12" id="hero">
-  <!-- 1) 右上テキスト（Slogan） -->
-  <div class="w-full h-auto px-4 mt-6 flex justify-end animate-text-down">
-    <Image src={Slogan} alt="Slogan" class="w-full" loading="eager" decoding="async" data-preload />
+<section class="relative bg-primary-back min-h-[100dvh] flex flex-col md:hidden pt-20">
+  <!-- 1) 中央テキスト（Slogan） -->
+  <div class="w-full h-auto px-4 mt-12 flex justify-center animate-text-down">
+    <Image src={Slogan} alt="Slogan" class="w-96 md:w-full max-w-md" loading="eager" decoding="async" data-preload />
   </div>
 
   <!-- 2) 楕円スライダー + 一文字ずつテキスト（重ねる） -->
@@ -125,9 +125,9 @@ const withExcerpt = posts
           </div>
         </div>
       </div>
-      <!-- 一文字ずつテキスト（中央に重ねる） -->
-      <div class="absolute inset-0 z-10 flex items-center justify-center">
-        <div class="flex flex-row-reverse gap-[0.35em] px-4">
+      <!-- 一文字ずつテキスト（左下に配置） -->
+      <div class="absolute left-2 bottom-[-50px] z-10">
+        <div class="flex flex-row-reverse gap-[0.35em] px-4 items-end">
           {cols.map((col, colIdxFromRight) => (
             <div class="flex flex-col items-center leading-none">
               {col.map((img, i) => {
@@ -166,9 +166,9 @@ const withExcerpt = posts
 </section>
 
 <!-- ===== Hero: Desktop (md以上) —— 既存をそのまま残す ===== -->
-<section class="relative bg-primary-back min-h-[100dvh] overflow-hidden pt-20 md:pt-64 hidden md:flex" id="hero">
+<section class="relative bg-primary-back min-h-[100dvh] overflow-hidden pt-20 md:pt-64 hidden md:flex">
   <!-- 楕円形背景画像コンテナ --> 
-  <div class="absolute top-0 left-0 w-full h-full z-0">
+  <div class="absolute top-10 left-0 w-full h-full z-0">
     <div class="ellipse-image-container">
       <div class="ellipse-wrapper">
         {heroImages.map((heroImg, index) => (
@@ -222,9 +222,10 @@ const withExcerpt = posts
   </div>
 
   <!--右上スローガン（スマホで上に来るよう順序変更） -->
-  <div class="absolute top-16 right-16 max-w-xl pr-4 flex flex-col justify-center mb-8 md:mb-0 md:top-6 md:right-24 md:max-w-xl md:pr-24 md:translate-y-0 px-6 md:px-0 z-20 animate-text-down">
+  <div class="absolute top-16 right-16 max-w-xl pr-4 flex flex-col justify-center mb-8 md:mb-0 md:top-32 md:right-24 md:max-w-2xl md:pr-24 md:translate-y-0 px-6 md:px-0 z-20 animate-text-down">
     <Image
       src={Slogan}
+      class="w-full max-w-sm md:max-w-lg"
       data-preload
     />
   </div>
@@ -240,7 +241,7 @@ const withExcerpt = posts
 
   
   <!-- MISSION Section -->
-<section class="mission-section w-full flex justify-center items-center min-h-fit pt-16 pb-48 md:pt-48 bg-primary-back font-tsukushi grid-lines" id="mission">
+<section class="mission-section w-full flex justify-center items-center min-h-fit pt-48 pb-48 bg-primary-back font-tsukushi grid-lines">
   <div class="w-full max-w-6xl flex flex-col md:flex-row items-center gap-6 md:gap-8 px-4">
     
     <!-- 左カラム：テキスト（幅3） -->
@@ -273,7 +274,7 @@ const withExcerpt = posts
 
   
  <!-- VALUES セクション -->
- <section class="w-full flex flex-col items-center bg-primary-back text-primary py-16 md:py-24 px-4 md:px-0 grid-lines" id="values">
+ <section class="w-full flex flex-col items-center bg-primary-back text-primary  py-12 md:py-24 px-4 md:px-0 grid-lines">
   <div class="w-full max-w-6xl flex flex-col md:flex-row gap-8">
     <!-- Left Title -->
     <div class="mb-8 md:mb-12">
@@ -365,7 +366,7 @@ const withExcerpt = posts
   </div>
 </section>
 
-  <section class="bg-primary-back py-16 md:py-24 grid-lines" id="service">
+  <section class="bg-primary-back py-24 grid-lines" id="service">
     <div class="max-w-6xl mx-auto px-4">
       <!-- タイトル部分 -->
       <div class="mb-12">
@@ -698,7 +699,7 @@ const withExcerpt = posts
   
   
 
-  <section class="py-16 md:py-24 bg-primary-back" id="company">
+  <section class="py-24 bg-primary-back" id="company">
     <div class="max-w-6xl mx-auto px-4">
       <!-- タイトル部分 -->
       <div class="mb-12">
@@ -746,7 +747,7 @@ const withExcerpt = posts
   </section>
 
   <!-- Blog Section -->
-  <section class="py-16 md:py-24 bg-primary-back" id="blog">
+  <section class="py-24 bg-primary-back" id="blog">
     <div class="max-w-6xl mx-auto px-4">
       <!-- タイトル部分 -->
       <div class="mb-12">
@@ -804,12 +805,12 @@ const withExcerpt = posts
   </section>
 
   <!-- Properties Carousel Section -->
-  <section class="py-16 md:py-24 bg-primary-back" id="properties">
+  <section class="py-24 bg-primary-back" id="properties">
     <PropertyCarousel />
   </section>
 
   <!-- よくある質問 セクション -->
-  <section class="py-16 md:py-24 bg-primary-back" id="faq">
+  <section class="py-24 bg-primary-back" id="faq">
     <div class="max-w-6xl mx-auto px-4">
       <!-- タイトル部分 -->
       <div class="mb-12">
@@ -1058,6 +1059,15 @@ const withExcerpt = posts
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+
+/* スマホ版の一文字ずつテキスト用のスタイル */
+@media (max-width: 768px) {
+  .letter-span img {
+    display: inline-block !important;
+    width: auto !important;
+    max-width: none !important;
+  }
+}
 </style>
 
 <!-- ========================= JavaScript ========================= -->
@@ -1101,18 +1111,7 @@ const withExcerpt = posts
           const targetElement = document.querySelector(href);
           if (targetElement) {
             event.preventDefault();
-            
-            // ヘッダーの高さを取得
-            const header = document.getElementById('header-nav');
-            const headerHeight = header ? header.offsetHeight : 0;
-            
-            // ヘッダーの高さを考慮してスクロール位置を調整
-            const targetPosition = (targetElement as HTMLElement).offsetTop - headerHeight - 20; // 20pxの余白を追加
-            
-            window.scrollTo({
-              top: targetPosition,
-              behavior: 'smooth'
-            });
+            targetElement.scrollIntoView({ behavior: 'smooth' });
           }
         }
       });
