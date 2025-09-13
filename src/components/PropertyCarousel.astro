@@ -1,0 +1,154 @@
+---
+import PropertySlideCard from "./PropertySlideCard.astro";
+import { getCollection } from "astro:content";
+
+// 物件データ読込
+const properties = await getCollection("properties");
+const entries = properties
+  .filter((property) => !property.data.draft)
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+---
+
+<section class="mx-auto max-w-7xl px-4 py-16">
+  <h2 class="text-4xl md:text-5xl font-bold tracking-tight text-center mb-10 font-tsukushi text-primary">取り扱い物件</h2>
+
+  {entries.length > 0 ? (
+    <div class="relative">
+      <!-- カスタムカルーセル -->
+      <div class="carousel-container overflow-hidden">
+        <div class="carousel-track flex transition-transform duration-300 ease-in-out justify-center" id="carousel-track">
+          {entries.map((property, index) => (
+            <div class="carousel-slide flex-shrink-0 px-3" style="width: 290px;">
+              <PropertySlideCard
+                title={property.data.title}
+                date={property.data.date}
+                thumbnail={property.data.thumbnail}
+                brand={property.data.brand}
+                brand_logo={property.data.brand_logo}
+                link={property.data.link}
+                href={`/properties/${property.slug}/`}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- 分数表示 -->
+      <div class="absolute -bottom-12 left-1/2 -translate-x-1/2 z-10">
+        <div class="carousel-fraction text-sm tracking-[0.2em] text-primary font-tsukushi" id="carousel-fraction">
+          01/01
+        </div>
+      </div>
+
+      <!-- 矢印 -->
+      <button class="carousel-prev absolute -bottom-12 left-1/2 -translate-x-[4.5rem] w-9 h-9 rounded-full border flex items-center justify-center z-10 bg-white hover:bg-gray-50 transition-colors" id="carousel-prev">
+        ‹
+      </button>
+      <button class="carousel-next absolute -bottom-12 left-1/2 translate-x-[4.5rem] w-9 h-9 rounded-full border flex items-center justify-center z-10 bg-white hover:bg-gray-50 transition-colors" id="carousel-next">
+        ›
+      </button>
+    </div>
+  ) : (
+    <div class="text-center py-16">
+      <p class="text-primary font-tsukushi text-lg">現在、取り扱い物件はありません。</p>
+      <p class="text-primary font-tsukushi text-sm mt-2">新しい物件が追加され次第、こちらに表示されます。</p>
+    </div>
+  )}
+
+  <!-- 下のボタン -->
+  {entries.length > 0 && (
+    <div class="mt-16 flex justify-center">
+      <a href="/properties" class="inline-flex items-center justify-center h-12 px-10 rounded-full border text-[15px] font-tsukushi text-primary hover:bg-primary hover:text-white transition-colors">
+        For Full List
+      </a>
+    </div>
+  )}
+</section>
+
+<style>
+  .carousel-container {
+    max-width: 100%;
+  }
+  
+  .carousel-track {
+    display: flex;
+    gap: 24px;
+  }
+  
+  .carousel-slide {
+    flex: 0 0 auto;
+  }
+  
+  @media (min-width: 640px) {
+    .carousel-slide {
+      width: 350px !important;
+    }
+  }
+  
+  @media (min-width: 768px) {
+    .carousel-slide {
+      width: 400px !important;
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .carousel-slide {
+      width: 450px !important;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const track = document.getElementById('carousel-track');
+    const prevBtn = document.getElementById('carousel-prev');
+    const nextBtn = document.getElementById('carousel-next');
+    const fraction = document.getElementById('carousel-fraction');
+    
+    if (!track || !prevBtn || !nextBtn || !fraction) return;
+    
+    const slides = track.querySelectorAll('.carousel-slide');
+    const totalSlides = slides.length;
+    let currentIndex = 0;
+    const slidesPerView = window.innerWidth >= 1024 ? 3 : window.innerWidth >= 768 ? 2 : 1;
+    const maxIndex = Math.max(0, totalSlides - slidesPerView);
+    
+    const updateCarousel = () => {
+      const firstSlide = slides[0] as HTMLElement;
+      const slideWidth = firstSlide?.offsetWidth || 350;
+      const gap = 24;
+      const containerWidth = track.parentElement?.offsetWidth || 0;
+      const totalSlideWidth = slideWidth + gap;
+      const centerOffset = (containerWidth - slideWidth) / 2;
+      const translateX = centerOffset - (currentIndex * totalSlideWidth);
+      track.style.transform = `translateX(${translateX}px)`;
+      
+      const pad = (n: number) => String(n).padStart(2, "0");
+      fraction.textContent = `${pad(currentIndex + 1)}/${pad(totalSlides)}`;
+    };
+    
+    const nextSlide = () => {
+      currentIndex = Math.min(currentIndex + 1, maxIndex);
+      updateCarousel();
+    };
+    
+    const prevSlide = () => {
+      currentIndex = Math.max(currentIndex - 1, 0);
+      updateCarousel();
+    };
+    
+    nextBtn.addEventListener('click', nextSlide);
+    prevBtn.addEventListener('click', prevSlide);
+    
+    // 初期化
+    updateCarousel();
+    
+    // リサイズ時の処理
+    window.addEventListener('resize', () => {
+      const newSlidesPerView = window.innerWidth >= 1024 ? 3 : window.innerWidth >= 768 ? 2 : 1;
+      const newMaxIndex = Math.max(0, totalSlides - newSlidesPerView);
+      currentIndex = Math.min(currentIndex, newMaxIndex);
+      updateCarousel();
+    });
+  });
+</script>

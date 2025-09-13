@@ -23,3 +23,19 @@ collections:
       - { label: "タイトル", name: "title", widget: "string", required: true }
       - { label: "公開日", name: "date", widget: "datetime", required: true }
       - { label: "本文", name: "body", widget: "markdown", required: true }
+  
+  - name: "properties"
+    label: "取り扱い物件"
+    folder: "src/content/properties"
+    create: true
+    slug: "{{slug}}"
+    extension: "md"
+    preview_path: "properties/{{slug}}"
+    fields:
+      - { label: "タイトル", name: "title", widget: "string", required: true }
+      - { label: "公開日", name: "date", widget: "datetime", required: true }
+      - { label: "サムネイル画像", name: "thumbnail", widget: "image", required: true }
+      - { label: "ブランド名", name: "brand", widget: "string", required: false }
+      - { label: "ブランドロゴ", name: "brand_logo", widget: "image", required: false }
+      - { label: "外部リンク", name: "link", widget: "string", required: false }
+      - { label: "本文", name: "body", widget: "markdown", required: false }

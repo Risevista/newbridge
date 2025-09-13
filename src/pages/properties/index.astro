@@ -1,0 +1,174 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from "astro:content";
+import { Image as AImage } from "astro:assets";
+
+// 物件コレクションを取得
+const properties = await getCollection("properties");
+// 日付で降順ソート（新しい順）
+const sortedProperties = properties
+  .filter((property) => !property.data.draft) // 下書きを除外
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+---
+
+<Layout title="取り扱い物件 - 株式会社RISE VISTA">
+  <div class="min-h-screen bg-primary-back">
+    <!-- Hero Section -->
+    <section class="relative bg-primary-back pt-20 pb-16">
+      <div class="max-w-6xl mx-auto px-4">
+        <div class="text-center">
+          <div class="flex items-center justify-center mb-4">
+            <div class="black-bar mr-4"></div>
+            <p class="text-sm md:text-base tracking-wider font-tsukushi text-primary">取り扱い物件</p>
+          </div>
+          <h1 class="text-4xl md:text-6xl font-bold tracking-widest font-tsukushi text-primary mb-8">
+            PROPERTIES
+          </h1>
+          <p class="text-lg text-primary font-tsukushi max-w-2xl mx-auto">
+            お客様に最適な物件をご提案いたします。豊富な実績と信頼のネットワークで、理想の住まいを見つけましょう。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Properties Grid -->
+    <section class="py-16 bg-primary-back grid-lines">
+      <div class="max-w-6xl mx-auto px-4">
+        {sortedProperties.length > 0 ? (
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {sortedProperties.map((property, index) => (
+              <article class="bg-white rounded-lg shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 fade-in-text" style={`--delay: ${0.2 + index * 0.1}s`}>
+                <a href={property.data.externalLink || `/properties/${property.slug}/`} class="block h-full" target={property.data.externalLink ? "_blank" : "_self"}>
+                  <div class="p-6 h-full flex flex-col">
+                    <!-- ブランドロゴ・ブランド名 -->
+                    {(property.data.brandLogo || property.data.brand) && (
+                      <div class="flex items-center mb-4">
+                        {property.data.brandLogo && (
+                          <img 
+                            src={property.data.brandLogo} 
+                            alt={property.data.brand || "ブランドロゴ"} 
+                            class="w-8 h-8 object-contain mr-3"
+                          />
+                        )}
+                        {property.data.brand && (
+                          <span class="text-xs tracking-wide font-tsukushi text-primary-back">
+                            {property.data.brand}
+                          </span>
+                        )}
+                      </div>
+                    )}
+
+                    <!-- サムネイル画像 -->
+                    <div class="mb-4">
+                      <img 
+                        src={property.data.thumbnail} 
+                        alt={property.data.title}
+                        class="w-full h-48 object-cover rounded-lg"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
+
+                    <!-- タイトル -->
+                    <h3 class="text-lg font-bold leading-relaxed font-tsukushi text-primary-back mb-3 line-clamp-2">
+                      {property.data.title}
+                    </h3>
+
+                    <!-- 日付 -->
+                    <p class="text-sm text-primary-back mb-4 font-tsukushi">
+                      {new Date(property.data.date).toLocaleDateString('ja-JP', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                      })}
+                    </p>
+
+                    <!-- 外部リンク表示 -->
+                    {property.data.externalLink && (
+                      <div class="mt-auto pt-4 border-t border-gray-100">
+                        <span class="text-xs text-teal-600 font-tsukushi tracking-wide">
+                          詳細を見る →
+                        </span>
+                      </div>
+                    )}
+                  </div>
+                </a>
+              </article>
+            ))}
+          </div>
+        ) : (
+          <div class="text-center py-16">
+            <p class="text-primary font-tsukushi text-lg">現在、取り扱い物件はありません。</p>
+            <p class="text-primary font-tsukushi text-sm mt-2">新しい物件が追加され次第、こちらに表示されます。</p>
+          </div>
+        )}
+      </div>
+    </section>
+  </div>
+</Layout>
+
+<style>
+/* Grid lines for properties section */
+.grid-lines {
+  background-image: repeating-linear-gradient(
+    to right,
+    rgba(241, 236, 222, 0.10) 0px,
+    rgba(241, 236, 222, 0.10) 1px,
+    transparent 1px,
+    transparent 120px
+  );
+  background-attachment: fixed;
+}
+
+/* Fade in text animation */
+.fade-in-text {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  transition-delay: var(--delay, 0s);
+  display: inline-block;
+}
+
+.fade-in-text.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.black-bar {
+  width: 5vw;
+  min-width: 40px;
+  height: 1px;
+  background: #F1ECDE;
+  display: block;
+  border-radius: 1px;
+}
+
+/* Line clamp utilities */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    });
+
+    document.querySelectorAll('.fade-in-text').forEach((el) => {
+      observer.observe(el);
+    });
+  });
+</script>
+

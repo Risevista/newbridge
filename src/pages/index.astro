@@ -5,6 +5,7 @@ import { Image as AImage } from "astro:assets";
 import Layout from '../layouts/Layout.astro';
 import type { ImageMetadata } from 'astro';
 import { getCollection } from "astro:content";
+import PropertyCarousel from '../components/PropertyCarousel.astro';
 
 import Service1 from '../assets/img/service1.webp';
 import Service2 from '../assets/img/service2.webp';
@@ -83,6 +84,7 @@ const withExcerpt = posts
     const excerpt = bodyText.slice(0, 100);
     return { ...post, excerpt };
   });
+
 ---
 
 <Layout title="株式会社RISE VISTA">
@@ -643,16 +645,22 @@ const withExcerpt = posts
       </div>
     </div>
   </section>
+
+  <!-- Properties Carousel Section -->
+  <section class="py-24 bg-primary-back grid-lines" id="properties">
+    <PropertyCarousel />
+  </section>
   </div>
 </Layout>
 
 <!-- ========================= CSS ========================= -->
-<style>ｃ
+<style>
 /* うすい縦線を背景に敷く */
 .grid-lines {
   /* ベース色は既存の bg-primary-back が担当 */
   background-image: repeating-linear-gradient(
     to right,
+    
     rgba(241, 236, 222, 0.10) 0px,  /* 線の色/濃さを調整 */
     rgba(241, 236, 222, 0.10) 1px, /* 線の太さ（1px） */
     transparent 1px,
