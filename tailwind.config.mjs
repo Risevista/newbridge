@@ -11,20 +11,20 @@ export default {
     },
     extend: {
       fontFamily: {
-        tsukushi: ['"tsukushi-b-mincho-pr6n"', 'serif'],
+        tsukushi: ['"fot-tsukumin-pr6n"', 'sans-serif'],
       },
       fontWeight: {
         DEFAULT: '300',
       },
       colors: {
         primary: {
-          DEFAULT: "#F1ECDE",
+          DEFAULT: "#4b4e51",
           hover: colors.gray[400],
-          back: "#1e3229",
+          back: "#f4f4ea",
         },
         secondary: {
-          DEFAULT: "#CEE6C1",
-          accent: colors.red[500],
+          DEFAULT: "#1d453c",
+          accent: "#dfeed1",
           screen: "#441414",
         },
       },

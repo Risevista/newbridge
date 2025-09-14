@@ -10,9 +10,14 @@ const entries = properties
 ---
 
 <section class="mx-auto max-w-7xl px-8 py-16">
-  <h2 class="text-4xl md:text-5xl font-bold tracking-tight text-center mb-10 font-tsukushi text-primary">
-    取り扱い物件
-  </h2>
+   <!-- タイトル部分 -->
+   <div class="mb-12">
+    <div class="flex items-center mb-1">
+      <div class="black-bar mr-4"></div>
+      <p class="text-sm md:text-base tracking-wider fade-in-text text-secondary" style="--delay: 0.2s;">物件情報</p>
+    </div>
+    <h2 class="text-3xl md:text-6xl font-bold tracking-widest font-tsukushi text-secondary fade-in-text" style="--delay: 0.4s;">PROPERTIES</h2>
+  </div>
 
   {entries.length > 0 ? (
     <div class="relative">
@@ -86,7 +91,7 @@ const entries = properties
     <div class="mt-16 flex justify-center">
       <a
         href="/properties"
-        class="inline-flex items-center justify-center h-12 px-10 rounded-full border text-[15px] font-tsukushi text-primary hover:bg-primary hover:text-white transition-colors"
+        class="inline-flex items-center justify-center h-12 px-10 rounded-full border text-[15px] font-tsukushi bg-green-200 text-secondary hover:bg-green-900 hover:text-white transition-colors"
       >
         For Full List
       </a>
@@ -95,6 +100,14 @@ const entries = properties
 </section>
 
 <style>
+  .black-bar {
+  width: 5vw;
+  min-width: 40px;
+  height: 1px;
+  background: #1d453c;
+  display: block;
+  border-radius: 1px;
+}
   .carousel-container { 
     max-width: 100%; 
     margin-left: auto;

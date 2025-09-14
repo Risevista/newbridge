@@ -19,10 +19,9 @@ const sortedProperties = properties
       <div class="max-w-6xl mx-auto px-4">
         <div class="text-center">
           <div class="flex items-center justify-center mb-4">
-            <div class="black-bar mr-4"></div>
-            <p class="text-sm md:text-base tracking-wider font-tsukushi text-primary">取り扱い物件</p>
+            <p class="text-sm md:text-base tracking-wider font-tsukushi text-secondary">取り扱い物件</p>
           </div>
-          <h1 class="text-4xl md:text-6xl font-bold tracking-widest font-tsukushi text-primary mb-8">
+          <h1 class="text-4xl md:text-6xl font-bold tracking-widest font-tsukushi text-secondary mb-8">
             PROPERTIES
           </h1>
           <p class="text-lg text-primary font-tsukushi max-w-2xl mx-auto">
@@ -64,8 +63,8 @@ const sortedProperties = properties
                     </div>  
                     <!-- タイトル＆日付 -->
                     <div class="min-w-0">
-                      <time class="block text-sm text-neutral-500 mb-2">{formatted}</time>
-                      <h3 class="leading-snug text-primary-back font-semibold line-clamp-2">{property.data.title}</h3>
+                      <time class="block text-sm text-secondary mb-2">{formatted}</time>
+                      <h3 class="leading-snug text-secondary font-semibold line-clamp-2">{property.data.title}</h3>
 
                       {property.data.externalLink && (
                         <div class="pt-3">

@@ -44,12 +44,12 @@ const formatted = `${year}年${month}月${day}日`;
     </div>  
     <!-- タイトル＆日付 -->
     <div class="min-w-0">
-      <time class="block text-sm text-neutral-500 mb-2">{formatted}</time>
-      <h3 class="leading-snug text-primary-back font-semibold line-clamp-2">{title}</h3>
+      <time class="block text-sm text-secondary mb-2">{formatted}</time>
+      <h3 class="leading-snug text-secondary font-semibold line-clamp-2">{title}</h3>
 
       {link && (
         <div class="pt-3">
-          <a href={link} target="_blank" rel="noopener noreferrer" class="text-[12px] text-sm underline text-primary-back">詳細を見る</a>
+          <a href={link} target="_blank" rel="noopener noreferrer" class="text-[12px] text-sm underline text-secondary">詳細を見る</a>
         </div>
       )}
     </div>
