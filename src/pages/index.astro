@@ -86,7 +86,7 @@ const withExcerpt = posts
   </div>
 
   <!-- 3) 縦書きテキスト -->
-  <div class="absolute left-5 top-1/2 transform -translate-y-1/2 z-20">
+  <div class="absolute left-5 bottom-5 z-20">
     <div class="writing-vertical text-secondary text-[16px] leading-relaxed tracking-[0.3em] font-tsukushi">
       <div class="mt-16">日本に健全な投資文化を育み</div>
       <div class="mt-52">豊かさと成長を次世代へ</div>
@@ -102,10 +102,9 @@ const withExcerpt = posts
   </div>
 
   <!-- 4) 本文テキスト -->
-  <div class="w-full px-6 pb-6">
-    <p class="text-secondary text-[16px] leading-6 tracking-normal font-tsukushi">
-      RISE VISTAは、「不動産」という枠組みを超えて、未来を創る力になりたいと考えています。
-      一人ひとりの暮らしから、地域、そして日本の未来を変えていく。  
+  <div class="w-3/5 ml-auto pr-6 pb-6">
+    <p class="text-secondary text-[16px] leading-6 tracking-normal font-tsukushi text-right">
+      RISE VISTAは、「不動産」という枠組みを超えて、未来を創る力になりたいと考えています。 
     </p>
   </div>
 </section>
@@ -160,8 +159,7 @@ const withExcerpt = posts
   <div class="text-primary p-6 md:p-10 w-[88%] z-20 opacity-90 absolute bottom-8 right-16 md:bottom-0 md:right-24 md:w-[42%] md:max-w-xl animate-text-up">
     <p class="mt-6 text-[18px] text-secondary tracking-normal font-tsukushi">
       RISE VISTAは、「不動産」という枠組みを超えて、未来を創る力になりたいと考えています。
-      一人ひとりの暮らしから、地域、そして日本の未来を変えていく。  
-    </p>
+    </p>  
   </div>
 </section>
 
@@ -889,27 +887,27 @@ const withExcerpt = posts
 /* レスポンシブ調整 */
 @media (max-width: 768px) {
   .ellipse-wrapper {
-    width: 85%;
-    height: 50%;
+    width: 95%;
+    height: 35%;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%) rotate(-12deg);
+    transform: translate(-50%, -50%) rotate(0deg);
   }
   .ellipse-background-image {
-    transform: rotate(8deg) scale(1.1);
+    transform: rotate(0deg) scale(1.1);
   }
 }
 
 @media (max-width: 480px) {
   .ellipse-wrapper {
-    width: 95%;
-    height: 45%;
+    width: 98%;
+    height: 30%;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%) rotate(-12deg);
+    transform: translate(-50%, -50%) rotate(0deg);
   }
   .ellipse-background-image {
-    transform: rotate(5deg) scale(1.05);
+    transform: rotate(0deg) scale(1.05);
   }
 }
 
