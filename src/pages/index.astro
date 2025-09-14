@@ -13,7 +13,8 @@ import Hero1 from '../assets/img/hero1.webp';
 import Hero2 from '../assets/img/hero2.webp';
 import Hero3 from '../assets/img/hero3.webp';
 import Hero4 from '../assets/img/hero4.webp';
-import Circle from '../assets/img/circle.webp';
+import Bridge from '../assets/img/bridge.png';
+import Circle from '../assets/img/circle.png';
 import Bg from '../assets/img/risevista-bg.webp';
 // 4枚の画像を定義（実際のパスに変更してください）
 const heroImages = [
@@ -51,7 +52,7 @@ const withExcerpt = posts
 
 ---
 
-<Layout title="株式会社RISE VISTA">
+<Layout title="不動産をお探しなら株式会社RISE VISTA｜人生100年時代を支える総合不動産会社">
   <!-- Preloader overlay -->
   <div id="preloader" class="fixed inset-0 z-[1000] flex items-center justify-center bg-primary-back">
     <div class="h-10 w-10 rounded-full border-2 border-teal-600 border-t-transparent animate-spin"></div>
@@ -480,13 +481,14 @@ const withExcerpt = posts
 
            <!-- 関係会社について -->
            <div class="mt-8">
-             <h4 class="text-lg font-semibold text-primary mb-4">関係会社について</h4>
-             <div class="bg-secondary-accent rounded-lg p-6">               
+             <h4 class="text-lg text-primary mb-4">関係会社について</h4>
+             <div class="bg-white rounded-lg p-6">               
                <!-- 株式会社Bridge -->
                <div class="border-gray-200">
                  <div class="flex items-center justify-between">
                    <div class="flex items-center gap-3">
-                     <span class="text-base font-semibold text-primary">株式会社Bridge</span>
+                     <span class="text-base text-primary">株式会社Bridge</span>
+                     <Image src={Bridge} alt="株式会社Bridge" class="md:w-16 md:h-16 w-10 h-10" loading="lazy" decoding="async" />
                    </div>
                    <a href="https://bridge-company.com" target="_blank" rel="noopener noreferrer" 
                       class="inline-flex items-center gap-2 px-4 py-2 bg-primary-back text-primary rounded-lg hover:bg-primary/90 transition-colors text-sm font-medium">
@@ -496,9 +498,9 @@ const withExcerpt = posts
                      </svg>
                    </a>
                  </div>
-                 <p class="text-sm text-primary mt-2 ml-6">
-                  保険のサポート。
-                 </p>
+                 <p class="text-sm text-primary mt-2 md:ml-6 ml-2">
+                  損害保険から生命保険まで、安心を届ける保険代理店
+                </p>
                </div>
              </div>
            </div>
