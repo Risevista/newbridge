@@ -46,7 +46,7 @@ function markdownToHtml(markdown: string): string {
       <h1 class="text-4xl md:text-5xl font-bold text-primary font-tsukushi mb-4">
         {post.data.title}
       </h1>
-      <div class="flex items-center text-sm text-gray-200 mb-6">
+      <div class="flex items-center text-sm mb-6">
         <time datetime={post.data.date.toISOString()}>
           {post.data.date.toLocaleDateString('ja-JP', {
             year: 'numeric',
@@ -61,7 +61,7 @@ function markdownToHtml(markdown: string): string {
       {post.data.tags && post.data.tags.length > 0 && (
         <div class="flex flex-wrap gap-2 mb-6">
           {post.data.tags.map((tag: string) => (
-            <span class="px-3 py-1 bg-gray-200 text-primary-back text-xs rounded-full">
+            <span class="px-3 py-1 bg-secondary text-primary-back text-xs rounded-full">
               {tag}
             </span>
           ))}

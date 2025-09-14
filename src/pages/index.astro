@@ -93,6 +93,16 @@ const withExcerpt = posts
     </div>
   </div>
 
+  <!-- 5) スマホ用SCROLLバー（縦書きテキストの左） -->
+  <div class="absolute left-2 bottom-5 z-20 flex flex-col items-center justify-end h-[200px]">
+    <div class="flex items-center">
+      <p class="text-primary font-tsukushi writing-vertical mb-4 text-[12px]">SCROLL</p>
+      <div class="ml-2 h-[60px] flex items-center">
+        <div class="w-[0.5px] h-[60px] bg-primary animate-rise-fade opacity-60"></div>
+      </div>
+    </div>
+  </div>
+
   <!-- 4) 右上テキスト -->
   <div class="absolute right-1 top-24 z-20 px-4">
     <div class="text-secondary text-[28px] leading-relaxed tracking-[0.1em] font-tsukushi text-right">
@@ -201,7 +211,7 @@ const withExcerpt = posts
  <section class="w-full flex flex-col items-center bg-primary-back text-primary  py-12 md:py-24 px-4 md:px-0">
   <div class="w-full max-w-6xl flex flex-col md:flex-row gap-8">
     <!-- Left Title -->
-    <div class="mb-8 md:mb-12">
+    <div class="mb-4">
       <div class="flex items-center mb-1">
         <div class="black-bar mr-4"></div>
         <p class="text-sm md:text-base tracking-wider font-tsukushi text-secondary fade-in-text" style="--delay: 0.2s;">４つの行動指針</p>
@@ -293,7 +303,7 @@ const withExcerpt = posts
   <section class="bg-primary-back py-24" id="service">
     <div class="max-w-6xl mx-auto px-4">
       <!-- タイトル部分 -->
-      <div class="mb-12">
+      <div class="mb-4">
         <div class="flex items-center mb-1">
           <div class="black-bar mr-4"></div>
           <p class="text-sm md:text-base tracking-wider fade-in-text text-secondary" style="--delay: 0.2s;">事業内容</p>
@@ -627,7 +637,7 @@ const withExcerpt = posts
   <section class="py-24 bg-primary-back" id="company">
     <div class="max-w-6xl mx-auto px-4">
       <!-- タイトル部分 -->
-      <div class="mb-12">
+      <div class="mb-4">
         <div class="flex items-center mb-1">
           <div class="black-bar mr-4"></div>
           <p class="text-sm md:text-base tracking-wider fade-in-text text-secondary" style="--delay: 0.2s;">会社概要</p>
@@ -675,7 +685,7 @@ const withExcerpt = posts
   <section class="py-24 bg-primary-back" id="blog">
     <div class="max-w-6xl mx-auto px-4">
       <!-- タイトル部分 -->
-      <div class="mb-12">
+      <div class="mb-4">
         <div class="flex items-center mb-1">
           <div class="black-bar mr-4"></div>
           <p class="text-sm md:text-base tracking-wider fade-in-text text-secondary" style="--delay: 0.2s;">最新情報</p>
@@ -691,14 +701,14 @@ const withExcerpt = posts
             <a href={`/blog/${post.slug}/`} class="block h-full">
               <div class="p-6 h-full flex flex-col">
                 <div class="mb-2">
-                  <span class="text-xs tracking-wide font-tsukushi text-primary-back border-t border-primary-back pt-2 inline-block">
-                    BLOG <span class="text-primary-back">#{String(index + 1).padStart(2, '0')}</span>
+                  <span class="text-xs tracking-wide font-tsukushi text-primary border-t border-primary-back pt-2 inline-block">
+                    BLOG <span class="text-primary">#{String(index + 1).padStart(2, '0')}</span>
                   </span>
                 </div>
                 <h3 class="text-lg font-bold leading-relaxed font-tsukushi text-secondary mb-3 line-clamp-2">
                   {post.data.title}
                 </h3>
-                <p class="text-sm text-primary-back mb-4 font-tsukushi">
+                <p class="text-sm text-primary mb-4 font-tsukushi">
                   {new Date(post.data.date).toLocaleDateString('ja-JP', {
                     year: 'numeric',
                     month: 'long',
@@ -738,7 +748,7 @@ const withExcerpt = posts
   <section class="py-24 bg-primary-back" id="faq">
     <div class="max-w-6xl mx-auto px-4">
       <!-- タイトル部分 -->
-      <div class="mb-12">
+      <div class="mb-4">
         <div class="flex items-center mb-1">
           <div class="black-bar mr-4"></div>
           <p class="text-sm text-secondary tracking-wider">よくある質問</p>
@@ -1085,7 +1095,7 @@ const withExcerpt = posts
   document.querySelectorAll('#faq button').forEach(button => {
     button.addEventListener('click', () => {
       const faqItem = button.closest('.group') as HTMLElement;
-      const content = faqItem?.querySelector('.px-6.pb-4') as HTMLElement;
+      const content = faqItem?.querySelector('.px-6.p-4') as HTMLElement;
       const icon = button.querySelector('span') as HTMLElement;
       
       if (content && icon) {

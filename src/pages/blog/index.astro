@@ -51,14 +51,14 @@ const withExcerpt = posts
                 <a href={`/blog/${post.slug}/`} class="block h-full">
                   <div class="p-6 h-full flex flex-col">
                     <div class="mb-4">
-                      <span class="text-xs tracking-wide font-tsukushi text-primary-back border-t border-primary-back pt-2 inline-block">
-                        BLOG <span class="text-primary-back">#{String(index + 1).padStart(2, '0')}</span>
+                      <span class="text-xs tracking-wide font-tsukushi text-primary border-t border-primary-back pt-2 inline-block">
+                        BLOG <span class="text-primary">#{String(index + 1).padStart(2, '0')}</span>
                       </span>
                     </div>
-                    <h2 class="text-lg font-bold leading-relaxed font-tsukushi text-primary-back mb-3 line-clamp-2">
+                    <h2 class="text-lg font-bold leading-relaxed font-tsukushi text-secondary mb-3 line-clamp-2">
                       {post.data.title}
                     </h2>
-                    <p class="text-sm text-primary-back mb-4 font-tsukushi">
+                    <p class="text-sm text-primary mb-4 font-tsukushi">
                       {new Date(post.data.date).toLocaleDateString('ja-JP', {
                         year: 'numeric',
                         month: 'long',
