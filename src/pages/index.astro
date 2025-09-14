@@ -85,21 +85,20 @@ const withExcerpt = posts
     </div>
   </div>
 
-  <!-- 3) 縦書きテキスト -->
-  <div class="absolute left-5 bottom-5 z-20">
+  <!-- 3) 縦書きテキストとスマホ用SCROLLバー -->
+  <div class="absolute left-2 bottom-5 z-20 flex items-end">
+    <!-- スマホ用SCROLLバー -->
+    <div class="flex flex-col items-center justify-end h-[200px] mr-3">
+      <p class="text-primary font-tsukushi writing-vertical mb-4 text-[12px]">SCROLL</p>
+      <div class="h-[60px] flex items-center">
+        <div class="w-[0.5px] h-[60px] bg-primary animate-rise-fade opacity-60"></div>
+      </div>
+    </div>
+    
+    <!-- 縦書きテキスト -->
     <div class="writing-vertical text-secondary text-[16px] leading-relaxed tracking-[0.3em] font-tsukushi">
       <div class="mt-16">日本に健全な投資文化を育み</div>
       <div class="mt-52">豊かさと成長を次世代へ</div>
-    </div>
-  </div>
-
-  <!-- 5) スマホ用SCROLLバー（縦書きテキストの左） -->
-  <div class="absolute left-2 bottom-5 z-20 flex flex-col items-center justify-end h-[200px]">
-    <div class="flex items-center">
-      <p class="text-primary font-tsukushi writing-vertical mb-4 text-[12px]">SCROLL</p>
-      <div class="ml-2 h-[60px] flex items-center">
-        <div class="w-[0.5px] h-[60px] bg-primary animate-rise-fade opacity-60"></div>
-      </div>
     </div>
   </div>
 
@@ -902,10 +901,14 @@ const withExcerpt = posts
     height: 35%;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%) rotate(0deg);
+    transform: translate(-50%, -50%) rotate(-15deg);
   }
   .ellipse-background-image {
-    transform: rotate(0deg) scale(1.1);
+    top: 50%;
+    left: 50%;
+    width: 140%;
+    height: 140%;
+    transform: translate(-50%, -50%) rotate(15deg) scale(1.2);
   }
 }
 
@@ -915,10 +918,14 @@ const withExcerpt = posts
     height: 30%;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%) rotate(0deg);
+    transform: translate(-50%, -50%) rotate(-10deg);
   }
   .ellipse-background-image {
-    transform: rotate(0deg) scale(1.05);
+    top: 50%;
+    left: 50%;
+    width: 130%;
+    height: 130%;
+    transform: translate(-50%, -50%) rotate(10deg) scale(1.15);
   }
 }
 
