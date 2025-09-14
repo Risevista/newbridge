@@ -633,8 +633,6 @@ const withExcerpt = posts
     </div>
   </section>
   
-  
-
   <section class="py-24 bg-primary-back" id="company">
     <div class="max-w-6xl mx-auto px-4">
       <!-- タイトル部分 -->
@@ -643,17 +641,23 @@ const withExcerpt = posts
           <div class="black-bar mr-4"></div>
           <p class="text-sm md:text-base tracking-wider fade-in-text text-secondary" style="--delay: 0.2s;">会社概要</p>
         </div>
-        <h2 class="text-3xl md:text-6xl font-bold tracking-widest font-tsukushi text-secondary fade-in-text" style="--delay: 0.4s;">COMPANY</h2>
+        <h2 class="text-3xl md:text-6xl font-bold tracking-widest font-tsukushi text-secondary fade-in-text" style="--delay: 0.4s;">
+          COMPANY
+        </h2>
       </div>
-
+  
       <!-- 本文2カラム -->
-      <div class="flex flex-col md:flex-row gap-8 items-start">
+      <div class="flex flex-col md:flex-row gap-8 items-stretch">
         <!-- 左：ロゴ -->
-        <div class="md:w-1/3 w-full flex justify-center items-start">
-          <Image src={HeaderLogo} alt="RISE VISTA ロゴ" class="w-full max-w-xs mx-auto" />
+        <div class="md:w-1/3 w-full flex justify-center items-center">
+          <Image 
+            src={HeaderLogo} 
+            alt="RISE VISTA ロゴ" 
+            class="object-contain w-auto max-h-[200px]" 
+          />
         </div>
-
-        <!-- 右：リスト（2カラム） -->
+  
+        <!-- 右：リスト -->
         <div class="md:w-2/3 w-full">
           <dl class="divide-y divide-gray-300 text-primary">
             <div class="flex flex-col md:flex-row py-3">
@@ -666,12 +670,12 @@ const withExcerpt = posts
             </div>
             <div class="flex flex-col md:flex-row py-3">
               <dt class="md:w-[35%] w-full">設立</dt>
-              <dd class="md:w-[65%] w-full">2025年7月16日</dd>
+              <dd class="md:w-[65%] w-full">2019年1月22日</dd>
             </div>
             <div class="flex flex-col md:flex-row py-3">
               <dt class="md:w-[35%] w-full">所在地</dt>
               <dd class="md:w-[65%] w-full">東京都渋谷区渋谷1-1-8 青山ダイヤモンドビル7階</dd>
-            </div> 
+            </div>
             <div class="flex flex-col md:flex-row py-3">
               <dt class="md:w-[35%] w-full">事業内容</dt>
               <dd class="md:w-[65%] w-full">不動産売買・仲介業務・投資運用業</dd>
@@ -680,8 +684,7 @@ const withExcerpt = posts
         </div>
       </div>
     </div>
-  </section>
-
+  </section>  
   <!-- Blog Section -->
   <section class="py-24 bg-primary-back" id="blog">
     <div class="max-w-6xl mx-auto px-4">
