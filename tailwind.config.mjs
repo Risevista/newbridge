@@ -20,7 +20,7 @@ export default {
         primary: {
           DEFAULT: "#4b4e51",
           hover: colors.gray[400],
-          back: "#f4f4ea",
+          back: "#D5EAD8",
         },
         secondary: {
           DEFAULT: "#1d453c",

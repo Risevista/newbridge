@@ -206,99 +206,113 @@ const withExcerpt = posts
   </div>
 </section>
 
-  
  <!-- VALUES セクション -->
- <section class="w-full flex flex-col items-center bg-primary-back text-primary  py-12 md:py-24 px-4 md:px-0">
-  <div class="w-full max-w-6xl flex flex-col md:flex-row gap-8">
+<!-- VALUES セクション（上下の線を共通、4行は等間隔） -->
+<section class="w-full bg-primary-back text-primary py-12 md:py-24 px-4 md:px-0">
+  <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-[auto,1fr] gap-8">
+
     <!-- Left Title -->
-    <div class="mb-4">
-      <div class="flex items-center mb-1">
-        <div class="black-bar mr-4"></div>
-        <p class="text-sm md:text-base tracking-wider font-tsukushi text-secondary fade-in-text" style="--delay: 0.2s;">４つの行動指針</p>
+    <div class="md:pr-8 flex flex-col justify-start">
+      <div class="flex items-center">
+        <div class="black-bar mb-4 mr-4"></div>
+        <p class="text-sm md:text-base tracking-wider font-tsukushi text-secondary fade-in-text" style="--delay: 0.2s;">
+          ４つの行動指針
+        </p>
       </div>
-        <h2 class="text-3xl md:text-6xl font-bold tracking-widest font-tsukushi text-secondary fade-in-text" style="--delay: 0.4s;">VALUES</h2>
+      <h2 class="text-3xl md:text-6xl font-bold tracking-widest font-tsukushi text-secondary fade-in-text" style="--delay: 0.4s;">
+        VALUES
+      </h2>
     </div>
-    <!-- Right Content -->
-    <div class="flex-1 flex flex-col gap-8 md:gap-12">
+
+    <!-- Right Content：上下線＋中仕切り、4行を等間隔 -->
+    <div class="grid grid-rows-4 border-y border-gray-300 divide-y divide-gray-300">
+
       <!-- Row 1 -->
-      <div class="flex flex-col md:flex-row items-stretch border-t border-gray-300 pt-6 md:pt-8 pb-6 md:pb-8">
-        <div class="w-full md:w-12 flex items-center justify-center mb-4 md:mb-0">
-          <span class="text-xs tracking-widest transform md:-rotate-90 whitespace-nowrap fade-in-text font-tsukushi" style="--delay: 0.4s;">Honest</span>
+      <div class="flex flex-col md:flex-row items-stretch gap-4 md:gap-6 px-0 pt-6 md:pt-8 pb-6 md:pb-8">
+        <div class="w-full md:w-12 flex items-center justify-center">
+          <span class="text-xs tracking-widest md:-rotate-90 whitespace-nowrap font-tsukushi fade-in-text" style="--delay: 0.4s;">Honest</span>
         </div>
-        <div class="flex-1 flex items-center justify-center mb-4 md:mb-0">
-        <h3 class="text-2xl md:text-4xl font-tsukushi text-secondary font-normal leading-tight text-center fade-in-text" style="--delay: 0.6s;">学びの姿勢</h3>
+        <div class="flex-1 flex items-center justify-center">
+          <h3 class="text-2xl md:text-4xl font-tsukushi text-secondary font-normal leading-tight text-center fade-in-text" style="--delay: 0.6s;">
+            学びの姿勢
+          </h3>
         </div>
         <div class="w-full md:w-1/3 flex flex-col justify-between md:pl-8">
           <p class="text-sm mb-4 md:mb-6 font-tsukushi fade-in-text" style="--delay: 0.8s;">
-            私たちは、成長できる「環境」にこだわります。
-            常に学び続け、お互いを高めあうことで
-            お客様に最高のパフォーマンスを提供し続けます。
-            成長意欲を持ち、学びぬくプロフェッショナル集団であり続けます。
-            </p>
-          <div class="w-full text-center text-secondary group font-tsukushi fade-in-text" style="--delay: 0.8s;">
-              「昨日の自分を超える」
+            私たちは、成長できる「環境」にこだわります。常に学び続け、お互いを高めあうことで
+            お客様に最高のパフォーマンスを提供し続けます。成長意欲を持ち、学びぬくプロフェッショナル集団であり続けます。
+          </p>
+          <div class="w-full text-center text-secondary font-tsukushi fade-in-text" style="--delay: 0.8s;">
+            「昨日の自分を超える」
           </div>
         </div>
       </div>
+
       <!-- Row 2 -->
-      <div class="flex flex-col md:flex-row items-stretch border-t border-gray-300 pt-6 md:pt-8 pb-6 md:pb-8">
-        <div class="w-full md:w-12 flex items-center justify-center mb-4 md:mb-0">
-          <span class="text-xs tracking-widest transform md:-rotate-90 whitespace-nowrap font-tsukushi fade-in-text" style="--delay: 0.4s;">Trust</span>
+      <div class="flex flex-col md:flex-row items-stretch gap-4 md:gap-6 px-0 pt-6 md:pt-8 pb-6 md:pb-8">
+        <div class="w-full md:w-12 flex items-center justify-center">
+          <span class="text-xs tracking-widest md:-rotate-90 whitespace-nowrap font-tsukushi fade-in-text" style="--delay: 0.4s;">Trust</span>
         </div>
-        <div class="flex-1 flex items-center justify-center mb-4 md:mb-0">
-          <h3 class="text-2xl md:text-4xl font-tsukushi text-secondary font-normal leading-tight text-center fade-in-text" style="--delay: 0.6s;">信頼できる人柄</h3>
+        <div class="flex-1 flex items-center justify-center">
+          <h3 class="text-2xl md:text-4xl font-tsukushi text-secondary font-normal leading-tight text-center fade-in-text" style="--delay: 0.6s;">
+            信頼できる人柄
+          </h3>
         </div>
         <div class="w-full md:w-1/3 flex flex-col justify-between md:pl-8">
-          <p class="text-sm mb-4 md:mb-6 font-tsukushi fade-in-text" style="--delay: 0.8s;">素直な姿勢を謙虚な心を持ち、明るく前向きな行動で
-            周囲に笑顔と安心を届ける。
-            人として信頼される魅力を持つ人材を育て、
-            ともに成長します。              
-            </p>  
-          <div class="w-full text-center text-secondary group font-tsukushi fade-in-text" style="--delay: 0.8s;">
-              「素直に 謙虚に 前向きに」
+          <p class="text-sm mb-4 md:mb-6 font-tsukushi fade-in-text" style="--delay: 0.8s;">
+            素直な姿勢を謙虚な心を持ち、明るく前向きな行動で周囲に笑顔と安心を届ける。人として信頼される魅力を持つ人材を育て、ともに成長します。
+          </p>
+          <div class="w-full text-center text-secondary font-tsukushi fade-in-text" style="--delay: 0.8s;">
+            「素直に 謙虚に 前向きに」
           </div>
         </div>
       </div>
+
       <!-- Row 3 -->
-      <div class="flex flex-col md:flex-row items-stretch border-t border-gray-300 pt-6 md:pt-8 pb-6 md:pb-8">
-        <div class="w-full md:w-12 flex items-center justify-center mb-4 md:mb-0">
-          <span class="text-xs tracking-widest transform md:-rotate-90 whitespace-nowrap font-tsukushi fade-in-text" style="--delay: 0.4s;">Speed</span>
+      <div class="flex flex-col md:flex-row items-stretch gap-4 md:gap-6 px-0 pt-6 md:pt-8 pb-6 md:pb-8">
+        <div class="w-full md:w-12 flex items-center justify-center">
+          <span class="text-xs tracking-widest md:-rotate-90 whitespace-nowrap font-tsukushi fade-in-text" style="--delay: 0.4s;">Speed</span>
         </div>
-        <div class="flex-1 flex items-center justify-center mb-4 md:mb-0">
-          <h3 class="text-2xl md:text-4xl font-tsukushi text-secondary font-normal leading-tight text-center fade-in-text" style="--delay: 0.6s;">迅速な対応力</h3>
+        <div class="flex-1 flex items-center justify-center">
+          <h3 class="text-2xl md:text-4xl font-tsukushi text-secondary font-normal leading-tight text-center fade-in-text" style="--delay: 0.6s;">
+            迅速な対応力
+          </h3>
         </div>
         <div class="w-full md:w-1/3 flex flex-col justify-between md:pl-8">
-          <p class="text-sm mb-4 md:mb-6 font-tsukushi fade-in-text" style="--delay: 0.8s;">即時対応・即時行動・即時改善こそが
-            プロフェッショナルの使命。
-            相手の気持ちや思いを汲み取り、信頼関係を築く。
-            迅速かつ的確な行動で答えづける集団であり続けます。
-            </p>
-          <div class="w-full text-center text-secondary group font-tsukushi fade-in-text" style="--delay: 0.8s;">
-              「すぐ動く すぐ応える すぐ改善する」
-            </div>
+          <p class="text-sm mb-4 md:mb-6 font-tsukushi fade-in-text" style="--delay: 0.8s;">
+            即時対応・即時行動・即時改善こそがプロフェッショナルの使命。相手の気持ちや思いを汲み取り、信頼関係を築く。迅速かつ的確な行動で答え続ける集団であり続けます。
+          </p>
+          <div class="w-full text-center text-secondary font-tsukushi fade-in-text" style="--delay: 0.8s;">
+            「すぐ動く すぐ応える すぐ改善する」
+          </div>
         </div>
       </div>
+
       <!-- Row 4 -->
-      <div class="flex flex-col md:flex-row items-stretch border-t border-gray-300 pt-6 md:pt-8 pb-6 md:pb-8">
-        <div class="w-full md:w-12 flex items-center justify-center mb-4 md:mb-0">
-          <span class="text-xs tracking-widest transform md:-rotate-90 whitespace-nowrap font-tsukushi fade-in-text" style="--delay: 0.4s;">Growth</span>
+      <div class="flex flex-col md:flex-row items-stretch gap-4 md:gap-6 px-0 pt-6 md:pt-8 pb-6 md:pb-8">
+        <div class="w-full md:w-12 flex items-center justify-center">
+          <span class="text-xs tracking-widest md:-rotate-90 whitespace-nowrap font-tsukushi fade-in-text" style="--delay: 0.4s;">Growth</span>
         </div>
-        <div class="flex-1 flex items-center justify-center mb-4 md:mb-0">
-          <h3 class="text-2xl md:text-4xl font-tsukushi text-secondary font-normal leading-tight text-center fade-in-text" style="--delay: 0.6s;">持続的な成長</h3>
+        <div class="flex-1 flex items-center justify-center">
+          <h3 class="text-2xl md:text-4xl font-tsukushi text-secondary font-normal leading-tight text-center fade-in-text" style="--delay: 0.6s;">
+            持続的な成長
+          </h3>
         </div>
         <div class="w-full md:w-1/3 flex flex-col justify-between md:pl-8">
-          <p class="text-sm mb-4 md:mb-6 font-tsukushi fade-in-text" style="--delay: 0.8s;">変化を恐れず、常に新しいことに挑
-            失敗を恐れず、そこから学び、成長する。
-            持続的な成長を通じて、お客様と社会に価値を提供し続けます。
-            </p>
-          <div class="w-full text-center text-secondary group font-tsukushi fade-in-text" style="--delay: 0.8s;">
-              「挑戦し続ける 成長し続ける」
-            </div>
+          <p class="text-sm mb-4 md:mb-6 font-tsukushi fade-in-text" style="--delay: 0.8s;">
+            変化を恐れず、常に新しいことに挑戦。失敗を恐れず、そこから学び、成長する。持続的な成長を通じて、お客様と社会に価値を提供し続けます。
+          </p>
+          <div class="w-full text-center text-secondary font-tsukushi fade-in-text" style="--delay: 0.8s;">
+            「挑戦し続ける 成長し続ける」
+          </div>
         </div>
       </div>
+
     </div>
   </div>
 </section>
+
+
 
   <section class="bg-primary-back py-24" id="service">
     <div class="max-w-6xl mx-auto px-4">
