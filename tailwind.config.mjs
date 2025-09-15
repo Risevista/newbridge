@@ -25,7 +25,7 @@ export default {
         secondary: {
           DEFAULT: "#1d453c",
           accent: "#dfeed1",
-          screen: "#441414",
+          screen: "#004f3c",
         },
       },
       lineHeight: {
