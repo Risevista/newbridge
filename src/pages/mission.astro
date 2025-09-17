@@ -149,11 +149,11 @@ import Consultant1 from '../assets/img/member2.webp';
   </div>
 </section>
 
-  <section class="w-full flex flex-col items-center bg-primary-back text-primary py-16 md:py-24 px-4 md:px-0 relative" id="message">
+  <section class="w-full flex flex-col items-center bg-primary-back text-primary py-20 md:py-24 px-4 md:px-0 relative" id="message">
       <div class="section-heading">MESSAGE</div>
       <div class="w-full max-w-6xl flex flex-col gap-8">
         <!-- Title -->
-        <div class="mb-4 md:mb-12">
+        <div class="mb-4 md:mb-12 pt-8 md:pt-0">
           <div class="flex items-center mb-1">
             <div class="black-bar mr-6"></div>
                 <p class="text-sm text-secondary tracking-wider font-serif">代表者挨拶</p>
@@ -189,11 +189,11 @@ import Consultant1 from '../assets/img/member2.webp';
       </div>
     </section>
     
-    <section class="w-full flex flex-col items-center bg-primary-back text-primary py-16 md:py-24 px-4 md:px-0 relative" id="consultants">
+    <section class="w-full flex flex-col items-center bg-primary-back text-primary py-20 md:py-24 px-4 md:px-0 relative" id="consultants">
       <div class="section-heading">CONSULTANTS</div>
       <div class="w-full max-w-6xl flex flex-col gap-8">
         <!-- Title -->
-        <div class="mb-4 md:mb-12">
+        <div class="mb-4 md:mb-12 pt-8 md:pt-0">
           <div class="flex items-center mb-1">
             <div class="black-bar mr-6"></div>
             <p class="text-sm text-secondary tracking-wider font-serif">コンサルタント紹介</p>
@@ -284,6 +284,11 @@ import Consultant1 from '../assets/img/member2.webp';
     bottom: 2rem;
     right: 1rem;
     font-size: 2.25rem;
+  }
+  
+  /* スマホでのスクロール時のオフセット調整 */
+  #message, #consultants {
+    scroll-margin-top: 80px;
   }
 }
 
