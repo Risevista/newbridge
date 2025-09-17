@@ -54,9 +54,6 @@ function markdownToHtml(markdown: string): string {
             day: 'numeric'
           })}
         </time>
-        {post.data.author && (
-          <span class="ml-4">著者: {post.data.author}</span>
-        )}
       </div>
       {post.data.tags && post.data.tags.length > 0 && (
         <div class="flex flex-wrap gap-2 mb-6">
