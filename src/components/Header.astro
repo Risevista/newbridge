@@ -135,7 +135,7 @@ const navItems = [
     <div id="mobile-menu" class="md:hidden hidden bg-primary-back bg-opacity-95 fixed top-[80px] left-0 w-full z-[10000] transform transition-transform duration-300 ease-in-out -translate-y-full shadow-lg">
       <ul class="flex flex-col text-[#0C223F] text-xs font-light max-h-[70vh] overflow-y-auto">
         {navItems.map((item, itemIndex) => (
-          <li class="border-b border-gray-700 last:border-b-0">
+          <li>
             <div class="flex items-center justify-between px-6 py-4">
               <a href={item.href} class="nav-link flex-1 text-[#0C223F] hover:text-gray-300">
                 {item.text}
@@ -152,9 +152,9 @@ const navItems = [
               )}
             </div>
             {item.submenu && (
-              <ul id={`submenu-${itemIndex}`} class="submenu hidden bg-gray-100">
+              <ul id={`submenu-${itemIndex}`} class="submenu hidden bg-primary-back">
                 {item.submenu.map((subItem) => (
-                  <li class="border-b border-gray-600 last:border-b-0">
+                  <li>
                     <a 
                       href={subItem.href} 
                       class="block px-8 py-3 text-primary hover:text-primary hover:bg-gray-200 text-xs transition-colors"
@@ -286,7 +286,6 @@ const navItems = [
       .nav-link {
         position: relative;
         display: inline-block;
-        padding-bottom: 4px;
         text-decoration: none;
         transition: color 0.3s ease;
       }
@@ -334,6 +333,46 @@ const navItems = [
       
       .submenu:not(.hidden) {
         max-height: 300px;
+      }
+
+      /* モバイルメニューのborderを中央に配置 */
+      #mobile-menu li {
+        position: relative;
+      }
+      
+      #mobile-menu li::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: calc(100% - 48px); /* px-6の左右24pxずつを引く */
+        height: 1px;
+        background-color: #d1d5db; /* border-gray-300 */
+      }
+      
+      #mobile-menu li:last-child::after {
+        display: none;
+      }
+
+      /* サブメニューのborderも中央に配置 */
+      .submenu li {
+        position: relative;
+      }
+      
+      .submenu li::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: calc(100% - 64px); /* px-8の左右32pxずつを引く */
+        height: 1px;
+        background-color: #d1d5db; /* border-gray-300 */
+      }
+      
+      .submenu li:last-child::after {
+        display: none;
       }
 
       /* 矢印の回転アニメーション */
