@@ -55,15 +55,7 @@ function markdownToHtml(markdown: string): string {
           })}
         </time>
       </div>
-      {post.data.tags && post.data.tags.length > 0 && (
-        <div class="flex flex-wrap gap-2 mb-6">
-          {post.data.tags.map((tag: string) => (
-            <span class="px-3 py-1 bg-secondary text-primary-back text-xs rounded-full">
-              {tag}
-            </span>
-          ))}
-        </div>
-      )}
+      
     </header>
 
     <!-- 記事本文 -->
