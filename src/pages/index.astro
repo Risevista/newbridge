@@ -77,7 +77,7 @@ const withExcerpt = posts
   <!-- 2) 楕円スライダー -->
   <div class="relative w-full flex-1 flex items-center justify-center">
     <div class="relative w-full h-[60vh]">
-      <div class="absolute inset-0 hidden">
+      <div class="absolute inset-0">
         <div class="ellipse-image-container">
           <div class="ellipse-wrapper">
             {heroImages.map((heroImg, index) => (
@@ -1022,33 +1022,194 @@ const withExcerpt = posts
 
     fadeCharTargets.forEach((el) => fadeCharsObserver.observe(el));
 
-    // Set --len and --i for each tspan to drive SVG draw/fill animation
-    const setupSvgAnimation = () => {
+    // SVGアニメーション即座発火版 - ラグ解消
+    const initializeSvgAnimationImmediate = () => {
       const tspans = document.querySelectorAll('.textcont tspan');
+      
+      if (tspans.length === 0) return;
+      
+      // strokeLength設定とアニメーション準備を同時実行
       tspans.forEach((t, i) => {
-        // @ts-ignore
-        const len = typeof t.getComputedTextLength === 'function' ? t.getComputedTextLength() : 900;
-        (t as HTMLElement).style.setProperty('--len', `${Math.max(60, Math.ceil(len))}`);
-        (t as HTMLElement).style.setProperty('--i', `${i}`);
+        const element = t as HTMLElement;
+        
+        // 初期状態設定
+        element.style.fill = 'transparent';
+        element.style.stroke = 'var(--ink)';
+        element.style.strokeWidth = window.innerWidth <= 768 ? '2px' : '1.5px';
+        
+        // strokeLength計算（最適化）
+        let len = 900; // デフォルト値
+        try {
+          if (typeof (t as any).getComputedTextLength === 'function') {
+            len = Math.max(60, Math.ceil((t as any).getComputedTextLength()));
+          }
+        } catch (e) {
+          // エラー時はデフォルト値を使用
+        }
+        
+        // CSS変数設定
+        element.style.setProperty('--len', `${len}`);
+        element.style.setProperty('--i', `${i}`);
+        
+        // dasharray設定
+        element.style.strokeDasharray = `${len}`;
+        element.style.strokeDashoffset = `${len}`;
       });
+      
+      console.log('SVG Animation initialized immediately');
     };
     
-    // Setup SVG animation immediately and on window load
-    setupSvgAnimation();
-    window.addEventListener('load', setupSvgAnimation);
+    // プリローダー対応の即座発火
+    const handlePreloaderAndStart = () => {
+      const preloader = document.getElementById('preloader');
+      const pageRoot = document.getElementById('page-root');
+      
+      // SVGを即座に初期化
+      initializeSvgAnimationImmediate();
+      
+      if (!preloader || !pageRoot) {
+        return; // プリローダーがない場合は初期化のみで終了
+      }
+      
+      // プリローダー完了の監視（ラグなし）
+      const checkPreloaderStatus = () => {
+        const preloaderStyle = getComputedStyle(preloader);
+        const pageRootStyle = getComputedStyle(pageRoot);
+        
+        if (preloaderStyle.display === 'none' || parseFloat(pageRootStyle.opacity) > 0.1) {
+          // プリローダー完了を検知したら即座にアニメーション開始
+          startSvgAnimation();
+          return true;
+        }
+        return false;
+      };
+      
+      // 高頻度チェック（ラグ最小化）
+      const intervalCheck = setInterval(() => {
+        if (checkPreloaderStatus()) {
+          clearInterval(intervalCheck);
+        }
+      }, 50); // 50ms間隔でチェック
+      
+      // MutationObserverも並行使用
+      const observer = new MutationObserver(() => {
+        if (checkPreloaderStatus()) {
+          clearInterval(intervalCheck);
+          observer.disconnect();
+        }
+      });
+      
+      observer.observe(preloader, { attributes: true, attributeFilter: ['style'] });
+      observer.observe(pageRoot, { attributes: true, attributeFilter: ['style'] });
+      
+      // 最大3秒でフォールバック
+      setTimeout(() => {
+        clearInterval(intervalCheck);
+        observer.disconnect();
+        startSvgAnimation();
+      }, 3000);
+    };
     
-    // Force restart animation on mobile for better visibility
+    // アニメーション開始（ラグなし）
+    const startSvgAnimation = () => {
+      const tspans = document.querySelectorAll('.textcont tspan');
+      
+      // アニメーションが既に動いているかチェック
+      const isAnimating = Array.from(tspans).some(t => {
+        const style = getComputedStyle(t as Element);
+        return style.animationName !== 'none' && style.animationPlayState === 'running';
+      });
+      
+      if (isAnimating) {
+        return; // 既にアニメーション中なら何もしない
+      }
+      
+      tspans.forEach((t) => {
+        const element = t as HTMLElement;
+        
+        // アニメーションリセット（一瞬）
+        element.style.animation = 'none';
+        element.offsetHeight; // 強制リフロー
+        
+        // アニメーション再開（即座）
+        element.style.animation = '';
+      });
+      
+      console.log('SVG Animation started immediately');
+    };
+    
+    // Intersection Observer（最適化済み）
+    const setupIntersectionObserver = () => {
+      const heroElements = document.querySelectorAll('.hero-svg-headline, section[class*="hero"]');
+      
+      if (heroElements.length === 0) return;
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // 遅延なしで即座にアニメーション開始
+            startSvgAnimation();
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.1, // 閾値を下げて早期発火
+        rootMargin: '20px 0px -20px 0px' // マージンを調整
+      });
+      
+      heroElements.forEach(el => observer.observe(el));
+    };
+    
+    // モバイル最適化
     if (window.innerWidth <= 768) {
+      // モバイル用CSS調整（即座適用）
+      const style = document.createElement('style');
+      style.textContent = `
+        @media (max-width: 768px) {
+          :root {
+            --draw: 0.6s !important;
+            --step: 0.06s !important;
+          }
+          .textcont tspan {
+            stroke-width: 2px !important;
+          }
+        }
+      `;
+      document.head.appendChild(style);
+      
+      console.log('Mobile optimizations applied');
+    }
+    
+    // 実行開始
+    handlePreloaderAndStart();
+    setupIntersectionObserver();
+    
+    // 即座フォールバック（1秒後）
+    setTimeout(() => {
+      startSvgAnimation();
+    }, 1000);
+    
+    // window.load での最終チェック（ラグなし）
+    window.addEventListener('load', () => {
       setTimeout(() => {
         const tspans = document.querySelectorAll('.textcont tspan');
-        tspans.forEach((t) => {
-          const element = t as HTMLElement;
-          element.style.animation = 'none';
-          element.offsetHeight; // Trigger reflow
-          element.style.animation = '';
+        const hasActiveAnimation = Array.from(tspans).some(t => {
+          const style = getComputedStyle(t as Element);
+          return style.animationName !== 'none';
         });
-      }, 100);
-    }
+        
+        if (!hasActiveAnimation) {
+          console.log('Final fallback: restarting SVG animation');
+          
+          tspans.forEach((t) => {
+            const element = t as HTMLElement;
+            element.style.animation = 'none';
+            element.offsetHeight;
+            element.style.animation = '';
+          });
+        }
+      }, 100); // 100msの最小遅延のみ
+    });
     // Preload gate: wait for critical images (data-preload) before reveal
     const preloader = document.getElementById('preloader');
     const pageRoot = document.getElementById('page-root');
