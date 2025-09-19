@@ -710,10 +710,23 @@ const withExcerpt = posts
     align-items: center; justify-content: center;
     gap: 4px; z-index: 10;
   }
+  @media (max-width: 768px){
+    .hero-svg-headline{
+      justify-content: flex-start;
+      padding-top: 20px;
+    }
+  }
   .textcont{ width: min(92vw, 900px); height: auto; display: block; }
   .font-min{
     font-family: "tsukushi", "Noto Serif JP","Hiragino Mincho ProN","Yu Mincho",serif;
     font-weight: 500; font-size: 80px; letter-spacing: .08em;
+  }
+  @media (max-width: 768px){
+    .textcont{ 
+      width: 100vw; 
+      padding: 0 2vw;
+      box-sizing: border-box;
+    }
   }
   .textcont tspan{
     fill: transparent; stroke: var(--ink); stroke-width: 1.5px;
@@ -725,7 +738,7 @@ const withExcerpt = posts
   @keyframes draw{ to{ stroke-dashoffset: 0; } }
   @keyframes fillIn{ to{ fill: var(--fill); stroke-width: 0; } }
   @media (max-width: 768px){
-    .font-min{ font-size: 36px; }
+    .font-min{ font-size: clamp(50px, 12vw, 100px); }
     .textcont tspan{ stroke-width: 1.5px; }
   }
   .mcap img{ width: 260px; height: auto; display: block; }
