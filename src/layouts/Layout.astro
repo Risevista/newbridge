@@ -108,6 +108,24 @@ const { title } = Astro.props;
 <!-- Removed duplicate Typekit loader script; using single loader in <head> -->
 
 <script>
+  // Global observer to toggle .section-heading visibility across pages
+  document.addEventListener('DOMContentLoaded', () => {
+    const sectionHeadings = document.querySelectorAll('.section-heading');
+    if (sectionHeadings.length === 0) return;
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        } else {
+          entry.target.classList.remove('visible');
+        }
+      });
+    }, { threshold: 0.05, rootMargin: '0px 0px -20% 0px' });
+    sectionHeadings.forEach((el) => observer.observe(el));
+  });
+</script>
+
+<script>
   // TypeScript型定義を追加
   declare global {
     interface Window {

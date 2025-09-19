@@ -24,7 +24,7 @@ import Quotation from '../assets/img/quotation.webp';
 <section class="relative w-full bg-primary-back overflow-hidden py-12 text-primary">
   <!-- メインコンテンツを一つのコンテナにまとめる -->
   <div class="relative z-10 w-full mx-auto flex flex-col items-center bg-primary-back px-2">
-    <h2 class="text-xl md:text-4xl font-bold mt-24 md:mt-32 mb-8 text-center">こんな<span class="text-primary">お悩み</span>ありませんか？</h2>
+    <h2 class="text-[20px] md:text-4xl font-extrabold mt-24 md:mt-32 mb-8 text-center">こんな<span class="text-primary">お悩み</span>ありませんか？</h2>
     
     <!-- 円形ボックス -->
     <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 text-black mb-8">
@@ -108,14 +108,14 @@ import Quotation from '../assets/img/quotation.webp';
 </section>
 
   <!-- よくあるイメージセクション -->
-  <section class="w-full bg-primary-back py-10">
+  <section class="w-full bg-primary-back py-4">
     <div class="max-w-screen-md mx-auto px-4">
-      <h2 class="text-base md:text-[1.5rem] font-bold text-center mb-10 text-[#d23f3f] fade-in-text">
+      <h2 class="text-[20px] md:text-[24px] font-extrabold text-center mb-10 text-[#d23f3f] fade-in-text">
         不動産投資のよくあるイメージが・・・
       </h2>
 
       <ul class="grid gap-8 grid-cols-2">
-        <li class="problem_voice relative bg-primary-back border border-primary rounded-[10px] py-8 px-4 text-center font-bold shadow-md fade-in-text" style="--delay: 0.2s;">
+        <li class="problem_voice relative bg-primary-back border border-primary rounded-[10px] py-4 md:py-8 px-4 text-center font-bold shadow-md fade-in-text" style="--delay: 0.2s;">
           <Image
           src={Quotation}
           alt="quotation"
@@ -183,7 +183,7 @@ import Quotation from '../assets/img/quotation.webp';
         <small class="text-primary text-[12px] md:text-[16px] font-extrabold mb-4 fade-in-text" style="--delay: 0.2s;">＼不動産投資のパートナーとしてトータルサポート／</small>
         <h2 class="text-[20px] md:text-3xl font-bold text-center mb-12 tracking-wider fade-in-text" style="--delay: 0.4s;"><span class="text-primary">RISE VISTA</span>がサポートする内容</h2>
 
-        <div class="grid grid-cols-2 md:grid-cols-3 gap-10 text-center text-[16px] md:text-[20px] text-secondary">
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-10 text-center text-[16px] md:text-[20px] text-primary">
           <!-- カード 1 -->
           <div class="flex flex-col items-center">
             <Image
@@ -193,7 +193,7 @@ import Quotation from '../assets/img/quotation.webp';
               loading="lazy"
               decoding="async"
             />
-            <p><span class="text-primary font-bold border-b-2 border-yellow-300">収益性の高い物件</span>を厳選してご紹介</p>
+            <p><span class="text-secondary font-bold border-b-2 border-yellow-300">収益性の高い物件</span>を厳選してご紹介</p>
           </div>
 
           <!-- カード 2 -->
@@ -205,7 +205,7 @@ import Quotation from '../assets/img/quotation.webp';
               loading="lazy"
               decoding="async"
             />
-            <p><span class="text-primary font-bold border-b-2 border-yellow-300">出口戦略</span>のサポート</p>
+            <p><span class="text-secondary font-bold border-b-2 border-yellow-300">出口戦略</span>のサポート</p>
           </div>
 
           <!-- カード 3 -->
@@ -217,7 +217,7 @@ import Quotation from '../assets/img/quotation.webp';
               loading="lazy"
               decoding="async"
             />
-            <p><span class="text-primary font-bold border-b-2 border-yellow-300">物件</span>の運用支援</p>
+            <p><span class="text-secondary font-bold border-b-2 border-yellow-300">物件</span>の運用支援</p>
           </div>
 
           <!-- カード 4 -->
@@ -229,7 +229,7 @@ import Quotation from '../assets/img/quotation.webp';
               loading="lazy"
               decoding="async"
             />
-            <p><span class="text-primary font-bold border-b-2 border-yellow-300">金融機関</span>のご紹介</p>
+            <p><span class="text-secondary font-bold border-b-2 border-yellow-300">金融機関</span>のご紹介</p>
           </div>
 
           <!-- カード 5 -->
@@ -241,7 +241,7 @@ import Quotation from '../assets/img/quotation.webp';
               loading="lazy"
               decoding="async"
             />
-            <p><span class="text-primary font-bold border-b-2 border-yellow-300">税金関連や手続き</span><br/>のトータルサポート</p>
+            <p><span class="text-secondary font-bold border-b-2 border-yellow-300">税金関連や手続き</span><br/>のトータルサポート</p>
           </div>
 
           <!-- カード 6 -->
@@ -253,7 +253,7 @@ import Quotation from '../assets/img/quotation.webp';
               loading="lazy"
               decoding="async"
             />
-            <p><span class="text-primary font-bold border-b-2 border-yellow-300">資産全体</span>を見据えた<br />コンサルティング</p>
+            <p><span class="text-secondary font-bold border-b-2 border-yellow-300">資産全体</span>を見据えた<br />コンサルティング</p>
           </div>
         </div>
       </div>
@@ -416,7 +416,7 @@ import Quotation from '../assets/img/quotation.webp';
     <!-- CTA ボタン（オプション） -->
     <div class="mt-10">
       <a href="/contact">
-      <button class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 text-sm md:text-base">
+      <button class="bg-green-900 hover:bg-green-800 text-white py-4 px-8 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 text-sm md:text-base">
         無料相談を申し込む
       </button>
     </a></div>
