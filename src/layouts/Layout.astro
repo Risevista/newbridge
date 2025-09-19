@@ -59,7 +59,7 @@ const { title } = Astro.props;
               scriptTimeout: 3000,
               async: true
             },
-            h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+            h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=(this as any).readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{(window as any).Typekit.load(config)}catch(e){}};s?.parentNode?.insertBefore(tk,s)
           })(document);
         </script>
         <slot name="head" />
@@ -261,7 +261,7 @@ function initAnchorLinks() {
 
     // Use Lenis to scroll to element with smooth options
     if (lenis) {
-      const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+      const targetPosition = targetElement.getBoundingClientRect().top + window.scrollY;
       const headerOffset = 80; // Header height
       lenis.scrollTo(targetPosition - headerOffset, {
         duration: 1.5, // より長いdurationでスムーズに
@@ -289,12 +289,12 @@ function smoothScrollTo(target: number | string | Element, options?: {
     } else if (typeof target === 'string') {
       const element = document.querySelector(target);
       if (element) {
-        scrollTarget = element.getBoundingClientRect().top + window.pageYOffset;
+        scrollTarget = element.getBoundingClientRect().top + window.scrollY;
       } else {
         return;
       }
     } else {
-      scrollTarget = target.getBoundingClientRect().top + window.pageYOffset;
+      scrollTarget = target.getBoundingClientRect().top + window.scrollY;
     }
     
     // オフセットを適用
