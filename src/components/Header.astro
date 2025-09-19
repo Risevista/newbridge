@@ -22,7 +22,7 @@ const navItems = [
     text: 'COMPANY',
     submenu: [
       { href: '/#company', text: '会社概要' },
-      { href: '/#company', text: '取扱金融機関' },
+      // { href: '/#company', text: '取扱金融機関' },
     ]
   },
   { 
@@ -130,7 +130,7 @@ const navItems = [
 
     <!-- モバイルメニュー -->
     <div id="mobile-menu" class="md:hidden hidden bg-primary-back bg-opacity-95 fixed top-[80px] left-0 w-full z-[10000] transform transition-transform duration-300 ease-in-out -translate-y-full shadow-lg">
-      <ul class="flex flex-col text-[#0C223F] text-xs font-light max-h-[70vh] overflow-y-auto">
+      <ul class="flex flex-col text-[#0C223F] text-sm font-light max-h-[70vh] overflow-y-auto">
         {navItems.map((item, itemIndex) => (
           <li>
             <div class="flex items-center justify-between px-6 py-4">
@@ -154,7 +154,7 @@ const navItems = [
                   <li>
                     <a 
                       href={subItem.href} 
-                      class="block px-8 py-3 text-primary hover:text-primary hover:bg-gray-200 text-xs transition-colors"
+                      class="block px-8 py-3 text-primary hover:text-primary hover:bg-gray-200 text-sm transition-colors"
                     >
                       {subItem.text}
                     </a>
