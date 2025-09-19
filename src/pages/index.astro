@@ -702,8 +702,8 @@ const withExcerpt = posts
   }
   @media (max-width: 768px){
     :root{
-      --draw: 0.8s;   /* スマホでは少し速く */
-      --step: .08s;   /* 文字間ディレイも短く */
+      --draw: 1.2s;   /* スマホでもゆっくりと */
+      --step: .15s;   /* 文字間ディレイも長く */
     }
   }
   @media (prefers-reduced-motion: reduce){
@@ -1035,7 +1035,7 @@ const withExcerpt = posts
         // 初期状態設定
         element.style.fill = 'transparent';
         element.style.stroke = 'var(--ink)';
-        element.style.strokeWidth = window.innerWidth <= 768 ? '2px' : '1.5px';
+        element.style.strokeWidth = window.innerWidth <= 768 ? '1.2px' : '1.5px';
         
         // strokeLength計算（最適化）
         let len = 900; // デフォルト値
@@ -1167,11 +1167,11 @@ const withExcerpt = posts
       style.textContent = `
         @media (max-width: 768px) {
           :root {
-            --draw: 0.6s !important;
-            --step: 0.06s !important;
+            --draw: 1.2s !important;
+            --step: 0.15s !important;
           }
           .textcont tspan {
-            stroke-width: 2px !important;
+            stroke-width: 1.2px !important;
           }
         }
       `;
