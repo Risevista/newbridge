@@ -262,7 +262,9 @@ function initAnchorLinks() {
     // Use Lenis to scroll to element with smooth options
     if (lenis) {
       const targetPosition = targetElement.getBoundingClientRect().top + window.scrollY;
-      const headerOffset = 80; // Header height
+      const rootStyles = getComputedStyle(document.documentElement);
+      const cssVar = rootStyles.getPropertyValue('--header-offset').trim();
+      const headerOffset = parseInt(cssVar.replace('px','')) || (window.innerWidth <= 768 ? 72 : 96);
       lenis.scrollTo(targetPosition - headerOffset, {
         duration: 1.5, // より長いdurationでスムーズに
         easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // カスタムイージング
@@ -270,7 +272,12 @@ function initAnchorLinks() {
       });
     } else {
       // Fallback to native smooth scroll
-      targetElement.scrollIntoView({ behavior: 'smooth' });
+      const rootStyles = getComputedStyle(document.documentElement);
+      const cssVar = rootStyles.getPropertyValue('--header-offset').trim();
+      const headerOffset = parseInt(cssVar.replace('px','')) || (window.innerWidth <= 768 ? 72 : 96);
+      targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      // 直後にオフセット分だけ上に戻す
+      setTimeout(() => { window.scrollBy({ top: -headerOffset, left: 0, behavior: 'instant' as ScrollBehavior }); }, 0);
     }
   }, { passive: false, capture: true });
 }
@@ -297,10 +304,12 @@ function smoothScrollTo(target: number | string | Element, options?: {
       scrollTarget = target.getBoundingClientRect().top + window.scrollY;
     }
     
-    // オフセットを適用
-    if (options?.offset) {
-      scrollTarget -= options.offset;
-    }
+    // オフセットを適用（指定がなければヘッダー高さを使用）
+    const rootStyles = getComputedStyle(document.documentElement);
+    const cssVar = rootStyles.getPropertyValue('--header-offset').trim();
+    const defaultOffset = parseInt(cssVar.replace('px','')) || (window.innerWidth <= 768 ? 72 : 96);
+    const offsetToUse = options?.offset ?? defaultOffset;
+    scrollTarget -= offsetToUse;
     
     lenis.scrollTo(scrollTarget, {
       duration: options?.duration || 1.5,
@@ -312,12 +321,23 @@ function smoothScrollTo(target: number | string | Element, options?: {
     if (typeof target === 'string') {
       const element = document.querySelector(target);
       if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
+        const rootStyles = getComputedStyle(document.documentElement);
+        const cssVar = rootStyles.getPropertyValue('--header-offset').trim();
+        const headerOffset = parseInt(cssVar.replace('px','')) || (window.innerWidth <= 768 ? 72 : 96);
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        setTimeout(() => { window.scrollBy({ top: -headerOffset, left: 0, behavior: 'instant' as ScrollBehavior }); }, 0);
       }
     } else if (typeof target === 'number') {
-      window.scrollTo({ top: target, behavior: 'smooth' });
+      const rootStyles = getComputedStyle(document.documentElement);
+      const cssVar = rootStyles.getPropertyValue('--header-offset').trim();
+      const headerOffset = parseInt(cssVar.replace('px','')) || (window.innerWidth <= 768 ? 72 : 96);
+      window.scrollTo({ top: target - headerOffset, behavior: 'smooth' });
     } else {
-      target.scrollIntoView({ behavior: 'smooth' });
+      const rootStyles = getComputedStyle(document.documentElement);
+      const cssVar = rootStyles.getPropertyValue('--header-offset').trim();
+      const headerOffset = parseInt(cssVar.replace('px','')) || (window.innerWidth <= 768 ? 72 : 96);
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      setTimeout(() => { window.scrollBy({ top: -headerOffset, left: 0, behavior: 'instant' as ScrollBehavior }); }, 0);
     }
   }
 }

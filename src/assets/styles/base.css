@@ -10,6 +10,18 @@ html {
     scroll-behavior: auto;
 }
 
+/* 固定ヘッダー分のオフセット（JSと共有） */
+:root {
+  --header-offset: 96px; /* desktop default */
+}
+@media (max-width: 768px) {
+  :root { --header-offset: 72px; }
+}
+/* ネイティブスクロールのアンカー位置補正 */
+html {
+  scroll-padding-top: var(--header-offset);
+}
+
 html {
   overflow: visible !important;
 }
