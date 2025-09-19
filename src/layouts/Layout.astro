@@ -31,6 +31,8 @@ const { title } = Astro.props;
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
         />
+        <!-- Lenis Smooth Scroll -->
+        <script src="https://unpkg.com/lenis@1.0.45/dist/lenis.min.js"></script>
         <link
             rel="apple-touch-icon"
             sizes="180x180"
@@ -57,7 +59,7 @@ const { title } = Astro.props;
               scriptTimeout: 3000,
               async: true
             },
-            h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=(tk as any).onreadystatechange=function(){a=(this as any).readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{(window as any).Typekit.load(config)}catch(e){}};s?.parentNode?.insertBefore(tk,s)
+            h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
           })(document);
         </script>
         <slot name="head" />
@@ -75,13 +77,67 @@ const { title } = Astro.props;
 </html>
 
 <script>
-  (function(d) {
-    var config = {
+  (function(document) {
+    // Typekit configuration
+    const config = {
       kitId: 'zkl0ddn',
       scriptTimeout: 3000,
       async: true
-    },
-    h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=(tk as any).onreadystatechange=function(){a=(this as any).readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{(window as any).Typekit.load(config)}catch(e){}};s?.parentNode?.insertBefore(tk,s)
+    };
+
+    // Get document element and first script tag
+    const htmlElement = document.documentElement;
+    const firstScript = document.getElementsByTagName('script')[0];
+
+    // Add loading class to html element
+    htmlElement.className += ' wf-loading';
+
+    // Set timeout to add inactive class if script fails to load
+    const timeout = setTimeout(function() {
+      htmlElement.className = htmlElement.className.replace(/\bwf-loading\b/g, '') + ' wf-inactive';
+    }, config.scriptTimeout);
+
+    // Create Typekit script element
+    const typekitScript = document.createElement('script');
+    typekitScript.src = 'https://use.typekit.net/' + config.kitId + '.js';
+    typekitScript.async = config.async;
+
+    // Track if script has already loaded
+    let scriptLoaded = false;
+
+    // Handle script load events (both modern and legacy)
+    const handleLoad = function() {
+      // Skip if already loaded
+      if (scriptLoaded) {
+        return;
+      }
+      
+      scriptLoaded = true;
+      clearTimeout(timeout);
+      
+      try {
+        // Load Typekit with configuration
+        window.Typekit.load(config);
+      } catch (error) {
+        console.error('Typekit loading error:', error);
+      }
+    };
+
+    // Modern browsers
+    typekitScript.onload = handleLoad;
+    
+    // Legacy IE support
+    (typekitScript as any).onreadystatechange = function(this: any) {
+      const readyState = this.readyState;
+      if (readyState === 'complete' || readyState === 'loaded') {
+        handleLoad();
+      }
+    };
+
+    // Insert script before the first script tag
+    if (firstScript && firstScript.parentNode) {
+      firstScript.parentNode.insertBefore(typekitScript, firstScript);
+    }
   })(document);
 </script>
 
@@ -89,9 +145,36 @@ const { title } = Astro.props;
   // TypeScript型定義を追加
   declare global {
     interface Window {
-      Lenis: any;
+      Lenis: {
+        new (config: {
+          duration: number;
+          easing: (t: number) => number;
+          smooth: boolean;
+          smoothWheel: boolean;
+          smoothTouch: boolean;
+          lerp?: number;
+          infinite?: boolean;
+        }): {
+          raf: (time: number) => void;
+          scrollTo: (target: number | string | Element, options?: {
+            duration?: number;
+            easing?: (t: number) => number;
+            force?: boolean;
+          }) => void;
+          destroy: () => void;
+        };
+      };
+      smoothScrollTo: (target: number | string | Element, options?: {
+        duration?: number;
+        easing?: (t: number) => number;
+        offset?: number;
+      }) => void;
       Typekit: {
-        load: (config: any) => void;
+        load: (config: {
+          kitId: string;
+          scriptTimeout: number;
+          async: boolean;
+        }) => void;
       };
     }
   }
@@ -101,13 +184,6 @@ const { title } = Astro.props;
     const scrollTop = window.scrollY || 0;
     document.documentElement.style.setProperty('--scroll-y', `${scrollTop}px`);
 
-    // チケットボタン表示制御
-    const reserveBtn = document.querySelector('.reserve-btn');
-    if (scrollTop > 50) {
-      reserveBtn?.classList.add('visible');
-    } else {
-      reserveBtn?.classList.remove('visible');
-    }
 
     // 一度でもスクロールしたら visibility を visible に
     if (document.documentElement.style.getPropertyValue('--visibility-on-scroll') !== 'visible') {
@@ -131,20 +207,161 @@ const { title } = Astro.props;
       mobileMenu?.classList.remove('active');
     });
   });
+
+// Lenis Smooth Scroll Implementation
+let lenis: any = null;
+
+// Initialize Lenis smooth scroll
+function initLenis() {
+  // Check if Lenis is available
+  if (typeof window.Lenis === 'undefined') {
+    console.warn('Lenis is not loaded, falling back to native smooth scroll');
+    return;
+  }
+
+  // Initialize Lenis with configuration
+  lenis = new window.Lenis({
+    duration: 1.2,
+    easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    smooth: true,
+    smoothWheel: true,
+    smoothTouch: true,
+    // よりスムーズなクリック時の動きのための設定
+    lerp: 0.07, // より滑らかな補間
+    infinite: false, // 無限スクロールを無効化
+  });
+
+  // Animation frame loop
+  function raf(time: number) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+  }
+  requestAnimationFrame(raf);
+
+  // Handle anchor links
+  initAnchorLinks();
+}
+
+// Initialize anchor link handling
+function initAnchorLinks() {
+  document.addEventListener('click', (event) => {
+    const target = (event.target as Element).closest('a[href^="#"]');
+    if (!target) return;
+
+    const href = target.getAttribute('href');
+    if (!href || href === '#') return;
+
+    const targetElement = document.querySelector(href);
+    if (!targetElement) return;
+
+    // Prevent default behavior
+    event.preventDefault();
+    event.stopPropagation();
+    event.stopImmediatePropagation();
+
+    // Use Lenis to scroll to element with smooth options
+    if (lenis) {
+      const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+      const headerOffset = 80; // Header height
+      lenis.scrollTo(targetPosition - headerOffset, {
+        duration: 1.5, // より長いdurationでスムーズに
+        easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // カスタムイージング
+        force: true, // 強制的にスクロール
+      });
+    } else {
+      // Fallback to native smooth scroll
+      targetElement.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, { passive: false, capture: true });
+}
+
+// 汎用的なスムーススクロール関数
+function smoothScrollTo(target: number | string | Element, options?: {
+  duration?: number;
+  easing?: (t: number) => number;
+  offset?: number;
+}) {
+  if (lenis) {
+    let scrollTarget: number;
+    
+    if (typeof target === 'number') {
+      scrollTarget = target;
+    } else if (typeof target === 'string') {
+      const element = document.querySelector(target);
+      if (element) {
+        scrollTarget = element.getBoundingClientRect().top + window.pageYOffset;
+      } else {
+        return;
+      }
+    } else {
+      scrollTarget = target.getBoundingClientRect().top + window.pageYOffset;
+    }
+    
+    // オフセットを適用
+    if (options?.offset) {
+      scrollTarget -= options.offset;
+    }
+    
+    lenis.scrollTo(scrollTarget, {
+      duration: options?.duration || 1.5,
+      easing: options?.easing || ((t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t))),
+      force: true,
+    });
+  } else {
+    // フォールバック
+    if (typeof target === 'string') {
+      const element = document.querySelector(target);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else if (typeof target === 'number') {
+      window.scrollTo({ top: target, behavior: 'smooth' });
+    } else {
+      target.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+}
+
+// グローバルに公開（他のスクリプトから使用可能）
+(window as any).smoothScrollTo = smoothScrollTo;
+
+// 初期化処理
+document.addEventListener('DOMContentLoaded', () => {
+  // Initialize Lenis smooth scroll
+  initLenis();
+
+  // スクロール時の処理
+  document.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY || 0;
+    document.documentElement.style.setProperty('--scroll-y', `${scrollTop}px`);
+
+
+    // 一度でもスクロールしたら visibility を visible に
+    if (document.documentElement.style.getPropertyValue('--visibility-on-scroll') !== 'visible') {
+      document.documentElement.style.setProperty('--visibility-on-scroll', 'visible');
+    }
+  });
+
+  // モバイルメニュー制御
+  const mobileMenuButton = document.querySelector('.mobile-menu-button');
+  const mobileMenu = document.querySelector('.mobile-menu');
+
+  mobileMenuButton?.addEventListener('click', () => {
+    mobileMenu?.classList.toggle('hidden');
+    mobileMenu?.classList.toggle('active');
+  });
+
+  const mobileMenuLinks = document.querySelectorAll('.mobile-menu a');
+  mobileMenuLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu?.classList.add('hidden');
+      mobileMenu?.classList.remove('active');
+    });
+  });
+});
 </script>
 
 <style>
-.reserve-btn {
-  opacity: 0;
-  pointer-events: none;        /* クリック無効化 */
-  transform: translateY(10px); /* ふわっと上がる演出 */
-  transition: opacity 0.3s ease, transform 0.3s ease;
-}
-.reserve-btn.visible {
-  opacity: 1;
-  pointer-events: auto;
-  transform: translateY(0);
-}
 
 .sticky-section {
   border: 2px solid red;

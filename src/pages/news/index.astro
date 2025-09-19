@@ -2,8 +2,8 @@
 import { getCollection } from "astro:content";
 import Layout from '../../layouts/Layout.astro';
 
-// ブログ記事の取得とサマリー生成
-const posts = await getCollection("blog");
+// ニュース記事の取得とサマリー生成
+const posts = await getCollection("news");
 // @ts-ignore
 const withExcerpt = posts
   .filter((post: any) => !post.data.draft) // 下書きを除外
@@ -26,7 +26,7 @@ const withExcerpt = posts
   });
 ---
 
-<Layout title="ブログ - 株式会社RISE VISTA">
+<Layout title="ニュース - 株式会社RISE VISTA">
   <div class="bg-primary-back">
     <!-- ヘッダーセクション -->
     <section class="pt-48 bg-primary-back grid-lines">
@@ -36,23 +36,23 @@ const withExcerpt = posts
             <div class="black-bar mr-4"></div>
             <p class="text-sm md:text-base tracking-wider">最新情報</p>
           </div>
-          <h1 class="text-6xl font-bold tracking-widest font-tsukushi text-primary">BLOG</h1>
+          <h1 class="text-6xl font-bold tracking-widest font-tsukushi text-primary">NEWS</h1>
         </div>
       </div>
     </section>
 
-    <!-- ブログ記事一覧 -->
+    <!-- ニュース記事一覧 -->
     <section class="py-24 bg-primary-back">
       <div class="max-w-6xl mx-auto px-4">
         {withExcerpt.length > 0 ? (
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {withExcerpt.map((post: any, index: number) => (
               <article class="bg-white rounded-lg shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
-                <a href={`/blog/${post.slug}/`} class="block h-full">
+                <a href={`/news/${post.slug}/`} class="block h-full">
                   <div class="p-6 h-full flex flex-col">
                     <div class="mb-4">
                       <span class="text-xs tracking-wide font-tsukushi text-primary border-t border-primary-back pt-2 inline-block">
-                        BLOG <span class="text-primary">#{String(index + 1).padStart(2, '0')}</span>
+                        NEWS <span class="text-primary">#{String(index + 1).padStart(2, '0')}</span>
                       </span>
                     </div>
                     <h2 class="text-lg font-bold leading-relaxed font-tsukushi text-secondary mb-3 line-clamp-2">
@@ -101,7 +101,7 @@ const withExcerpt = posts
 </Layout>
 
 <style>
-  /* Line clamp utilities for blog content */
+  /* Line clamp utilities for news content */
   .line-clamp-2 {
     display: -webkit-box;
     -webkit-line-clamp: 2;

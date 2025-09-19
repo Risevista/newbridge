@@ -1,0 +1,207 @@
+---
+import SectionTitle from './SectionTitle.astro';
+
+// Values component data
+const values = [
+    {
+      id: 'honest',
+      label: 'Honest',
+      title: '学びの姿勢',
+      description: '私たちは、成長できる「環境」にこだわりす。常に学び続け、お互いを高めあうことでお客様に最高のパフォーマンスを提供し続けます。成長意欲を持ち、学びぬくプロフェッショナル集団であり続けます。',
+      quote: '「昨日の自分を超える」'
+    },
+    {
+      id: 'trust',
+      label: 'Trust',
+      title: '信頼できる人柄',
+      description: '素直な姿勢と謙虚な心を持ち、明るく前向きな行動で周囲に笑顔と安心を届ける。人として信頼される魅力を持つ人材を育て、ともに成長します。',
+      quote: '「素直に 謙虚に 前向きに」'
+    },
+    {
+      id: 'speed',
+      label: 'Speed',
+      title: '迅速な対応力',
+      description: '即時対応・即時行動・即時改善こそがプロフェッショナルの使命。相手の気持ちや思いを汲み取り、信頼関係を築く。迅速かつ的確な行動で答え続ける集団であり続けます。',
+      quote: '「すぐ動く すぐ応える すぐ改善する」'
+    },
+    {
+      id: 'growth',
+      label: 'Growth',
+      title: '持続的な成長',
+      description: '変化を恐れず、常に新しいことに挑戦。失敗を恐れず、そこから学び、成長する。持続的な成長を通じて、お客様と社会に価値を提供し続けます。',
+      quote: '「挑戦し続ける 成長し続ける」'
+    }
+  ];
+  ---
+
+  <section class="w-full flex flex-col items-center bg-primary-back text-primary py-16 md:py-24 px-4 md:px-0 relative" id="values">
+    <div class="section-heading fade-in-text" style="--delay: .1s;">VALUES</div>
+    <div class="w-full max-w-6xl flex flex-col gap-8">
+      <SectionTitle title="VALUES" subtitle="４つの行動指針" />
+
+      <!-- Content Section -->
+      <div class="w-full md:w-2/3 ml-auto">
+        <div class="grid grid-rows-4 border-t border-primary border-b divide-y divide-primary">
+          {values.map((value, index) => (
+            <div class="flex flex-col md:flex-row items-stretch gap-4 md:gap-6 px-0 pt-6 md:pt-8 pb-6 md:pb-8">
+              <div class="w-full md:w-12 flex items-center justify-center">
+                <p class="whitespace-nowrap font-tsukushi">
+                  {value.label}
+                </p>
+              </div>
+              <div class="flex-1 flex items-center justify-center">
+                <h3 class="text-2xl md:text-4xl font-tsukushi text-secondary font-normal leading-tight text-center">
+                  {value.title}
+                </h3>
+              </div>
+              <div class="w-full md:w-1/2 flex flex-col justify-between md:pl-8">
+                <p class="mb-4 md:mb-6 font-tsukushi">
+                  {value.description}
+                </p>
+                <div class="w-full text-center text-secondary-screen font-tsukushi">
+                  {value.quote}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <style>
+  .black-bar {
+    width: 5vw;
+    min-width: 40px;
+    height: 0.5px;
+    background: #1d453c;
+    display: block;
+    border-radius: 1px;
+    align-self: center;
+  }
+
+  /* Animated border and divide lines */
+  .grid.border-t.border-primary.border-b.divide-y.divide-primary {
+    position: relative;
+    border-top: none;
+    border-bottom: none;
+  }
+
+  .grid.border-t.border-primary.border-b.divide-y.divide-primary > div {
+    border-top: none;
+  }
+
+  .grid.border-t.border-primary.border-b.divide-y.divide-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0.5px;
+    background: #1d453c;
+    transition: width 1s ease-out;
+    transition-delay: var(--delay, 0s);
+  }
+
+  .grid.border-t.border-primary.border-b.divide-y.divide-primary::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 0.5px;
+    background: #1d453c;
+    transition: width 1s ease-out;
+    transition-delay: var(--delay, 0.5s);
+  }
+
+  .grid.border-t.border-primary.border-b.divide-y.divide-primary.visible::before,
+  .grid.border-t.border-primary.border-b.divide-y.divide-primary.visible::after {
+    width: 100%;
+  }
+
+  /* Animate divide-y lines */
+  .grid.border-t.border-primary.border-b.divide-y.divide-primary > div {
+    position: relative;
+  }
+
+  .grid.border-t.border-primary.border-b.divide-y.divide-primary > div:nth-child(1)::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 0.5px;
+    background: #1d453c;
+    transition: width 1s ease-out;
+    transition-delay: var(--delay, 1s);
+  }
+
+  .grid.border-t.border-primary.border-b.divide-y.divide-primary > div:nth-child(2)::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 0.5px;
+    background: #1d453c;
+    transition: width 1s ease-out;
+    transition-delay: var(--delay, 1.3s);
+  }
+
+  .grid.border-t.border-primary.border-b.divide-y.divide-primary > div:nth-child(3)::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 0.5px;
+    background: #1d453c;
+    transition: width 1s ease-out;
+    transition-delay: var(--delay, 1.6s);
+  }
+
+  .grid.border-t.border-primary.border-b.divide-y.divide-primary.visible > div:nth-child(1)::after,
+  .grid.border-t.border-primary.border-b.divide-y.divide-primary.visible > div:nth-child(2)::after,
+  .grid.border-t.border-primary.border-b.divide-y.divide-primary.visible > div:nth-child(3)::after {
+    width: 100%;
+  }
+
+  .section-heading { position: absolute; bottom: 2rem; right: 2rem; font-size: 8rem; font-weight: bold; color: #00502f; opacity: 0; transition: opacity 0.8s ease-out; pointer-events: none; z-index: 1; letter-spacing: 0.2em; }
+  .section-heading.visible { opacity: 0.1; }
+
+  @media (max-width: 767px) {
+    .section-heading {
+      bottom: 2rem;
+      right: 1rem;
+      font-size: 2.25rem;
+    }
+    
+    /* スマホでのスクロール時のオフセット調整 */
+    #message, #consultants {
+      scroll-margin-top: 80px;
+    }
+  }
+  </style>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          } else {
+            entry.target.classList.remove('visible');
+          }
+        });
+      }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      });
+
+      // Handle grid border and divide animations
+      document.querySelectorAll('.grid.border-t.border-primary.border-b.divide-y.divide-primary').forEach((el) => {
+        observer.observe(el);
+      });
+    });
+  </script>

@@ -18,14 +18,15 @@ export default {
       },
       colors: {
         primary: {
-          DEFAULT: "#4b4e51",
+          DEFAULT: "#001722",
           hover: colors.gray[400],
-          back: "#D5EAD8",
+          back: "#d4e9e2",
         },
         secondary: {
-          DEFAULT: "#1d453c",
-          accent: "#dfeed1",
+          DEFAULT: "#C79D4F",
+          accent: "#C79D4F",
           screen: "#004f3c",
+          gray: "#D2D7DA",
         },
       },
       lineHeight: {

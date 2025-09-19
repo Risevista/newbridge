@@ -1,0 +1,93 @@
+---
+// SectionTitle component props
+export interface Props {
+  title: string;
+  subtitle: string;
+  className?: string;
+  id?: string;
+}
+
+const { 
+  title, 
+  subtitle, 
+  className = "", 
+  id
+} = Astro.props;
+---
+
+<div class={`section-title-container ${className}`} {id}>
+  <div class="mb-4 md:mb-12">
+    <div class="flex items-center mb-1">
+      <div class="black-bar mr-4 md:mr-6"></div>
+      <p class="text-sm md:text-base text-secondary-accent tracking-wider font-serif fade-in-text" style="--delay: 0.2s;">
+        {subtitle}
+      </p>
+    </div>
+    <h2 class="text-3xl md:text-6xl font-bold text-primary tracking-widest font-tsukushi fade-in-text" style="--delay: 0.4s;">
+      {title}
+    </h2>
+  </div>
+</div>
+
+<style>
+.black-bar {
+  width: 0;
+  min-width: 0;
+  height: 0.5px;
+  background: #c0a171;
+  display: block;
+  border-radius: 1px;
+  align-self: center;
+  transition: width 1s ease-out;
+  transition-delay: var(--delay, 0s);
+}
+
+.black-bar.visible {
+  width: 5vw;
+  min-width: 40px;
+}
+
+.section-title-container {
+  position: relative;
+}
+
+/* Fade in text animation */
+.fade-in-text {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  transition-delay: var(--delay, 0s);
+  display: inline-block;
+}
+
+.fade-in-text.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        } else {
+          entry.target.classList.remove('visible');
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    });
+
+  document.querySelectorAll('.fade-in-text').forEach((el) => {
+    observer.observe(el);
+  });
+
+  // Handle black-bar animation
+  document.querySelectorAll('.black-bar').forEach((el) => {
+    observer.observe(el);
+  });
+  });
+</script>

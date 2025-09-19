@@ -3,7 +3,7 @@ import { getCollection } from "astro:content";
 import Layout from '../../layouts/Layout.astro';
 
 export async function getStaticPaths() {
-  const posts = await getCollection("blog");
+  const posts = await getCollection("news");
   return posts
     .filter((post: any) => !post.data.draft)
     .map((post: any) => ({
@@ -74,10 +74,10 @@ function markdownToHtml(markdown: string): string {
     <!-- 戻るボタン -->
     <div class="mt-12 pt-8 border-t border-gray-200">
       <a 
-        href="/blog" 
+        href="/news" 
         class="inline-flex items-center text-teal-600 hover:text-teal-800 font-medium"
       >
-        ← ブログ一覧に戻る
+        ← ニュース一覧に戻る
       </a>
     </div>
   </article>

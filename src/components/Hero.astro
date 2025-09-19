@@ -1,0 +1,139 @@
+---
+import Image from './Image.astro';
+import Hero1 from '../assets/img/hero1.webp';
+import Hero2 from '../assets/img/hero2.webp';
+import Hero3 from '../assets/img/hero3.webp';
+import Hero4 from '../assets/img/hero4.webp';
+
+// Hero component data
+const heroImages = [
+  Hero1, 
+  Hero2, 
+  Hero3, 
+  Hero4  
+];
+
+// Text content
+const verticalText = {
+  line1: "日本に健全な投資文化を育み",
+  line2: "豊かさと成長を次世代へ"
+};
+
+const horizontalText = {
+  line1: "人生100年時代を支える",
+  line2: "あなたのパートナーに"
+};
+
+const descriptionText = "RISE VISTAは、「不動産」という枠組みを超えて、未来を創る力になりたいと考えています。";
+---
+
+<!-- ===== Hero: Mobile (md未満) ===== -->
+<section class="relative bg-primary-back min-h-[100dvh] flex flex-col md:hidden pt-20">
+  <!-- 2) 楕円スライダー -->
+  <div class="relative w-full flex-1 flex items-center justify-center">
+    <div class="relative w-full h-[60vh]">
+      <div class="absolute inset-0">
+        <div class="ellipse-image-container">
+          <div class="ellipse-wrapper">
+            {heroImages.map((heroImg, index) => (
+              <Image
+                src={heroImg}
+                alt={`背景画像 ${index + 1}`}
+                class={`ellipse-background-image slide-${index}`}
+                loading={index === 0 ? "eager" : "lazy"}
+                decoding="async"
+                data-preload
+                aria-hidden="true"
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3) 縦書きテキストとスマホ用SCROLLバー -->
+  <div class="absolute left-2 bottom-5 z-20 flex items-end">
+    <!-- スマホ用SCROLLバー -->
+    <div class="flex flex-col items-center justify-end h-[200px] mr-3">
+      <p class="text-primary font-tsukushi writing-vertical mb-4 text-[12px]">SCROLL</p>
+      <div class="h-[60px] flex items-center">
+        <div class="w-[0.5px] h-[60px] bg-primary animate-rise-fade opacity-60"></div>
+      </div>
+    </div>
+    
+    <!-- 縦書きテキスト -->
+    <div class="writing-vertical text-secondary text-[16px] leading-relaxed tracking-[0.3em] font-tsukushi">
+      <div class="mt-16 fade-chars">{verticalText.line1}</div>
+      <div class="mt-52 fade-chars">{verticalText.line2}</div>
+    </div>
+  </div>
+
+  <!-- 4) 右上テキスト -->
+  <div class="absolute right-1 top-24 z-20 px-4">
+    <div class="text-secondary text-[28px] leading-relaxed tracking-[0.1em] font-tsukushi text-right">
+      <div>{horizontalText.line1}</div>
+      <div class="mt-2">{horizontalText.line2}</div>
+    </div>
+  </div>
+
+  <!-- 4) 本文テキスト -->
+  <div class="w-4/5 ml-auto pr-6 pb-6">
+    <p class="text-secondary text-[16px] leading-6 tracking-normal font-tsukushi text-right">
+      {descriptionText}
+    </p>
+  </div>
+</section>
+
+<!-- ===== Hero: Desktop (md以上) ===== -->
+<section class="relative bg-primary-back min-h-[100dvh] overflow-hidden pt-20 md:pt-64 hidden md:flex">
+  <!-- 楕円形背景画像コンテナ --> 
+  <div class="absolute top-10 left-0 w-full h-full z-0">
+    <div class="ellipse-image-container">
+      <div class="ellipse-wrapper">
+        {heroImages.map((heroImg, index) => (
+          <Image
+            src={heroImg}
+            alt={`背景画像 ${index + 1}`}
+            class={`ellipse-background-image slide-${index}`}
+            loading={index === 0 ? "eager" : "lazy"}
+            decoding="async"
+            data-preload
+            aria-hidden="true"
+          />
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <!-- 縦書きテキスト -->
+  <div class="absolute left-24 top-32 z-20 mt-10">
+    <div class="writing-vertical text-secondary text-[32px] leading-relaxed tracking-wider font-tsukushi">  
+      <div class="fade-chars">{verticalText.line1}</div>
+      <div class="mt-48 fade-chars">{verticalText.line2}</div>
+    </div>
+  </div>
+
+  <!-- 右上テキスト -->
+  <div class="absolute right-16 md:right-24 top-32 z-20">
+    <div class="text-secondary text-[48px] leading-relaxed tracking-wider font-tsukushi text-right mb-10">
+      <div>{horizontalText.line1}</div>
+      <div class="mt-3">{horizontalText.line2}</div>
+    </div>
+  </div>
+
+  <!--  SCROLLバー（統合） -->
+  <div class="absolute right-0 bottom-0 sm:top-0 h-[100px] sm:h-full w-[40px] md:w-[5%] bg-primary-back text-primary z-50 sm:flex hidden flex-col items-center justify-end pb-10">
+    <p class="text-primary font-tsukushi writing-vertical mb-4 text-[8px] md:text-sm">SCROLL</p>
+    <div class="relative overflow-visible h-[60px]">
+      <div class="absolute bottom-0 w-[0.5px] h-[60px] bg-primary animate-rise-fade opacity-60"></div>
+    </div>
+  </div>
+
+  <!-- テキスト -->
+  <div class="text-primary p-6 md:p-10 w-[88%] z-20 opacity-90 absolute bottom-8 right-16 md:bottom-0 md:right-24 md:w-[42%] md:max-w-xl animate-text-up">
+    <p class="mt-6 text-[18px] text-secondary tracking-normal font-tsukushi">
+      {descriptionText}
+    </p>  
+  </div>
+</section>

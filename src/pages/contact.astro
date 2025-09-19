@@ -1,37 +1,33 @@
 ---
 // src/pages/contact.astro
 import Layout from '../layouts/Layout.astro';
+import SectionTitle from '../components/SectionTitle.astro';
 ---
 
 <Layout title="お問い合わせフォーム">
     <main class="p-8 bg-primary-back min-h-screen pt-24 md:pt-48 font-tsukushi">
         <section class="max-w-4xl mx-auto">
-        <div class="mb-4 md:mb-12">
-            <div class="flex items-center mb-1">
-                <div class="black-bar mr-6"></div>
-                <p class="text-sm text-secondary tracking-wider">お問い合わせ</p>
-            </div>
-            <h1 class="text-4xl md:text-6xl font-bold text-secondary tracking-widest">CONTACT</h1>
-        </div>
+        <SectionTitle title="CONTACT" subtitle="お問い合わせ" />
         
         <div class="p-4 rounded mb-8">
-            <p class="text-primary m-0">お問い合わせの種類を選択してください。選択に応じてフォームの内容が変わります。</p>
+            <p class="text-primary m-0">お気軽にお問い合わせください。内容を確認後、担当者よりご連絡いたします。</p>
         </div>
         
-        <form id="contactForm" method="post" action="/api/contact" class="space-y-6">
+        <form id="contactForm" action="https://formspree.io/f/xjkengel" method="POST" class="space-y-6">
             <!-- お問い合わせ種類選択 -->
             <div class="mb-6">
                 <label for="inquiryType" class="block mb-2 font-bold text-primary">お問い合わせ種類 <span class="text-red-500">*</span></label>
                 <select id="inquiryType" name="inquiryType" required class="w-full p-2 md:p-3 border border-gray-300 rounded-md text-sm md:text-base bg-white text-primary">
                     <option value="">選択してください</option>
-                    <option value="purchase">購入相談</option>
-                    <option value="sale">売却相談</option>
-                    <option value="recruitment">採用</option>
-                    <option value="other">その他</option>
+                    <option value="購入相談">購入相談</option>
+                    <option value="売却相談">売却相談</option>
+                    <option value="投資相談">投資相談</option>
+                    <option value="採用">採用</option>
+                    <option value="その他">その他</option>
                 </select>
             </div>
             
-            <!-- 共通項目 -->
+            <!-- 基本情報 -->
             <div class="mb-6">
                 <label for="name" class="block mb-2 font-bold text-primary">お名前 <span class="text-red-500">*</span></label>
                 <input type="text" id="name" name="name" required class="w-full p-2 md:p-3 border border-gray-300 rounded-md text-sm md:text-base text-primary">
@@ -47,118 +43,23 @@ import Layout from '../layouts/Layout.astro';
                 <input type="email" id="email" name="email" required class="w-full p-2 md:p-3 border border-gray-300 rounded-md text-sm md:text-base text-primary">
             </div>
             
-            <!-- 購入相談用 -->
-            <div id="purchaseContent" class="dynamic-content bg-gray-50 p-6 rounded-md mt-6 border-l-4 border-blue-500">
-                <h3 class="text-xl font-bold text-blue-600 mb-4 mt-0">ご希望の物件条件</h3>
-                <div class="mb-6">
-                    <label for="propertyType" class="block mb-2 font-bold text-primary">物件種別</label>
-                    <select id="propertyType" name="propertyType" class="w-full p-2 md:p-3 border border-gray-300 rounded-md text-sm md:text-base bg-white text-primary">
-                        <option value="">選択してください</option>
-                        <option value="mansion">マンション</option>
-                        <option value="house">一戸建て</option>
-                        <option value="land">土地</option>
-                        <option value="investment">投資用物件</option>
-                    </select>
-                </div>
-                
-                <div class="mb-6">
-                    <label for="budget" class="block mb-2 font-bold text-primary">ご予算</label>
-                    <select id="budget" name="budget" class="w-full p-2 md:p-3 border border-gray-300 rounded-md text-sm md:text-base bg-white text-primary">
-                        <option value="">選択してください</option>
-                        <option value="under3000">3,000万円以下</option>
-                        <option value="3000-5000">3,000万円〜5,000万円</option>
-                        <option value="5000-7000">5,000万円〜7,000万円</option>
-                        <option value="over7000">7,000万円以上</option>
-                    </select>
-                </div>
-                
-                <div class="mb-6">
-                    <label for="location" class="block mb-2 font-bold text-primary">ご希望エリア</label>
-                    <input type="text" id="location" name="location" placeholder="例：渋谷区、新宿区など" class="w-full p-2 md:p-3 border border-gray-300 rounded-md text-sm md:text-base text-primary">
-                </div>
-                
-                <div class="mb-6">
-                    <label for="purchaseDetails" class="block mb-2 font-bold text-primary">その他ご希望条件</label>
-                    <textarea id="purchaseDetails" name="purchaseDetails" placeholder="間取り、築年数、駅からの距離など、ご希望があればお聞かせください" class="w-full p-2 md:p-3 border border-gray-300 rounded-md text-sm md:text-base min-h-[120px] resize-y text-primary"></textarea>
-                </div>
+            <div class="mb-6">
+                <label for="phone" class="block mb-2 font-bold text-primary">電話番号</label>
+                <input type="tel" id="phone" name="phone" class="w-full p-2 md:p-3 border border-gray-300 rounded-md text-sm md:text-base text-primary">
             </div>
             
-            <!-- 売却相談用 -->
-            <div id="saleContent" class="dynamic-content bg-gray-50 p-6 rounded-md mt-6 border-l-4 border-blue-500">
-                <h3 class="text-xl font-bold text-blue-600 mb-4 mt-0">売却される物件の詳細を可能な範囲で教えてください</h3>
-                <div class="mb-6">
-                    <label for="salePropertyType" class="block mb-2 font-bold text-primary">物件種別</label>
-                    <select id="salePropertyType" name="salePropertyType" class="w-full p-2 md:p-3 border border-gray-300 rounded-md text-sm md:text-base bg-white text-primary">
-                        <option value="">選択してください</option>
-                        <option value="mansion">マンション</option>
-                        <option value="house">一戸建て</option>
-                        <option value="land">土地</option>
-                        <option value="investment">投資用物件</option>
-                    </select>
-                </div>
-                
-                <div class="mb-6">
-                    <label for="saleLocation" class="block mb-2 font-bold text-primary">物件所在地</label>
-                    <input type="text" id="saleLocation" name="saleLocation" placeholder="例：東京都渋谷区○○" class="w-full p-2 md:p-3 border border-gray-300 rounded-md text-sm md:text-base text-primary">
-                </div>
-                
-                <div class="mb-6">
-                    <label for="buildingAge" class="block mb-2 font-bold text-primary">築年数</label>
-                    <input type="text" id="buildingAge" name="buildingAge" placeholder="例：築15年" class="w-full p-2 md:p-3 border border-gray-300 rounded-md text-sm md:text-base text-primary">
-                </div>
-                
-                <div class="mb-6">
-                    <label for="saleDetails" class="block mb-2 font-bold text-primary">詳細</label>
-                    <textarea id="saleDetails" name="saleDetails" placeholder="間取り、現在の状況、売却理由、希望価格など、お聞かせください" class="w-full p-2 md:p-3 border border-gray-300 rounded-md text-sm md:text-base min-h-[120px] resize-y text-primary"></textarea>
-                </div>
-                
-                <button type="submit" class="bg-blue-600 text-white px-6 py-3 md:px-8 md:py-4 rounded-md text-sm md:text-base cursor-pointer w-full mt-8 transition-colors duration-300 hover:bg-blue-700">送信する</button>
+            <!-- お問い合わせ内容 -->
+            <div class="mb-6">
+                <label for="message" class="block mb-2 font-bold text-primary">お問い合わせ内容 <span class="text-red-500">*</span></label>
+                <textarea id="message" name="message" required placeholder="お問い合わせ内容を詳しくお聞かせください" class="w-full p-2 md:p-3 border border-gray-300 rounded-md text-sm md:text-base min-h-[200px] resize-y text-primary"></textarea>
             </div>
             
-            <!-- 採用用 -->
-            <div id="recruitmentContent" class="dynamic-content bg-gray-50 p-6 rounded-md mt-6 border-l-4 border-blue-500">
-                <h3 class="text-xl font-bold text-blue-600 mb-4 mt-0">採用に関するお問い合わせ</h3>
-                <div class="mb-6">
-                    <label for="position" class="block mb-2 font-bold text-primary">ご希望職種</label>
-                    <select id="position" name="position" class="w-full p-2 md:p-3 border border-gray-300 rounded-md text-sm md:text-base bg-white text-primary">
-                        <option value="">選択してください</option>
-                        <option value="sales">営業職</option>
-                        <option value="engineer">エンジニア</option>
-                        <option value="marketing">マーケティング</option>
-                        <option value="admin">事務職</option>
-                        <option value="other">その他</option>
-                    </select>
-                </div>
-                
-                <div class="mb-6">
-                    <label for="experience" class="block mb-2 font-bold text-primary">経験年数</label>
-                    <select id="experience" name="experience" class="w-full p-2 md:p-3 border border-gray-300 rounded-md text-sm md:text-base bg-white text-primary">
-                        <option value="">選択してください</option>
-                        <option value="fresh">新卒・未経験</option>
-                        <option value="1-3">1〜3年</option>
-                        <option value="3-5">3〜5年</option>
-                        <option value="5-10">5〜10年</option>
-                        <option value="over10">10年以上</option>
-                    </select>
-                </div>
-                
-                <div class="mb-6">
-                    <label for="recruitmentDetails" class="block mb-2 font-bold text-primary">自己PR・志望動機など</label>
-                    <textarea id="recruitmentDetails" name="recruitmentDetails" placeholder="これまでの経験や志望動機など、自由にお書きください" class="w-full p-2 md:p-3 border border-gray-300 rounded-md text-sm md:text-base min-h-[120px] resize-y text-primary"></textarea>
-                </div>
-                
-                <button type="submit" class="bg-blue-600 text-white px-6 py-3 md:px-8 md:py-4 rounded-md text-sm md:text-base cursor-pointer w-full mt-8 transition-colors duration-300 hover:bg-blue-700">送信する</button>
-            </div>
-            
-            <!-- その他用 -->
-            <div id="otherContent" class="dynamic-content bg-gray-50 p-6 rounded-md mt-6 border-l-4 border-blue-500">
-                <h3 class="text-xl font-bold text-blue-600 mb-4 mt-0">お問い合わせ内容</h3>
-                <div class="mb-6">
-                    <label for="otherDetails" class="block mb-2 font-bold text-primary">お問い合わせ内容</label>
-                    <textarea id="otherDetails" name="otherDetails" placeholder="お問い合わせ内容を詳しくお聞かせください" required class="w-full p-2 md:p-3 border border-gray-300 rounded-md text-sm md:text-base min-h-[120px] resize-y text-primary"></textarea>
-                </div>
-                
-                <button type="submit" class="bg-blue-600 text-white px-6 py-3 md:px-8 md:py-4 rounded-md text-sm md:text-base cursor-pointer w-full mt-8 transition-colors duration-300 hover:bg-blue-700">送信する</button>
+            <!-- 送信ボタン -->
+            <div class="flex justify-center">
+                <button type="submit" class="bg-green-900 hover:bg-green-800 text-white font-tsukushi font-medium rounded-lg text-sm px-8 py-4 text-center transition-colors duration-300">
+                    送信する
+                    <span class="ml-2 inline-block align-middle">→</span>
+                </button>
             </div>
         </form>
         </section>
@@ -179,70 +80,32 @@ import Layout from '../layouts/Layout.astro';
         font-family: 'Inter', sans-serif;
     }
     
-    .dynamic-content {
-        display: none;
-    }
-    
-    .dynamic-content.active {
-        display: block;
-    }
 </style>
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-      const inquiryType = document.getElementById('inquiryType') as HTMLSelectElement | null;
       const contactForm = document.getElementById('contactForm') as HTMLFormElement | null;
-  
-      const hideAllContents = () => {
-        document.querySelectorAll('.dynamic-content').forEach(content => {
-          content.classList.remove('active');
-        });
-      };
-  
-      const showSelectedContent = (value: string) => {
-        const target = document.getElementById(value + 'Content');
-        if (target) target.classList.add('active');
-      };
-  
-      if (inquiryType) {
-        inquiryType.addEventListener('change', function () {
-          hideAllContents();
-          const selectedType = (this as HTMLSelectElement).value;
-          if (selectedType) {
-            showSelectedContent(selectedType);
-          }
-        });
-  
-        // 初期状態に合わせて表示
-        hideAllContents();
-        if (inquiryType.value) showSelectedContent(inquiryType.value);
-      }
   
       if (contactForm) {
         contactForm.addEventListener('submit', function (e) {
-          e.preventDefault();
-  
+          // バリデーション
           const inquiryTypeValue = (document.getElementById('inquiryType') as HTMLSelectElement | null)?.value;
           const name = (document.getElementById('name') as HTMLInputElement | null)?.value;
           const email = (document.getElementById('email') as HTMLInputElement | null)?.value;
+          const message = (document.getElementById('message') as HTMLTextAreaElement | null)?.value;
   
-          if (!inquiryTypeValue || !name || !email) {
+          if (!inquiryTypeValue || !name || !email || !message) {
+            e.preventDefault();
             alert('必須項目を入力してください。');
             return;
           }
   
-          if (inquiryTypeValue === 'other') {
-            const otherDetails = (document.getElementById('otherDetails') as HTMLTextAreaElement | null)?.value;
-            if (!otherDetails || otherDetails.trim() === '') {
-              alert('お問い合わせ内容を入力してください。');
-              return;
-            }
+          // 送信ボタンを無効化して重複送信を防ぐ
+          const submitButton = this.querySelector('button[type="submit"]') as HTMLButtonElement;
+          if (submitButton) {
+            submitButton.disabled = true;
+            submitButton.textContent = '送信中...';
           }
-  
-          alert('お問い合わせを受け付けました。後日担当者よりご連絡いたします。');
-  
-          (this as HTMLFormElement).reset();
-          hideAllContents();
         });
       }
     });

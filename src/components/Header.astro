@@ -8,37 +8,34 @@ const { title } = Astro.props;
 const navItems = [
   { 
     href: '/mission', 
-    text: '私たちについて',
+    text: 'ABOUT',
     submenu: [
       { href: '/mission#mission', text: 'ミッション' },
       { href: '/mission#values', text: 'バリュー' },
       { href: '/mission#purpose', text: 'パーパス' },
       { href: '/mission#message', text: '代表挨拶' },
+      { href: '/news', text: 'ニュース' },
     ]
   },
   { 
     href: '/#company', 
-    text: '企業情報',
+    text: 'COMPANY',
     submenu: [
       { href: '/#company', text: '会社概要' },
-      { href: '/#banks', text: '取扱金融機関' },
+      { href: '/#company', text: '取扱金融機関' },
     ]
   },
   { 
     href: '/service', 
-    text: '事業内容',
+    text: 'SERVICE',
+  },
+  { 
+    href: '/news', 
+    text: 'NEWS',
   },
   { 
     href: '/contact', 
-    text: '採用情報',
-  },
-  { 
-    href: '/contact', 
-    text: 'お問い合わせ',
-    submenu: [
-      { href: '/contact', text: 'お問い合わせ' },
-      { href: '/service#faq', text: 'よくある質問' }
-    ]
+    text: 'CONTACT',
   }
 ];
 ---
@@ -49,7 +46,7 @@ const navItems = [
     <title>{title}</title>
     <slot name="head" />
   </head> 
-  <body class="font-tsukushi">
+  <body class="font-adobe">
     <!-- ヘッダー -->
     <nav id="header-nav" class="header-navigation fixed top-0 left-0 z-[9999] w-full px-4 md:py-10 flex items-center justify-between transition-all duration-300 !bg-primary-back h-10 md:h-10">
       <!-- 左側：テキスト＋ロゴ -->
@@ -288,6 +285,11 @@ const navItems = [
         display: inline-block;
         text-decoration: none;
         transition: color 0.3s ease;
+        font-weight: var(--fontWeightBold);
+        font-size: 15px;
+        line-height: 1.6;
+        font-family: var(--fontFamily);
+        letter-spacing: 0.2px;
       }
       .nav-link::after {
         content: "";

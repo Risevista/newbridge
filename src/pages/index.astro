@@ -4,6 +4,9 @@ import Image from '../components/Image.astro';
 import Layout from '../layouts/Layout.astro';
 import { getCollection } from "astro:content";
 import PropertyCarousel from '../components/PropertyCarousel.astro';
+import Values from '../components/Values.astro';
+import FAQ from '../components/FAQ.astro';
+import SectionTitle from '../components/SectionTitle.astro';
 
 import Service1 from '../assets/img/service1.webp';
 import Service2 from '../assets/img/service2.webp';
@@ -15,11 +18,6 @@ import Hero3 from '../assets/img/hero3.webp';
 import Hero4 from '../assets/img/hero4.webp';
 import Bridge from '../assets/img/bridge.png';
 import Circle from '../assets/img/circle.png';
-import R from '../assets/img/r.png';
-import I from '../assets/img/i.png';
-import S from '../assets/img/s.png';
-import E from '../assets/img/e.png';
-import Bg from '../assets/img/risevista-bg.webp';
 // 4枚の画像を定義（実際のパスに変更してください）
 const heroImages = [
   Hero1, 
@@ -28,9 +26,22 @@ const heroImages = [
   Hero4  
 ];
 
+// Hero section text constants
+const heroText = {
+  vertical: {
+    line1: "日本に健全な投資文化を育み",
+    line2: "豊かさと成長を次世代へ"
+  },
+  horizontal: {
+    line1: "人生100年時代を支える",
+    line2: "あなたのパートナーに"
+  },
+  description: "RISE VISTAは、「不動産」という枠組みを超えて、未来を創る力になりたいと考えています。"
+};
 
-// ブログ記事の取得とサマリー生成
-const posts = await getCollection("blog");
+
+// ニュース記事の取得とサマリー生成
+const posts = await getCollection("news");
 // @ts-ignore
 const withExcerpt = posts
   .filter((post: any) => !post.data.draft) // 下書きを除外
@@ -62,11 +73,9 @@ const withExcerpt = posts
     <div class="h-10 w-10 rounded-full border-2 border-teal-600 border-t-transparent animate-spin"></div>
   </div>
   <div id="page-root" class="opacity-0 transition-opacity duration-500">
-<!-- Hero Section -->
 
 <!-- ===== Hero: Mobile (md未満) ===== -->
 <section class="relative bg-primary-back min-h-[100dvh] flex flex-col md:hidden pt-20">
-
   <!-- 2) 楕円スライダー -->
   <div class="relative w-full flex-1 flex items-center justify-center">
     <div class="relative w-full h-[60vh]">
@@ -87,6 +96,19 @@ const withExcerpt = posts
           </div>
         </div>
       </div>
+      <!-- SVG Headline (Mobile) -->
+      <div class="hero-svg-headline" aria-label="人生100年時代を支える　あなたのパートナーに">
+        <svg class="textcont" viewBox="0 0 1000 100" role="img" aria-label="人生100年時代を支える">
+          <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" class="font-min">
+            <tspan>人</tspan><tspan>生</tspan><tspan>1</tspan><tspan>0</tspan><tspan>0</tspan><tspan>年</tspan><tspan>時</tspan><tspan>代</tspan><tspan>を</tspan><tspan>支</tspan><tspan>え</tspan><tspan>る</tspan>
+          </text>
+        </svg>
+        <svg class="textcont" viewBox="0 0 1000 100" role="img" aria-label="あなたのパートナーに">
+          <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" class="font-min">
+            <tspan>　</tspan><tspan>あ</tspan><tspan>な</tspan><tspan>た</tspan><tspan>の</tspan><tspan>パ</tspan><tspan>ー</tspan><tspan>ト</tspan><tspan>ナ</tspan><tspan>ー</tspan><tspan>に</tspan>
+          </text>
+        </svg>
+      </div>
     </div>
   </div>
 
@@ -102,23 +124,17 @@ const withExcerpt = posts
     
     <!-- 縦書きテキスト -->
     <div class="writing-vertical text-secondary text-[16px] leading-relaxed tracking-[0.3em] font-tsukushi">
-      <div class="mt-16 fade-chars">日本に健全な投資文化を育み</div>
-      <div class="mt-52 fade-chars">豊かさと成長を次世代へ</div>
+      <div class="mt-16 fade-chars">{heroText.vertical.line1}</div>
+      <div class="mt-52 fade-chars">{heroText.vertical.line2}</div>
     </div>
   </div>
 
-  <!-- 4) 右上テキスト -->
-  <div class="absolute right-1 top-24 z-20 px-4">
-    <div class="text-secondary text-[28px] leading-relaxed tracking-[0.1em] font-tsukushi text-right">
-            <div>人生100年時代を支える</div>
-      <div class="mt-2">あなたのパートナーに</div>
-    </div>
-  </div>
+  <!-- 4) 右上テキスト（SVGヘッドラインへ統一済み） -->
 
   <!-- 4) 本文テキスト -->
   <div class="w-4/5 ml-auto pr-6 pb-6">
-    <p class="text-secondary text-[16px] leading-6 tracking-normal font-tsukushi text-right">
-      RISE VISTAは、「不動産」という枠組みを超えて、未来を創る力になりたいと考えています。 
+    <p class="text-secondary-screen text-[16px] leading-6 tracking-normal font-tsukushi text-right">
+      {heroText.description}
     </p>
   </div>
 </section>
@@ -146,18 +162,24 @@ const withExcerpt = posts
 
   <!-- 縦書きテキスト -->
   <div class="absolute left-24 top-32 z-20 mt-10">
-    <div class="writing-vertical text-secondary text-[32px] leading-relaxed tracking-wider font-tsukushi">  
-      <div class="fade-chars">日本に健全な投資文化を育み</div>
-      <div class="mt-48 fade-chars">豊かさと成長を次世代へ</div>
+    <div class="writing-vertical text-secondary-screen text-[32px] leading-relaxed tracking-wider font-tsukushi">  
+      <div class="fade-chars">{heroText.vertical.line1}</div>
+      <div class="mt-48 fade-chars">{heroText.vertical.line2}</div>
     </div>
   </div>
 
-  <!-- 右上テキスト -->
-  <div class="absolute right-16 md:right-24 top-32 z-20">
-    <div class="text-secondary text-[48px] leading-relaxed tracking-wider font-tsukushi text-right mb-10">
-      <div>人生100年時代を支える</div>
-      <div class="mt-3">あなたのパートナーに</div>
-    </div>
+  <!-- 右上テキスト（SVGヘッドラインへ統一） -->
+  <div class="hero-svg-headline" aria-label="人生100年時代を支える　あなたのパートナーに">
+    <svg class="textcont" viewBox="0 0 1200 160" role="img" aria-label="人生100年時代を支える">
+      <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" class="font-min">
+        <tspan>人</tspan><tspan>生</tspan><tspan>1</tspan><tspan>0</tspan><tspan>0</tspan><tspan>年</tspan><tspan>時</tspan><tspan>代</tspan><tspan>を</tspan><tspan>支</tspan><tspan>え</tspan><tspan>る</tspan>
+      </text>
+    </svg>
+    <svg class="textcont" viewBox="0 0 1200 160" role="img" aria-label="あなたのパートナーに">
+      <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" class="font-min">
+        <tspan>　</tspan><tspan>あ</tspan><tspan>な</tspan><tspan>た</tspan><tspan>の</tspan><tspan>パ</tspan><tspan>ー</tspan><tspan>ト</tspan><tspan>ナ</tspan><tspan>ー</tspan><tspan>に</tspan>
+      </text>
+    </svg>
   </div>
 
   <!--  SCROLLバー（統合） -->
@@ -171,23 +193,26 @@ const withExcerpt = posts
   
   <!-- テキスト -->
   <div class="text-primary p-6 md:p-10 w-[88%] z-20 opacity-90 absolute bottom-8 right-16 md:bottom-0 md:right-24 md:w-[42%] md:max-w-xl animate-text-up">
-    <p class="mt-6 text-[18px] text-secondary tracking-normal font-tsukushi">
-      RISE VISTAは、「不動産」という枠組みを超えて、未来を創る力になりたいと考えています。
+    <p class="mt-6 text-[18px] text-secondary-screen tracking-normal font-tsukushi">
+      {heroText.description}
     </p>  
   </div>
 </section>
 
   
   <!-- MISSION Section -->
-<section class="mission-section w-full flex justify-center items-center min-h-fit pt-24 md:pt-48 pb-48 bg-primary-back font-tsukushi">
+  <div class="max-w-6xl mx-auto px-4 pt-24 md:pt-48">
+  <SectionTitle title="MISSION" subtitle="ミッション" />
+  </div>
+<section class="mission-section letter-effect w-full flex justify-center items-center min-h-fit pb-48 bg-primary-back font-tsukushi relative">
+  <div class="section-heading">MISSION</div>
   <div class="w-full max-w-6xl flex flex-col md:flex-row items-center gap-6 md:gap-8 px-4">
-    
     <!-- 左カラム：テキスト（幅3） -->
     <div class="flex-[3] flex flex-col items-start justify-center text-primary">
-      <h2 class="text-[18px] md:text-[32px] tracking-widest mb-4 md:mb-6 !font-tsukushi text-secondary fade-in-text" style="--delay: 0.2s;">
+      <h2 class="text-[18px] md:text-[32px] tracking-widest mb-4 md:mb-6 !font-tsukushi text-primary slide-in-right" style="--delay: 0.2s;">
         一人ひとりの力を信じ、革新と創造を通じて人生100年時代を支えるパートナーに
       </h2>
-      <p class="text-[14px] md:text-[18px] font-normal  text-primary fade-in-text" style="--delay: 0.4s;">
+      <p class="text-[14px] md:text-[18px] font-normal  text-primary slide-in-left" style="--delay: 0.4s;">
         人生100年時代を迎え、将来に向けた資産形成や運用の重要性はこれまで以上に高まっています。かつての「貯蓄から投資へ」という流れは、今や個人のライフスタイルに合わせた柔軟で多様な資産運用へと進化しています。私たちは、一人ひとりが自分らしい未来を描けるよう、革新と創造を通じて人生100年時代を支えるあなたのパートナーになります。
       </p>
     </div>
@@ -200,7 +225,7 @@ const withExcerpt = posts
       <a href="/mission">
         <button
           type="button"
-          class="text-white font-tsukushi bg-green-900 hover:bg-green-500 font-medium rounded-lg text-sm px-8 py-4 text-center"
+          class="text-white font-tsukushi bg-green-900 hover:bg-green-800 font-medium rounded-lg text-sm px-8 py-4 text-center"
         >
           OUR MISSION
           <span class="ml-2 inline-block align-middle">→</span>
@@ -212,132 +237,27 @@ const withExcerpt = posts
 
 
 <!-- VALUES セクション（上下の線を共通、4行は等間隔） -->
-<section class="w-full bg-primary-back text-primary py-12 md:py-24 px-4 md:px-0">
-  <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-[auto,1fr] gap-8">
-
-    <!-- Left Title -->
-    <div class="md:pr-8 flex flex-col justify-start">
-      <div class="flex items-center">
-        <div class="black-bar md:mb-4 mr-4"></div>
-        <p class="text-sm md:text-base tracking-wider font-tsukushi text-secondary fade-in-text" style="--delay: 0.2s;">
-          ４つの行動指針
-        </p>
-      </div>
-      <h2 class="text-3xl md:text-6xl font-bold tracking-widest font-tsukushi text-secondary fade-in-text" style="--delay: 0.4s;">
-        VALUES
-      </h2>
-    </div>
-
-        <!-- Right Content：下線＋中仕切り、4行を等間隔 -->
-        <div class="grid grid-rows-4 border-t border-primary border-b divide-y divide-primary">
-
-      <!-- Row 1 -->
-      <div class="flex flex-col md:flex-row items-stretch gap-4 md:gap-6 px-0 pt-6 md:pt-8 pb-6 md:pb-8">
-        <div class="w-full md:w-12 flex items-center justify-center">
-          <span class="text-xs tracking-widest md:-rotate-90 whitespace-nowrap font-tsukushi fade-in-text" style="--delay: 0.4s;">Honest</span>
-        </div>
-        <div class="flex-1 flex items-center justify-center">
-          <h3 class="text-2xl md:text-4xl font-tsukushi text-secondary font-normal leading-tight text-center fade-in-text" style="--delay: 0.6s;">
-            学びの姿勢
-          </h3>
-        </div>
-        <div class="w-full md:w-1/3 flex flex-col justify-between md:pl-8">
-          <p class="text-sm mb-4 md:mb-6 font-tsukushi fade-in-text" style="--delay: 0.8s;">
-            私たちは、成長できる「環境」にこだわります。常に学び続け、お互いを高めあうことでお客様に最高のパフォーマンスを提供し続けます。成長意欲を持ち、学びぬくプロフェッショナル集団であり続けます。
-          </p>
-          <div class="w-full text-center text-secondary font-tsukushi fade-in-text" style="--delay: 0.8s;">
-            「昨日の自分を超える」
-          </div>
-        </div>
-      </div>
-
-      <!-- Row 2 -->
-      <div class="flex flex-col md:flex-row items-stretch gap-4 md:gap-6 px-0 pt-6 md:pt-8 pb-6 md:pb-8">
-        <div class="w-full md:w-12 flex items-center justify-center">
-          <span class="text-xs tracking-widest md:-rotate-90 whitespace-nowrap font-tsukushi fade-in-text" style="--delay: 0.4s;">Trust</span>
-        </div>
-        <div class="flex-1 flex items-center justify-center">
-          <h3 class="text-2xl md:text-4xl font-tsukushi text-secondary font-normal leading-tight text-center fade-in-text" style="--delay: 0.6s;">
-            信頼できる人柄
-          </h3>
-        </div>
-        <div class="w-full md:w-1/3 flex flex-col justify-between md:pl-8">
-          <p class="text-sm mb-4 md:mb-6 font-tsukushi fade-in-text" style="--delay: 0.8s;">
-            素直な姿勢と謙虚な心を持ち、明るく前向きな行動で周囲に笑顔と安心を届ける。人として信頼される魅力を持つ人材を育て、ともに成長します。
-          </p>
-          <div class="w-full text-center text-secondary font-tsukushi fade-in-text" style="--delay: 0.8s;">
-            「素直に 謙虚に 前向きに」
-          </div>
-        </div>
-      </div>
-
-      <!-- Row 3 -->
-      <div class="flex flex-col md:flex-row items-stretch gap-4 md:gap-6 px-0 pt-6 md:pt-8 pb-6 md:pb-8">
-        <div class="w-full md:w-12 flex items-center justify-center">
-          <span class="text-xs tracking-widest md:-rotate-90 whitespace-nowrap font-tsukushi fade-in-text" style="--delay: 0.4s;">Speed</span>
-        </div>
-        <div class="flex-1 flex items-center justify-center">
-          <h3 class="text-2xl md:text-4xl font-tsukushi text-secondary font-normal leading-tight text-center fade-in-text" style="--delay: 0.6s;">
-            迅速な対応力
-          </h3>
-        </div>
-        <div class="w-full md:w-1/3 flex flex-col justify-between md:pl-8">
-          <p class="text-sm mb-4 md:mb-6 font-tsukushi fade-in-text" style="--delay: 0.8s;">
-            即時対応・即時行動・即時改善こそがプロフェッショナルの使命。相手の気持ちや思いを汲み取り、信頼関係を築く。迅速かつ的確な行動で答え続ける集団であり続けます。
-          </p>
-          <div class="w-full text-center text-secondary font-tsukushi fade-in-text" style="--delay: 0.8s;">
-            「すぐ動く すぐ応える すぐ改善する」
-          </div>
-        </div>
-      </div>
-
-      <!-- Row 4 -->
-      <div class="flex flex-col md:flex-row items-stretch gap-4 md:gap-6 px-0 pt-6 md:pt-8 pb-6 md:pb-8">
-        <div class="w-full md:w-12 flex items-center justify-center">
-          <span class="text-xs tracking-widest md:-rotate-90 whitespace-nowrap font-tsukushi fade-in-text" style="--delay: 0.4s;">Growth</span>
-        </div>
-        <div class="flex-1 flex items-center justify-center">
-          <h3 class="text-2xl md:text-4xl font-tsukushi text-secondary font-normal leading-tight text-center fade-in-text" style="--delay: 0.6s;">
-            持続的な成長
-          </h3>
-        </div>
-        <div class="w-full md:w-1/3 flex flex-col justify-between md:pl-8">
-          <p class="text-sm mb-4 md:mb-6 font-tsukushi fade-in-text" style="--delay: 0.8s;">
-            変化を恐れず、常に新しいことに挑戦。失敗を恐れず、そこから学び、成長する。持続的な成長を通じて、お客様と社会に価値を提供し続けます。
-          </p>
-          <div class="w-full text-center text-secondary font-tsukushi fade-in-text" style="--delay: 0.8s;">
-            「挑戦し続ける 成長し続ける」
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-
-
-  <section class="bg-primary-back py-24" id="service">
+<Values />
+  
+<!-- SERVICE セクション -->
+<section class="bg-primary-back py-24 relative" id="service">
     <div class="max-w-6xl mx-auto px-4">
-      <!-- タイトル部分 -->
-      <div class="mb-4">
-        <div class="flex items-center mb-1">
-          <div class="black-bar mr-4"></div>
-          <p class="text-sm md:text-base tracking-wider fade-in-text text-secondary" style="--delay: 0.2s;">事業内容</p>
-        </div>
-        <h2 class="text-3xl md:text-6xl font-bold tracking-widest font-tsukushi text-secondary fade-in-text" style="--delay: 0.4s;">SERVICE</h2>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 justify-items-center">
+      <div class="section-heading">SERVICE</div>
+      <SectionTitle title="SERVICE" subtitle="事業内容" />
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 justify-items-center">
       <!-- Service 01 -->
       <div class="space-y-4">
         <!-- ラベル -->
-        <div class="border-t border-primary pt-4 text-xs tracking-wide font-tsukushi text-primary">
-          SERVICE <span class="text-primary">#01</span>
+        <div class="pt-4 text-xs tracking-wide font-tsukushi text-primary">
+          <div class="service-border-line"></div>
+          <p class="pt-4">
+            SERVICE #01</p>
+          </p>
         </div>
         <Image
         src={Service1}
         alt="Circus"
-        class="w-full h-[220px] md:w-[320px] md:h-[240px] object-cover brightness-130"
+        class="w-full h-[220px] md:h-[240px] object-cover brightness-130"
         loading="lazy"
         decoding="async"
       />
@@ -346,46 +266,52 @@ const withExcerpt = posts
           賃貸仲介
         </h3>
         <!-- 本文 -->
-        <p class="text-sm text-primary leading-relaxed">
+        <p class="text-primary leading-relaxed">
           物件を貸し出したい貸主様と物件を借りたい借主様をおつなぎいたします。</p>
       </div>
   
       <!-- Service 02 -->
       <div class="space-y-4">
-        <div class="border-t border-primary pt-4 text-xs tracking-wide font-tsukushi text-primary">
-          SERVICE <span class="text-primary">#02</span>
+        <div class="pt-4 text-xs tracking-wide font-tsukushi text-primary">
+          <div class="service-border-line"></div>
+          <p class="pt-4">
+            SERVICE #02</p>
+          </p>
         </div>
         <Image
         src={Service2}
         alt="Circus"
-        class="w-full h-[220px] md:w-[320px] md:h-[240px] object-cover brightness-130"
+        class="w-full h-[220px] md:h-[240px] object-cover brightness-130"
         loading="lazy"  
         decoding="async"
       />
       <h3 class="text-lg font-bold leading-relaxed font-tsukushi">
           売買仲介
         </h3>
-        <p class="text-sm text-primary leading-relaxed">
+        <p class="text-primary leading-relaxed">
           不動産を売却したい方、購入したい方の間に立ち、手続きや契約をサポートいたします。
         </p>
       </div>
   
       <!-- Service 03 -->
       <div class="space-y-4">
-      <div class="border-t border-primary pt-4 text-xs tracking-wide font-tsukushi text-primary">
-          SERVICE <span class="text-primary">#03</span>
+        <div class="pt-4 text-xs tracking-wide font-tsukushi text-primary">
+          <div class="service-border-line"></div>
+          <p class="pt-4">
+            SERVICE #03</p>
+          </p>
         </div>
         <Image
         src={Service3}
         alt="Circus"
-        class="w-full h-[220px] md:w-[320px] md:h-[240px] object-cover brightness-130"
+        class="w-full h-[220px] md:h-[240px] object-cover brightness-130"
         loading="lazy"
         decoding="async"
       />
       <h3 class="text-lg font-bold leading-relaxed font-tsukushi">
           不動産投資
         </h3>
-        <p class="text-sm text-primary leading-relaxed">
+        <p class="text-primary leading-relaxed">
           投資用不動産の売買、運用サポートなど長期にわたってお付き合いいたします。
         </p>
       </div>
@@ -395,7 +321,7 @@ const withExcerpt = posts
         詳しくみる
       </a>
     </div>
-  </section>
+</section>
 
   <!-- 新しいセクション: 施設・基本情報 -->
   <section id="amenities" class="bg-primary-back py-16 md:py-24">
@@ -415,83 +341,83 @@ const withExcerpt = posts
         <!-- 右：上 文章、下 3列×2行 -->
         <div class="reveal md:col-span-2">
           <!-- 上：文章 -->
-          <div class="mb-8">
-            <h3 class="text-2xl md:text-3xl tracking-tight mb-8 text-secondary">RISE VISTAの</br>トータルライフコンサルティング</h3>
-            <p class="text-sm md:text-base text-primary leading-relaxed">
+          <div class="mb-8 relative">
+            <h3 class="text-2xl md:text-4xl leading-relaxed mb-8 text-secondary">RISE VISTAの</br>トータルライフコンサルティング</h3>
+            <div class="text-base text-primary leading-relaxed">
               私たちは、不動産の売買・仲介で最適な選択をサポートいたします。また、関係会社である株式会社Bridgeと連携し、保険の提供も可能です。さらに、お客様の状況に合わせて金融機関の紹介までワンストップで対応。資産形成・相続・節税など、ライフステージに合わせた最適解を<strong>「トータルライフコンサルティング」</strong>として提供し、生涯にわたり寄り添います。
-            </p>
+            </div>
           </div>
           <!-- 下：3列×2行 -->
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-6">
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-6 text-secondary-gray">
             <!-- アイテム1 -->
-            <div class="flex items-start gap-4 !bg-secondary-screen rounded-lg p-4">
-              <div class="mt-1 text-[#d6be98]">
+            <div class="flex items-start gap-4 bg-primary rounded-lg p-4">
+              <div class="mt-1">
                 <!-- 遺産相続アイコン（例: 書類/家） -->
                 <svg viewBox="0 0 24 24" class="w-6 h-6"><path fill="currentColor" d="M12 3l8 6v12H4V9l8-6Zm0 2.18L6 9.5V19h12V9.5l-6-4.32Z"/></svg>
               </div>
               <div>
-                <div class="text-[16px] text-[#d6be98]">遺産相続</div>
-                <div class="mt-1 text-[14px] text-[#d6be98]">相続対策・承継支援</div>
+                <div class="text-[16px]">遺産相続</div>
+                <div class="mt-1 text-[16px]">相続対策・承継支援</div>
               </div>
             </div>
 
             <!-- アイテム2 -->
-            <div class="flex items-start gap-4 bg-secondary-screen rounded-lg p-4">
-              <div class="mt-1 text-[#d6be98]">
+            <div class="flex items-start gap-4 bg-primary rounded-lg p-4">
+              <div class="mt-1">
                 <!-- 節税アイコン（電卓風） -->
                 <svg viewBox="0 0 24 24" class="w-6 h-6"><path fill="currentColor" d="M5 2h14a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2Zm0 2v16h14V4H5Zm2 2h2v2H7V6Zm0 4h2v2H7v-2Zm0 4h2v2H7v-2Zm0 4h2v2H7v-2Zm4-12h6v6h-6V6Zm0 8h6v6h-6v-6Z"/></svg>
               </div>
               <div>
-                <div class="text-[16px] text-[#d6be98]">節税</div>
-                <div class="mt-1 text-[14px] text-[#d6be98]">税務プランニング</div>
+                <div class="text-[16px]">節税</div>
+                <div class="mt-1 text-[16px]">税務プランニング</div>
               </div>
             </div>
 
             <!-- アイテム3 -->
-            <div class="flex items-start gap-4 bg-secondary-screen rounded-lg p-4">
-              <div class="mt-1 text-[#d6be98]">
+            <div class="flex items-start gap-4 bg-primary rounded-lg p-4">
+              <div class="mt-1">
                 <!-- 開業アイコン（店舗/ビル） -->
                 <svg viewBox="0 0 24 24" class="w-6 h-6"><path fill="currentColor" d="M4 22V10l8-8l8 8v12H4Zm8-14L6 10v10h4v-6h4v6h4V10l-6-2Z"/></svg>
               </div>
               <div>
-                <div class="text-[16px] text-[#d6be98]">開業</div>
-                <div class="mt-1 text-[14px] text-[#d6be98]">会社設立・事業支援</div>
+                <div class="text-[16px]">開業</div>
+                <div class="mt-1 text-[16px]">会社設立・事業支援</div>
               </div>
             </div>
 
             <!-- アイテム4 -->
-            <div class="flex items-start gap-4 bg-secondary-screen rounded-lg p-4">
-              <div class="mt-1 text-[#d6be98]">
+            <div class="flex items-start gap-4 bg-primary rounded-lg p-4">
+              <div class="mt-1">
                 <!-- 不動産投資アイコン -->
                 <svg viewBox="0 0 24 24" class="w-6 h-6"><path fill="currentColor" d="M12 2l9 7h-3v13h-4v-6H10v6H6V9H3l9-7Z"/></svg>
               </div>
               <div>
-                <div class="text-[16px] text-[#d6be98]">不動産投資</div>
-                <div class="mt-1 text-[14px] text-[#d6be98]">収益物件・運用</div>
+                <div class="text-[16px]">不動産投資</div>
+                <div class="mt-1 text-[16px]">収益物件・運用</div>
               </div>
             </div>
 
             <!-- アイテム5 -->
-            <div class="flex items-start gap-4 bg-secondary-screen rounded-lg p-4">
-              <div class="mt-1 text-[#d6be98]">
+            <div class="flex items-start gap-4 bg-primary rounded-lg p-4">
+              <div class="mt-1">
                 <!-- 保険アイコン -->
                 <svg viewBox="0 0 24 24" class="w-6 h-6"><path fill="currentColor" d="M12 2c5.53 0 10 4.47 10 10s-4.47 10-10 10S2 17.53 2 12S6.47 2 12 2Zm0 2C7.59 4 4 7.59 4 12s3.59 8 8 8s8-3.59 8-8s-3.59-8-8-8Zm-1 11h2v2h-2v-2Zm0-8h2v6h-2V7Z"/></svg>
               </div>
               <div>
-                <div class="text-[16px] text-[#d6be98]">保険設計</div>
-                <div class="mt-1 text-[14px] text-[#d6be98]">生命・法人保険</div>
+                <div class="text-[16px]">保険設計</div>
+                <div class="mt-1 text-[16px]">生命・法人保険</div>
               </div>
             </div>
 
              <!-- アイテム6 -->
-              <div class="flex items-start gap-4 bg-secondary-screen rounded-lg p-4">
-               <div class="mt-1 text-[#d6be98]">
+              <div class="flex items-start gap-4 bg-primary rounded-lg p-4">
+               <div class="mt-1">
                  <!-- 資産形成アイコン（グラフ） -->
                  <svg viewBox="0 0 24 24" class="w-6 h-6"><path fill="currentColor" d="M3 17h2v4H3v-4Zm4-6h2v10H7V11Zm4-4h2v14h-2V7Zm4 6h2v8h-2v-8Zm4-10h2v18h-2V3Z"/></svg>
                </div>
                <div>
-                 <div class="text-[16px] text-[#d6be98]">資産形成</div>
-                 <div class="mt-1 text-[14px] text-[#d6be98]">長期投資・ライフプラン</div>
+                 <div class="text-[16px]">資産形成</div>
+                 <div class="mt-1 text-[16px]">長期投資・ライフプラン</div>
                </div>
              </div>
            </div>
@@ -529,12 +455,6 @@ const withExcerpt = posts
 
    <!-- メニュー-->
   <section class="bg-primary-back relative overflow-hidden w-full">
-    <!-- 背景画像コンテナ（パディング付き） -->
-    <div class="absolute transition-all duration-700 ease-in-out" id="background-container">
-      <div class="absolute inset-0 bg-gradient-to-l from-black/30 to-transparent z-10 rounded-lg opacity-80"></div>
-      <Image src={Bg} alt="Background" class="w-full h-full object-cover transition-opacity duration-700 rounded-lg" id="background-image" data-preload />
-    </div>
-  
     <!-- メインコンテンツ -->
     <div class="relative z-20 flex items-center justify-center p-4 md:p-8 lg:p-12 font-tsukushi">
       <div class="max-w-6xl w-full grid grid-cols-1 lg:grid-cols-2 gap-3 lg:gap-16">
@@ -549,12 +469,12 @@ const withExcerpt = posts
               data-image="1"
             >
               <div class="flex items-center space-x-4">
-                <span class="text-gray-400 text-sm font-medium">01</span>
-                <span class="text-gray-800 font-medium group-hover:text-teal-600 transition-colors">
+                <p class="text-secondary-gray">01</p>
+                <p class="text-primary group-hover:text-teal-600 transition-colors md:text-[16px]">
                   会社概要
-                </span>
+                </p>
               </div>
-              <svg class="w-5 h-5 text-gray-400 group-hover:text-teal-600 group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg class="w-5 h-5 text-secondary-gray group-hover:text-teal-600 group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
               </svg>
             </a>
@@ -565,12 +485,12 @@ const withExcerpt = posts
               data-image="2"
             >
               <div class="flex items-center space-x-4">
-                <span class="text-gray-400 text-sm font-medium">02</span>
-                <span class="text-gray-800 font-medium group-hover:text-teal-600 transition-colors">
-                  Mission・Value・Purpose
-                </span>
+                <p class="text-secondary-gray">02</p>
+                <p class="text-primary group-hover:text-teal-600 transition-colors md:text-[16px]">
+                  Mission・Values・Purpose
+                </p>
               </div>
-              <svg class="w-5 h-5 text-gray-400 group-hover:text-teal-600 group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg class="w-5 h-5 text-secondary-gray group-hover:text-teal-600 group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
               </svg>
             </a>
@@ -581,12 +501,12 @@ const withExcerpt = posts
               data-image="3"
             >
               <div class="flex items-center space-x-4">
-                <span class="text-gray-400 text-sm font-medium">03</span>
-                <span class="text-gray-800 font-medium group-hover:text-teal-600 transition-colors">
+                  <p class="text-secondary-gray">03</p>
+                <span class="text-primary group-hover:text-teal-600 transition-colors md:text-[16px]">
                   代表メッセージ
-                </span>
+                </p>
               </div>
-              <svg class="w-5 h-5 text-gray-400 group-hover:text-teal-600 group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg class="w-5 h-5 text-secondary-gray group-hover:text-teal-600 group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
               </svg>
             </a>
@@ -603,12 +523,12 @@ const withExcerpt = posts
               data-image="4"
             >
               <div class="flex items-center space-x-4">
-                <span class="text-gray-400 text-sm font-medium">04</span>
-                <span class="text-gray-800 font-medium group-hover:text-teal-600 transition-colors">
+                <p class="text-secondary-gray">04</p>
+                <p class="text-primary group-hover:text-teal-600 transition-colors md:text-[16px]">
                   コンサルタント紹介
-                </span>
+                </p>
               </div>
-              <svg class="w-5 h-5 text-gray-400 group-hover:text-teal-600 group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg class="w-5 h-5 text-secondary-gray group-hover:text-teal-600 group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
               </svg>
             </a>
@@ -619,12 +539,12 @@ const withExcerpt = posts
               data-image="5"
             >
               <div class="flex items-center space-x-4">
-                <span class="text-gray-400 text-sm font-medium">05</span>
-                <span class="text-gray-800 font-medium group-hover:text-teal-600 transition-colors">
+                <p class="text-secondary-gray">05</p>
+                <p class="text-primary group-hover:text-teal-600 transition-colors md:text-[16px]">
                   事業内容
-                </span>
+                </p>
               </div>
-              <svg class="w-5 h-5 text-gray-400 group-hover:text-teal-600 group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg class="w-5 h-5 text-secondary-gray group-hover:text-teal-600 group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
               </svg>
             </a>
@@ -635,12 +555,12 @@ const withExcerpt = posts
               data-image="6"
             >
               <div class="flex items-center space-x-4">
-                <span class="text-gray-400 text-sm font-medium">06</span>
-                <span class="text-gray-800 font-medium group-hover:text-teal-600 transition-colors">
+                <p class="text-secondary-gray">06</p>
+                <p class="text-primary group-hover:text-teal-600 transition-colors md:text-[16px]">
                   よくある質問
-                </span>
+                </p>
               </div>
-              <svg class="w-5 h-5 text-gray-400 group-hover:text-teal-600 group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg class="w-5 h-5 text-secondary-gray group-hover:text-teal-600 group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
               </svg>
             </a>
@@ -650,18 +570,10 @@ const withExcerpt = posts
     </div>
   </section>
   
-  <section class="py-24 bg-primary-back" id="company">
+  <section class="py-24 bg-primary-back relative" id="company">
+    <div class="section-heading">COMPANY</div>
     <div class="max-w-6xl mx-auto px-4">
-      <!-- タイトル部分 -->
-      <div class="mb-4">
-        <div class="flex items-center mb-1">
-          <div class="black-bar mr-4"></div>
-          <p class="text-sm md:text-base tracking-wider fade-in-text text-secondary" style="--delay: 0.2s;">会社概要</p>
-        </div>
-        <h2 class="text-3xl md:text-6xl font-bold tracking-widest font-tsukushi text-secondary fade-in-text" style="--delay: 0.4s;">
-          COMPANY
-        </h2>
-      </div>
+      <SectionTitle title="COMPANY" subtitle="会社概要" />
   
       <!-- 本文2カラム -->
       <div class="flex flex-col md:flex-row gap-8 items-stretch">
@@ -719,31 +631,25 @@ const withExcerpt = posts
   </section>  
   
 
-  <!-- Blog Section -->
-  <section class="py-24 bg-primary-back" id="blog">
+  <!-- NEWS Section -->
+  <section class="py-24 bg-primary-back relative" id="news">
+    <div class="section-heading">NEWS</div>
     <div class="max-w-6xl mx-auto px-4">
-      <!-- タイトル部分 -->
-      <div class="mb-4">
-        <div class="flex items-center mb-1">
-          <div class="black-bar mr-4"></div>
-          <p class="text-sm md:text-base tracking-wider fade-in-text text-secondary" style="--delay: 0.2s;">最新情報</p>
-        </div>
-        <h2 class="text-3xl md:text-6xl font-bold tracking-widest font-tsukushi text-secondary fade-in-text" style="--delay: 0.4s;">BLOG</h2>
-      </div>
+      <SectionTitle title="NEWS" subtitle="最新情報" />
 
-      <!-- ブログ記事一覧 -->
+      <!-- ニュース記事一覧 -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {/* @ts-ignore */}
         {withExcerpt.map((post: any, index: number) => (
           <article class="bg-white rounded-lg shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 fade-in-text" style={`--delay: ${0.6 + index * 0.2}s`}>
-            <a href={`/blog/${post.slug}/`} class="block h-full">
+            <a href={`/news/${post.slug}/`} class="block h-full">
               <div class="p-6 h-full flex flex-col">
                 <div class="mb-2">
-                  <span class="text-xs tracking-wide font-tsukushi text-primary border-t border-primary pt-2 inline-block">
-                    BLOG <span class="text-primary">#{String(index + 1).padStart(2, '0')}</span>
+                  <span class="text-xs tracking-wide font-tsukushi text-secondary border-t border-secondary pt-2 inline-block">
+                    NEWS <span class="text-secondary">#{String(index + 1).padStart(2, '0')}</span>
                   </span>
                 </div>
-                <h3 class="text-lg font-bold leading-relaxed font-tsukushi text-secondary mb-3 line-clamp-2">
+                <h3 class="text-lg font-bold leading-relaxed font-tsukushi text-primary mb-3 line-clamp-2">
                   {post.data.title}
                 </h3>
                 <p class="text-sm text-primary mb-4 font-tsukushi">
@@ -767,10 +673,10 @@ const withExcerpt = posts
         ))}
       </div>
 
-      <!-- ブログ一覧ページへのリンク -->
+      <!-- ニュース一覧ページへのリンク -->
       <div class="flex justify-center mt-12">
-        <a href="/blog" class="text-white font-tsukushi bg-green-900 hover:bg-green-500 font-medium rounded-lg text-sm px-8 py-4 text-center transition-colors duration-300">
-          すべての記事を見る
+        <a href="/news" class="text-white font-tsukushi bg-green-900 hover:bg-green-500 font-medium rounded-lg text-sm px-8 py-4 text-center transition-colors duration-300">
+          すべてのニュースを見る
           <span class="ml-2 inline-block align-middle">→</span>
         </a>
       </div>
@@ -783,78 +689,78 @@ const withExcerpt = posts
   </section> -->
 
   <!-- よくある質問 セクション -->
-  <section class="py-24 bg-primary-back" id="faq">
-    <div class="max-w-6xl mx-auto px-4">
-      <!-- タイトル部分 -->
-      <div class="mb-4">
-        <div class="flex items-center mb-1">
-          <div class="black-bar mr-4"></div>
-          <p class="text-sm text-secondary tracking-wider">よくある質問</p>
-        </div>
-        <h2 class="text-3xl md:text-6xl font-bold tracking-widest font-inter text-secondary">FAQ</h2>
-      </div>
-
-      <!-- 質問リスト -->
-      <div class="space-y-6">
-        <!-- 質問1 -->
-        <div class="bg-primary-back rounded-lg shadow-sm border border-gray-200 text-secondary overflow-hidden group">
-          <button class="w-full px-6 py-4 text-left flex justify-between items-center">
-            <h3 class="text-sm md:text-lg text-secondary group-hover:text-secondary">不動産投資は初心者でも始められますか？</h3>
-            <span class="text-gray-500 text-xl">+</span>
-          </button>
-          <div class="px-6 p-4 hidden bg-white">
-            <p class="text-primary leading-relaxed text-sm md:text-base">
-              はい、初心者の方でも安心して始めていただけます。私たちが投資の基礎から丁寧にサポートし、リスクを最小限に抑えた投資プランをご提案いたします。経験豊富なスタッフが一からお手伝いいたします。
-            </p>
-          </div>
-        </div>
-
-        <!-- 質問2 -->
-        <div class="bg-primary-back rounded-lg shadow-sm border border-gray-200 text-secondary overflow-hidden group">
-          <button class="w-full px-6 py-4 text-left flex justify-between items-center">
-            <h3 class="text-sm md:text-lg text-secondary group-hover:text-secondary">どのような物件がおすすめですか？</h3>
-            <span class="text-gray-500 text-xl">+</span>
-          </button>
-          <div class="px-6 p-4 hidden bg-white">
-            <p class="text-primary leading-relaxed text-sm md:text-base">
-              お客様の投資目的や予算に応じて最適な物件をご提案いたします。
-            </p>
-          </div>
-        </div>
-
-        <!-- 質問3 -->
-        <div class="bg-primary-back rounded-lg shadow-sm border border-gray-200 text-secondary overflow-hidden group">
-          <button class="w-full px-6 py-4 text-left flex justify-between items-center">
-            <h3 class="text-sm md:text-lg text-secondary group-hover:text-secondary">投資に必要な資金はどのくらいですか？</h3>
-            <span class="text-gray-500 text-xl">+</span>
-          </button>
-          <div class="px-6 p-4 hidden bg-white">
-            <p class="text-primary leading-relaxed text-sm md:text-base">
-              物件の種類や規模によって異なりますが、小規模な投資物件であれば数百万円から始めることができます。また、ローンを活用することで、より大きな物件への投資も可能です。金融機関のご紹介も可能です。資金計画についてもご相談ください。
-            </p>
-          </div>
-        </div>
-
-        <!-- 質問4 -->
-        <div class="bg-primary-back rounded-lg shadow-sm border border-gray-200 text-secondary overflow-hidden group">
-          <button class="w-full px-6 py-4 text-left flex justify-between items-center">
-            <h3 class="text-sm md:text-lg text-secondary group-hover:text-secondary">物件の管理はどうなりますか？</h3>
-            <span class="text-gray-500 text-xl">+</span>
-          </button>
-          <div class="px-6 p-4 hidden bg-white">
-            <p class="text-primary leading-relaxed text-sm md:text-base">
-              物件の管理は私たちが代行いたします。入居者募集、家賃管理、修繕対応など、投資家の方に代わってすべての管理業務を行います。お客様は収益に集中していただけます。
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  <FAQ />
   </div>
 </Layout>
 
 <!-- ========================= CSS ========================= -->
 <style>
+
+  :root{
+    --draw: 1.2s;   /* 1文字を描く時間 */
+    --step: .12s;   /* 文字間ディレイ */
+    --ink: #C79D4F; /* stroke の色（金色） */
+    --fill: #001722; /* fill の色（primary） */
+  }
+  @media (prefers-reduced-motion: reduce){
+    .textcont tspan{ animation: none !important; fill: var(--fill); stroke-width: 0; }
+  }
+
+  .hero-svg-headline{
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 4px; z-index: 10;
+  }
+  .textcont{ width: min(92vw, 900px); height: auto; display: block; }
+  .font-min{
+    font-family: "tsukushi", "Noto Serif JP","Hiragino Mincho ProN","Yu Mincho",serif;
+    font-weight: 500; font-size: 80px; letter-spacing: .08em;
+  }
+  .textcont tspan{
+    fill: transparent; stroke: var(--ink); stroke-width: 1.5px;
+    --len: 900; --i: 0;
+    stroke-dasharray: var(--len); stroke-dashoffset: var(--len);
+    animation: draw var(--draw) ease forwards, fillIn 0s linear forwards;
+    animation-delay: calc(var(--i) * var(--step)), calc(var(--i) * var(--step) + var(--draw));
+  }
+  @keyframes draw{ to{ stroke-dashoffset: 0; } }
+  @keyframes fillIn{ to{ fill: var(--fill); stroke-width: 0; } }
+  @media (max-width: 768px){
+    .font-min{ font-size: 36px; }
+    .textcont tspan{ stroke-width: 1.5px; }
+  }
+  .mcap img{ width: 260px; height: auto; display: block; }
+
+  /* Slide in right animation */
+.letter-effect .slide-in-right {
+  left: 60px;
+  opacity: 0;
+  transform: skewX(5deg);
+  transition: opacity 1s ease-out, transform 1.5s, left 1.5s;
+}
+
+.letter-effect.open .slide-in-right {
+  left: 0;
+  opacity: 1;
+  transform: skewX(0);
+}
+
+/* Slide in left animation */
+.slide-in-left {
+  left: -60px;
+  opacity: 0;
+  transform: skewX(-5deg);
+  transition: opacity 1s ease-out, transform 1.5s, left 1.5s;
+  transition-delay: var(--delay, 0s);
+  position: relative;
+}
+
+.slide-in-left.visible {
+  left: 0;
+  opacity: 1;
+  transform: skewX(0);
+}
 
 /* Fade in text animation */
 .fade-in-text {
@@ -980,18 +886,45 @@ const withExcerpt = posts
   .ellipse-background-image { animation: none !important; opacity: 1; }
 }
 
-.black-bar {
-  width: 5vw;
-  min-width: 40px;
-  height: 1px;
-  background: #1d453c;
-  display: block;
-  border-radius: 1px;
-}
 
 .writing-vertical {
   writing-mode: vertical-rl;
   text-orientation: mixed;
+}
+
+.section-heading {
+  position: absolute;
+  bottom: 2rem;
+  right: 2rem;
+  font-size: 8rem;
+  font-weight: bold;
+  color: #00502f;
+  opacity: 0.1;
+  pointer-events: none;
+  z-index: 1;
+  letter-spacing: 0.2em;
+}
+
+@media (max-width: 767px) {
+  .section-heading {
+    bottom: 2rem;
+    right: 1rem;
+    font-size: 2.25rem;
+  }
+}
+
+/* Service section border line animation - center to sides */
+.service-border-line {
+  width: 0;
+  height: 1px;
+  background: #1d453c;
+  margin: 0 auto;
+  transition: width 1s ease-out;
+  transition-delay: var(--delay, 0s);
+}
+
+.service-border-line.visible {
+  width: 100%;
 }
 
 /* Company section menu styles */
@@ -1003,7 +936,7 @@ const withExcerpt = posts
   border-left-color: #0d9488; /* teal-600 */
 }
 
-/* Line clamp utilities for blog content */
+/* Line clamp utilities for news content */
 .line-clamp-2 {
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -1022,6 +955,23 @@ const withExcerpt = posts
 
 <!-- ========================= JavaScript ========================= -->
 <script>
+  // Handle slide-in-right animation for heading
+  const missionSection = document.querySelector('.mission-section');
+  if (missionSection) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          missionSection.classList.add('open');
+        } else {
+          missionSection.classList.remove('open');
+        }
+      });
+    }, { 
+      threshold: 0.2,
+      rootMargin: '-50px 0px'
+    });
+    observer.observe(missionSection);
+  }
   document.addEventListener('DOMContentLoaded', () => {
     // Per-character fade-in for elements marked with .fade-chars
     const prepareFadeChars = (el: HTMLElement) => {
@@ -1054,6 +1004,15 @@ const withExcerpt = posts
     }, { threshold: 0.1 });
 
     fadeCharTargets.forEach((el) => fadeCharsObserver.observe(el));
+
+    // Set --len and --i for each tspan to drive SVG draw/fill animation
+    const tspans = document.querySelectorAll('.textcont tspan');
+    tspans.forEach((t, i) => {
+      // @ts-ignore
+      const len = typeof t.getComputedTextLength === 'function' ? t.getComputedTextLength() : 900;
+      (t as HTMLElement).style.setProperty('--len', `${Math.max(60, Math.ceil(len))}`);
+      (t as HTMLElement).style.setProperty('--i', `${i}`);
+    });
     // Preload gate: wait for critical images (data-preload) before reveal
     const preloader = document.getElementById('preloader');
     const pageRoot = document.getElementById('page-root');
@@ -1116,6 +1075,42 @@ const withExcerpt = posts
     observer.observe(el);
   });
 
+  // Handle slide-in-left animation
+  const slideInLeftObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      } else {
+        entry.target.classList.remove('visible');
+      }
+    });
+  }, {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  });
+
+  document.querySelectorAll('.slide-in-left').forEach((el) => {
+    slideInLeftObserver.observe(el);
+  });
+
+  // Handle service border line animation
+  const serviceBorderObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      } else {
+        entry.target.classList.remove('visible');
+      }
+    });
+  }, {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  });
+
+  document.querySelectorAll('.service-border-line').forEach((el) => {
+    serviceBorderObserver.observe(el);
+  });
+
   // Company section background image switching
   const companySection = document.querySelector('section.min-h-screen.bg-gray-50');
   const companyImages = companySection ? JSON.parse(companySection.getAttribute('data-images') || '[]') : [];
@@ -1165,29 +1160,6 @@ const withExcerpt = posts
       }
     }, { threshold: 0.2 });
     io.observe(root);
-  });
-
-  // FAQ アコーディオン機能
-  document.querySelectorAll('#faq button').forEach(button => {
-    button.addEventListener('click', () => {
-      const faqItem = button.closest('.group') as HTMLElement;
-      const content = faqItem?.querySelector('.px-6.p-4') as HTMLElement;
-      const icon = button.querySelector('span') as HTMLElement;
-      
-      if (content && icon) {
-        if (content.classList.contains('hidden')) {
-          // 開く
-          content.classList.remove('hidden');
-          button.classList.add('bg-white', 'border-b', 'border-gray-200');
-          icon.textContent = '−';
-        } else {
-          // 閉じる
-          content.classList.add('hidden');
-          button.classList.remove('bg-white', 'border-b', 'border-gray-200');
-          icon.textContent = '+';
-        }
-      }
-    });
   });
 });
 </script>
