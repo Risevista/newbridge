@@ -52,16 +52,45 @@ const { title } = Astro.props;
         />
         <link rel="manifest" href="/site.webmanifest" />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <!-- Adobe Fonts connections -->
+        <link rel="preconnect" href="https://use.typekit.net" crossorigin>
+        <link rel="preconnect" href="https://p.typekit.net" crossorigin>
+        <link rel="dns-prefetch" href="https://use.typekit.net">
+        <link rel="dns-prefetch" href="https://p.typekit.net">
+        <!-- Session-based class control to avoid FOIT/FOUT -->
         <script>
-          (function(d) {
-            var config = {
-              kitId: 'zkl0ddn',
-              scriptTimeout: 3000,
-              async: true
-            },
-            h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=function(){f=true;clearTimeout(t);try{(window as any).Typekit.load(config)}catch(e){}};s?.parentNode?.insertBefore(tk,s)
-          })(document);
+          (function () {
+            try {
+              if (sessionStorage.getItem('adobe-fonts-loaded') === '1') {
+                document.documentElement.classList.add('wf-active');
+                document.documentElement.classList.remove('wf-loading','wf-inactive');
+              } else {
+                document.documentElement.classList.add('wf-loading');
+              }
+            } catch (_) {}
+          })();
         </script>
+        <!-- Single Adobe Fonts loader (no duplicates) -->
+        <script
+          defer
+          src="https://use.typekit.net/zkl0ddn.js"
+          onload="
+            try{
+              Typekit.load({
+                async:true,
+                active: function(){
+                  try{ sessionStorage.setItem('adobe-fonts-loaded','1'); }catch(_){}
+                  document.documentElement.classList.add('wf-active');
+                  document.documentElement.classList.remove('wf-loading','wf-inactive');
+                },
+                inactive: function(){
+                  document.documentElement.classList.remove('wf-loading');
+                  document.documentElement.classList.add('wf-inactive');
+                }
+              });
+            }catch(e){}
+          "
+        ></script>
         <slot name="head" />
         <title>{title}</title>
     </head>
@@ -76,70 +105,7 @@ const { title } = Astro.props;
     </body>
 </html>
 
-<script>
-  (function(document) {
-    // Typekit configuration
-    const config = {
-      kitId: 'zkl0ddn',
-      scriptTimeout: 3000,
-      async: true
-    };
-
-    // Get document element and first script tag
-    const htmlElement = document.documentElement;
-    const firstScript = document.getElementsByTagName('script')[0];
-
-    // Add loading class to html element
-    htmlElement.className += ' wf-loading';
-
-    // Set timeout to add inactive class if script fails to load
-    const timeout = setTimeout(function() {
-      htmlElement.className = htmlElement.className.replace(/\bwf-loading\b/g, '') + ' wf-inactive';
-    }, config.scriptTimeout);
-
-    // Create Typekit script element
-    const typekitScript = document.createElement('script');
-    typekitScript.src = 'https://use.typekit.net/' + config.kitId + '.js';
-    typekitScript.async = config.async;
-
-    // Track if script has already loaded
-    let scriptLoaded = false;
-
-    // Handle script load events (both modern and legacy)
-    const handleLoad = function() {
-      // Skip if already loaded
-      if (scriptLoaded) {
-        return;
-      }
-      
-      scriptLoaded = true;
-      clearTimeout(timeout);
-      
-      try {
-        // Load Typekit with configuration
-        window.Typekit.load(config);
-      } catch (error) {
-        console.error('Typekit loading error:', error);
-      }
-    };
-
-    // Modern browsers
-    typekitScript.onload = handleLoad;
-    
-    // Legacy IE support
-    (typekitScript as any).onreadystatechange = function(this: any) {
-      const readyState = this.readyState;
-      if (readyState === 'complete' || readyState === 'loaded') {
-        handleLoad();
-      }
-    };
-
-    // Insert script before the first script tag
-    if (firstScript && firstScript.parentNode) {
-      firstScript.parentNode.insertBefore(typekitScript, firstScript);
-    }
-  })(document);
-</script>
+<!-- Removed duplicate Typekit loader script; using single loader in <head> -->
 
 <script>
   // TypeScript型定義を追加

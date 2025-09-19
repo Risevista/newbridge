@@ -1,0 +1,47 @@
+---
+interface NewsItem {
+  slug: string;
+  data: { title: string; date: Date };
+}
+
+interface Props {
+  items: NewsItem[];
+  basePath?: string;
+}
+
+const { items, basePath = '/news' } = Astro.props as Props;
+---
+
+<div class="w-full md:w-4/5 mx-auto">
+  {items && items.length > 0 ? (
+    <ul class="divide-y divide-primary">
+      {items.map((post) => (
+        <li>
+          <a href={`${basePath}/${post.slug}/`} class="block py-4">
+            <div class="flex items-center justify-between text-primary">
+              <span class="text-sm md:text-base font-tsukushi whitespace-nowrap">
+                {new Date(post.data.date).toLocaleDateString('ja-JP', {
+                  year: 'numeric', month: 'long', day: 'numeric'
+                })}
+              </span>
+              <span class="text-base md:text-lg font-tsukushi truncate ml-6 text-right">
+                {post.data.title}
+              </span>
+            </div>
+          </a>
+        </li>
+      ))}
+    </ul>
+  ) : (
+    <div class="text-center py-12">
+      <p class="text-gray-500 font-tsukushi">まだ記事がありません。</p>
+    </div>
+  )}
+</div>
+
+<style>
+  /* Ensure long titles don't overflow */
+  .truncate { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+</style>
+
+

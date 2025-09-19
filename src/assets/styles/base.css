@@ -36,6 +36,9 @@ body {
   letter-spacing: 0.03em;
 }   
 
+/* Avoid FOIT: keep content visible during loading */
+html.wf-loading body { visibility: visible; }
+
 h3{
   font-weight: var(--fontWeightBold);
   font-size: 1,375rem;
@@ -56,12 +59,7 @@ p{
     --scroll-y: 0px; /*  */
     --visibility-on-scroll: hidden; /* Set "visible" when scroll happens.  Mainly for showing Back to top only when scroll happens */
     --nav-height: 0; /* Height of nav bar. Set actual value in Layout.astro */
-    font-family:
-        /* 英語テキストに適用 */ 'Cormorant Garamond',
-        /* 日本語テキストに適用 */ 'Noto Serif JP',
-        system-ui,
-        serif,
-        sans-serif;
+    --fontFamily: "fot-tsukumin-pr6n", sans-serif;
 }
 /* Set top margin to avoid hiding behind nav bar */
 [id^='anchor-'] {
