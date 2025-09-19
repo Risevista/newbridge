@@ -121,8 +121,9 @@ const withExcerpt = posts
     </div>
     
     <!-- 縦書きテキスト -->
-    <div class="writing-vertical text-secondary text-[16px] leading-relaxed tracking-[0.3em] font-tsukushi">
-      <div class="mt-16 fade-chars">{heroText.vertical.line1}</div>
+    <div class="writing-vertical text-secondary-screen text-[16px] leading-relaxed tracking-[0.3em] font-tsukushi"
+    style="text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.822);">
+     <div class="mt-16 fade-chars">{heroText.vertical.line1}</div>
       <div class="mt-52 fade-chars">{heroText.vertical.line2}</div>
     </div>
   </div>
@@ -160,13 +161,14 @@ const withExcerpt = posts
 
   <!-- 縦書きテキスト -->
   <div class="absolute left-24 top-32 z-20 mt-10">
-    <div class="writing-vertical text-secondary-screen text-[32px] leading-relaxed tracking-wider font-tsukushi">  
+    <div class="writing-vertical text-secondary-screen text-[32px] leading-relaxed tracking-wider font-tsukushi"
+    style="text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.822);">  
       <div class="fade-chars">{heroText.vertical.line1}</div>
       <div class="mt-48 fade-chars">{heroText.vertical.line2}</div>
     </div>
   </div>
 
-  <!-- 右上テキスト（SVGヘッドラインへ統一） -->
+  <!-- 右上テキスト（SVGヘッドラインへ統一） -->  
   <div class="hero-svg-headline" aria-label="人生100年時代を支える　あなたのパートナーに">
     <svg class="textcont" viewBox="0 0 1200 160" role="img" aria-label="人生100年時代を支える">
       <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" class="font-min">
@@ -707,7 +709,7 @@ const withExcerpt = posts
     }
   }
   @media (prefers-reduced-motion: reduce){
-    .textcont tspan{ animation: none !important; fill: var(--fill); stroke-width: 0; }
+    .textcont tspan{ animation: none !important; fill: var(--fill); stroke: transparent; stroke-opacity: 0; stroke-width: 0; }
   }
 
   .hero-svg-headline{
@@ -719,7 +721,7 @@ const withExcerpt = posts
   @media (max-width: 768px){
     .hero-svg-headline{
       justify-content: flex-start;
-      padding-top: 20px;
+      padding-top: 36px;
     }
 
   }
@@ -743,7 +745,7 @@ const withExcerpt = posts
     animation-delay: calc(var(--i) * var(--step)), calc(var(--i) * var(--step) + var(--draw));
   }
   @keyframes draw{ to{ stroke-dashoffset: 0; } }
-  @keyframes fillIn{ to{ fill: var(--fill); stroke-width: 0; } }
+  @keyframes fillIn{ to{ fill: var(--fill); stroke: transparent; stroke-opacity: 0; stroke-width: 0; } }
   @media (max-width: 768px){
     .font-min{ font-size: clamp(50px, 12vw, 100px); }
     .textcont tspan{ stroke-width: 1.5px; }
