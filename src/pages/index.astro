@@ -700,6 +700,12 @@ const withExcerpt = posts
     --ink: #C79D4F; /* stroke の色（金色） */
     --fill: #001722; /* fill の色（primary） */
   }
+  @media (max-width: 768px){
+    :root{
+      --draw: 0.8s;   /* スマホでは少し速く */
+      --step: .08s;   /* 文字間ディレイも短く */
+    }
+  }
   @media (prefers-reduced-motion: reduce){
     .textcont tspan{ animation: none !important; fill: var(--fill); stroke-width: 0; }
   }
@@ -1017,13 +1023,32 @@ const withExcerpt = posts
     fadeCharTargets.forEach((el) => fadeCharsObserver.observe(el));
 
     // Set --len and --i for each tspan to drive SVG draw/fill animation
-    const tspans = document.querySelectorAll('.textcont tspan');
-    tspans.forEach((t, i) => {
-      // @ts-ignore
-      const len = typeof t.getComputedTextLength === 'function' ? t.getComputedTextLength() : 900;
-      (t as HTMLElement).style.setProperty('--len', `${Math.max(60, Math.ceil(len))}`);
-      (t as HTMLElement).style.setProperty('--i', `${i}`);
-    });
+    const setupSvgAnimation = () => {
+      const tspans = document.querySelectorAll('.textcont tspan');
+      tspans.forEach((t, i) => {
+        // @ts-ignore
+        const len = typeof t.getComputedTextLength === 'function' ? t.getComputedTextLength() : 900;
+        (t as HTMLElement).style.setProperty('--len', `${Math.max(60, Math.ceil(len))}`);
+        (t as HTMLElement).style.setProperty('--i', `${i}`);
+      });
+    };
+    
+    // Setup SVG animation immediately and on window load
+    setupSvgAnimation();
+    window.addEventListener('load', setupSvgAnimation);
+    
+    // Force restart animation on mobile for better visibility
+    if (window.innerWidth <= 768) {
+      setTimeout(() => {
+        const tspans = document.querySelectorAll('.textcont tspan');
+        tspans.forEach((t) => {
+          const element = t as HTMLElement;
+          element.style.animation = 'none';
+          element.offsetHeight; // Trigger reflow
+          element.style.animation = '';
+        });
+      }, 100);
+    }
     // Preload gate: wait for critical images (data-preload) before reveal
     const preloader = document.getElementById('preloader');
     const pageRoot = document.getElementById('page-root');
