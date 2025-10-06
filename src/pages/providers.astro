@@ -23,7 +23,7 @@ import hanasaku from '../assets/img/hanasaku.webp';
   <section class="pt-28 pb-16 bg-white">
     <HeroBanner image={ProvidersBG} alt="ProvidersBG" text="ご契約者様へ" description="当社では、お客さまのニーズに合わせて最適な保険商品をご提案できるよう、信頼と実績のある複数の保険会社と提携しています。各社の強みや特長を活かし、お客さまに最適なプランをお選びいただけるようサポートいたします。" align="start" heightClass="h-[30vh]" />
     <div class="max-w-6xl mx-auto px-4 mb-12">
-      <div class="grid grid-cols-6 gap-1 md:gap-2">
+      <div class="grid grid-cols-4 md:grid-cols-6 gap-1 md:gap-2">
         <a href="#msins" class="h-20 md:h-24 flex items-center justify-center bg-white">
           <Image src={MsIns} alt="三井住友海上火災保険株式会社" class="max-h-12 md:max-h-16 max-w-[90%] md:max-w-[80%] w-auto h-auto object-contain" />
         </a>
@@ -64,7 +64,7 @@ import hanasaku from '../assets/img/hanasaku.webp';
     </div>
 
     <div id="property-insurance" class="w-full bg-[#e5f2f9] h-auto py-16 pt-28 md:pt-32">
-      <div class="max-w-5xl mx-auto mt-8 space-y-8">
+      <div class="max-w-5xl mx-auto mt-8 space-y-8 px-4">
         <SectionTitle title="PROPERTY INSURANCE" subtitle="損害保険会社" />
         <div id="msins" class="px-4">
           <InsuranceCompanies logo={MsIns} logoAlt="Providers" phone="0120-560-579" hours="平日9:00–18:00、土日祝9:00–17:00（年末年始除く）" url="https://www.ms-ins.com/">
@@ -75,7 +75,7 @@ import hanasaku from '../assets/img/hanasaku.webp';
     </div>
 
     <div id="life-insurance" class="w-full bg-[#EFFFF1] h-auto py-16 pt-28 md:pt-32">
-      <div class="max-w-5xl mx-auto mt-8 space-y-8">
+      <div class="max-w-5xl mx-auto mt-8 space-y-8 px-4">
         <SectionTitle title="LIFE INSURANCE" subtitle="生命保険会社" />
         <div id="orix" class="px-4">
           <InsuranceCompanies logo={Orix} logoAlt="Providers" phone="0120-506-094" hours="月–土9:00–18:00（日・祝・年末年始休み）" url="https://www.orixlife.co.jp/">
