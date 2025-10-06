@@ -21,10 +21,10 @@ const {
   class: wrapperClass = ''
 } = Astro.props as Props;
 ---
-<div class={`grid grid-rows-4 text-[16px] md:text-[16px] text-[14px] font-extralight ${wrapperClass}`}>
+<div class={`grid grid-rows-4 md:text-[16px] text-[14px] font-extralight ${wrapperClass}`}>
   <!-- Row 1: Logo | Company name -->
   <div class="grid grid-cols-1 md:grid-cols-[1fr_5fr]">
-    <div class="p-2 md:p-4 bg-gray-50 flex items-center justify-center border-b-2 border-gray-300">
+    <div class="p-2 md:p-4 bg-white flex items-center justify-center border-b-2 border-gray-300">
       <Image src={logo} alt={logoAlt} class="h-12 md:h-16 w-auto object-contain" />
     </div>
     <div class="py-4 px-2 md:p-8 bg-blue-50 border-b-2 border-gray-300 flex items-center">
@@ -34,7 +34,7 @@ const {
 
   <!-- Row 2: 電話番号 -->
   <div class="grid grid-cols-1 md:grid-cols-[1fr_5fr]">
-    <div class="py-3 px-2 md:p-4 bg-gray-50 border-b-2 border-gray-300 flex items-center">電話番号</div>
+    <div class="py-3 px-2 md:p-4 bg-white border-b-2 border-gray-300 flex items-center">電話番号</div>
     <div class="py-3 px-2 md:p-4 bg-blue-50 border-b-2 border-gray-300 flex items-center">
       {phone ? (<a href={`tel:${phone.replace(/\D/g, '')}`} class="text-blue-600 hover:text-blue-800 underline">{phone}</a>) : ('—')}
     </div>
@@ -42,13 +42,13 @@ const {
 
   <!-- Row 3: 営業時間 -->
   <div class="grid grid-cols-1 md:grid-cols-[1fr_5fr]">
-    <div class="py-3 px-2 md:p-4 bg-gray-50 border-b-2 border-gray-300 flex items-center">営業時間</div>
+    <div class="py-3 px-2 md:p-4 bg-white border-b-2 border-gray-300 flex items-center">営業時間</div>
     <div class="py-3 px-2 md:p-4 bg-blue-50 border-b-2 border-gray-300 flex items-center">{hours || '—'}</div>
   </div>
 
   <!-- Row 4: URL -->
   <div class="grid grid-cols-1 md:grid-cols-[1fr_5fr]">
-    <div class="py-3 px-2 md:p-4 bg-gray-50 flex items-center">URL</div>
+    <div class="py-3 px-2 md:p-4 bg-white flex items-center">URL</div>
     <div class="py-3 px-2 md:p-4 bg-blue-50 flex items-center">
       {url ? (
         <a href={url} target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800 underline">{urlLabel || url}</a>
