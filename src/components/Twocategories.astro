@@ -1,0 +1,163 @@
+---
+  import Image from './Image.astro';
+
+import CategoryImg1 from '../assets/img/non-life-insurance.png';
+import CategoryImg2 from '../assets/img/life-insurance.png';
+---
+
+
+<section class="max-w-6xl mx-auto py-16 md:py-24 bg-primary-back relative sm:w-4/5">
+
+    <ul class="cards">
+
+      <!-- Card (01) - 損害保険 -->
+      <li class="card">
+        <a class="card_link" href="/providers#property-insurance">
+          <div class="card_tag">（01）</div>
+          <!-- 画像表示 -->
+          <div class="card_fig">
+            <Image src={CategoryImg1} alt="損害保険" class="card_img" />
+          </div>
+          <div class="card_label">
+            <p class="card_labelSub">Property Insurance</p>
+            <h3 class="card_labelMain">損害保険</h3>
+          </div>
+
+          <div class="card_icon">
+            <svg width="16" height="15" viewBox="0 0 16 15" fill="none" aria-hidden="true">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M0.25 6.85059H15.2306V8.35059H0.25V6.85059Z" fill="currentColor"/>
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M8.72244 0.94043L15.5017 7.04181C15.6598 7.18404 15.75 7.38666 15.75 7.59928C15.75 7.81189 15.6598 8.01452 15.5017 8.15675L8.72244 14.2581L7.71899 13.1432L13.8789 7.59928L7.71899 2.05537L8.72244 0.94043Z" fill="currentColor"/>
+            </svg>
+          </div>
+        </a>
+      </li>
+      <!-- Card (02) - 生命保険 -->
+      <li class="card">
+        <a class="card_link" href="/providers#life-insurance">
+          <div class="card_tag">（02）</div>
+          <!-- 画像表示 -->
+          <div class="card_fig">
+            <Image src={CategoryImg2} alt="生命保険" class="card_img" />
+          </div>
+          <div class="card_label">
+            <p class="card_labelSub">Life Insurance</p>
+            <h3 class="card_labelMain">生命保険</h3>
+          </div>
+
+
+
+          <div class="card_icon">
+            <svg width="16" height="15" viewBox="0 0 16 15" fill="none" aria-hidden="true">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M0.25 6.85059H15.2306V8.35059H0.25V6.85059Z" fill="currentColor"/>
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M8.72244 0.94043L15.5017 7.04181C15.6598 7.18404 15.75 7.38666 15.75 7.59928C15.75 7.81189 15.6598 8.01452 15.5017 8.15675L8.72244 14.2581L7.71899 13.1432L13.8789 7.59928L7.71899 2.05537L8.72244 0.94043Z" fill="currentColor"/>
+            </svg>
+          </div>
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  
+
+  <style>
+  /* ===== Theme & tokens ===== */
+  :root{
+    --accent: #3D95FA;                 /* 参考の青 */
+    --accent-soft: #7FC0FF;            /* グラデ用 */
+    --bg: #ffffff;                     /* ページ背景 */
+    --card-bg: #fff;
+    --label-bg: #fff;
+    --text: #101828;
+    --muted: #6b7280;
+    --radius: 20px;                    /* var(--border-radius-s) 相当 */
+  }
+
+  
+
+  /* ===== Layout ===== */
+  .cards{
+    list-style: none; margin: 0 auto; padding: 0; max-width: 1200px;
+    display: grid; gap: 24px;
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 960px){
+    .cards{ 
+      grid-template-columns: 1fr 1fr; 
+      gap: 32px;
+    }
+  }
+
+  
+
+  /* ===== Card base ===== */
+  .card_link{
+    position: relative; display:block; width:100%; 
+    height: 60vh; /* Mobile: 60% of viewport height */
+    border-radius: var(--radius); overflow: hidden; background: var(--card-bg);
+    box-shadow: 0 10px 30px rgba(61,149,250,.18);
+    text-decoration: none; color: inherit; isolation: isolate;
+  }
+
+  @media (min-width: 960px){
+    .card_link{
+      height: 50vh; /* Desktop: 50% of viewport height */
+    }
+  }
+
+  .card_link::before{ /* 内側の発光（参考のインセットシャドウ） */
+    content:""; position:absolute; inset:0;
+    box-shadow: inset 0 0 12rem rgba(61,149,250,.5);
+    pointer-events:none;
+    border-radius: inherit;
+  }
+
+  
+
+  /* 左上の番号 */
+  .card_tag{
+    position:absolute; top:16px; left:16px; z-index:2;
+    color: var(--accent); font-weight: 700; letter-spacing: .02em;
+  }
+  /* 中央の図版(=SVG置き場) */
+  .card_fig{
+    position:absolute; inset:0; display:grid; place-items:center;
+  }
+  .card_img{ width:min(68%, 380px); height:auto; border-radius: 12px; box-shadow: 0 10px 30px rgba(61,149,250,.18); }
+  /* 下部の白ラベル */
+  .card_label{
+    position:absolute; left:0; bottom:0; width: 260px; max-width: 75%;
+    padding: 18px 18px 20px; background: var(--label-bg);
+    border-radius: 0 16px 0 0;
+    box-shadow: 0 0 12rem rgba(61,149,250,.5);
+  }
+
+  .card_labelSub{
+    margin:0 0 4px; font-size: 13px; color: var(--muted);
+  }
+
+  .card_labelMain{
+    margin:0; font-size: clamp(18px, 2.4vw, 24px); color: var(--text);
+    letter-spacing: .02em;
+  }
+  /* 右下の丸いアイコン */
+  .card_icon{
+    position:absolute; right:16px; bottom:16px; width:56px; height:56px;
+    display:grid; place-items:center;
+    color:#fff; background: radial-gradient(120% 120% at 30% 30%, var(--accent) 0%, var(--accent-soft) 60%, rgba(61,149,250,.9) 100%);
+    border-radius:50%;
+    box-shadow: 0 8px 24px rgba(61,149,250,.45);
+  }
+  /* 画像の軽い浮遊アニメ（任意） */
+  .card_img{ animation: floatY 3s ease-in-out infinite alternate; }
+  @keyframes floatY{ 0% { transform: translateY(-6px) } 100% { transform: translateY(6px) } }
+
+  /* タップハイライト無効（参考CSSの再現） */
+  @media (hover: none){
+    .card_link{ -webkit-tap-highlight-color: rgba(0,0,0,0); }
+  }
+  /* hover少しだけ浮かす */
+  @media (hover:hover){
+    .card_link:hover{ transform: translateY(-2px); transition:.25s ease; }
+  }
+  </style>

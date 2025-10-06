@@ -5,7 +5,7 @@ import react from "@astrojs/react";
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://risevista.com',
+  site: 'https://brid-ge.co.jp',
   integrations: [tailwind(), react()],
   prefetch: {
     prefetchAll: true

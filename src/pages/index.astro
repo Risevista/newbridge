@@ -5,39 +5,44 @@ import Layout from '../layouts/Layout.astro';
 import { getCollection } from "astro:content";
 import Values from '../components/Values.astro';
 import FAQ from '../components/FAQ.astro';
+import Twocategories from '../components/Twocategories.astro';
+import Testimonials from '../components/Testimonials.astro';
 import SectionTitle from '../components/SectionTitle.astro';
-import NewsList from '../components/NewsList.astro';
+import Hero from '../components/Hero.astro';
+import MsIns from '../assets/img/ms-ins.webp';
+import Orix from '../assets/img/orix.webp';
+import Manulife from '../assets/img/manulife.webp';
+import Metlife from '../assets/img/metlife.webp';
+import Fwd from '../assets/img/fwd.webp';
+import Msa from '../assets/img/mitsuisumitomo_kaijyo_aioi.webp';
+import MsPrimary from '../assets/img/mitsuisumitomo_kaijyo_primary.webp';
+import Himawari from '../assets/img/himawari.webp';
+import Sony from '../assets/img/sony.webp';
+import Neofirst from '../assets/img/neofirst.webp';
+import HeaderLogo from '../assets/img/bridge.png';
 
-import Service1 from '../assets/img/service1.webp';
-import Service2 from '../assets/img/service2.webp';
-import Service3 from '../assets/img/service3.webp';
-import HeaderLogo from '../assets/img/risevista-logo.webp';
-import Hero1 from '../assets/img/hero1.webp';
-import Hero2 from '../assets/img/hero2.webp';
-import Hero3 from '../assets/img/hero3.webp';
-import Hero4 from '../assets/img/hero4.webp';
-import Circle from '../assets/img/circle.png';
-// 4枚の画像を定義（実際のパスに変更してください）
-const heroImages = [
-  Hero1, 
-  Hero2, 
-  Hero3, 
-  Hero4  
-];
-
-// Hero section text constants
-const heroText = {
-  vertical: {
-    line1: "日本に健全な投資文化を育み",
-    line2: "豊かさと成長を次世代へ"
-  },
-  horizontal: {
-    line1: "人生100年時代を支える",
-    line2: "あなたのパートナーに"
-  },
-  description: "RISE VISTAは、「不動産」という枠組みを超えて、未来を創る力になりたいと考えています。"
+// Text (一箇所に集約)
+const COPY = {
+  eyebrowJa: "企業情報",
+  eyebrowEn: "Our Company",
+  head1: "圧倒的な「安心」をあなたに",
+  head2: "個人・法人の総合保険代理店",
+  body1: "保険に関する疑問・課題を解決し、お客様に安心をお届けします。",
+  body2: "企業・個人のお客さまへあらゆる保険ソリューションをご提供します。",
 };
 
+const images = [
+  MsIns,
+  Orix,
+  Manulife,
+  Metlife,
+  Fwd,
+  Msa,
+  MsPrimary,
+  Himawari,
+  Sony,
+  Neofirst
+];
 
 // ニュース記事の取得とサマリー生成
 const posts = await getCollection("news");
@@ -66,508 +71,70 @@ const withExcerpt = posts
 
 ---
 
-<Layout title="不動産をお探しなら株式会社RISE VISTA｜人生100年時代を支える総合不動産会社">
+<Layout title="圧倒的な安心をあなたに｜保険代理店ならBridge">
   <!-- Preloader overlay -->
   <div id="preloader" class="fixed inset-0 z-[1000] flex items-center justify-center bg-primary-back">
     <div class="h-10 w-10 rounded-full border-2 border-teal-600 border-t-transparent animate-spin"></div>
   </div>
   <div id="page-root" class="opacity-0 transition-opacity duration-500">
 
-<!-- ===== Hero: Mobile (md未満) ===== -->
-<section class="relative bg-primary-back min-h-[100dvh] flex flex-col md:hidden pt-20">
-  <!-- 2) 楕円スライダー -->
-  <div class="relative w-full flex-1 flex items-center justify-center">
-    <div class="relative w-full h-[60vh]">
-      <div class="absolute inset-0">
-        <div class="ellipse-image-container">
-          <div class="ellipse-wrapper">
-            {heroImages.map((heroImg, index) => (
-              <Image
-                src={heroImg}
-                alt={`背景画像 ${index + 1}`}
-                class={`ellipse-background-image slide-${index}`}
-                loading={index === 0 ? "eager" : "lazy"}
-                decoding="async"
-                data-preload
-                aria-hidden="true"
-              />
-            ))}
-          </div>
+    <!-- 重要な画像のプリロード -->
+    <link rel="preload" as="image" href={HeaderLogo.src} />
+
+    <!-- =================== HERO =================== -->
+    <section class="hero" id="hero">
+     <Hero />
+  </section>
+    <!-- Scroll Indicator -->
+    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-center scroll-indicator z-10" style="opacity: 0;">
+      <div class="flex flex-col items-center space-y-2">
+        <span class="text-slate-500 text-sm font-medium tracking-wider">SCROLL</span>
+        <div class="w-px h-12 bg-slate-300 relative overflow-hidden">
+          <div class="w-px h-4 bg-blue-500 absolute top-0 animate-scroll-line"></div>
         </div>
-      </div>
-      <!-- SVG Headline (Mobile) -->
-      <div class="hero-svg-headline" aria-label="人生100年時代を支える　あなたのパートナーに">
-        <svg class="textcont" viewBox="0 0 1000 100" role="img" aria-label="人生100年時代を支える">
-          <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" class="font-min">
-            <tspan>人</tspan><tspan>生</tspan><tspan>1</tspan><tspan>0</tspan><tspan>0</tspan><tspan>年</tspan><tspan>時</tspan><tspan>代</tspan><tspan>を</tspan><tspan>支</tspan><tspan>え</tspan><tspan>る</tspan>
-          </text>
-        </svg>
-        <svg class="textcont" viewBox="0 0 1000 100" role="img" aria-label="あなたのパートナーに">
-          <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" class="font-min">
-            <tspan>　</tspan><tspan>あ</tspan><tspan>な</tspan><tspan>た</tspan><tspan>の</tspan><tspan>パ</tspan><tspan>ー</tspan><tspan>ト</tspan><tspan>ナ</tspan><tspan>ー</tspan><tspan>に</tspan>
-          </text>
+        <svg class="w-4 h-4 text-slate-400 animate-bounce" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
         </svg>
       </div>
     </div>
-  </div>
+  </section>  
+   
+   <Twocategories />
+   
+   <Testimonials />
 
-  <!-- 3) 縦書きテキストとスマホ用SCROLLバー -->
-  <div class="absolute left-2 bottom-5 z-20 flex items-end">
-    <!-- スマホ用SCROLLバー -->
-    <div class="flex flex-col items-center justify-end h-[200px] mr-3">
-      <p class="text-primary font-tsukushi writing-vertical mb-4 text-[12px]">SCROLL</p>
-      <div class="h-[60px] flex items-center">
-        <div class="w-[0.5px] h-[60px] bg-primary animate-rise-fade opacity-60"></div>
+   <!-- insurance company Section -->
+  <section class="py-24 bg-primary-back relative" id="insurance">
+    <div class="max-w-6xl mx-auto px-4">
+      <SectionTitle title="INSURANCE COMPANY" subtitle="取り扱い保険会社" />
+      <div class="max-w-6xl mx-auto px-4">
+        お客様のニーズに沿った最適な品揃えをご提案いたします。
       </div>
     </div>
-    
-    <!-- 縦書きテキスト -->
-    <div class="writing-vertical text-secondary-screen text-[16px] leading-relaxed tracking-[0.3em] font-tsukushi"
-    style="text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.822);">
-     <div class="mt-16 fade-chars">{heroText.vertical.line1}</div>
-      <div class="mt-52 fade-chars">{heroText.vertical.line2}</div>
-    </div>
-  </div>
-
-  <!-- 4) 本文テキスト -->
-  <div class="w-4/5 ml-auto pr-6 pb-6">
-    <p class="text-secondary-screen text-[13px] leading-6 tracking-tight font-tsukushi text-right">
-      {heroText.description}
-    </p>
-  </div>
-</section>
-
-<!-- ===== Hero: Desktop (md以上) —— 既存をそのまま残す ===== -->
-<section class="relative bg-primary-back min-h-[100dvh] overflow-hidden pt-20 md:pt-64 hidden md:flex">
-  <!-- 楕円形背景画像コンテナ --> 
-  <div class="absolute top-10 left-0 w-full h-full z-0">
-    <div class="ellipse-image-container">
-      <div class="ellipse-wrapper">
-        {heroImages.map((heroImg, index) => (
-          <Image
-            src={heroImg}
-            alt={`背景画像 ${index + 1}`}
-            class={`ellipse-background-image slide-${index}`}
-            loading={index === 0 ? "eager" : "lazy"}
-            decoding="async"
-            data-preload
-            aria-hidden="true"
-          />
+    <div class="slider-container">
+      <div class="slider-track">
+        {images.map((img) => (
+          <div class="logo-slide">
+            <img src={img.src} alt="Company logo" />
+          </div>
+        ))}
+        <!-- 無限ループのために画像を複製 -->
+        {images.map((img) => (
+          <div class="logo-slide">
+            <img src={img.src} alt="Company logo" />
+          </div>
         ))}
       </div>
     </div>
-  </div>
-
-  <!-- 縦書きテキスト -->
-  <div class="absolute left-24 top-32 z-20 mt-10">
-    <div class="writing-vertical text-secondary-screen text-[32px] leading-relaxed tracking-wider font-tsukushi"
-    style="text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.822);">  
-      <div class="fade-chars">{heroText.vertical.line1}</div>
-      <div class="mt-48 fade-chars">{heroText.vertical.line2}</div>
+    <a href="/providers">
+    <div class="max-w-6xl mx-auto px-4 flex justify-end text-secondary-screen underline">
+      全ての保険会社を見る
     </div>
-  </div>
-
-  <!-- 右上テキスト（SVGヘッドラインへ統一） -->  
-  <div class="hero-svg-headline" aria-label="人生100年時代を支える　あなたのパートナーに">
-    <svg class="textcont" viewBox="0 0 1200 160" role="img" aria-label="人生100年時代を支える">
-      <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" class="font-min">
-        <tspan>人</tspan><tspan>生</tspan><tspan>1</tspan><tspan>0</tspan><tspan>0</tspan><tspan>年</tspan><tspan>時</tspan><tspan>代</tspan><tspan>を</tspan><tspan>支</tspan><tspan>え</tspan><tspan>る</tspan>
-      </text>
-    </svg>
-    <svg class="textcont" viewBox="0 0 1200 160" role="img" aria-label="あなたのパートナーに">
-      <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" class="font-min">
-        <tspan>　</tspan><tspan>あ</tspan><tspan>な</tspan><tspan>た</tspan><tspan>の</tspan><tspan>パ</tspan><tspan>ー</tspan><tspan>ト</tspan><tspan>ナ</tspan><tspan>ー</tspan><tspan>に</tspan>
-      </text>
-    </svg>
-  </div>
-
-  <!--  SCROLLバー（統合） -->
-  <div class="absolute right-0 bottom-0 sm:top-0 h-[100px] sm:h-full w-[40px] md:w-[5%] bg-primary-back text-primary z-50 sm:flex hidden flex-col items-center justify-end pb-10">
-    <p class="text-primary font-tsukushi writing-vertical mb-4 text-[8px] md:text-sm">SCROLL</p>
-    <div class="relative overflow-visible h-[60px]">
-      <div class="absolute bottom-0 w-[0.5px] h-[60px] bg-primary animate-rise-fade opacity-60"></div>
-    </div>
-  </div>
-
-  
-  <!-- テキスト -->
-  <div class="text-primary p-6 md:p-10 w-[88%] z-20 opacity-90 absolute bottom-8 right-16 md:bottom-0 md:right-24 md:w-[42%] md:max-w-xl animate-text-up">
-    <p class="mt-6 text-[18px] text-secondary-screen tracking-normal font-tsukushi">
-      {heroText.description}
-    </p>  
-  </div>
-</section>
-
-  
-  <!-- MISSION Section -->
-  <div class="max-w-6xl mx-auto px-4 pt-24 md:pt-48">
-  <SectionTitle title="MISSION" subtitle="ミッション" />
-  </div>
-<section class="mission-section letter-effect w-full flex justify-center items-center min-h-fit pb-48 bg-primary-back font-tsukushi relative">
-  <div class="section-heading">MISSION</div>
-  <div class="w-full max-w-6xl flex flex-col md:flex-row items-center gap-6 md:gap-8 px-4">
-    <!-- 左カラム：テキスト（幅3） -->
-    <div class="flex-[3] flex flex-col items-start justify-center text-primary">
-      <h2 class="text-[18px] md:text-[32px] tracking-widest mb-4 md:mb-6 !font-tsukushi text-primary slide-in-right" style="--delay: 0.2s;">
-        一人ひとりの力を信じ、革新と創造を通じて人生100年時代を支えるパートナーに
-      </h2>
-      <p class="text-[14px] md:text-[18px] font-normal  text-primary slide-in-left" style="--delay: 0.4s;">
-        人生100年時代を迎え、将来に向けた資産形成や運用の重要性はこれまで以上に高まっています。かつての「貯蓄から投資へ」という流れは、今や個人のライフスタイルに合わせた柔軟で多様な資産運用へと進化しています。私たちは、一人ひとりが自分らしい未来を描けるよう、革新と創造を通じて人生100年時代を支えるあなたのパートナーになります。
-      </p>
-    </div>
-    <div class="size-40 md:size-48 rounded-full relative overflow-hidden">
-      <Image src={HeaderLogo} alt="Slogan" class="absolute inset-0 w-full h-full object-contain pointer-events-none" />
-    </div>
-    
-    <!-- 右カラム：ボタン（幅1） -->
-    <div class="flex-[1] flex justify-center items-center fade-in-text" style="--delay: 0.8s;">
-      <a href="/mission">
-        <button
-          type="button"
-          class="text-white font-tsukushi bg-green-900 hover:bg-green-800 font-medium rounded-lg text-sm px-8 py-4 text-center"
-        >
-          OUR MISSION
-          <span class="ml-2 inline-block align-middle">→</span>
-        </button>
-      </a>
-    </div>
-  </div>
-</section>
-
-
-<!-- VALUES セクション（上下の線を共通、4行は等間隔） -->
-<Values />
-  
-<!-- SERVICE セクション -->
-<section class="bg-primary-back py-24 relative" id="service">
-    <div class="max-w-6xl mx-auto px-4">
-      <div class="section-heading">SERVICE</div>
-      <SectionTitle title="SERVICE" subtitle="事業内容" />
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 justify-items-center">
-      <!-- Service 01 -->
-      <div class="space-y-4">
-        <!-- ラベル -->
-        <div class="pt-4 text-xs tracking-wide font-tsukushi text-primary">
-          <div class="service-border-line"></div>
-          <p class="pt-4">
-            SERVICE #01</p>
-          </p>
-        </div>
-        <Image
-        src={Service1}
-        alt="Circus"
-        class="w-full h-[220px] md:h-[240px] object-cover brightness-130"
-        loading="lazy"
-        decoding="async"
-      />
-        <!-- タイトル -->
-        <h3 class="text-lg font-bold leading-relaxed font-tsukushi">
-          賃貸仲介
-        </h3>
-        <!-- 本文 -->
-        <p class="text-primary leading-relaxed">
-          物件を貸し出したい貸主様と物件を借りたい借主様をおつなぎいたします。</p>
-      </div>
-  
-      <!-- Service 02 -->
-      <div class="space-y-4">
-        <div class="pt-4 text-xs tracking-wide font-tsukushi text-primary">
-          <div class="service-border-line"></div>
-          <p class="pt-4">
-            SERVICE #02</p>
-          </p>
-        </div>
-        <Image
-        src={Service2}
-        alt="Circus"
-        class="w-full h-[220px] md:h-[240px] object-cover brightness-130"
-        loading="lazy"  
-        decoding="async"
-      />
-      <h3 class="text-lg font-bold leading-relaxed font-tsukushi">
-          売買仲介
-        </h3>
-        <p class="text-primary leading-relaxed">
-          不動産を売却したい方、購入したい方の間に立ち、手続きや契約をサポートいたします。
-        </p>
-      </div>
-  
-      <!-- Service 03 -->
-      <div class="space-y-4">
-        <div class="pt-4 text-xs tracking-wide font-tsukushi text-primary">
-          <div class="service-border-line"></div>
-          <p class="pt-4">
-            SERVICE #03</p>
-          </p>
-        </div>
-        <Image
-        src={Service3}
-        alt="Circus"
-        class="w-full h-[220px] md:h-[240px] object-cover brightness-130"
-        loading="lazy"
-        decoding="async"
-      />
-      <h3 class="text-lg font-bold leading-relaxed font-tsukushi">
-          不動産投資
-        </h3>
-        <p class="text-primary leading-relaxed">
-          投資用不動産の売買、運用サポートなど長期にわたってお付き合いいたします。
-        </p>
-      </div>
-    </div>
-    <div class="flex justify-center mt-6">
-      <a href="/service" class="text-white font-tsukushi bg-green-900 hover:bg-green-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
-        詳しくみる
-      </a>
-    </div>
-</section>
-
-  <!-- 新しいセクション: 施設・基本情報 -->
-  <section id="amenities" class="bg-primary-back py-16 md:py-24">
-    <div class="mx-auto max-w-7xl px-4">
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-2 items-center onscreen-root">
-        <!-- 左：画像 -->
-        <div class="reveal flex justify-center">
-          <Image
-            src={Circle}
-            alt="Circle"
-            class="w-full h-[250px] md:w-[700px] object-contain brightness-130"
-            loading="lazy"
-            decoding="async"
-          />
-        </div>
-
-        <!-- 右：上 文章、下 3列×2行 -->
-        <div class="reveal md:col-span-2">
-          <!-- 上：文章 -->
-          <div class="mb-8 relative">
-            <h3 class="text-xl md:text-3xl leading-relaxed md:mb-8 mb-2 text-secondary">RISE VISTAの</br>トータルライフコンサルティング</h3>
-            <div class="text-base text-primary leading-relaxed">
-              私たちは、不動産の売買・仲介で最適な選択をサポートいたします。また、関係会社である株式会社Bridgeと連携し、保険の提供も可能です。
-            </div>
-          </div>
-          <!-- 下：3列×2行 -->
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-3 text-secondary">
-            <!-- アイテム1 -->
-            <div class="flex items-start gap-4 bg-white rounded-lg p-4">
-              <div class="mt-1">
-                <!-- 遺産相続アイコン（例: 書類/家） -->
-                <svg viewBox="0 0 24 24" class="w-6 h-6"><path fill="currentColor" d="M12 3l8 6v12H4V9l8-6Zm0 2.18L6 9.5V19h12V9.5l-6-4.32Z"/></svg>
-              </div>
-              <div class="text-primary">
-                <div class="text-[16px]">遺産相続</div>
-                <div class="mt-1 text-[16px]">相続対策・承継支援</div>
-              </div>
-            </div>
-
-            <!-- アイテム2 -->
-            <div class="flex items-start gap-4 bg-white rounded-lg p-4">
-              <div class="mt-1">
-                <!-- 節税アイコン（電卓風） -->
-                <svg viewBox="0 0 24 24" class="w-6 h-6"><path fill="currentColor" d="M5 2h14a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2Zm0 2v16h14V4H5Zm2 2h2v2H7V6Zm0 4h2v2H7v-2Zm0 4h2v2H7v-2Zm0 4h2v2H7v-2Zm4-12h6v6h-6V6Zm0 8h6v6h-6v-6Z"/></svg>
-              </div>
-              <div class="text-primary">
-                <div class="text-[16px]">節税</div>
-                <div class="mt-1 text-[16px]">税務プランニング</div>
-              </div>
-            </div>
-
-            <!-- アイテム3 -->
-            <div class="flex items-start gap-4 bg-white rounded-lg p-4">
-              <div class="mt-1">
-                <!-- 開業アイコン（店舗/ビル） -->
-                <svg viewBox="0 0 24 24" class="w-6 h-6"><path fill="currentColor" d="M4 22V10l8-8l8 8v12H4Zm8-14L6 10v10h4v-6h4v6h4V10l-6-2Z"/></svg>
-              </div>
-              <div class="text-primary">
-                <div class="text-[16px]">開業</div>
-                <div class="mt-1 text-[16px]">会社設立・事業支援</div>
-              </div>
-            </div>
-
-            <!-- アイテム4 -->
-            <div class="flex items-start gap-4 bg-white rounded-lg p-4">
-              <div class="mt-1">
-                <!-- 不動産投資アイコン -->
-                <svg viewBox="0 0 24 24" class="w-6 h-6"><path fill="currentColor" d="M12 2l9 7h-3v13h-4v-6H10v6H6V9H3l9-7Z"/></svg>
-              </div>
-              <div class="text-primary">
-                <div class="text-[16px]">不動産投資</div>
-                <div class="mt-1 text-[16px]">収益物件・運用</div>
-              </div>
-            </div>
-
-            <!-- アイテム5 -->
-            <div class="flex items-start gap-4 bg-white rounded-lg p-4">
-              <div class="mt-1">
-                <!-- 保険アイコン -->
-                <svg viewBox="0 0 24 24" class="w-6 h-6"><path fill="currentColor" d="M12 2c5.53 0 10 4.47 10 10s-4.47 10-10 10S2 17.53 2 12S6.47 2 12 2Zm0 2C7.59 4 4 7.59 4 12s3.59 8 8 8s8-3.59 8-8s-3.59-8-8-8Zm-1 11h2v2h-2v-2Zm0-8h2v6h-2V7Z"/></svg>
-              </div>
-              <div class="text-primary">
-                <div class="text-[16px]">保険設計</div>
-                <div class="mt-1 text-[16px]">生命・法人保険</div>
-              </div>
-            </div>
-
-             <!-- アイテム6 -->
-              <div class="flex items-start gap-4 bg-white rounded-lg p-4">
-               <div class="mt-1">
-                 <!-- 資産形成アイコン（グラフ） -->
-                 <svg viewBox="0 0 24 24" class="w-6 h-6"><path fill="currentColor" d="M3 17h2v4H3v-4Zm4-6h2v10H7V11Zm4-4h2v14h-2V7Zm4 6h2v8h-2v-8Zm4-10h2v18h-2V3Z"/></svg>
-               </div>
-               <div class="text-primary">
-                 <div class="text-[16px]">資産形成</div>
-                 <div class="mt-1 text-[16px]">長期投資・ライフプラン</div>
-               </div>
-             </div>
-           </div>
-
-           <!-- 関係会社について -->
-           <!-- <div class="mt-8">
-             <h4 class="text-lg text-primary mb-4">関係会社について</h4>
-             <div class="bg-secondary-screen rounded-lg p-6">               
-               <!-- 株式会社Bridge -->
-               <!-- <div class="border-gray-200">
-                 <div class="flex items-center justify-between">
-                   <div class="flex items-center gap-3">
-                    <Image src={Bridge} alt="株式会社Bridge" class="md:w-16 md:h-16 w-10 h-10" loading="lazy" decoding="async" /> 
-                    <span class="text-base text-[#d6be98]">株式会社Bridge</span>
-                   </div>
-                   <a href="https://bridge-company.com" target="_blank" rel="noopener noreferrer" 
-                      class="inline-flex items-center gap-2 px-4 py-2 bg-primary-back text-primary rounded-lg hover:bg-primary/90 transition-colors text-sm font-medium">
-                     <span>詳細を見る</span>
-                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
-                     </svg>
-                   </a>
-                 </div>
-                 <p class="text-sm text-[#d6be98] mt-2 md:ml-6 ml-2">
-                  損害保険から生命保険まで、安心を届ける保険代理店
-                </p>
-               </div>
-             </div>
-           </div> -->
-
-        </div>
-      </div>
-    </div>
+    </a>
   </section>
 
-   <!-- メニュー-->
-  <section class="bg-primary-back relative overflow-hidden w-full">
-    <!-- メインコンテンツ -->
-    <div class="relative z-20 flex items-center justify-center p-4 md:p-8 lg:p-12 font-tsukushi">
-      <div class="max-w-6xl w-full grid grid-cols-1 lg:grid-cols-2 gap-3 lg:gap-16">
-        
-        <!-- 左カラム -->
-        <div class="flex flex-col justify-center space-y-4">
-          <!-- 左側のメニュー項目 -->
-          <nav class="space-y-3">
-            <a 
-              href="#company" 
-              class="menu-item group flex bg-white items-center justify-between py-4 px-6 rounded-xl transition-all duration-300 hover:bg-white hover:shadow-lg transform hover:-translate-y-1"
-              data-image="1"
-            >
-              <div class="flex items-center space-x-4">
-                <p class="text-secondary">01</p>
-                <p class="text-primary group-hover:text-teal-600 transition-colors md:text-[16px]">
-                  会社概要
-                </p>
-              </div>
-              <svg class="w-5 h-5 text-secondary group-hover:text-teal-600 group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-              </svg>
-            </a>
-    
-            <a 
-              href="/mission" 
-              class="menu-item group flex items-center bg-white justify-between py-4 px-6 rounded-xl transition-all duration-300 hover:bg-white hover:shadow-lg transform hover:-translate-y-1"
-              data-image="2"
-            >
-              <div class="flex items-center space-x-4">
-                <p class="text-secondary">02</p>
-                <p class="text-primary group-hover:text-teal-600 transition-colors md:text-[16px]">
-                  Mission・Values・Purpose
-                </p>
-              </div>
-              <svg class="w-5 h-5 text-secondary group-hover:text-teal-600 group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-              </svg>
-            </a>
-
-            <a 
-              href="/mission#message" 
-              class="menu-item group flex items-center bg-white justify-between py-4 px-6 rounded-xl transition-all duration-300 hover:bg-white hover:shadow-lg transform hover:-translate-y-1"
-              data-image="3"
-            >
-              <div class="flex items-center space-x-4">
-                  <p class="text-secondary">03</p>
-                <span class="text-primary group-hover:text-teal-600 transition-colors md:text-[16px]">
-                  代表メッセージ
-                </p>
-              </div>
-              <svg class="w-5 h-5 text-secondary group-hover:text-teal-600 group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-              </svg>
-            </a>
-          </nav>
-        </div>
-    
-        <!-- 右カラム -->
-        <div class="flex flex-col justify-center space-y-4">
-          <!-- 右側のメニュー項目 -->
-          <nav class="space-y-3">
-            <a 
-              href="/mission#consultants" 
-              class="menu-item group flex bg-white items-center justify-between py-4 px-6 rounded-xl transition-all duration-300 hover:bg-white hover:shadow-lg transform hover:-translate-y-1"
-              data-image="4"
-            >
-              <div class="flex items-center space-x-4">
-                <p class="text-secondary">04</p>
-                <p class="text-primary group-hover:text-teal-600 transition-colors md:text-[16px]">
-                  コンサルタント紹介
-                </p>
-              </div>
-              <svg class="w-5 h-5 text-secondary group-hover:text-teal-600 group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-              </svg>
-            </a>
-
-            <a 
-              href="/service" 
-              class="menu-item group flex bg-white items-center justify-between py-4 px-6 rounded-xl transition-all duration-300 hover:bg-white hover:shadow-lg transform hover:-translate-y-1"
-              data-image="5"
-            >
-              <div class="flex items-center space-x-4">
-                <p class="text-secondary">05</p>
-                <p class="text-primary group-hover:text-teal-600 transition-colors md:text-[16px]">
-                  事業内容
-                </p>
-              </div>
-              <svg class="w-5 h-5 text-secondary group-hover:text-teal-600 group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-              </svg>
-            </a>
-
-            <a 
-              href="#faq" 
-              class="menu-item group flex bg-white items-center justify-between py-4 px-6 rounded-xl transition-all duration-300 hover:bg-white text-primary-back hover:shadow-lg transform hover:-translate-y-1"
-              data-image="6"
-            >
-              <div class="flex items-center space-x-4">
-                <p class="text-secondary">06</p>
-                <p class="text-primary group-hover:text-teal-600 transition-colors md:text-[16px]">
-                  よくある質問
-                </p>
-              </div>
-              <svg class="w-5 h-5 text-secondary group-hover:text-teal-600 group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-              </svg>
-            </a>
-          </nav>
-        </div>
-      </div>
-    </div>
-  </section>
+    <!-- VALUES セクション（上下の線を共通、4行は等間隔） -->
+    <Values />
   
   <section class="py-16 md:py-24 bg-primary-back relative" id="company">
     <div class="section-heading">COMPANY</div>
@@ -578,9 +145,9 @@ const withExcerpt = posts
       <div class="flex flex-col md:flex-row gap-8 items-stretch">
         <!-- 左：ロゴ -->
         <div class="md:w-1/3 w-full flex justify-center items-center">
-          <Image 
+            <Image 
             src={HeaderLogo} 
-            alt="RISE VISTA ロゴ" 
+            alt="Bridge ロゴ" 
             class="object-contain w-auto max-h-[300px]" 
           />
         </div>
@@ -590,62 +157,33 @@ const withExcerpt = posts
           <dl class="divide-y divide-primary text-primary">
             <div class="flex flex-col md:flex-row py-3">
               <dt class="md:w-[35%] w-full">会社名</dt>
-              <dd class="md:w-[65%] w-full ml-3">株式会社RISE VISTA</dd>
+              <dd class="md:w-[65%] w-full ml-3">株式会社Bridge</dd>
             </div>
             <div class="flex flex-col md:flex-row py-3">
-              <dt class="md:w-[35%] w-full">代表取締役</dt>
+              <dt class="md:w-[35%] w-full">CEO</dt>
               <dd class="md:w-[65%] w-full ml-3">土屋 健二</dd>
             </div>
             <div class="flex flex-col md:flex-row py-3">
-              <dt class="md:w-[35%] w-full">設立</dt>
-              <dd class="md:w-[65%] w-full ml-3">2019年1月22日</dd>
+              <dt class="md:w-[35%] w-full">代表取締役</dt>
+              <dd class="md:w-[65%] w-full ml-3">稲葉 あゆみ</dd>
             </div>
             <div class="flex flex-col md:flex-row py-3">
               <dt class="md:w-[35%] w-full">所在地</dt>
-              <dd class="md:w-[65%] w-full ml-3">東京都渋谷区渋谷1-1-8 <!-- 青山ダイヤモンドビル7階 --></dd>
+              <dd class="md:w-[65%] w-full ml-3">東京都港区三田3-4-17 藤和三田コープⅡ203</dd>
+            </div>
+            <div class="flex flex-col md:flex-row py-3">
+              <dt class="md:w-[35%] w-full">電話番号</dt>
+              <dd class="md:w-[65%] w-full ml-3"><a href="tel:0364354592" class="underline">03-6435-4592</a></dd>
             </div>
             <div class="flex flex-col md:flex-row py-3">
               <dt class="md:w-[35%] w-full">事業内容</dt>
-              <dd class="md:w-[65%] w-full ml-3">不動産売買・仲介業務・投資運用業</dd>
+              <dd class="md:w-[65%] w-full ml-3">保険代理店</dd>
             </div>
-
-            <!-- 取扱金融機関（非表示） -->
-            <!--
-            <div class="flex flex-col md:flex-row py-3" id="banks">
-              <dt class="md:w-[35%] w-full">取扱金融機関</dt>
-              <dd class="md:w-[65%] w-full ml-3">
-                <ul class="list-disc pl-5 space-y-1">
-                  <li>東京スター銀行</li>
-                  <li>SBI新生銀行</li>
-                  <li>イオン銀行</li>
-                  <li>関西みらい銀行</li>
-                  <li>SBJ銀行</li>
-                  <li>楽天銀行</li>
-                </ul>
-              </dd>
-            </div>
-            -->
           </dl>
         </div>
       </div>
     </div>
   </section>  
-  
-
-  <!-- NEWS Section -->
-  <section class="py-24 bg-primary-back relative" id="news">
-    <div class="section-heading">NEWS</div>
-    <div class="max-w-6xl mx-auto px-4">
-      <SectionTitle title="NEWS" subtitle="最新情報" />
-      <NewsList items={withExcerpt} basePath="/news" />
-      <div class="flex justify-center mt-12">
-        <a href="/news" class="text-white font-tsukushi bg-green-900 hover:bg-green-800 font-medium rounded-lg text-sm px-8 py-4 text-center transition-colors duration-300">
-          すべてのニュースを見る
-          <span class="ml-2 inline-block align-middle">→</span>
-        </a>
-      </div>
-    </div>
-  </section>
 
   <!-- Properties Carousel Section -->
   <!-- <section class="py-24 bg-primary-back" id="properties">
@@ -654,6 +192,7 @@ const withExcerpt = posts
 
   <!-- よくある質問 セクション -->
   <FAQ />
+</div>
   </div>
 </Layout>
 
@@ -876,26 +415,21 @@ const withExcerpt = posts
   text-orientation: mixed;
 }
 
-.section-heading {
-  position: absolute;
-  bottom: 2rem;
-  right: 2rem;
-  font-size: 8rem;
-  font-weight: bold;
-  color: #00502f;
-  opacity: 0.1;
-  pointer-events: none;
-  z-index: 1;
-  letter-spacing: 0.2em;
-}
+.section-heading { position: absolute; bottom: 2rem; right: 2rem; font-size: 8rem; font-weight: bold; color: #101ad0; opacity: 0; transition: opacity 0.8s ease-out; pointer-events: none; z-index: 1; letter-spacing: 0.2em; }
+  .section-heading.visible { opacity: 0.1; }
 
-@media (max-width: 767px) {
-  .section-heading {
-    bottom: 2rem;
-    right: 1rem;
-    font-size: 2.25rem;
+  @media (max-width: 767px) {
+    .section-heading {
+      bottom: 2rem;
+      right: 1rem;
+      font-size: 2.25rem;
+    }
+    
+    /* スマホでのスクロール時のオフセット調整 */
+    #message, #consultants {
+      scroll-margin-top: 80px;
+    }
   }
-}
 
 /* Service section border line animation - center to sides */
 .service-border-line {
@@ -928,12 +462,183 @@ const withExcerpt = posts
   overflow: hidden;
 }
 
-.line-clamp-3 {
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* New Hero Section Styles */
+  /* Responsive improvements and additional styling */
+  @media (max-width: 768px) {
+    .hero-section .grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      text-align: center;
+    }
+
+    .hero-section h1 {
+      font-size: 2.5rem;
+      line-height: 1.1;
+    }
+
+    .hero-section p {
+      font-size: 1.25rem;
+    }
+
+    .hero-section button {
+      padding: 0.75rem 2rem;
+      font-size: 0.9rem;
+    }
+
+    .hero-image {
+      order: -1;
+    }
+
+    .hero-image .max-w-lg {
+      max-width: 20rem;
+    }
+
+    #about .grid {
+      gap: 2rem;
+    }
+
+    #company h2 {
+      font-size: 3rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .hero-section h1 {
+      font-size: 2rem;
+    }
+
+    .hero-section .space-y-6 {
+      padding: 1rem;
+    }
+
+    #company dl > div {
+      padding: 1rem 0;
+    }
+  }
+
+  /* Custom hover effects */
+  .hero-section button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+  }
+
+  /* Smooth scrolling - ブラウザネイティブを使用 */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Custom gradient text */
+  .gradient-text {
+    background: linear-gradient(135deg, #1e40af, #475569);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Simple slide functionality */
+  .slideshow-container {
+    position: relative;
+  }
+
+  .slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
+    z-index: 1;
+  }
+
+  .slide.slide-1 {
+    z-index: 2;
+  }
+
+  /* Ken Burns effect on images */
+  .slide img {
+    transform: scale(1.02);
+    transition: transform 6s ease-out;
+  }
+
+  .slide.opacity-100 img {
+    transform: scale(1.08);
+  }
+
+  .slide-indicator.active {
+    background-color: white !important;
+    transform: scale(1.3);
+  }
+
+  .service-icon {
+    opacity: 0;
+    transform: scale(0.8) translateY(10px);
+  }
+
+  /* Responsive text adjustments */
+  @media (max-width: 768px) {
+    .slide h3 {
+      font-size: 1.75rem !important;
+    }
+
+    .slide p {
+      font-size: 1rem !important;
+    }
+
+    .slide > div > div {
+      padding: 1rem !important;
+    }
+  }
+
+  /* Floating animation */
+  .floating-element {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+  }
+
+  /* Scroll line animation */
+  @keyframes animate-scroll-line {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(400%); }
+  }
+
+  .animate-scroll-line {
+    animation: animate-scroll-line 2s ease-in-out infinite;
+  }
+
+  /* Bridge Background */
+  .bridge-bg-container {
+    opacity: 1;
+  }
+
+  .bridge-bg-svg {
+    opacity: 1;
+    filter: grayscale(20%) brightness(1.1);
+    transform: scale(1.05);
+  }
+
+  /* 既存仕様に合わせる（per-character fade-in） */
+  .a--op {
+    opacity: 0;
+    transition: opacity .75s cubic-bezier(.4, .1, .2, 1);
+  }
+  .is-v .a--op {
+    opacity: 1;
+  }
+
+  /* Ensure hero text waits for font load */
+  .hero-text { visibility: hidden; }
+  body.fonts-loaded .hero-text { visibility: visible; }
 
 </style>
 
@@ -957,6 +662,117 @@ const withExcerpt = posts
     observer.observe(missionSection);
   }
   document.addEventListener('DOMContentLoaded', () => {
+    // Hero section slideshow functionality
+    let currentSlide = 1;
+    const totalSlides = 4;
+    const slides = document.querySelectorAll('.slide');
+    const indicators = document.querySelectorAll('.slide-indicator');
+
+    function showSlide(slideNumber: number) {
+      slides.forEach((slide, index) => {
+        if (index + 1 === slideNumber) {
+          slide.classList.add('opacity-100');
+          slide.classList.remove('opacity-0');
+        } else {
+          slide.classList.remove('opacity-100');
+          slide.classList.add('opacity-0');
+        }
+      });
+
+      indicators.forEach((indicator, index) => {
+        if (index + 1 === slideNumber) {
+          indicator.classList.add('active');
+        } else {
+          indicator.classList.remove('active');
+        }
+      });
+    }
+
+    // Defer hero text/image/scroll indicator reveal until fonts are loaded or timeout
+    const revealHero = () => {
+      const heroText = document.querySelector('.hero-text');
+      const heroImage = document.querySelector('.hero-image');
+      const scrollIndicator = document.querySelector('.scroll-indicator');
+      if (heroText) {
+        setTimeout(() => {
+          (heroText as HTMLElement).style.opacity = '1';
+          (heroText as HTMLElement).style.transform = 'translateY(0)';
+        }, 300);
+      }
+      if (heroImage) {
+        setTimeout(() => {
+          (heroImage as HTMLElement).style.opacity = '1';
+          (heroImage as HTMLElement).style.transform = 'translateY(0)';
+        }, 600);
+      }
+      if (scrollIndicator) {
+        setTimeout(() => {
+          (scrollIndicator as HTMLElement).style.opacity = '1';
+        }, 1000);
+      }
+    };
+
+    if (document.body.classList.contains('fonts-loaded')) {
+      revealHero();
+    } else {
+      const mo = new MutationObserver((muts, obs) => {
+        if (document.body.classList.contains('fonts-loaded')) {
+          obs.disconnect();
+          revealHero();
+        }
+      });
+      mo.observe(document.body, { attributes: true, attributeFilter: ['class'] });
+    }
+
+    // Auto-advance slides
+    setInterval(() => {
+      currentSlide = currentSlide === totalSlides ? 1 : currentSlide + 1;
+      showSlide(currentSlide);
+    }, 5000);
+
+    // Manual slide control
+    indicators.forEach((indicator, index) => {
+      indicator.addEventListener('click', () => {
+        currentSlide = index + 1;
+        showSlide(currentSlide);
+      });
+    });
+
+    // Hero text animation
+    const heroText = document.querySelector('.hero-text');
+    const heroImage = document.querySelector('.hero-image');
+    const scrollIndicator = document.querySelector('.scroll-indicator');
+
+    if (heroText) {
+      setTimeout(() => {
+        (heroText as HTMLElement).style.opacity = '1';
+        (heroText as HTMLElement).style.transform = 'translateY(0)';
+      }, 300);
+    }
+
+    if (heroImage) {
+      setTimeout(() => {
+        (heroImage as HTMLElement).style.opacity = '1';
+        (heroImage as HTMLElement).style.transform = 'translateY(0)';
+      }, 600);
+    }
+
+    if (scrollIndicator) {
+      setTimeout(() => {
+        (scrollIndicator as HTMLElement).style.opacity = '1';
+      }, 1000);
+    }
+
+    // Service icons animation
+    const serviceIcons = document.querySelectorAll('.service-icon');
+    serviceIcons.forEach((icon, index) => {
+      const delay = parseFloat((icon as HTMLElement).getAttribute('data-delay') || '0') * 1000;
+      setTimeout(() => {
+        (icon as HTMLElement).style.opacity = '1';
+        (icon as HTMLElement).style.transform = 'scale(1) translateY(0)';
+      }, 1500 + delay);
+    });
+
     // Per-character fade-in for elements marked with .fade-chars
     const prepareFadeChars = (el: HTMLElement) => {
       const text = el.textContent || '';
@@ -1206,20 +1022,7 @@ const withExcerpt = posts
       timeout,
     ]).then(reveal);
 
-    // ヘッダー・フッターのアンカーリンクを取得
-    document.querySelectorAll('a[href^="#"]').forEach(link => {
-      link.addEventListener('click', (event) => {
-        const target = event.currentTarget as HTMLElement;
-        const href = target.getAttribute('href');
-        if (href && href.startsWith('#')) {
-          const targetElement = document.querySelector(href);
-          if (targetElement) {
-            event.preventDefault();
-            targetElement.scrollIntoView({ behavior: 'smooth' });
-          }
-        }
-      });
-    });
+    // アンカーリンクの処理はLayout.astroで統一管理
   });
 
   document.addEventListener('DOMContentLoaded', () => {
@@ -1325,6 +1128,191 @@ const withExcerpt = posts
     }, { threshold: 0.2 });
     io.observe(root);
   });
+
+  // Promise section per-character fade-in
+  document.addEventListener('DOMContentLoaded', () => {
+    const lines = Array.from(document.querySelectorAll('._line.typesquare_option')) as HTMLElement[];
+
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          (entry.target as HTMLElement).classList.add('is-v');
+          io.unobserve(entry.target); // 一度だけ
+        }
+      });
+    }, {
+      root: null,
+      threshold: 0.1,
+      rootMargin: '0px 0px -10% 0px'
+    });
+
+    lines.forEach(line => io.observe(line));
+
+    // セットアップ直後に可視状態なら即時反映（安全策）
+    requestAnimationFrame(() => {
+      lines.forEach(line => {
+        const rect = line.getBoundingClientRect();
+        const vh = window.innerHeight || document.documentElement.clientHeight;
+        const visiblePx = Math.min(vh, Math.max(0, vh - Math.max(0, rect.top))) - Math.max(0, rect.bottom - vh);
+        const visibleRatio = Math.max(0, Math.min(1, visiblePx / Math.max(1, rect.height)));
+        if (visibleRatio >= 0.1) {
+          line.classList.add('is-v');
+          io.unobserve(line);
+        }
+      });
+    });
+  });
 });
+
+  // Hero text/image animations gated by fonts-ready
+  const startFontsLoaded = () => {
+    document.body.classList.add('fonts-loaded');
+  };
+  if (document && 'fonts' in document && (document as any).fonts?.ready) {
+    (document as any).fonts.ready.then(startFontsLoaded);
+  }
+  setTimeout(startFontsLoaded, 3000);
+
+  document.addEventListener('DOMContentLoaded', () => {
+    // Hero section slideshow functionality
+    let currentSlide = 1;
+    const totalSlides = 4;
+    const slides = document.querySelectorAll('.slide');
+    const indicators = document.querySelectorAll('.slide-indicator');
+
+    function showSlide(slideNumber: number) {
+      slides.forEach((slide, index) => {
+        if (index + 1 === slideNumber) {
+          slide.classList.add('opacity-100');
+          slide.classList.remove('opacity-0');
+        } else {
+          slide.classList.remove('opacity-100');
+          slide.classList.add('opacity-0');
+        }
+      });
+
+      indicators.forEach((indicator, index) => {
+        if (index + 1 === slideNumber) {
+          indicator.classList.add('active');
+        } else {
+          indicator.classList.remove('active');
+        }
+      });
+    }
+
+    // Defer hero text/image/scroll indicator reveal until fonts are loaded or timeout
+    const revealHero = () => {
+      const heroText = document.querySelector('.hero-text');
+      const heroImage = document.querySelector('.hero-image');
+      const scrollIndicator = document.querySelector('.scroll-indicator');
+      if (heroText) {
+        setTimeout(() => {
+          (heroText as HTMLElement).style.opacity = '1';
+          (heroText as HTMLElement).style.transform = 'translateY(0)';
+        }, 300);
+      }
+      if (heroImage) {
+        setTimeout(() => {
+          (heroImage as HTMLElement).style.opacity = '1';
+          (heroImage as HTMLElement).style.transform = 'translateY(0)';
+        }, 600);
+      }
+      if (scrollIndicator) {
+        setTimeout(() => {
+          (scrollIndicator as HTMLElement).style.opacity = '1';
+        }, 1000);
+      }
+    };
+
+    if (document.body.classList.contains('fonts-loaded')) {
+      revealHero();
+    } else {
+      const mo = new MutationObserver((muts, obs) => {
+        if (document.body.classList.contains('fonts-loaded')) {
+          obs.disconnect();
+          revealHero();
+        }
+      });
+      mo.observe(document.body, { attributes: true, attributeFilter: ['class'] });
+    }
+
+    // Auto-advance slides
+    setInterval(() => {
+      currentSlide = currentSlide === totalSlides ? 1 : currentSlide + 1;
+      showSlide(currentSlide);
+    }, 5000);
+
+    // Manual slide control
+    indicators.forEach((indicator, index) => {
+      indicator.addEventListener('click', () => {
+        currentSlide = index + 1;
+        showSlide(currentSlide);
+      });
+    });
+  });
 </script>
+
+<style>
+  .slider-container {
+    width: 100%;
+    overflow: hidden;
+    background: #ffffff;
+    padding: 2rem 0;
+  }
+
+  .slider-track {
+    display: flex;
+    gap: 3rem;
+    animation: scroll 15s linear infinite;
+  }
+
+  .logo-slide {
+    position: static; /* reset any global .slide absolute positioning */
+    flex-shrink: 0;
+    width: 200px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .logo-slide img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    opacity: 0.9;
+  }
+
+
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        } else {
+          entry.target.classList.remove('visible');
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    });
+
+    // Handle grid border and divide animations
+    document.querySelectorAll('.grid.border-t.border-primary.border-b.divide-y.divide-primary').forEach((el) => {
+      observer.observe(el);
+    });
+  });
 </script>

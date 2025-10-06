@@ -1,25 +1,18 @@
 ---
 import Image from './Image.astro';
-import FooterLogo from '../assets/img/risevista-logo.webp'; 
+import FooterLogo from '../assets/img/bridge-logo.png'; 
 import Textlogo from '../assets/img/textlogo.webp'; 
 ---
 
-<footer class="bg-primary-back text-primary text-sm pt-10 pb-6 px-6">
+<footer class="bg-primary-back text-primary text-sm pt-12 pb-12 px-12 border-t border-gray-300">
   <div class="max-w-7xl mx-auto">
     <!-- ロゴと社名 横並び -->
      <a href="/">
     <div class="flex items-center mb-2">
       <Image
         src={FooterLogo}
-        alt="RISE VISTA"
-        class="h-12 w-auto mr-3"
-        loading="lazy"
-        decoding="async"
-      />
-      <Image
-        src={Textlogo}
-        alt="RISE VISTA"
-        class="h-6 w-auto mr-3"
+        alt="Bridge"
+        class="h-16 w-auto mr-3"
         loading="lazy"
         decoding="async"
       />
@@ -27,49 +20,13 @@ import Textlogo from '../assets/img/textlogo.webp';
     </a>
     <!-- 住所 -->
     <div class="text-sm mb-6">
-      <p>〒150-0002</p>
-      <p>東京都渋谷区渋谷1-1-8 <!-- 青山ダイヤモンドビル7階 --></p>
-    </div>
-
-    <hr class="border-t border-primary mb-6" />
-
-    <!-- メニュー -->
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
-      
-      <!-- 私たちについて -->
-      <div>
-       <a href="/mission"><h4 class="font-semibold mb-2">私たちについて</h4></a>
-        <ul class="space-y-1">
-          <li><a href="/mission#mission" class="hover:underline">ミッション</a></li>
-          <li><a href="/mission#values" class="hover:underline">バリュー</a></li>
-          <li><a href="/mission#purpose" class="hover:underline">パーパス</a></li>
-          <li><a href="#" class="hover:underline">代表挨拶</a></li>
-        </ul>
-      </div>
-
-      <!-- 会社情報 -->
-      <div>
-        <a href="/#company"><h4 class="font-semibold mb-2">会社情報</h4></a>
-        <ul class="space-y-1">
-          <li><a href="#company" class="hover:underline">会社概要</a></li>
-          <!-- <li><a href="#company" class="hover:underline">取扱金融機関</a></li> -->
-        </ul>
-      </div>
-
-      <!-- 事業紹介 -->
-      <div>
-        <a href="/service"><h4 class="font-semibold mb-2">事業内容</h4></a>
-        <ul class="space-y-1">
-          <li><a href="/service" class="hover:underline">賃貸仲介</a></li>
-          <li><a href="/service" class="hover:underline">売買仲介</a></li>
-          <li><a href="/service" class="hover:underline">不動産投資</a></li>
-        </ul>
-      </div>
+      <p>〒108-0073</p>
+      <p>東京都港区三田3-4-17 藤和三田コープⅡ203</p>
     </div>
 
     <!-- フッタークレジット -->
     <div class="mt-10 text-xs text-center text-gray-900">
-      ©　株式会社RISE VISTA All Rights Reserved.
+      ©　株式会社Bridge All Rights Reserved.
     </div>
   </div>
 </footer>

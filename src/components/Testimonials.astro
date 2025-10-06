@@ -1,0 +1,260 @@
+---
+// Testimonial data
+const testimonials = [
+  {
+    text: "保険の見直しを依頼したところ、とても丁寧に説明していただき、最適なプランをご提案いただけました。",
+    name: "A様",
+    category: "生命保険"
+  },
+  {
+    text: "事故に遭った際の対応が迅速で、安心してお任せできました。",
+    name: "B様", 
+    category: "損害保険"
+  },
+  {
+    text: "家族の将来を考えて生命保険に加入しましたが、担当者の方の説明が分かりやすく、納得して契約できました。",
+    name: "C様",
+    category: "生命保険"
+  },
+  {
+    text: "火災保険の見直しで大幅に保険料を削減できました。",
+    name: "D様",
+    category: "損害保険"
+  },
+  {
+    text: "病気になった時も、保険金の支払いがスムーズで助かりました。",
+    name: "E様",
+    category: "生命保険"
+  },
+  {
+    text: "自動車保険の事故対応が素早く、修理もスムーズに進みました。",
+    name: "F様",
+    category: "損害保険"
+  },
+  {
+    text: "医療保険の加入手続きが簡単で、担当者の対応も親切でした。",
+    name: "G様",
+    category: "生命保険"
+  },
+  {
+    text: "地震保険の見積もりを依頼したところ、適切な金額で加入できました。",
+    name: "H様",
+    category: "損害保険"
+  },
+  {
+    text: "学資保険の相談で、将来の教育費について詳しく教えていただきました。",
+    name: "I様",
+    category: "生命保険"
+  }
+];
+---
+
+<section class="py-16 md:py-24 bg-primary-back relative">
+  <div class="max-w-6xl mx-auto px-4">
+    <h2 class="text-3xl md:text-4xl font-extralight text-center mb-4 text-primary">
+      お客様の声
+    </h2>
+    <p class="text-center text-secondary mb-6 md:text-[20px]">
+      お客様からいただいた貴重なご意見・ご感想をご紹介いたします。
+    </p>
+    
+     <div class="testimonials-container">
+       <div class="testimonials-track">
+         <!-- First set of 3 testimonials -->
+         {testimonials.slice(0, 3).map((testimonial, index) => (
+           <div class="testimonial-card">
+             <div class="testimonial-content">
+               <p class="testimonial-text">"{testimonial.text}"</p>
+               <div class="testimonial-author">
+                 <p class="testimonial-name">{testimonial.name}</p>
+                 <p class="testimonial-category">{testimonial.category}</p>
+               </div>
+             </div>
+           </div>
+         ))}
+         
+         <!-- Second set of 3 testimonials -->
+         {testimonials.slice(3, 6).map((testimonial, index) => (
+           <div class="testimonial-card">
+             <div class="testimonial-content">
+               <p class="testimonial-text">"{testimonial.text}"</p>
+               <div class="testimonial-author">
+                 <p class="testimonial-name">{testimonial.name}</p>
+                 <p class="testimonial-category">{testimonial.category}</p>
+               </div>
+             </div>
+           </div>
+         ))}
+         
+         <!-- Third set of 3 testimonials -->
+         {testimonials.slice(6, 9).map((testimonial, index) => (
+           <div class="testimonial-card">
+             <div class="testimonial-content">
+               <p class="testimonial-text">"{testimonial.text}"</p>
+               <div class="testimonial-author">
+                 <p class="testimonial-name">{testimonial.name}</p>
+                 <p class="testimonial-category">{testimonial.category}</p>
+               </div>
+             </div>
+           </div>
+         ))}
+       </div>
+       
+       <!-- Navigation dots -->
+       <div class="testimonial-dots">
+         <button class="dot active" data-slide="0"></button>
+         <button class="dot" data-slide="1"></button>
+         <button class="dot" data-slide="2"></button>
+       </div>
+     </div>
+  </div>
+</section>
+
+<style>
+  .testimonials-container {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .testimonials-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+  }
+  
+  .testimonial-card {
+    flex: 0 0 33.333%;
+    padding: 0 px;
+  }
+  
+   .testimonial-content {
+     background: white;
+     border-radius: 16px;
+     padding: 20px 24px;
+     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+     height: 280px;
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: flex-start;
+     text-align: left;
+     transition: transform 0.3s ease, box-shadow 0.3s ease;
+   }
+  
+  .testimonial-content:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  }
+  
+   .testimonial-text {
+     font-size: 16px;
+     line-height: 1.6;
+     color: #374151;
+     margin-bottom: 24px;
+   }
+  
+  .testimonial-author {
+    border-top: 1px solid #e5e7eb;
+    padding-top: 16px;
+  }
+  
+  .testimonial-name {
+    font-size: 18px;
+    font-weight: 300;
+    color: #111827;
+    margin-bottom: 4px;
+  }
+  
+  .testimonial-category {
+    font-size: 14px;
+    color: #6b7280;
+  }
+  
+  .testimonial-dots {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 32px;
+  }
+  
+  .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: none;
+    background: #d1d5db;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .dot.active {
+    background: #3b82f6;
+  }
+  
+  .dot:hover {
+    background: #6b7280;
+  }
+  
+  /* Mobile responsiveness */
+  @media (max-width: 768px) {
+    .testimonial-card {
+      flex: 0 0 100%;
+      padding: 0 8px;
+    }
+    
+    .testimonials-track {
+      flex-direction: column;
+    }
+    
+    .testimonial-content {
+      height: auto;
+      min-height: 200px;
+    }
+    
+    .testimonial-text {
+      font-size: 15px;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const track = document.querySelector('.testimonials-track');
+    const dots = document.querySelectorAll('.dot');
+    let currentSlide = 0;
+    const totalSlides = 3;
+    
+    function showSlide(slideIndex) {
+      if (window.innerWidth <= 768) {
+        // On mobile, show one card at a time
+        track.style.transform = `translateX(-${slideIndex * 100}%)`;
+      } else {
+        // On desktop, show 3 cards at a time
+        track.style.transform = `translateX(-${slideIndex * 100}%)`;
+      }
+      
+      // Update active dot
+      dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === slideIndex);
+      });
+    }
+    
+    // Auto-advance slides every 5 seconds
+    setInterval(() => {
+      currentSlide = (currentSlide + 1) % totalSlides;
+      showSlide(currentSlide);
+    }, 5000);
+    
+    // Manual navigation with dots
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => {
+        currentSlide = index;
+        showSlide(currentSlide);
+      });
+    });
+    
+    // Handle window resize
+    window.addEventListener('resize', () => {
+      showSlide(currentSlide);
+    });
+  });
+</script>

@@ -14,19 +14,6 @@ import SectionTitle from '../components/SectionTitle.astro';
         </div>
         
         <form id="contactForm" action="https://formspree.io/f/xjkengel" method="POST" class="space-y-6">
-            <!-- お問い合わせ種類選択 -->
-            <div class="mb-6">
-                <label for="inquiryType" class="block mb-2 font-bold text-primary">お問い合わせ種類 <span class="text-red-500">*</span></label>
-                <select id="inquiryType" name="inquiryType" required class="w-full p-2 md:p-3 border border-gray-300 rounded-md text-sm md:text-base bg-white text-primary">
-                    <option value="">選択してください</option>
-                    <option value="購入相談">購入相談</option>
-                    <option value="売却相談">売却相談</option>
-                    <option value="投資相談">投資相談</option>
-                    <option value="採用">採用</option>
-                    <option value="その他">その他</option>
-                </select>
-            </div>
-            
             <!-- 基本情報 -->
             <div class="mb-6">
                 <label for="name" class="block mb-2 font-bold text-primary">お名前 <span class="text-red-500">*</span></label>
@@ -56,7 +43,7 @@ import SectionTitle from '../components/SectionTitle.astro';
             
             <!-- 送信ボタン -->
             <div class="flex justify-center">
-                <button type="submit" class="bg-green-900 hover:bg-green-800 text-white font-tsukushi font-medium rounded-lg text-sm px-8 py-4 text-center transition-colors duration-300">
+                <button type="submit" class="bg-blue-900-900 hover:bg-blue-800 text-white font-tsukushi font-medium rounded-lg text-sm px-8 py-4 text-center transition-colors duration-300">
                     送信する
                     <span class="ml-2 inline-block align-middle">→</span>
                 </button>
@@ -89,12 +76,11 @@ import SectionTitle from '../components/SectionTitle.astro';
       if (contactForm) {
         contactForm.addEventListener('submit', function (e) {
           // バリデーション
-          const inquiryTypeValue = (document.getElementById('inquiryType') as HTMLSelectElement | null)?.value;
           const name = (document.getElementById('name') as HTMLInputElement | null)?.value;
           const email = (document.getElementById('email') as HTMLInputElement | null)?.value;
           const message = (document.getElementById('message') as HTMLTextAreaElement | null)?.value;
-  
-          if (!inquiryTypeValue || !name || !email || !message) {
+
+          if (!name || !email || !message) {
             e.preventDefault();
             alert('必須項目を入力してください。');
             return;

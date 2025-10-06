@@ -1,0 +1,41 @@
+---
+import Image from 'astro/components/Image.astro';
+
+interface Props {
+  image: any; // import from assets or URL
+  alt?: string;
+  text: string;
+  description?: string; // 説明テキスト
+  align?: 'start' | 'center' | 'end';
+  heightClass?: string; // tailwind height like h-[25vh]
+  class?: string; // additional wrapper classes
+  imageClass?: string; // additional image classes
+}
+
+const {
+  image,
+  alt = '',
+  text,
+  description = '',
+  align = 'start',
+  heightClass = 'h-[25vh]',
+  class: wrapperClass = '',
+  imageClass = '',
+} = Astro.props as Props;
+
+const alignmentClass = align === 'center' ? 'justify-center' : align === 'end' ? 'justify-end' : 'justify-start';
+---
+<div class={`${wrapperClass}`}>
+  <div class={`relative md:mb-4 mb-2`}>
+    <Image src={image} alt={alt} class={`w-full object-cover opacity-90 ${heightClass} ${imageClass}`} />
+    <div class={`absolute inset-0 max-w-5xl mx-auto px-4 flex items-center ${alignmentClass}`}>
+      <span class="text-white text-2xl md:text-4xl font-extralight drop-shadow-lg">{text}</span>
+    </div>
+  </div>
+  {description && (
+    <div class="max-w-6xl mx-auto px-4 text-left">
+      <p class="text-primary text-base md:text-lg leading-relaxed">{description}</p>
+    </div>
+  )}
+</div>
+

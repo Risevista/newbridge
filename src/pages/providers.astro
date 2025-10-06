@@ -1,0 +1,122 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ProvidersBG from '../assets/img/providers-bg.jpg';
+import Image from 'astro/components/Image.astro';
+import HeroBanner from '../components/HeroBanner.astro';
+import InsuranceCompanies from '../components/InsuranceCompanies.astro';
+import SectionTitle from '../components/SectionTitle.astro';
+import MsIns from '../assets/img/ms-ins.webp';
+import Orix from '../assets/img/orix.webp';
+import Manulife from '../assets/img/manulife.webp';
+import Metlife from '../assets/img/metlife.webp';
+import Fwd from '../assets/img/fwd.webp';
+import Msa from '../assets/img/mitsuisumitomo_kaijyo_aioi.webp';
+import MsPrimary from '../assets/img/mitsuisumitomo_kaijyo_primary.webp';
+import Himawari from '../assets/img/himawari.webp';
+import Sony from '../assets/img/sony.webp';
+import Neofirst from '../assets/img/neofirst.webp';
+---
+
+<Layout title="ご契約者様 | 株式会社Bridge">
+  <section class="pt-28 pb-16 bg-white">
+    <HeroBanner image={ProvidersBG} alt="ProvidersBG" text="ご契約者様" description="当社では、お客さまのニーズに合わせて最適な保険商品をご提案できるよう、信頼と実績のある複数の保険会社と提携しています。各社の強みや特長を活かし、お客さまに最適なプランをお選びいただけるようサポートいたします。" align="start" heightClass="h-[30vh]" />
+    <div class="max-w-6xl mx-auto px-4 mb-12">
+      <div class="grid grid-cols-5 gap-2">
+        <a href="#msins" class="h-24 flex items-center justify-center bg-white">
+          <Image src={MsIns} alt="三井住友海上火災保険株式会社" class="max-h-16 max-w-[80%] w-auto h-auto object-contain" />
+        </a>
+        <a href="#orix" class="h-24 flex items-center justify-center bg-white">
+          <Image src={Orix} alt="オリックス生命保険株式会社" class="max-h-16 max-w-[80%] w-auto h-auto object-contain" />
+        </a>
+        <a href="#manulife" class="h-24 flex items-center justify-center bg-white">
+          <Image src={Manulife} alt="マニュライフ生命保険株式会社" class="max-h-16 max-w-[80%] w-auto h-auto object-contain" />
+        </a>
+        <a href="#metlife" class="h-24 flex items-center justify-center bg-white">
+          <Image src={Metlife} alt="メットライフ生命保険株式会社" class="max-h-16 max-w-[80%] w-auto h-auto object-contain" />
+        </a>
+        <a href="#fwd" class="h-24 flex items-center justify-center bg-white">
+          <Image src={Fwd} alt="FWD生命保険株式会社" class="max-h-16 max-w-[80%] w-auto h-auto object-contain" />
+        </a>
+        <a href="#msa-life" class="h-24 flex items-center justify-center bg-white">
+          <Image src={Msa} alt="三井住友海上あいおい生命保険株式会社" class="max-h-16 max-w-[80%] w-auto h-auto object-contain" />
+        </a>
+        <a href="#ms-primary" class="h-24 flex items-center justify-center bg-white">
+          <Image src={MsPrimary} alt="三井住友海上プライマリー生命保険株式会社" class="max-h-16 max-w-[80%] w-auto h-auto object-contain" />
+        </a>
+        <a href="#himawari" class="h-24 flex items-center justify-center bg-white">
+          <Image src={Himawari} alt="SONPOひまわり生命保険株式会社" class="max-h-16 max-w-[80%] w-auto h-auto object-contain" />
+        </a>
+        <a href="#sony" class="h-24 flex items-center justify-center bg-white">
+          <Image src={Sony} alt="ソニー生命保険株式会社" class="max-h-16 max-w-[80%] w-auto h-auto object-contain" />
+        </a>
+        <a href="#neofirst" class="h-24 flex items-center justify-center bg-white">
+          <Image src={Neofirst} alt="ネオファースト生命保険株式会社" class="max-h-16 max-w-[80%] w-auto h-auto object-contain" />
+        </a>
+      </div>
+    </div>
+
+    <div id="property-insurance" class="w-full bg-[#e5f2f9] h-auto py-16 pt-28 md:pt-32">
+      <div class="max-w-5xl mx-auto px-4 mt-8 space-y-8">
+        <SectionTitle title="PROPERTY INSURANCE" subtitle="損害保険会社" />
+        <div id="msins">
+          <InsuranceCompanies logo={MsIns} logoAlt="Providers" phone="0120-560-579" hours="平日9:00–18:00、土日祝9:00–17:00（年末年始除く）" url="https://www.ms-ins.com/">
+            <span slot="name">三井住友海上火災保険株式会社</span>
+          </InsuranceCompanies>
+        </div>
+      </div>
+    </div>
+
+    <div id="life-insurance" class="w-full bg-[#EFFFF1] h-auto py-16 pt-28 md:pt-32">
+      <div class="max-w-5xl mx-auto px-4 mt-8 space-y-8">
+        <SectionTitle title="LIFE INSURANCE" subtitle="生命保険会社" />
+        <div id="orix">
+          <InsuranceCompanies logo={Orix} logoAlt="Providers" phone="0120-506-094" hours="月–土9:00–18:00（日・祝・年末年始休み）" url="https://www.orixlife.co.jp/">
+            <span slot="name">オリックス生命保険株式会社</span>
+          </InsuranceCompanies>
+        </div>
+        <div id="manulife">
+          <InsuranceCompanies logo={Manulife} logoAlt="Providers" phone="0120-063-730" hours="9:00–17:00（平日、土日祝・年末年始除く）" url="https://www.manulife.co.jp/">
+            <span slot="name">マニュライフ生命保険株式会社</span>
+          </InsuranceCompanies>
+        </div>
+        <div id="metlife">
+          <InsuranceCompanies logo={Metlife} logoAlt="Providers" phone="0120-881-796" hours="月–土9:00–18:00（祝日・年末年始除く）" url="https://www.metlife.co.jp/">
+            <span slot="name">メットライフ生命保険株式会社</span>
+          </InsuranceCompanies>
+        </div>
+        <div id="fwd">
+          <InsuranceCompanies logo={Fwd} logoAlt="Providers" phone="0120-211-901" hours="9:00–18:00（土・日・祝・年末年始除く）" url="https://www.fwdlife.co.jp/">
+            <span slot="name">FWD生命保険株式会社</span>
+          </InsuranceCompanies>
+        </div>
+        <div id="msa-life">
+          <InsuranceCompanies logo={Msa} logoAlt="Providers" phone="0120-324-386" hours="月–金9:00–18:00、土9:00–17:00（日・祝・年末年始除く）" url="https://www.msa-life.co.jp/">
+            <span slot="name">三井住友海上あいおい生命保険株式会社</span>
+          </InsuranceCompanies>
+        </div>
+        <div id="ms-primary">
+          <InsuranceCompanies logo={MsPrimary} logoAlt="Providers" phone="0120-125-104" hours="月–金9:00–17:00（祝日・年末年始除く）" url="https://www.ms-primary.com/">
+            <span slot="name">三井住友海上プライマリー生命保険株式会社</span>
+          </InsuranceCompanies>
+        </div>
+        <div id="himawari">
+          <InsuranceCompanies logo={Himawari} logoAlt="Providers" phone="0120-563-506" hours="平日9:00–18:00、土9:00–17:00（日・祝・年末年始除く）" url="https://www.himawari-life.co.jp/">
+            <span slot="name">ＳＯＭＰＯひまわり生命</span>
+          </InsuranceCompanies>
+        </div>
+        <div id="sony">
+          <InsuranceCompanies logo={Sony} logoAlt="Providers" phone="0120-158-821" hours="9:00–17:30（※日・GW・年末年始除く）" url="https://www.sonylife.co.jp/">
+            <span slot="name">ソニー生命保険株式会社</span>
+          </InsuranceCompanies>
+        </div>
+        <div id="neofirst">
+          <InsuranceCompanies logo={Neofirst} logoAlt="Providers" phone="0120-581-201" hours="9:00–17:00（日・祝除く）" url="https://www.neofirst.co.jp/">
+            <span slot="name">ネオファースト生命保険株式会社</span>
+          </InsuranceCompanies>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+

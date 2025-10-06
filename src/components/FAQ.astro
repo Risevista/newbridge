@@ -1,46 +1,53 @@
 ---
-import SectionTitle from './SectionTitle.astro';
-
 // FAQ component data
 const faqItems = [
   {
     id: 'faq-1',
-    question: '不動産投資は初心者でも始められますか？',
-    answer: 'はい、初心者の方でも安心して始めていただけます。私たちが投資の基礎から丁寧にサポートし、リスクを最小限に抑えた投資プランをご提案いたします。経験豊富なスタッフが一からお手伝いいたします。'
+    question: '保険以外のことも相談できますか？',
+    answer: 'もちろん可能です。保険の見直しに限らず、教育資金の準備、老後の生活設計、資産運用、住宅ローンの組み方、家計バランスの改善など、ライフプラン全般のご相談を承っております。お金に関するお悩みを幅広くサポートいたします。'
   },
   {
     id: 'faq-2',
-    question: 'どのような物件がおすすめですか？',
-    answer: 'お客様の投資目的や予算に応じて最適な物件をご提案いたします。一般的には、駅近のマンションやオフィスビル、商業施設などが安定した収益を期待できる物件として人気があります。詳細は個別にご相談ください。'
+    question: '土日や祝日でも相談できますか？',
+    answer: 'はい、対応しております。平日はお仕事などでお忙しい方にもご利用いただけるよう、土日・祝日のご相談も承っています。なお、週末はご予約が集中する場合がございますので、複数の候補日時をお知らせいただけるとスムーズにご案内が可能です。'
   },
   {
     id: 'faq-3',
-    question: '投資に必要な資金はどのくらいですか？',
-    answer: '物件の種類や規模によって異なりますが、小規模な投資物件であれば数百万円から始めることができます。また、ローンを活用することで、より大きな物件への投資も可能です。資金計画についてもご相談ください。'
+    question: 'どのような相談方法がありますか？',
+    answer: 'ご希望のスタイルに合わせてお選びいただけます。専門のファイナンシャルプランナーがご自宅やご指定のカフェなど、ご希望の場所までお伺いするほか、オンライン（Zoomなど）でのご相談も可能です。お客さまのご都合に合わせて柔軟に対応いたしますので、ご希望の方法をお申し込み時にお伝えください。'
   },
   {
     id: 'faq-4',
-    question: '物件の管理はどうなりますか？',
-    answer: '物件の管理は私たちが代行いたします。入居者募集、家賃管理、修繕対応など、投資家の方に代わってすべての管理業務を行います。お客様は収益に集中していただけます。'
+    question: '相談は本当に無料ですか？',
+    answer: 'はい、すべて無料でご利用いただけます。当社は保険会社と提携しており、契約に応じた手数料を保険会社から受け取る形で運営しています。そのため、お客さまから相談料をいただくことはございません。初回から最後まで安心してご相談ください。'
   }
 ];
 ---
 
 <section class="py-24 bg-primary-back relative shadow-inner" id="faq">
-  <div class="section-heading">FAQ</div>
   <div class="max-w-6xl mx-auto px-4">
-    <SectionTitle title="FAQ" subtitle="よくある質問" />
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-5xl font-extralight tracking-widest text-primary">よくある質問</h2>
+    </div>
 
-    <!-- 質問リスト -->
-    <div class="space-y-6">
+    <!-- グリッド（縦2 x 横2） -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       {faqItems.map((item) => (
-        <div class="bg-primary-back rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 border border-white text-secondary overflow-hidden group">
-          <button class="w-full px-6 py-4 text-left flex justify-between items-center">
-            <h3 class="text-sm md:text-lg text-primary group-hover:text-secondary">{item.question}</h3>
-            <span class="text-gray-500 text-xl">+</span>
-          </button>
-          <div class="px-6 p-4 hidden bg-white">
-            <p class="text-primary leading-relaxed text-sm md:text-base">
+        <div class="rounded-lg border border-white bg-primary-back text-secondary shadow-lg">
+          <!-- 上段: Q 見出し + 質問 -->
+          <div class="px-6 pt-6 pb-4 border-b border-secondary-screen">
+            <div class="flex items-center gap-3 mb-3">
+              <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-white text-secondary-screen font-extralight border-secondary-screen border">Q</span>
+              <span class="text-sm md:text-lg text-primary">{item.question}</span>
+            </div>
+          </div>
+
+          <!-- 下段: A 見出し + 回答 -->
+          <div class="px-6 pb-6 pt-4">
+            <div class="inline-flex items-center gap-2 mb-3">
+              <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-secondary-screen text-white font-extralight border-">A</span>
+            </div>
+            <p class="text-sm md:text-base leading-relaxed text-secondary">
               {item.answer}
             </p>
           </div>
@@ -51,29 +58,8 @@ const faqItems = [
 </section>
 
 <style>
+/* 追加スタイル（必要に応じて微調整） */
 </style>
 
 <script>
-  // FAQ アコーディオン機能
-  document.querySelectorAll('#faq button').forEach(button => {
-    button.addEventListener('click', () => {
-      const faqItem = button.closest('.group') as HTMLElement;
-      const content = faqItem?.querySelector('.px-6.p-4') as HTMLElement;
-      const icon = button.querySelector('span') as HTMLElement;
-      
-      if (content && icon) {
-        if (content.classList.contains('hidden')) {
-          // 開く
-          content.classList.remove('hidden');
-          button.classList.add('bg-white', 'border-b', 'border-gray-200');
-          icon.textContent = '−';
-        } else {
-          // 閉じる
-          content.classList.add('hidden');
-          button.classList.remove('bg-white', 'border-b', 'border-gray-200');
-          icon.textContent = '+';
-        }
-      }
-    });
-  });
 </script>

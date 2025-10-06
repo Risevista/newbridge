@@ -20,12 +20,12 @@ export default {
         primary: {
           DEFAULT: "#001722",
           hover: colors.gray[400],
-          back: "#d4e9e2",
+          back: "#ffffff",
         },
         secondary: {
           DEFAULT: "#C79D4F",
           accent: "#C79D4F",
-          screen: "#004f3c",
+          screen: "#155aa8",
           gray: "#D2D7DA",
         },
       },

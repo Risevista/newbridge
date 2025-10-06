@@ -1,7 +1,7 @@
 ---
 title: ホームページをリニューアルしました。
 date: 2025-09-17T11:10:00.000+09:00
-author: RISE VISTA
+author: Bridge
 tags:
   - お知らせ
   - 会社情報

@@ -15,24 +15,23 @@ const { title } = Astro.props;
 <html lang="ja">
     <head>
         <meta charset="UTF-8" />
-        <meta name="description" content="株式会社RISE VISTAは、不動産を通じて人生100年時代の資産形成を支える総合不動産会社です。不動産売買・賃貸仲介・不動産管理・投資用物件のご提案まで、幅広いニーズに誠実にお応えします。" />
+        <meta name="description" content="圧倒的な安心をあなたに。保険代理店ならBridgeに。生命保険・損害保険、お客様のライフステージに合わせた最適な保険プランをご提案します。豊富な商品ラインナップと専門知識で、あなたの大切な家族と資産を守ります。" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="generator" content={Astro.generator} />
-        <meta property="og:title" content="不動産をお探しなら株式会社RISE VISTA｜人生100年時代を支える総合不動産会社" />
-        <meta property="og:description" content="株式会社RISE VISTAは、不動産を通じて人生100年時代の資産形成を支える総合不動産会社です。不動産売買・賃貸仲介・不動産管理・投資用物件のご提案まで、幅広いニーズに誠実にお応えします。" />
+        <meta property="og:title" content="保険代理店ならBridgeに｜圧倒的な安心をあなたに" />
+        <meta property="og:description" content="圧倒的な安心をあなたに。保険代理店ならBridgeに。生命保険・損害保険、お客様のライフステージに合わせた最適な保険プランをご提案します。豊富な商品ラインナップと専門知識で、あなたの大切な家族と資産を守ります。" />
         <meta property="og:type" content="website" />
-        <meta property="og:site_name" content="株式会社RISE VISTA" />
+        <meta property="og:site_name" content="株式会社Bridge" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="不動産をお探しなら株式会社RISE VISTA｜人生100年時代を支える総合不動産会社" />
-        <meta name="twitter:description" content="株式会社RISE VISTAは、不動産を通じて人生100年時代の資産形成を支える総合不動産会社です。不動産売買・賃貸仲介・不動産管理・投資用物件のご提案まで、幅広いニーズに誠実にお応えします。" />
+        <meta name="twitter:title" content="保険代理店ならBridgeに｜圧倒的な安心をあなたに" />
+        <meta name="twitter:description" content="圧倒的な安心をあなたに。保険代理店ならBridgeに。生命保険・損害保険、お客様のライフステージに合わせた最適な保険プランをご提案します。豊富な商品ラインナップと専門知識で、あなたの大切な家族と資産を守ります。" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
         />
-        <!-- Lenis Smooth Scroll -->
-        <script src="https://unpkg.com/lenis@1.0.45/dist/lenis.min.js"></script>
+        <!-- Smooth scroll is now handled by native browser APIs -->
         <link
             rel="apple-touch-icon"
             sizes="180x180"
@@ -129,30 +128,6 @@ const { title } = Astro.props;
   // TypeScript型定義を追加
   declare global {
     interface Window {
-      Lenis: {
-        new (config: {
-          duration: number;
-          easing: (t: number) => number;
-          smooth: boolean;
-          smoothWheel: boolean;
-          smoothTouch: boolean;
-          lerp?: number;
-          infinite?: boolean;
-        }): {
-          raf: (time: number) => void;
-          scrollTo: (target: number | string | Element, options?: {
-            duration?: number;
-            easing?: (t: number) => number;
-            force?: boolean;
-          }) => void;
-          destroy: () => void;
-        };
-      };
-      smoothScrollTo: (target: number | string | Element, options?: {
-        duration?: number;
-        easing?: (t: number) => number;
-        offset?: number;
-      }) => void;
       Typekit: {
         load: (config: {
           kitId: string;
@@ -163,17 +138,32 @@ const { title } = Astro.props;
     }
   }
 
-  // スクロール時の処理
-  document.addEventListener('scroll', () => {
-    const scrollTop = window.scrollY || 0;
-    document.documentElement.style.setProperty('--scroll-y', `${scrollTop}px`);
+// スクロール挙動をリセット - シンプルな実装
+document.addEventListener('DOMContentLoaded', () => {
+  // 既存のLenisインスタンスをクリーンアップ（型安全に）
+  if ((window as any).lenis) {
+    (window as any).lenis.destroy();
+    (window as any).lenis = null;
+  }
 
+  // スクロール時の処理（シンプル版）
+  let scrollTimeout: ReturnType<typeof setTimeout>;
+  const handleScroll = () => {
+    clearTimeout(scrollTimeout);
+    scrollTimeout = setTimeout(() => {
+      const scrollTop = window.scrollY || 0;
+      document.documentElement.style.setProperty('--scroll-y', `${scrollTop}px`);
 
-    // 一度でもスクロールしたら visibility を visible に
-    if (document.documentElement.style.getPropertyValue('--visibility-on-scroll') !== 'visible') {
-      document.documentElement.style.setProperty('--visibility-on-scroll', 'visible');
-    }
-  });
+      // 一度でもスクロールしたら visibility を visible に
+      if (document.documentElement.style.getPropertyValue('--visibility-on-scroll') !== 'visible') {
+        document.documentElement.style.setProperty('--visibility-on-scroll', 'visible');
+      }
+    }, 10);
+  };
+
+  // スクロールイベントリスナーを追加（重複を避けるため一度だけ）
+  window.removeEventListener('scroll', handleScroll);
+  window.addEventListener('scroll', handleScroll, { passive: true });
 
   // モバイルメニュー制御
   const mobileMenuButton = document.querySelector('.mobile-menu-button');
@@ -192,42 +182,7 @@ const { title } = Astro.props;
     });
   });
 
-// Lenis Smooth Scroll Implementation
-let lenis: any = null;
-
-// Initialize Lenis smooth scroll
-function initLenis() {
-  // Check if Lenis is available
-  if (typeof window.Lenis === 'undefined') {
-    console.warn('Lenis is not loaded, falling back to native smooth scroll');
-    return;
-  }
-
-  // Initialize Lenis with configuration
-  lenis = new window.Lenis({
-    duration: 1.2,
-    easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-    smooth: true,
-    smoothWheel: true,
-    smoothTouch: true,
-    // よりスムーズなクリック時の動きのための設定
-    lerp: 0.07, // より滑らかな補間
-    infinite: false, // 無限スクロールを無効化
-  });
-
-  // Animation frame loop
-  function raf(time: number) {
-    lenis.raf(time);
-    requestAnimationFrame(raf);
-  }
-  requestAnimationFrame(raf);
-
-  // Handle anchor links
-  initAnchorLinks();
-}
-
-// Initialize anchor link handling
-function initAnchorLinks() {
+  // アンカーリンクの処理（シンプル版）
   document.addEventListener('click', (event) => {
     const target = (event.target as Element).closest('a[href^="#"]');
     if (!target) return;
@@ -238,128 +193,16 @@ function initAnchorLinks() {
     const targetElement = document.querySelector(href);
     if (!targetElement) return;
 
-    // Prevent default behavior
     event.preventDefault();
-    event.stopPropagation();
-    event.stopImmediatePropagation();
 
-    // Use Lenis to scroll to element with smooth options
-    if (lenis) {
-      const targetPosition = targetElement.getBoundingClientRect().top + window.scrollY;
-      const rootStyles = getComputedStyle(document.documentElement);
-      const cssVar = rootStyles.getPropertyValue('--header-offset').trim();
-      const headerOffset = parseInt(cssVar.replace('px','')) || (window.innerWidth <= 768 ? 72 : 96);
-      lenis.scrollTo(targetPosition - headerOffset, {
-        duration: 1.5, // より長いdurationでスムーズに
-        easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // カスタムイージング
-        force: true, // 強制的にスクロール
-      });
-    } else {
-      // Fallback to native smooth scroll
-      const rootStyles = getComputedStyle(document.documentElement);
-      const cssVar = rootStyles.getPropertyValue('--header-offset').trim();
-      const headerOffset = parseInt(cssVar.replace('px','')) || (window.innerWidth <= 768 ? 72 : 96);
-      targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      // 直後にオフセット分だけ上に戻す
-      setTimeout(() => { window.scrollBy({ top: -headerOffset, left: 0, behavior: 'instant' as ScrollBehavior }); }, 0);
-    }
-  }, { passive: false, capture: true });
-}
+    // ヘッダーオフセットを取得
+    const headerOffset = window.innerWidth <= 768 ? 72 : 96;
+    const targetPosition = targetElement.getBoundingClientRect().top + window.scrollY - headerOffset;
 
-// 汎用的なスムーススクロール関数
-function smoothScrollTo(target: number | string | Element, options?: {
-  duration?: number;
-  easing?: (t: number) => number;
-  offset?: number;
-}) {
-  if (lenis) {
-    let scrollTarget: number;
-    
-    if (typeof target === 'number') {
-      scrollTarget = target;
-    } else if (typeof target === 'string') {
-      const element = document.querySelector(target);
-      if (element) {
-        scrollTarget = element.getBoundingClientRect().top + window.scrollY;
-      } else {
-        return;
-      }
-    } else {
-      scrollTarget = target.getBoundingClientRect().top + window.scrollY;
-    }
-    
-    // オフセットを適用（指定がなければヘッダー高さを使用）
-    const rootStyles = getComputedStyle(document.documentElement);
-    const cssVar = rootStyles.getPropertyValue('--header-offset').trim();
-    const defaultOffset = parseInt(cssVar.replace('px','')) || (window.innerWidth <= 768 ? 72 : 96);
-    const offsetToUse = options?.offset ?? defaultOffset;
-    scrollTarget -= offsetToUse;
-    
-    lenis.scrollTo(scrollTarget, {
-      duration: options?.duration || 1.5,
-      easing: options?.easing || ((t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t))),
-      force: true,
-    });
-  } else {
-    // フォールバック
-    if (typeof target === 'string') {
-      const element = document.querySelector(target);
-      if (element) {
-        const rootStyles = getComputedStyle(document.documentElement);
-        const cssVar = rootStyles.getPropertyValue('--header-offset').trim();
-        const headerOffset = parseInt(cssVar.replace('px','')) || (window.innerWidth <= 768 ? 72 : 96);
-        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        setTimeout(() => { window.scrollBy({ top: -headerOffset, left: 0, behavior: 'instant' as ScrollBehavior }); }, 0);
-      }
-    } else if (typeof target === 'number') {
-      const rootStyles = getComputedStyle(document.documentElement);
-      const cssVar = rootStyles.getPropertyValue('--header-offset').trim();
-      const headerOffset = parseInt(cssVar.replace('px','')) || (window.innerWidth <= 768 ? 72 : 96);
-      window.scrollTo({ top: target - headerOffset, behavior: 'smooth' });
-    } else {
-      const rootStyles = getComputedStyle(document.documentElement);
-      const cssVar = rootStyles.getPropertyValue('--header-offset').trim();
-      const headerOffset = parseInt(cssVar.replace('px','')) || (window.innerWidth <= 768 ? 72 : 96);
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      setTimeout(() => { window.scrollBy({ top: -headerOffset, left: 0, behavior: 'instant' as ScrollBehavior }); }, 0);
-    }
-  }
-}
-
-// グローバルに公開（他のスクリプトから使用可能）
-(window as any).smoothScrollTo = smoothScrollTo;
-
-// 初期化処理
-document.addEventListener('DOMContentLoaded', () => {
-  // Initialize Lenis smooth scroll
-  initLenis();
-
-  // スクロール時の処理
-  document.addEventListener('scroll', () => {
-    const scrollTop = window.scrollY || 0;
-    document.documentElement.style.setProperty('--scroll-y', `${scrollTop}px`);
-
-
-    // 一度でもスクロールしたら visibility を visible に
-    if (document.documentElement.style.getPropertyValue('--visibility-on-scroll') !== 'visible') {
-      document.documentElement.style.setProperty('--visibility-on-scroll', 'visible');
-    }
-  });
-
-  // モバイルメニュー制御
-  const mobileMenuButton = document.querySelector('.mobile-menu-button');
-  const mobileMenu = document.querySelector('.mobile-menu');
-
-  mobileMenuButton?.addEventListener('click', () => {
-    mobileMenu?.classList.toggle('hidden');
-    mobileMenu?.classList.toggle('active');
-  });
-
-  const mobileMenuLinks = document.querySelectorAll('.mobile-menu a');
-  mobileMenuLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      mobileMenu?.classList.add('hidden');
-      mobileMenu?.classList.remove('active');
+    // スムーススクロール
+    window.scrollTo({
+      top: targetPosition,
+      behavior: 'smooth'
     });
   });
 });
