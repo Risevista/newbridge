@@ -82,15 +82,15 @@ const images = [
     <link rel="preload" as="image" href={HeaderLogo.src} />
 
     <!-- =================== HERO =================== -->
-    <section class="hero" id="hero">
+    <section class="hero px-4 md:px-0" id="hero">
      <Hero />
   </section>
     <!-- Scroll Indicator -->
-    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-center scroll-indicator z-10" style="opacity: 0;">
+    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-center scroll-indicator z-10" id="scroll-indicator" style="opacity: 0;">
       <div class="flex flex-col items-center space-y-2">
         <span class="text-slate-500 text-sm font-medium tracking-wider">SCROLL</span>
-        <div class="w-px h-12 bg-slate-300 relative overflow-hidden">
-          <div class="w-px h-4 bg-blue-500 absolute top-0 animate-scroll-line"></div>
+        <div class="w-0.5 h-12 bg-slate-300 relative overflow-hidden">
+          <div class="w-0.5 h-4 bg-blue-500 absolute top-0 animate-scroll-line"></div>
         </div>
         <svg class="w-4 h-4 text-slate-400 animate-bounce" fill="currentColor" viewBox="0 0 24 24">
           <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
@@ -105,9 +105,9 @@ const images = [
 
    <!-- insurance company Section -->
   <section class="py-24 bg-primary-back relative" id="insurance">
-    <div class="max-w-6xl mx-auto px-4">
+    <div class="max-w-6xl mx-auto px-4 md:px-0">
       <SectionTitle title="INSURANCE COMPANY" subtitle="取り扱い保険会社" />
-      <div class="max-w-6xl mx-auto px-4">
+      <div class="max-w-6xl mx-auto px-4 md:px-0">
         お客様のニーズに沿った最適な品揃えをご提案いたします。
       </div>
     </div>
@@ -127,7 +127,7 @@ const images = [
       </div>
     </div>
     <a href="/providers">
-    <div class="max-w-6xl mx-auto px-4 flex justify-end text-secondary-screen underline">
+    <div class="max-w-6xl mx-auto px-4 md:px-0 flex justify-end text-secondary-screen underline">
       全ての保険会社を見る
     </div>
     </a>
@@ -138,7 +138,7 @@ const images = [
   
   <section class="py-16 md:py-24 bg-primary-back relative" id="company">
     <div class="section-heading">COMPANY</div>
-    <div class="max-w-6xl mx-auto px-4">
+    <div class="max-w-6xl mx-auto px-4 md:px-0">
       <SectionTitle title="COMPANY" subtitle="会社概要" />
   
       <!-- 本文2カラム -->
@@ -639,6 +639,48 @@ const images = [
   /* Ensure hero text waits for font load */
   .hero-text { visibility: hidden; }
   body.fonts-loaded .hero-text { visibility: visible; }
+
+  /* Scroll indicator styles */
+  .scroll-indicator .w-0\.5 {
+    width: 2px !important;
+    min-width: 2px !important;
+  }
+
+  /* Scroll indicator mobile fixes */
+  @media (max-width: 768px) {
+    .scroll-indicator {
+      bottom: 20px !important;
+      left: 50% !important;
+      transform: translateX(-50%) !important;
+      z-index: 20 !important;
+    }
+    
+    .scroll-indicator .flex {
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .scroll-indicator span {
+      font-size: 10px !important;
+      letter-spacing: 0.1em;
+    }
+    
+    .scroll-indicator .w-0\.5.h-12 {
+      height: 24px !important;
+      width: 2px !important;
+    }
+    
+    .scroll-indicator .w-0\.5.h-4 {
+      height: 8px !important;
+      width: 2px !important;
+    }
+    
+    .scroll-indicator svg {
+      width: 12px !important;
+      height: 12px !important;
+    }
+  }
 
 </style>
 
@@ -1249,6 +1291,27 @@ const images = [
         showSlide(currentSlide);
       });
     });
+
+    // Scroll indicator visibility control
+    const scrollIndicator = document.getElementById('scroll-indicator');
+    if (scrollIndicator) {
+      // Show scroll indicator after hero animation completes
+      setTimeout(() => {
+        scrollIndicator.style.opacity = '1';
+        scrollIndicator.style.transition = 'opacity 0.5s ease-in-out';
+      }, 3000);
+
+      // Hide scroll indicator when user starts scrolling
+      let hasScrolled = false;
+      const handleScroll = () => {
+        if (!hasScrolled && window.scrollY > 50) {
+          hasScrolled = true;
+          scrollIndicator.style.opacity = '0';
+          scrollIndicator.style.transition = 'opacity 0.3s ease-in-out';
+        }
+      };
+      window.addEventListener('scroll', handleScroll, { passive: true });
+    }
   });
 </script>
 

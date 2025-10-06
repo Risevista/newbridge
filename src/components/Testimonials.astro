@@ -50,7 +50,7 @@ const testimonials = [
 ---
 
 <section class="py-16 md:py-24 bg-primary-back relative">
-  <div class="max-w-6xl mx-auto px-4">
+  <div class="max-w-6xl mx-auto px-4 md:px-0">
     <h2 class="text-3xl md:text-4xl font-extralight text-center mb-4 text-primary">
       お客様の声
     </h2>
@@ -198,16 +198,17 @@ const testimonials = [
   @media (max-width: 768px) {
     .testimonial-card {
       flex: 0 0 100%;
-      padding: 0 8px;
+      padding: 0 16px;
     }
     
     .testimonials-track {
-      flex-direction: column;
+      flex-direction: row;
     }
     
     .testimonial-content {
       height: auto;
-      min-height: 200px;
+      min-height: 250px;
+      margin: 0 8px;
     }
     
     .testimonial-text {

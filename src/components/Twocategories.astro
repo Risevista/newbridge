@@ -6,7 +6,7 @@ import CategoryImg2 from '../assets/img/life-insurance.png';
 ---
 
 
-<section class="max-w-6xl mx-auto py-16 md:py-24 bg-primary-back relative sm:w-4/5">
+<section class="max-w-6xl mx-auto py-16 md:py-24 bg-primary-back relative sm:w-4/5 px-4 md:px-0">
 
     <ul class="cards">
 
@@ -79,6 +79,13 @@ import CategoryImg2 from '../assets/img/life-insurance.png';
     list-style: none; margin: 0 auto; padding: 0; max-width: 1200px;
     display: grid; gap: 24px;
     grid-template-columns: 1fr;
+    padding: 0 16px;
+  }
+
+  @media (min-width: 640px){
+    .cards{
+      padding: 0;
+    }
   }
 
   @media (min-width: 960px){
