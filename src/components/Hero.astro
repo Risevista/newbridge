@@ -3,6 +3,8 @@
       <h1 class="hero-text" data-text="圧倒的な安心をあなたに">圧倒的な安心をあなたに</h1>
       <p class="subtitle" data-text="Through investment and consumption,\nmake Japan the leading global nation.">Through investment and consumption,<br>make Japan the leading global nation.</p>
   </div>
+  <!-- Moving blue gradient blob at the bottom -->
+  <div class="gradient-blob" aria-hidden="true"></div>
 </section>
 
 
@@ -41,7 +43,7 @@
       background: #fff;
       transform: translateX(-100%);
       animation: wipeBackground 2.5s cubic-bezier(0.25, 0.1, 0.25, 1) 2s forwards;
-      z-index: 1;
+      z-index: 0;
   }
 
   .hero-content {
@@ -176,6 +178,38 @@
       }
       to {
           opacity: 1;
+      }
+  }
+
+  /* Moving blue gradient at the bottom of hero */
+  @keyframes moveGradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 120% 50%; }
+      100% { background-position: 0% 50%; }
+  }
+
+  .gradient-blob {
+      position: absolute;
+      left: 0;
+      bottom: -8vh; /* keep glow low to avoid covering subtitle */
+      width: 100%;
+      height: 28vh; /* cap height so subtitle (white) remains readable */
+      z-index: 1; /* below content (which is z-index:2) */
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 25% 40%, rgba(0, 122, 255, 0.55), transparent 65%),
+        radial-gradient(circle at 70% 55%, rgba(0, 191, 255, 0.45), transparent 70%),
+        radial-gradient(circle at 50% 80%, rgba(255, 255, 255, 0.25), transparent 65%);
+      background-size: 250% 250%;
+      animation: moveGradient 6s ease-in-out infinite alternate; /* faster and bolder */
+      filter: blur(50px);
+  }
+
+  @media (max-width: 768px) {
+      .gradient-blob {
+          height: 24vh;
+          bottom: -10vh;
+          filter: blur(45px);
       }
   }
 </style>
