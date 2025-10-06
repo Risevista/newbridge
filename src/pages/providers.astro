@@ -15,13 +15,15 @@ import MsPrimary from '../assets/img/mitsuisumitomo_kaijyo_primary.webp';
 import Himawari from '../assets/img/himawari.webp';
 import Sony from '../assets/img/sony.webp';
 import Neofirst from '../assets/img/neofirst.webp';
+import Nihonseimei from '../assets/img/nihonseimei.webp';
+import hanasaku from '../assets/img/hanasaku.webp';
 ---
 
 <Layout title="ご契約者様 | 株式会社Bridge">
-  <section class="pt-28 pb-16 bg-white px-4">
-    <HeroBanner image={ProvidersBG} alt="ProvidersBG" text="ご契約者様" description="当社では、お客さまのニーズに合わせて最適な保険商品をご提案できるよう、信頼と実績のある複数の保険会社と提携しています。各社の強みや特長を活かし、お客さまに最適なプランをお選びいただけるようサポートいたします。" align="start" heightClass="h-[30vh]" />
+  <section class="pt-28 pb-16 bg-white">
+    <HeroBanner image={ProvidersBG} alt="ProvidersBG" text="ご契約者様へ" description="当社では、お客さまのニーズに合わせて最適な保険商品をご提案できるよう、信頼と実績のある複数の保険会社と提携しています。各社の強みや特長を活かし、お客さまに最適なプランをお選びいただけるようサポートいたします。" align="start" heightClass="h-[30vh]" />
     <div class="max-w-6xl mx-auto px-4 mb-12">
-      <div class="grid grid-cols-5 gap-1 md:gap-2">
+      <div class="grid grid-cols-6 gap-1 md:gap-2">
         <a href="#msins" class="h-20 md:h-24 flex items-center justify-center bg-white">
           <Image src={MsIns} alt="三井住友海上火災保険株式会社" class="max-h-12 md:max-h-16 max-w-[90%] md:max-w-[80%] w-auto h-auto object-contain" />
         </a>
@@ -51,6 +53,12 @@ import Neofirst from '../assets/img/neofirst.webp';
         </a>
         <a href="#neofirst" class="h-20 md:h-24 flex items-center justify-center bg-white">
           <Image src={Neofirst} alt="ネオファースト生命保険株式会社" class="max-h-12 md:max-h-16 max-w-[90%] md:max-w-[80%] w-auto h-auto object-contain" />
+        </a>
+        <a href="#nihonseimei" class="h-20 md:h-24 flex items-center justify-center bg-white">
+          <Image src={Nihonseimei} alt="日本生命保険相互会社" class="max-h-12 md:max-h-16 max-w-[90%] md:max-w-[80%] w-auto h-auto object-contain" />
+        </a>
+        <a href="#hanasaku" class="h-20 md:h-24 flex items-center justify-center bg-white">
+          <Image src={hanasaku} alt="はなさく生命保険株式会社" class="max-h-12 md:max-h-16 max-w-[90%] md:max-w-[80%] w-auto h-auto object-contain" />
         </a>
       </div>
     </div>
@@ -112,6 +120,16 @@ import Neofirst from '../assets/img/neofirst.webp';
         <div id="neofirst" class="px-4">
           <InsuranceCompanies logo={Neofirst} logoAlt="Providers" phone="0120-581-201" hours="9:00–17:00（日・祝除く）" url="https://www.neofirst.co.jp/">
             <span slot="name">ネオファースト生命保険株式会社</span>
+          </InsuranceCompanies>
+        </div>
+        <div id="nihonseimei" class="px-4">
+          <InsuranceCompanies logo={Nihonseimei} logoAlt="Providers" phone="0120-201-021 / 0120-279-481" hours="—" url="https://www.nissay.co.jp/" urlLabel="日本生命 公式サイト">
+            <span slot="name">日本生命保険相互会社</span>
+          </InsuranceCompanies>
+        </div>
+        <div id="hanasaku" class="px-4">
+          <InsuranceCompanies logo={hanasaku} logoAlt="Providers" phone="0120-8739-17 / 0120-8739-13 / 0120-8739-62" hours="変額保険: 月–金 9:00–19:00／土日 9:00–17:00（祝日・年末年始除く）" url="https://www.life8739.co.jp/" urlLabel="はなさく生命 公式サイト">
+            <span slot="name">はなさく生命保険株式会社</span>
           </InsuranceCompanies>
         </div>
       </div>

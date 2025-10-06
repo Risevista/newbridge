@@ -1,7 +1,7 @@
 <section class="hero px-2" id="hero">
   <div class="hero-content">
       <h1 class="hero-text" data-text="圧倒的な安心をあなたに">圧倒的な安心をあなたに</h1>
-      <p class="subtitle" data-text="Through investment and consumption,<br>make Japan the leading global nation.">Through investment and consumption,<br>make Japan the leading global nation.</p>
+      <p class="subtitle" data-text="Through investment and consumption,\nmake Japan the leading global nation.">Through investment and consumption,<br>make Japan the leading global nation.</p>
   </div>
 </section>
 
@@ -134,24 +134,29 @@
       content: attr(data-text);
       position: absolute;
       margin-top: 30px;
-      left: 0;
-      right: 0;
-      width: 100%;
+      left: 50%;
+      transform: translateX(-50%);
       color: #155aa8;
       opacity: 0;
       animation: changeSubtitleColor 2.5s ease-in-out 2s forwards;
       mix-blend-mode: normal;
-      white-space: nowrap;
+      white-space: pre-line;
       text-align: center;
+      line-height: 1.4;
+      width: max-content;
+      max-width: 100%;
   }
 
   /* Mobile: allow text wrapping for pseudo-element */
   @media (max-width: 768px) {
       .subtitle::after {
-          white-space: normal;
+          left: 50%;
+          transform: translateX(-50%);
+          width: max-content;
+          max-width: calc(100% - 20px);
+          white-space: pre-line;
           font-size: clamp(0.8rem, 2.5vw, 1.2rem);
-          max-width: 100%;
-          padding: 0 5px;
+          padding: 0 10px;
       }
   }
 

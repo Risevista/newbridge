@@ -19,6 +19,8 @@ import MsPrimary from '../assets/img/mitsuisumitomo_kaijyo_primary.webp';
 import Himawari from '../assets/img/himawari.webp';
 import Sony from '../assets/img/sony.webp';
 import Neofirst from '../assets/img/neofirst.webp';
+import Nihonseimei from '../assets/img/nihonseimei.webp';
+import hanasaku from '../assets/img/hanasaku.webp';
 import HeaderLogo from '../assets/img/bridge.png';
 
 // Text (一箇所に集約) - currently unused
@@ -41,34 +43,10 @@ const images = [
   MsPrimary,
   Himawari,
   Sony,
-  Neofirst
+  Neofirst,
+  Nihonseimei,
+  hanasaku
 ];
-
-// ニュース記事の取得とサマリー生成
-// const posts = await getCollection("news");
-// @ts-ignore
-// const withExcerpt = posts
-//   .filter((post: any) => !post.data.draft) // 下書きを除外
-//   .sort((a: any, b: any) => b.data.date.getTime() - a.data.date.getTime()) // 日付で降順ソート
-//   .slice(0, 6) // 最新6件のみ表示
-//   .map((post: any) => {
-//     // Markdownの生テキストからサマリーを生成
-//     const bodyText = post.body
-//       .replace(/^#+\s*/gm, '') // 見出し記号を削除
-//       .replace(/\*\*(.*?)\*\*/g, '$1') // 太字記号を削除
-//       .replace(/\*(.*?)\*/g, '$1') // 斜体記号を削除
-//       .replace(/`(.*?)`/g, '$1') // インラインコード記号を削除
-//       .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1') // リンク記号を削除
-//       .replace(/^\s*[-*+]\s*/gm, '') // リスト記号を削除
-//       .replace(/\n+/g, ' ') // 改行を空白に変換
-//       .replace(/\s+/g, ' ') // 連続する空白を1つに
-//       .trim();
-    
-//     const excerpt = bodyText.slice(0, 100);
-//     return { ...post, excerpt };
-//   });
-
-
 ---
 
 <Layout title="圧倒的な安心をあなたに｜保険代理店ならBridge">
@@ -98,6 +76,16 @@ const images = [
       </div>
     </div>
   </section>  
+   
+   <!-- ご契約者様へ Section -->
+   <section class="py-16 bg-white relative">
+     <div class="max-w-6xl mx-auto px-4 md:px-0">
+       <SectionTitle title="FOR OUR CUSTOMERS" subtitle="ご契約者様へ" />
+       <p class="mt-3 text-sm md:text-base text-primary/80">
+         ご契約者様向けのページはこちらです。
+       </p>
+     </div>
+   </section>
    
    <Twocategories />
    
