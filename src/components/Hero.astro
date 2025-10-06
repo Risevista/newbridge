@@ -162,8 +162,10 @@
 <script>
   function replayAnimation() {
       const hero = document.getElementById('hero');
-      const heroClone = hero.cloneNode(true);
-      hero.parentNode.replaceChild(heroClone, hero);
+      if (hero && hero.parentNode) {
+          const heroClone = hero.cloneNode(true);
+          hero.parentNode.replaceChild(heroClone, hero);
+      }
   }
 
   // 初回ロード時の遅延（オプション）

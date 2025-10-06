@@ -21,15 +21,15 @@ import Sony from '../assets/img/sony.webp';
 import Neofirst from '../assets/img/neofirst.webp';
 import HeaderLogo from '../assets/img/bridge.png';
 
-// Text (一箇所に集約)
-const COPY = {
-  eyebrowJa: "企業情報",
-  eyebrowEn: "Our Company",
-  head1: "圧倒的な「安心」をあなたに",
-  head2: "個人・法人の総合保険代理店",
-  body1: "保険に関する疑問・課題を解決し、お客様に安心をお届けします。",
-  body2: "企業・個人のお客さまへあらゆる保険ソリューションをご提供します。",
-};
+// Text (一箇所に集約) - currently unused
+// const COPY = {
+//   eyebrowJa: "企業情報",
+//   eyebrowEn: "Our Company",
+//   head1: "圧倒的な「安心」をあなたに",
+//   head2: "個人・法人の総合保険代理店",
+//   body1: "保険に関する疑問・課題を解決し、お客様に安心をお届けします。",
+//   body2: "企業・個人のお客さまへあらゆる保険ソリューションをご提供します。",
+// };
 
 const images = [
   MsIns,
@@ -47,26 +47,26 @@ const images = [
 // ニュース記事の取得とサマリー生成
 const posts = await getCollection("news");
 // @ts-ignore
-const withExcerpt = posts
-  .filter((post: any) => !post.data.draft) // 下書きを除外
-  .sort((a: any, b: any) => b.data.date.getTime() - a.data.date.getTime()) // 日付で降順ソート
-  .slice(0, 6) // 最新6件のみ表示
-  .map((post: any) => {
-    // Markdownの生テキストからサマリーを生成
-    const bodyText = post.body
-      .replace(/^#+\s*/gm, '') // 見出し記号を削除
-      .replace(/\*\*(.*?)\*\*/g, '$1') // 太字記号を削除
-      .replace(/\*(.*?)\*/g, '$1') // 斜体記号を削除
-      .replace(/`(.*?)`/g, '$1') // インラインコード記号を削除
-      .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1') // リンク記号を削除
-      .replace(/^\s*[-*+]\s*/gm, '') // リスト記号を削除
-      .replace(/\n+/g, ' ') // 改行を空白に変換
-      .replace(/\s+/g, ' ') // 連続する空白を1つに
-      .trim();
+// const withExcerpt = posts
+//   .filter((post: any) => !post.data.draft) // 下書きを除外
+//   .sort((a: any, b: any) => b.data.date.getTime() - a.data.date.getTime()) // 日付で降順ソート
+//   .slice(0, 6) // 最新6件のみ表示
+//   .map((post: any) => {
+//     // Markdownの生テキストからサマリーを生成
+//     const bodyText = post.body
+//       .replace(/^#+\s*/gm, '') // 見出し記号を削除
+//       .replace(/\*\*(.*?)\*\*/g, '$1') // 太字記号を削除
+//       .replace(/\*(.*?)\*/g, '$1') // 斜体記号を削除
+//       .replace(/`(.*?)`/g, '$1') // インラインコード記号を削除
+//       .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1') // リンク記号を削除
+//       .replace(/^\s*[-*+]\s*/gm, '') // リスト記号を削除
+//       .replace(/\n+/g, ' ') // 改行を空白に変換
+//       .replace(/\s+/g, ' ') // 連続する空白を1つに
+//       .trim();
     
-    const excerpt = bodyText.slice(0, 100);
-    return { ...post, excerpt };
-  });
+//     const excerpt = bodyText.slice(0, 100);
+//     return { ...post, excerpt };
+//   });
 
 
 ---
@@ -715,7 +715,7 @@ const withExcerpt = posts
     if (document.body.classList.contains('fonts-loaded')) {
       revealHero();
     } else {
-      const mo = new MutationObserver((muts, obs) => {
+      const mo = new MutationObserver((_muts, obs) => {
         if (document.body.classList.contains('fonts-loaded')) {
           obs.disconnect();
           revealHero();
@@ -765,7 +765,7 @@ const withExcerpt = posts
 
     // Service icons animation
     const serviceIcons = document.querySelectorAll('.service-icon');
-    serviceIcons.forEach((icon, index) => {
+    serviceIcons.forEach((icon, _index) => {
       const delay = parseFloat((icon as HTMLElement).getAttribute('data-delay') || '0') * 1000;
       setTimeout(() => {
         (icon as HTMLElement).style.opacity = '1';
@@ -1227,7 +1227,7 @@ const withExcerpt = posts
     if (document.body.classList.contains('fonts-loaded')) {
       revealHero();
     } else {
-      const mo = new MutationObserver((muts, obs) => {
+      const mo = new MutationObserver((_muts, obs) => {
         if (document.body.classList.contains('fonts-loaded')) {
           obs.disconnect();
           revealHero();

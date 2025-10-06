@@ -61,7 +61,7 @@ const testimonials = [
      <div class="testimonials-container">
        <div class="testimonials-track">
          <!-- First set of 3 testimonials -->
-         {testimonials.slice(0, 3).map((testimonial, index) => (
+         {testimonials.slice(0, 3).map((testimonial, _index) => (
            <div class="testimonial-card">
              <div class="testimonial-content">
                <p class="testimonial-text">"{testimonial.text}"</p>
@@ -74,7 +74,7 @@ const testimonials = [
          ))}
          
          <!-- Second set of 3 testimonials -->
-         {testimonials.slice(3, 6).map((testimonial, index) => (
+         {testimonials.slice(3, 6).map((testimonial, _index) => (
            <div class="testimonial-card">
              <div class="testimonial-content">
                <p class="testimonial-text">"{testimonial.text}"</p>
@@ -87,7 +87,7 @@ const testimonials = [
          ))}
          
          <!-- Third set of 3 testimonials -->
-         {testimonials.slice(6, 9).map((testimonial, index) => (
+         {testimonials.slice(6, 9).map((testimonial, _index) => (
            <div class="testimonial-card">
              <div class="testimonial-content">
                <p class="testimonial-text">"{testimonial.text}"</p>
@@ -223,13 +223,15 @@ const testimonials = [
     let currentSlide = 0;
     const totalSlides = 3;
     
-    function showSlide(slideIndex) {
+    function showSlide(slideIndex: number) {
+      if (!track) return;
+      
       if (window.innerWidth <= 768) {
         // On mobile, show one card at a time
-        track.style.transform = `translateX(-${slideIndex * 100}%)`;
+        (track as HTMLElement).style.transform = `translateX(-${slideIndex * 100}%)`;
       } else {
         // On desktop, show 3 cards at a time
-        track.style.transform = `translateX(-${slideIndex * 100}%)`;
+        (track as HTMLElement).style.transform = `translateX(-${slideIndex * 100}%)`;
       }
       
       // Update active dot

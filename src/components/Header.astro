@@ -1,11 +1,16 @@
 ---
 import Image from './Image.astro';
-import HeaderLogo from '../assets/img/bridge-logo.png'; 
-import Textlogo from '../assets/img/textlogo.webp';
+import HeaderLogo from '../assets/img/bridge-logo.png';
 const { title } = Astro.props;
 
 // ナビゲーション項目の定義
-const navItems = [
+interface NavItem {
+  href: string;
+  text: string;
+  submenu?: Array<{ href: string; text: string }>;
+}
+
+const navItems: NavItem[] = [
   { 
     href: '/', 
     text: 'ホーム',
