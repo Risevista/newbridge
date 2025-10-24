@@ -2,6 +2,7 @@
   <div class="hero-content">
       <h1 class="hero-text" data-text="圧倒的な安心をあなたに">圧倒的な安心をあなたに</h1>
       <p class="subtitle" data-text="Through investment and consumption,\nmake Japan the leading global nation.">Through investment and consumption,<br>make Japan the leading global nation.</p>
+      <p class="japanese-subtitle" data-text="お客様の将来設計に伴走する、保険のパートナーBridge">お客様の将来設計に伴走する、保険のパートナーBridge</p>
   </div>
 </section>
 
@@ -147,8 +148,43 @@
       max-width: 100%;
   }
 
+  /* Japanese subtitle styles */
+  .japanese-subtitle {
+      position: absolute;
+      margin-top: 80px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: clamp(0.9rem, 2.5vw, 1.3rem);
+      font-weight: 400;
+      letter-spacing: 0.05em;
+      color: #155aa8;
+      opacity: 0;
+      animation: fadeInJapaneseSubtitle 2.5s ease-out 7s forwards;
+      mix-blend-mode: normal;
+      white-space: nowrap;
+      text-align: center;
+      line-height: 1.4;
+      width: max-content;
+      max-width: 100%;
+  }
+
+  @keyframes fadeInJapaneseSubtitle {
+      to {
+          opacity: 1;
+          transform: translateX(-50%) translateY(0);
+      }
+  }
+
+
   /* Mobile: allow text wrapping for pseudo-element */
   @media (max-width: 768px) {
+      .japanese-subtitle {
+          white-space: normal;
+          font-size: clamp(0.8rem, 2.2vw, 1.1rem);
+          max-width: calc(100% - 20px);
+          padding: 0 5px;
+      }
+      
       .subtitle::after {
           left: 50%;
           transform: translateX(-50%);
