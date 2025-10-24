@@ -34,7 +34,7 @@ const alignmentClass = align === 'center' ? 'justify-center' : align === 'end' ?
   </div>
   {description && (
     <div class="max-w-6xl mx-auto px-4 text-left">
-      <p class="text-primary text-[12px] md:text-base leading-relaxed">{description}</p>
+      <p class="text-primary text-[12px] md:text-base leading-relaxed whitespace-nowrap overflow-hidden text-ellipsis">{description}</p>
     </div>
   )}
 </div>
