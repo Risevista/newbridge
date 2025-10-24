@@ -179,15 +179,10 @@
   /* Mobile: allow text wrapping for pseudo-element */
   @media (max-width: 768px) {
       .japanese-subtitle {
-          white-space: normal;
+          white-space: nowrap;
           font-size: clamp(0.8rem, 2.2vw, 1.1rem);
           max-width: calc(100% - 20px);
           padding: 0 5px;
-      }
-      
-      .mobile-break::before {
-          content: "\A";
-          white-space: pre;
       }
       
       .subtitle::after {
