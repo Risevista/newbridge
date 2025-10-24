@@ -2,7 +2,7 @@
   <div class="hero-content">
       <h1 class="hero-text" data-text="圧倒的な安心をあなたに">圧倒的な安心をあなたに</h1>
       <p class="subtitle" data-text="Through investment and consumption,\nmake Japan the leading global nation.">Through investment and consumption,<br>make Japan the leading global nation.</p>
-      <p class="japanese-subtitle !whitespace-nowrap !text-center" data-text="お客様の将来設計に伴走する、保険のパートナーBridge">お客様の将来設計に伴走する、保険のパートナーBridge</p>
+      <p class="japanese-subtitle" data-text="お客様の将来設計に伴走する、保険のパートナーBridge">お客様の将来設計に伴走する、<span class="mobile-break">保険のパートナーBridge</span></p>
   </div>
 </section>
 
@@ -179,10 +179,15 @@
   /* Mobile: allow text wrapping for pseudo-element */
   @media (max-width: 768px) {
       .japanese-subtitle {
-          white-space: nowrap;
-          font-size: clamp(0.8rem, 2.2vw, 1.1rem);
+          white-space: normal;
+          font-size: 14px;
           max-width: calc(100% - 20px);
           padding: 0 5px;
+      }
+      
+      .mobile-break::before {
+          content: "\A";
+          white-space: pre;
       }
       
       .subtitle::after {
