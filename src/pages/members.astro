@@ -7,6 +7,9 @@ import MemberBG from '../assets/img/member-bg.webp';
 import President from '../assets/img/president.png';
 import Member2 from '../assets/img/member2.png';
 
+/** 代表プロフィールをページに表示するか（非公開のときは false） */
+const showPresident = false;
+
 ---
 
 <Layout title="Members | 株式会社Bridge">
@@ -15,6 +18,7 @@ import Member2 from '../assets/img/member2.png';
       <HeroBanner image={MemberBG} alt="ProvidersBG" text="社員紹介" description="当社では、お客さまのニーズに合わせて最適な保険商品をご提案できるよう、信頼と実績のある複数の保険会社と提携しています。各社の強みや特長を活かし、お客さまに最適なプランをお選びいただけるようサポートいたします。" align="start" heightClass="h-[30vh]" />
     </section>
 
+    {showPresident && (
     <!-- PRESIDENT SECTION -->
     <section class="w-full flex flex-col items-center bg-white  md:py-8 px-6 md:px-8" id="president">
       <div class="w-full max-w-7xl">
@@ -27,6 +31,7 @@ import Member2 from '../assets/img/member2.png';
             </div>
 
             <!-- Content Section -->
+             <!-- 代表取締役社長 土屋健二 -->
             <div class="lg:w-3/5 flex flex-col justify-center text-left">
               <div class="mb-8">
                 <div class="inline-flex items-center bg-blue-500/10 text-blue-800 px-4 py-2 rounded-full mb-4 ring-1 ring-blue-500/30">
@@ -46,6 +51,7 @@ import Member2 from '../assets/img/member2.png';
         </div>
       </div>
     </section>
+    )}
 
     <!-- MEMBER 2 SECTION -->
     <section class="w-full flex flex-col items-center bg-white py-20 md:py-32 px-6 md:px-8" id="member2">
