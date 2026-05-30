@@ -1,25 +1,82 @@
 ---
 import Image from './Image.astro';
-import FooterLogo from '../assets/img/bridge-logo.png'; 
+import FooterLogo from '../assets/img/bridge-logo.png';
+import { navItems } from '../data/nav';
 ---
 
 <footer class="bg-primary-back text-primary text-sm pt-12 pb-12 md:px-12 px-4 border-t border-gray-300">
   <div class="max-w-7xl mx-auto">
-    <!-- ロゴと社名 横並び -->
-     <a href="/">
-    <div class="flex items-center mb-2">
-      <Image
-        src={FooterLogo}
-        alt="Bridge"
-        class="h-16 w-auto mr-3"
-        loading="lazy"
-        decoding="async"
-      />
+    <div class="flex flex-col lg:flex-row lg:justify-between lg:items-start gap-10">
+      <!-- ロゴと社名 -->
+      <a href="/" class="shrink-0">
+        <div class="flex items-center mb-2">
+          <Image
+            src={FooterLogo}
+            alt="Bridge"
+            class="h-16 w-auto mr-3"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+      </a>
+      <!-- ナビゲーション（ヘッダーと同じ項目） -->
     </div>
-    </a>
+
+    <nav aria-label="フッターナビゲーション" class="mt-10">
+      <ul class="flex flex-col sm:flex-row sm:flex-wrap gap-x-6 gap-y-3 font-serif text-base md:text-lg text-secondary-accent">
+        {navItems.map((item) => (
+          <li>
+            <a href={item.href} class="footer-nav-link">
+              {item.text}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+
     <!-- フッタークレジット -->
     <div class="mt-10 text-xs text-center text-gray-900">
       ©　株式会社Bridge All Rights Reserved.
     </div>
   </div>
 </footer>
+
+<style>
+  .footer-nav-link {
+    position: relative;
+    display: inline-block;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    font-weight: var(--fontWeightBold);
+    font-size: 16px;
+    line-height: 1.6;
+    font-family: var(--fontFamily);
+    letter-spacing: 0.2px;
+    color: inherit;
+  }
+
+  .footer-nav-link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 2px;
+    width: 0;
+    background-color: #0076c1;
+    transition: width 0.3s ease;
+  }
+
+  .footer-nav-link:hover {
+    color: #0076c1;
+  }
+
+  .footer-nav-link:hover::after {
+    width: 100%;
+  }
+
+  @media (max-width: 767px) {
+    .footer-nav-link::after {
+      display: none;
+    }
+  }
+</style>
